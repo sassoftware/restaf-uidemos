@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) SAS Institute Inc.
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  ~
+  -->
+
+<!--suppress JSUnfilteredForInLoop -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            height: 100%;
+        }
+        .content {
+            height: 100%;
+        }
+        .button {
+            margin: 10px;
+        }
+        .idTable {
+            background-color: bisque;
+        }
+
+    </style>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+
+    <!-- this brings in the raf library -->
+
+    <script type="text/javascript" src="/shared/env.js"></script>
+    <script type="text/javascript" src="/shared/util.js"></script>
+    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
+
+
+    <!-- The entire script for this app
+         Compare this to test/paginate.js
+         Notice that the code is similar even though
+         paginate.js is a nodejs app and this is a web app.
+         -->
+
+    <script type="text/babel">
+
+        //
+        // this starts the whole app
+        // logonPayload, setup file service and get the first set of results
+        // then it starts the UI part
+        debugger;
+        var store = restaf.initStore();
+
+        //
+        // Sequence:
+        //        logonPayload
+        //        Add file service to store - this will get all the root links
+        //        now call the files rel from the root links(links in the code below)
+        //        now invoke your viewer
+        store.logon( null )
+             .then( msg => store.addServices( 'files' ) )
+             .then( folder => {
+                 debugger;
+                 let payload = { data: { x:1}, headers: { 'content-type': 'application/json'}};
+                 let createCmd = folder.links( 'create'  );
+                 return store.apiCall( createCmd, payload );
+             } )
+           .then ( folder => {
+               debugger;
+               let content = folder.links( 'content' );
+               return store.apiCall( content );
+           } )
+            .then( folder => {
+                debugger;
+                let data = folder.items();
+                document.getElementById( 'container' ).textContent = JSON.stringify( data );
+                return true;
+            } )
+            .catch( err => {
+                alert( JSON.stringify( err, null, 4 ) );
+                return false;
+            } )
+
+
+    </script>
+</head>
+
+<body>
+<h1> Save and retrieve data from File Service</h1>
+
+    <div id="container" class="content" >
+        <p id="filecontent"> </p>
+        </div>
+
+</body>
+</html>

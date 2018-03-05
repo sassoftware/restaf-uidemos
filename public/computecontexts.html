@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) SAS Institute Inc.
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  ~
+  -->
+
+<!--suppress JSUnfilteredForInLoop -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            height: 100%;
+        }
+        .content {
+            height: 100%;
+        }
+        .button {
+            margin: 10px;
+        }
+        .idTable {
+            background-color: bisque;
+        }
+
+    </style>
+
+
+    <!-- this brings in the raf library -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+    
+    
+    <script type="text/javascript" src="/shared/env.js"></script>
+    <script type="text/javascript" src="/shared/showAlert.js"></script>
+    <script type="text/javascript" src="/shared/util.js"></script>
+    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
+
+
+    <script type="text/javascript">
+
+        //
+        // this starts the whole app
+        // logonPayload, setup file service and get the first set of results
+        // then it starts the UI part
+        debugger;
+
+        var store = restaf.initStore();
+
+        store.logon( null )
+             .then( msg => store.addServices( 'compute' ) )
+             .then( folder => store.apiCall( folder.links( 'contexts'  ) ) )
+             .then ( folder => viewer( store, folder ) )
+                .catch( err => {
+                    alert( err );
+                } )
+
+        //
+        // Your favorite framework to create an UI
+        // My favorite framework to create UI is React
+        // You pick your own favorite UI framework here.
+        // Being UI framework agnostic is a key strength of restAF.
+        //
+        function viewer ( store, folder ) {
+            debugger;
+            let props = {
+                store  : store,
+                folder : folder
+            };
+            rafuip.ItemsList( props, '#container' );
+            return true;
+        }
+
+    </script>
+</head>
+
+<body>
+
+<h1> Id Viewer using restAF</h1>
+
+    <div id="container" class="content" >
+        </div>
+
+</body>
+</html>

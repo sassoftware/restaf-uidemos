@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) SAS Institute Inc.
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  ~
+  -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report 1, Page 1</title>
+    <link rel="stylesheet" type="text/css" href="./app.css">
+
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <!-- this brings in the raf library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+
+
+    <script type="text/javascript" src="/shared/env.js"></script>
+    <script type="text/javascript" src="/shared/showAlert.js"></script>
+    <script type="text/javascript" src="/shared/util.js"></script>
+    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+    let reportsList;
+    var store    = restaf.initStore( );
+    var onclickx = reportTab.bind( null );
+    debugger;
+    store.logon( null )
+         //
+         // attach reports service to restAF
+         //
+        .then( msg        => store.addServices( 'reports' ) )
+         //
+         // Go ahead and get the first set of reports
+         //
+        .then ( reportsService  => store.apiCall( reportsService.links( 'reports' ) )  )
+         //
+         // save the reportList for use in the button onclick callback
+         //
+        .then ( result => {
+            reportsList = result;
+        } )
+        .catch ( err   => {
+            alert( err );
+        } );
+
+    function reportTab() {
+        debugger;
+        console.log( JSON.stringify( reportsList.items(), null, 4 ) );
+        //
+        // get the href of self for the first report
+        // do not handle cobble this href - who knows what the developers will change this to in the next release
+        //
+
+        let href = reportsList.itemsCmd( reportsList.itemsList( 0 ), 'self', 'link', 'href' ) ;
+
+        //
+        // formulate the url to use in the windows.location.assign call to navigate to the report
+        //
+
+        let url = `${VIYA_HOST}/SASReportViewer/?reportUri=${href}&appSwitcherDisabled=true&reportViewOnly=true`;
+
+        console.log( url );
+
+        //
+        // Now navigate to the report
+        //
+
+        window.location.assign( url );
+    }
+
+
+</script>
+
+<div id="container" class="content" >
+        <button id="tabit" onclick="onclickx()"> goto report </button>
+</div>
+
+
+</body>
+</html>

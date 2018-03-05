@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) SAS Institute Inc.
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  ~
+  -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report 1, Page 1</title>
+    <link rel="stylesheet" type="text/css" href="./app.css">
+
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <!-- this brings in the raf library -->
+    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
+
+    <script type="text/javascript" src="/shared/env.js"></script>
+    <script type="text/javascript" src="/shared/showAlert.js"></script>
+    <style>
+        .notes {
+            border: 2px;
+            background: cyan;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    let reportsService      = null;
+    let reportImagesService = null;
+    let reportsList         = null;
+    let sectionName         = null;
+    let reportNo            = 0;
+
+   
+
+    function reportInFrame(type) {
+        let rafLink = reportsList.itemsCmd( reportsList.itemsList( 0 ), 'view' );
+
+        store.apiCall( rafLink )
+             .then( embeddedReport => {
+                 var iframe = document.createElement( 'iframe' );
+                 iframe.width  = 800;
+                 iframe.height = 800;
+                 iframe.onload = function () {
+                     showAlert( 'myframe is loaded' );
+                 };
+                 if ( type === 1 ) {
+                     iframe.srcdoc = embeddedReport.items();
+                 } else {
+                     let id     = reportsList.items( reportsList.itemsList( 0 ), 'data', 'id' );
+                     iframe.src = `${VIYA_HOST}/SASReportViewer/?reportUri=/reports/reports/${id}&appSwitcherDisabled=true&reportViewOnly=true`;
+                 }
+                 var imageDOM  = document.getElementById( 'image' );
+                 var outputDOM = imageDOM.parentNode;
+                 outputDOM.replaceChild( iframe, imageDOM );
+             } )
+            .catch( err => {
+                showAlert( err )
+            } )
+    }
+
+   
+    //
+    // create image payload
+    //
+
+    async function getImage() {
+        let page = document.getElementById( "page" ).value;
+        reportNo = document.getElementById( "reportno" ).value;
+        let job = await store.apiCall( reportImagesService.links( 'createJob' ), imagePayload( reportsList, reportNo, page ) );
+        debugger;
+        let status = await store.jobState( job, { qs: { wait: 1.5} } , 5, 2 );
+
+        if ( status.data !== 'completed' ) {
+            throw `Job failed ${status.data}`;
+        }
+
+        sectionName = status.job.items( status.job.itemsList( 0 ), 'data', 'sectionName' );
+        let image  = await store.apiCall( status.job.itemsCmd( status.job.itemsList( 0 ), 'image' ) )
+        viewer(image);
+
+    }
+
+    function imagePayload( reportsList, index, page ) {
+        console.log(reportsList.itemsList().size );
+        let uri = reportsList.itemsCmd( reportsList.itemsList( index ), 'self', 'link', 'uri' );
+        return {
+            data: {
+                reportUri      : uri,
+                sectionIndex   : page,
+                layoutType: 'entireSection',
+                size: "400x400"
+            }
+         } ;
+    }
+    
+    function viewer( image ) {
+        debugger;
+
+        let href = reportsList.itemsCmd( reportsList.itemsList( reportNo ), 'self', 'link', 'href' ) ;
+        makeLink ( href, sectionName, 'freport',    'full',   '_self', 'Full report in same Tab' );
+        makeLink ( href, sectionName, 'ereport',    'embed',  '_self',  'Embedded report in same Tab' );
+        makeLink ( href, sectionName, 'tabfreport', 'full',   '_blank',  'Full report in a new Tab' );
+        makeLink ( href, sectionName, 'tabereport', 'embed',  '_blank',  'Embed report in a new Tab')
+
+        document.getElementById( 'image' ).innerHTML = image.items() ;
+
+    }
+    
+    
+    function makeLink ( reportHref, page, element, reporttype, target, label ) {
+        let result;
+        let href = `${VIYA_HOST}/SASReportViewer/?reportUri=${reportHref}`;
+        href = href + "&page=" + page;
+        if ( reporttype === 'embed' ) {
+            href = href + "&appSwitcherDisabled=true&reportViewOnly=true";
+        }
+        result = `<a href="${href}" target="${target}" > ${label} </a>`;
+    
+        document.getElementById( element ).innerHTML = result;
+        console.log ( result );
+}
+    // start
+    
+    let gotoReportInFrame = reportInFrame.bind( this );
+    function getImageHandler () {
+        getImage()
+            .catch ( err  => showAlert( err ) )
+    }
+    let gotoGetImage = getImageHandler.bind( this );
+
+    // ----------------
+    // ----------------
+    
+    async function setup() {
+        debugger;
+        let msg = await store.logon(null);
+
+        let services   = await store.addServices ('reports', 'reportImages');
+        reportsService = services.reports;
+        reportImagesService = services.reportImages;
+
+        debugger;
+        reportsList = await store.apiCall( reportsService.links( 'reports' ) );
+        return true;
+    }
+
+    let store = restaf.initStore( );
+    debugger;
+    setup() 
+            .then (r => console.log( r ))
+            .catch (err => showAlert(err));
+
+
+</script>
+
+    <div id="container" class="content" >
+
+        <button id="ereport1" onclick="gotoReportInFrame(1);"> Replace Image with embedded report in a frame ( fails ) - using srcdoc  </button>
+        <button id="ereport2" onclick="gotoReportInFrame(2);"> Replace Image with embedded report in a frame - using src(frame restrictions)  </button>
+
+
+        <p id="freport" ></p>
+        <p id="ereport"> </p>
+
+        <p id="tabfreport"> </p>
+        <p id="tabereport"> </p>
+
+        Report No: <input type="number" name="Report" id="reportno" value="0" >
+        Section Number: <input type="number" name="Section" id="page" value="0" >
+        <button id="getimage" onclick="gotoGetImage();"> Get Image </button>
+        <div id="output" >
+            <div id="image">
+               </div>
+        </div>
+
+
+     </div>
+
+
+</body>
+</html>

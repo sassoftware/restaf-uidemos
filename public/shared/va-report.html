@@ -1,0 +1,181 @@
+<!--
+  ~ Copyright (c) SAS Institute Inc.
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  ~
+  -->
+
+<template id="vaReportTemplate">
+    <style>
+         .grid {
+             display: table;
+             width: calc(100% + 1.75rem);
+             border-collapse: separate;
+             border-spacing: 1rem;
+             margin: -1rem;
+             height: inherit;
+         }
+        .gridRow {
+            display: table-row;
+        }
+        .gridCell {
+            display: table-cell;
+            width: 50%;
+            padding-bottom: 50%;
+            position: relative;
+        }
+        .component {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-flow: column;
+        }
+        .componentIframe {
+            border: 1px solid #000000;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            flex: 1;
+        }
+        .componentHeader {
+            height: 20px;
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+        }
+
+    </style>
+
+    <div class="grid">
+        <div class="gridRow">
+            <div class="gridCell gridCell1">
+                <div id="component1" class="component">
+                    <div id="component1-header" class="componentHeader">
+                        <input id="button" type="button" value="Go To Report Viewer..."/>
+                    </div>
+                    <svg id="imageViewer" class="componentIframe"  style="display: none;"></svg>
+                    <iframe id="reportViewer" class="componentIframe" style="display: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
+
+
+<script>
+    class VaReport extends HTMLElement {
+
+        constructor() {
+            super();
+        }
+
+        static get observedAttributes() {
+            return ['host', 'image', 'href', 'page', 'options'];
+        };
+
+        createdCallback() {
+            debugger;
+            this.shadow   = this.createShadowRoot();
+            let localDoc  = ( document.currentScript ) ? document.currentScript.ownerDocument : VaReportLocalDoc;
+            let template  = localDoc.querySelector( '#vaReportTemplate' );
+            let clone     = document.importNode( template.content, true );
+            this.shadow.appendChild( clone );
+        }
+
+        attachedCallback() {
+            this.editButton      = ' ';
+            this.reportLoaded    = false;
+            this.imageLoaded     = false;
+            this.shadow.querySelector( "#button" ).onclick = this.loadFrame.bind( this );
+            this.swapViewer( 'image', 'report' ); 
+        }
+
+        detachedCallback() {
+            debugger;
+        }
+        set properties ( prop ){
+            console.log( prop );
+        }
+
+        swapViewer( next, hide ){
+            debugger;
+
+            let nextElement = this.shadow.querySelector( `#${next}Viewer` );
+            let hideElement = this.shadow.querySelector( `#${hide}Viewer` );
+            this.shadow.querySelector( '#button' ).value = `Go To ${hide} Viewer...`;
+            this.editButton = hide;
+
+            nextElement.style.display = 'block';
+            hideElement.style.display = 'none';
+
+            let loaded = `${next}Loaded`;
+            if ( this[loaded]  === false ){
+                this[loaded] = true;
+                if ( next === 'report' ) {
+                    nextElement.setAttribute( 'src', this.makeURL() );
+                } else {
+                    debugger;
+                    nextElement.innerHTML = this.getAttribute( next );
+                    let box = nextElement.getBBox();
+                    console.log( box );
+                    let viewBox = [box.x, box.y, box.width, box.height].join( ' ' );
+                    nextElement.setAttribute( 'viewBox', viewBox );
+                    nextElement.setAttribute( 'preserveAspectRatio', 'none' );
+                }
+                
+            }
+        }
+
+        loadFrame() {
+            if ( this.editButton === 'image' ) {
+                this.swapViewer('image', 'report');
+            } else {
+                this.swapViewer( 'report', 'image' );
+            }
+        }
+
+        attributeChangedCallback(attributeName, oldValue, newValue) {
+            console.log( attributeName );
+            if ( attributeName === 'image' ) {
+                this.imageLoaded = false;
+                this.reportLoaded = false ;
+                this.swapViewer( 'image', 'report' );
+            }
+            debugger;
+        }
+
+
+        makeURL ( ) {
+            debugger;
+            let host    = this.getAttribute( 'host' );
+            let href    = this.getAttribute( 'href' );
+            let page    = this.getAttribute( 'page' );
+            let options = this.getAttribute( 'options' );
+            return `${host}/SASReportViewer/?reportUri=${href}&page=${page}&${options}`;
+        }
+
+    }
+
+
+    let eVaReport  = document.registerElement( "va-report", VaReport );
+    /*
+     * Need this until imports are fully supported in browsers
+     */
+    let VaReportLocalDoc = document.currentScript.ownerDocument;
+
+
+</script>
