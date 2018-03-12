@@ -58,7 +58,7 @@
             try {
                 debugger;
                 let msg        = await store.logon( null );
-                let casmgmt    = await store.addServices(  'casManagement' );
+                let casmgmt    = await store.addServices( 'casManagement' );
                 let servers    = await store.apiCall( casmgmt.links( 'servers' ) );
                 let payload    = { data: { name: 'restAF' } };
                 let serverName = servers.itemsList( 0 );
@@ -85,7 +85,7 @@
            let it = "";
 
            let props = {
-               onRun: runSentiment,
+               onRun: runCode,
                text  : it,
                mode  : 'text',
                button: 'Sentiment',
@@ -94,13 +94,17 @@
            rafuip.TextEditor( props, "#sourcediv" );
        }
 
-       function runCode ( text ) {
-           runSentiment( text );
-        }
-
         // function called by file selector
         function getFileInfo( evt ) {
             uploadF = evt.target.files[0];
+        }
+        function runCode ( text, uploadF, cb ) {
+            runSentiment(text)
+                .then(r => cb(true))
+                .catch(err => {
+                    showAlert(err);
+                    cb(false);
+                })
         }
         async function runSentiment( doc ) {
             // Delete(drop) temp tables if it exists
@@ -113,9 +117,9 @@
             result     = await store.apiCall( executeCmd, payload );
             let r      = result.items( 'results', 'result' ) ;
             let casOut = JSON.parse( r ).casOut[ 0 ];
-
             document.getElementById( 'sentiment' ).value = casOut._sentiment_;
             document.getElementById( 'prob' ).value = casOut._score_;
+
            return true;
         }
 
@@ -135,7 +139,15 @@
     </script>
 
 <h1> Winning Friends and Influencing People with Analytics </h1>
+    <div >
+        <div id="CASOUTPUT">
+            Sentiment: <input type="text" name="Sentiment" id="sentiment" value=" " >
+            Probability: <input type="number" name="prob" id="prob" value="0.0" >
 
+        </div>
+        <br>
+        <br>
+    </div>
         <div id="sourcediv" >
             <p> ... Initiating Editor</p>
         </div>
@@ -145,12 +157,6 @@
          </div>
     </div>
 
-<div >
-    <div id="CASOUTPUT">
-        Sentiment: <input type="text" name="Sentiment" id="sentiment" value=" " >
-        Probability: <input type="number" name="prob" id="prob" value="0.0" >
 
-    </div>
-</div>
 </body>
 </html>

@@ -21,6 +21,11 @@
 <head>
     <meta charset="UTF-8">
     <title>restAF uidemos </title>
+ <style>
+     a.noclick       {
+         pointer-events: none;
+     }
+ </style>
 </head>
 <body>
 
@@ -68,22 +73,29 @@
 <br>
 
 <h2> Reporting examples</h2>
-<h3> All the examples use raf-vareport Web Component to display image and Report Viewer</h3>
 <ul>
+    <li> <a href="/uidemos/reportdashboardSimple.html" > Simple dashboard</a></li>
+    <li> <a href="/uidemos/oneImage.html" >Report Browser with embedded Visual Analytics Reports </a> </li>
+    <li> <a class="noclick" href="/uidemos/reportBrowserWithrafuip.html" disabled> (under repair)React Based Image Browser - List and View reports </a></li>
+</ul>
 
-    <li> <a href="/uidemos/reportdashboardSimple.html" > Dasboard with images only</a></li>
+<h3> Demos that use web component raf-vareport</h3>
+<note>
+    At this time works only on Chrome browser- not sure why polyfills for HTML import and web components for other browsers fails(Used to work).
+    Also working on a react based component to replace this - will work everywhere without polyfills.
+    Sorry for the little hiccup.
+</note>
+<ul>
+    <li> <a href="/uidemos/rafVAreport.html" >Zero to Embedded VA reports in 5 minutes </a> </li>
     <li> <a href="/uidemos/reportdashboard.html" > Dashboard with links to reports</a></li>
-    <li> <a href="/uidemos/rafVAreport.html" >Single Image with link to report </a> </li>
-    <li> <a href="/uidemos/oneImage.html" >debug Single Image </a> </li>
-    <li> <a href="/uidemos/reportdashboard.html" > Dashboard with two images</a></li>
     <li> <a href="/uidemos/reportBrowser.html" > Report Browser - List and View reports </a></li>
-    <li> <a href="/uidemos/reportBrowserWithrafuip.html" > React Based Image Browser - List and View reports </a></li>
 
 </ul>
 
+
 <h2> Miscellaneous Services </h2>
 <ul>
-    <li> <a href="/uidemos/postfile.html" > Post a new file</a></li>
+    <li> <a href="/uidemos/postfile.html" > Post a new file and view it</a></li>
 </ul>
 
 </body>

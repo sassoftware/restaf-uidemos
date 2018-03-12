@@ -51,7 +51,6 @@ class IdViewer extends React.Component {
         makeMenu( folder ) {
             let {onClick} = this.state;
             let cmds = folder.scrollCmds();
-
             let menu = [];
             cmds.forEach((c,rel) => {
                 menu.push(<button key={rel} onClick={onClick[rel]}

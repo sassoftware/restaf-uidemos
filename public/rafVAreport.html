@@ -33,10 +33,9 @@
 <script type="text/javascript" src="/shared/env.js"></script>
 <script type="text/javascript" src="/shared/showAlert.js"></script>
 <script type="text/javascript" src="/shared/util.js"></script>
+    <script src="/restafServerInfo"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
     <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
-
-<script src="/shared/lib/restaf-uicomponents.js"></script>
     <link rel="stylesheet" type="text/css" href="/shared/app.css">
     <link rel="import" href="/shared/raf-vareport.html">
 </head>
@@ -89,6 +88,7 @@
     setup( )
         .then ( r => {
             debugger;
+            console.log(VIYA_HOST);
             document.getElementById( 'va' ).properties = {
                 host          : VIYA_HOST,
                 store         : store,

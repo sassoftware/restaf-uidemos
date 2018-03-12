@@ -35,7 +35,7 @@
     <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 
 
-
+    <script src="/restafServerInfo"></script>
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
@@ -67,6 +67,7 @@
 <body>
 
     <script type="text/javascript">
+        console.log(VIYA_HOST);
         let store = restaf.initStore();
         async function setup( ) {
             debugger;

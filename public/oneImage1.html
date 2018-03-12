@@ -97,10 +97,7 @@
             display: flex;
             align-items: flex-start;
         }
-        .container {
-            height: 100vh;
-            width: auto;
-        }
+
     </style>
 </head>
 <body>
@@ -120,12 +117,9 @@
 
     async function getImage() {
         let page = document.getElementById( "page" ).value;
-        reportNo = document.getElementById( "reportNo" ).selectedIndex;
-        document.getElementById('progress').style.display = 'block';
-        document.getElementById('getreport').disabled = true;
+        reportNo = document.getElementById( "reportno" ).value;
         let job = await store.apiCall( reportImagesService.links( 'createJob' ), imagePayload( reportsList, reportNo, page ) );
         debugger;
-
         let status = await store.jobState( job, { qs: { wait: 1.5} } , 5, 2 );
 
         if ( status.data !== 'completed' ) {
@@ -154,16 +148,12 @@
     function viewer( image ) {
         debugger;
         let href = reportsList.itemsCmd( reportsList.itemsList( reportNo ), 'self', 'link', 'href' ) ;
-        currentHref = href;
-        document.getElementById('reportViewer').style.display ='none';
-        document.getElementById('imageViewer').style.display  = 'block';
+        makeLink ( href, sectionName, 'freport',    'full',   '_self', 'Full report in same Tab' );
+        makeLink ( href, sectionName, 'tabfreport', 'full',   '_blank',  'Full report in a new Tab' );
         addSvg( image );
-        document.getElementById('progress').style.display = 'none';
-        document.getElementById('getreport').disabled = false;
     }
-
     function addSvg( svgdata ) {
-        let svg = document.getElementById( `imageViewer` );
+        let svg = document.getElementById( `svg0` );
         svg.innerHTML =  svgdata;
         debugger;
         let box = svg.getBBox();
@@ -173,15 +163,17 @@
     }
 
 
-    function createUI() {
-        let select = document.getElementById( 'reportNo' );
-        reportsList.itemsList().forEach( v => {
-            let option = document.createElement( "option" );
-            option.text = v;
-            select.options.add( option );
-        } );
-    }
+    function makeLink ( reportHref, page, element, reporttype, target, label ) {
+        let result;
+        let href = `${VIYA_HOST}/SASReportViewer/?reportUri=${reportHref}`;
+        href = href + "&page=" + page;
+        href = href + "&appSwitcherDisabled=true&reportViewOnly=true";
+        currentHref = href;
+        result = `<a href="${href}" target="${target}" > ${label} </a>`;
+    
+        document.getElementById( element ).innerHTML = result;
 
+}
     // start
 
     function getImageHandler () {
@@ -191,13 +183,13 @@
     let gotoGetImage = getImageHandler.bind( this );
 
     function getReportHandler () {
-        document.getElementById('reportViewer').style.display ='block';
-        document.getElementById('imageViewer').style.display = 'none';
-        let options = "&appSwitcherDisabled=true&reportViewOnly=true&printEnabled=true&sharedEnabled=true&informationEnabled=true&commentEnabled=true&reportViewOnly=true";
-        let href = `${VIYA_HOST}/SASReportViewer/?reportUri=${currentHref}&page=${sectionName}${options}`
-        document.getElementById('reportViewer').setAttribute('src',href);
+        document.getElementById('frame0').style.display ='block';
+        document.getElementById('svg0').style.display = 'none';
+        document.getElementById('frame0').setAttribute('src',currentHref );
     }
     let gotoGetReport = getReportHandler.bind( this );
+
+
 
     async function setup() {
         debugger;
@@ -209,9 +201,6 @@
 
         debugger;
         reportsList = await store.apiCall( reportsService.links( 'reports' ) );
-        createUI();
-        document.getElementById('progress').style.display = 'none';
-        document.getElementById('getreport').disabled = true;
         return true;
     }
 
@@ -224,7 +213,6 @@
 
 </script>
 
-<h1> Report Viewer </h1>
     <div id="container" class="content" >
 
         <p id="freport" ></p>
@@ -232,32 +220,23 @@
 
         <p id="tabfreport"> </p>
 
-        Report No:  <select id="reportNo"> </select>
+        Report No: <input type="number" name="Report" id="reportno" value="0" >
         Section Number: <input type="number" name="Section" id="page" value="0" >
-        <br/>
-        <progress id="progress" value="50" max="100"  style="display: none;"></progress>
+        <button id="getimage" onclick="gotoGetImage();"> Get Image </button>
+        <button id="getreport" onclick="gotoGetReport();"> Get report </button>
+        <div class="wrapper">
+            <div id="left">
+                <p id="repLink0"> </p>
+                <div id="image0" class="imagediv">
+                    <svg id="svg0"> </svg>
+                    <iframe id="frame0" class="componentIframe" allowfullscreen></iframe>
 
-            <div class="wrapper2">
-                    <div class="grid">
-                        <div class="gridRow">
-                            <div class="gridCell">
-                                <div id="component1" class="component">
-                                    <div id="component1-header" class="componentHeader">
-                                        <button id="getimage" onclick="gotoGetImage();"> Get Image </button>
-                                        <button id="getreport" onclick="gotoGetReport()" > Get report </button>
-                                    </div>
-                                    <svg id="imageViewer" class="componentIframe" ></svg>
-                                    <iframe id="reportViewer" class="componentIframe" allowfullscreen style="display: none;"></iframe>
-                                    <p id="err" style="display: none;"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                </div>
             </div>
 
 
-    </div>
+     </div>
+
 
 </body>
 </html>

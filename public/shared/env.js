@@ -15,8 +15,6 @@
  *
  */
 
-let VIYA_HOST   = "temporary- to be removed once we update restaf-server";
-
 let LOGONPAYLOAD = null;
 
 function config() {

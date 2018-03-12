@@ -5,7 +5,8 @@
   "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "node copy.js"
   },
   "main": "app.js",
   "repository": {
@@ -13,7 +14,8 @@
     "url": "https://github.com/sassoftware/restaf-uidemos"
   },
   "dependencies": {
-    "restaf-server": "latest"
+    "restaf-server": "latest",
+    "restaf-uicomponents": "latest"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1"

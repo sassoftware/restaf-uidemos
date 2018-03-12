@@ -27,11 +27,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+    <!-- Load Custom Elements es5 adapter -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/custom-elements-es5-adapter.js"></script>
+    <!-- Load polyfills; note that "loader" will load these async -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js" integrity="sha256-oN2JNfdNjF2gsa0aRXIgxyAFBQ3JXp2uCWbb76YVw20=" crossorigin="anonymous"></script>
+    <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js.map"></script> -->
+
 
 
 <script type="text/javascript" src="/shared/env.js"></script>
 <script type="text/javascript" src="/shared/showAlert.js"></script>
 <script type="text/javascript" src="/shared/util.js"></script>
+    <script src="/restafServerInfo"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
     <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 

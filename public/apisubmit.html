@@ -32,6 +32,7 @@
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
+    <script type="text/babel" src="shared/lib/LogViewer.js"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
     <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 
@@ -79,80 +80,7 @@
             margin: 2px;
         }
     </style>
-    <script type="text/babel">
-        class LogViewer extends React.Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    selected    : null,
-                    store       : props.store,
-                    logLines    : null,
-                    handleChange: this.handleChange.bind(this),
-                    getLogLines : this.getLogLines.bind(this)
-                };
 
-            }
-            componentWillMount() {
-                this.updateState();
-            }
-            componentWillReceiveProps(nextProps) {
-                this.updateState();
-            }
-            render() {
-                debugger;
-                return <div>
-                    <select value={this.state.selected} onChange={this.state.handleChange} onSelect={this.state.handleChange}>
-                        {this.state.store.submitStatus().map((JobId) => <option key={JobId} value={JobId}>{JobId}</option>)}
-                    </select>
-                    <div>{this.state.logLines}</div>
-                </div>
-            }
-            updateState() {
-                debugger;
-                let {store, selected} = this.state;
-                if ( store.submitStatus().size > 0 ) {
-                    if (selected === null) {
-                        selected = this.state.store.submitStatus().get(0);
-                    }
-                    this.state.getLogLines(selected);
-                } else {
-                    selected = null;
-                }
-                this.setState( {selected: selected})
-            }
-            handleChange(e){
-                debugger;
-                console.log(e.target.value);
-                this.state.getLogLines(e.target.value);
-                this.setState({selected: e.target.value})
-            }
-            getLogLines(selected) {
-                debugger;
-                let currentJob = this.state.store.submitStatus(selected).job;
-                this.state.store.apiCall(currentJob.links('log'))
-                    .catch(err => err)
-                    .then(folder => {
-                        let dataL = folder.items();
-                        let outAll = [];
-                        dataL.map((data, i) => {
-                            let out;
-                            let line = data.get('line').replace(/(\r\n|\n|\r)/gm, "");
-                            if (line.length === 0) {
-                                line = '  ';
-                            }
-                            let type = data.get('type');
-                            if (type === 'title') {
-                                out = <h2 key={i} className={type}> {line} </h2>;
-                            } else {
-                                out = <p key={i} className={type}> {line} </p>;
-                            }
-                            outAll.push(out);
-                        })
-                        this.setState( {logLines: outAll});
-                    })
-            }
-        }
-    </script>
     <script type="text/javascript">
         debugger;
         var store = restaf.initStore();
