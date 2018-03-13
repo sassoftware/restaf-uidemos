@@ -131,10 +131,10 @@
         }
         async function initApp () {
             let msg     = await store.logon (null);
-            let root    = await store.addServices ('casManagement');
-            let servers = await store.apiCall(root.links('servers'));
-            let casServerName  = servers.itemsList(0);
-            createSession  = servers.itemsCmd( casServerName, 'createSession');
+            let {casManagement} = await store.addServices ('casManagement');
+            let servers         = await store.apiCall(casManagement.links('servers'));
+            let casServerName   = servers.itemsList(0);
+            createSession       = servers.itemsCmd( casServerName, 'createSession');
         }
 
         async function runDemo(noOfJobs, delay, progresscb, completioncb) {

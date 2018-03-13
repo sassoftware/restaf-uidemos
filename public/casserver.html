@@ -39,8 +39,8 @@
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
-    <!-- script type="text/javascript" src="/shared/lib/restaf.min.js"></script> -->
-    <!-- <script src="/shared/lib/restaf-uicomponents.js"></script> -->
+    <script type="text/babel" src="/shared/lib/ItemsListViewer.js"></script>
+
 
     <style>
         body {
@@ -67,13 +67,11 @@
 <body>
 
     <script type="text/javascript">
-        console.log(VIYA_HOST);
         let store = restaf.initStore();
         async function setup( ) {
-            debugger;
-            let msg     = await store.logon( null );
-            let casMgmt = await store.addServices( 'casManagement' );
-            let servers = await store.apiCall( casMgmt.links( 'servers' ) );
+            await store.logon( null );
+            let {casManagement} = await store.addServices( 'casManagement' );
+            let servers = await store.apiCall( casManagement.links( 'servers' ) );
             return servers;
         }
 
@@ -83,7 +81,7 @@
 
 </script>
 
-<h1> Id Viewer using restAF</h1>
+<h1> List of CAS Servers</h1>
 
     <div id="container" class="content" >
         </div>

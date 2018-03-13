@@ -27,15 +27,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
-    
+
+    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
     
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
-    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
-    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 
-    <script type="text/jsx" src="/shared/ItemsListViewer.js"> </script>
+    <script type="text/babel" src="/shared/lib/ItemsListViewer.js"> </script>
+    <script type="text/javascript" src="/shared/lib/listOfItems.js"> </script>
     </head>
 
     <style>
@@ -52,13 +52,7 @@
         var store = restaf.initStore( );
         async function setup() {
             let msg = await store.logon(null);
-
-            debugger;
-            let filesService = await store.addServices('files');
-            debugger;
-            console.log(filesService.host);
-            let filesList    = await store.apiCall( filesService.links('files') );
-            return filesList;
+            return await listOfItems('files');
         }
         setup()
             .then ( filesList => ItemsListViewer(store, filesList, '#container') )

@@ -55,8 +55,8 @@
         try {
 
             let msg = await store.logon( null );
-            let reportsService = await store.addServices( 'reports' );
-            let reportList = await store.apiCall( reportsService.links( 'reports' ) );
+            let {reports} = await store.addServices( 'reports' );
+            let reportList = await store.apiCall( reports.links( 'reports' ) );
             let rafLink = reportList.itemsCmd( reportList.itemsList( 0 ), 'view' );
 
             let report = await store.apiCall( rafLink );

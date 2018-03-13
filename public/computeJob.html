@@ -40,8 +40,8 @@
         async function runDemo () {
             let msg = await store.logon(null);
 
-            let root     = await store.addServices('compute');
-            let contexts = await store.apiCall(root.links('contexts'));
+            let {compute} = await store.addServices('compute');
+            let contexts  = await store.apiCall(compute.links('contexts'));
 
             let contextName   = contexts.itemsList(0);
             let createSession = contexts.itemsCmd(contextName, 'createSession');

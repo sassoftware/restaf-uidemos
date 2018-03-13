@@ -51,44 +51,23 @@
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
+    <script type="text/babel" src="/shared/lib/ItemsListViewer.js"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
-    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 
 
     <script type="text/javascript">
-
-        //
-        // this starts the whole app
-        // logonPayload, setup file service and get the first set of results
-        // then it starts the UI part
-        debugger;
-
         var store = restaf.initStore();
 
-        store.logon( null )
-             .then( msg => store.addServices( 'compute' ) )
-             .then( folder => store.apiCall( folder.links( 'contexts'  ) ) )
-             .then ( folder => viewer( store, folder ) )
-                .catch( err => {
-                    alert( err );
-                } )
-
-        //
-        // Your favorite framework to create an UI
-        // My favorite framework to create UI is React
-        // You pick your own favorite UI framework here.
-        // Being UI framework agnostic is a key strength of restAF.
-        //
-        function viewer ( store, folder ) {
-            debugger;
-            let props = {
-                store  : store,
-                folder : folder
-            };
-            rafuip.ItemsList( props, '#container' );
-            return true;
+        async function setup ( ){
+            await store.logon(null);
+            let {compute} = await store.addServices('compute');
+            let contexts = await store.apiCall(compute.links('contexts'));
+            return contexts;
         }
 
+        setup()
+            .then( contexts => ItemsListViewer( store, contexts, '#container'))
+            .catch( err => showAlert( err ) );
     </script>
 </head>
 

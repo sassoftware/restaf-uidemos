@@ -29,7 +29,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
     <!-- Load Custom Elements es5 adapter -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/custom-elements-es5-adapter.js"></script>
-    <!-- Load polyfills; note that "loader" will load these async -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js" integrity="sha256-oN2JNfdNjF2gsa0aRXIgxyAFBQ3JXp2uCWbb76YVw20=" crossorigin="anonymous"></script>
     <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js.map"></script> -->
 
@@ -40,7 +39,6 @@
 <script type="text/javascript" src="/shared/util.js"></script>
     <script src="/restafServerInfo"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
-    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/shared/app.css">
     <link rel="import" href="/shared/raf-vareport.html">
@@ -74,16 +72,15 @@
 
 <script type="text/javascript">
 
+    let reports;
     let reportsList;
-    let imagesService;
+    let reportImages;
     let store = restaf.initStore( );
 
     async function setup( ) {
-        let msg            = await store.logon( null );
-        let services       = await store.addServices( 'reports', 'reportImages' );
-        let reportsService = services.reports;
-        imagesService      = services.reportImages;
-        reportsList        = await store.apiCall( reportsService.links( 'reports' ) );
+        await store.logon(null);
+        let {reports, reportImages}  = await store.addServices( 'reports', 'reportImages' );
+        reportsList = await store.apiCall( reports.links( 'reports' ) );
         return true;
     }
 
@@ -112,7 +109,7 @@
             host         : VIYA_HOST,
             store        : store,
             reportsList  : reportsList,
-            imagesService: imagesService,
+            imagesService: reportImages,
             reportNo     : reportNo,
             sectionIndex : sectionIndex - 1,
             aspectRatio  : 'none',

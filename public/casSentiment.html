@@ -57,9 +57,10 @@
         async function setupDMS(){
             try {
                 debugger;
-                let msg        = await store.logon( null );
-                let casmgmt    = await store.addServices( 'casManagement' );
-                let servers    = await store.apiCall( casmgmt.links( 'servers' ) );
+                let msg             = await store.logon( null );
+                let {casManagement} = await store.addServices( 'casManagement' );
+
+                let servers    = await store.apiCall( casManagement.links( 'servers' ) );
                 let payload    = { data: { name: 'restAF' } };
                 let serverName = servers.itemsList( 0 );
                 session        = await store.apiCall( servers.itemsCmd( serverName, 'createSession' ), payload );

@@ -107,8 +107,8 @@
 
 <script type="text/javascript">
 
-    let reportsService      = null;
-    let reportImagesService = null;
+    let reports      = null;
+    let reportImages = null;
     let reportsList         = null;
     let sectionName         = null;
     let reportNo            = 0;
@@ -123,55 +123,44 @@
         reportNo = document.getElementById( "reportNo" ).selectedIndex;
         document.getElementById('progress').style.display = 'block';
         document.getElementById('getreport').disabled = true;
-        let job = await store.apiCall( reportImagesService.links( 'createJob' ), imagePayload( reportsList, reportNo, page ) );
-        debugger;
-
+        let job = await store.apiCall( reportImages.links( 'createJob' ), imagePayload( reportsList, reportNo, page ) );
         let status = await store.jobState( job, { qs: { wait: 1.5} } , 5, 2 );
-
         if ( status.data !== 'completed' ) {
             throw `Job failed ${status.data}`;
         }
-
         sectionName = status.job.items( status.job.itemsList( 0 ), 'data', 'sectionName' );
-        let image  = await store.apiCall( status.job.itemsCmd( status.job.itemsList( 0 ), 'image' ) )
+        let image   = await store.apiCall( status.job.itemsCmd( status.job.itemsList( 0 ), 'image' ) )
         viewer(image.items());
-
     }
 
-    function imagePayload( reportsList, index, page ) {
-        console.log(reportsList.itemsList().size );
-        let uri = reportsList.itemsCmd( reportsList.itemsList( index ), 'self', 'link', 'uri' );
-        return {
-            data: {
-                reportUri      : uri,
-                sectionIndex   : page,
-                layoutType: 'entireSection',
-                size: "400x400"
-            }
-         } ;
-    }
-    
     function viewer( image ) {
         debugger;
-        let href = reportsList.itemsCmd( reportsList.itemsList( reportNo ), 'self', 'link', 'href' ) ;
-        currentHref = href;
         document.getElementById('reportViewer').style.display ='none';
         document.getElementById('imageViewer').style.display  = 'block';
-        addSvg( image );
-        document.getElementById('progress').style.display = 'none';
-        document.getElementById('getreport').disabled = false;
-    }
 
-    function addSvg( svgdata ) {
+        currentHref = reportsList.itemsCmd( reportsList.itemsList( reportNo ), 'self', 'link', 'href' ) ;
+
         let svg = document.getElementById( `imageViewer` );
-        svg.innerHTML =  svgdata;
-        debugger;
+        svg.innerHTML =  image;
         let box = svg.getBBox();
         let viewBox = [box.x, box.y, box.width, box.height ].join( " " );
         svg.setAttribute( "viewBox", viewBox );
         svg.setAttribute( "preserveAspectRatio", "none" );
+
+        document.getElementById('progress').style.display = 'none';
+        document.getElementById('getreport').disabled = false;
     }
 
+    function imagePayload( reportsList, index, page ) {
+        return {
+            data: {
+                reportUri   : reportsList.itemsCmd( reportsList.itemsList( index ), 'self', 'link', 'uri' ),
+                sectionIndex: page,
+                layoutType  : 'entireSection',
+                size        : "400x400"
+            }
+         } ;
+    }
 
     function createUI() {
         let select = document.getElementById( 'reportNo' );
@@ -181,8 +170,6 @@
             select.options.add( option );
         } );
     }
-
-    // start
 
     function getImageHandler () {
         getImage()
@@ -200,16 +187,13 @@
     let gotoGetReport = getReportHandler.bind( this );
 
     async function setup() {
-        debugger;
         let msg = await store.logon(null);
-
-        let services   = await store.addServices ('reports', 'reportImages');
-        reportsService = services.reports;
-        reportImagesService = services.reportImages;
-
-        debugger;
-        reportsList = await store.apiCall( reportsService.links( 'reports' ) );
+        let services  = await store.addServices ('reports', 'reportImages');
+        reports       = services.reports;
+        reportImages  = services.reportImages;
+        reportsList = await store.apiCall( reports.links( 'reports' ) );
         createUI();
+
         document.getElementById('progress').style.display = 'none';
         document.getElementById('getreport').disabled = true;
         return true;

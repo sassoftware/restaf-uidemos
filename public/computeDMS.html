@@ -90,8 +90,8 @@
         async function setupDMS() {
             debugger;
             try {
-                let msg      = await store.logon( null ) ;
-                let compute  = await store.addServices( 'compute' );
+                let msg       = await store.logon( null ) ;
+                let {compute} = await store.addServices( 'compute' );
                 let contexts = await store.apiCall( compute.links( 'contexts' ) );
                 let context0 = contexts.itemsList( 0 );
                 session      = await store.apiCall( contexts.itemsCmd( context0, 'createSession') )

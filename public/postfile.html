@@ -37,60 +37,28 @@
 
     </style>
     <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-
-    <!-- this brings in the raf library -->
-
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
+    <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
-    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
-
-
-    <!-- The entire script for this app
-         Compare this to test/paginate.js
-         Notice that the code is similar even though
-         paginate.js is a nodejs app and this is a web app.
-         -->
 
     <script type="text/babel">
-
-        //
-        // this starts the whole app
-        // logonPayload, setup file service and get the first set of results
-        // then it starts the UI part
-        debugger;
         var store = restaf.initStore();
+        async function setup(){
+            await store.logon(null);
+            let {files}   = await store.addServices('files');
+            let payload   = { data: { x:1}, headers: { 'content-type': 'application/json'}};
+            let createCmd = files.links( 'create'  );
+            let newFile = await store.apiCall( createCmd, payload );
 
-        //
-        // Sequence:
-        //        logonPayload
-        //        Add file service to store - this will get all the root links
-        //        now call the files rel from the root links(links in the code below)
-        //        now invoke your viewer
-        store.logon( null )
-             .then( msg => store.addServices( 'files' ) )
-             .then( folder => {
-                 debugger;
-                 let payload = { data: { x:1}, headers: { 'content-type': 'application/json'}};
-                 let createCmd = folder.links( 'create'  );
-                 return store.apiCall( createCmd, payload );
-             } )
-           .then ( folder => {
-               debugger;
-               let content = folder.links( 'content' );
-               return store.apiCall( content );
-           } )
-            .then( folder => {
-                debugger;
-                let data = folder.items();
-                document.getElementById( 'container' ).textContent = JSON.stringify( data );
-                return true;
-            } )
-            .catch( err => {
-                alert( JSON.stringify( err, null, 4 ) );
-                return false;
-            } )
+            let content = await store.apiCall(newFile.links('content'));
+            document.getElementById( 'container' ).textContent = JSON.stringify( content.items() );
+            return true;
+            }
 
+        setup()
+            .then( r =>console.log(r))
+            .catch( err => showAlert(err));
 
     </script>
 </head>

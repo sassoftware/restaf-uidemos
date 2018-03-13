@@ -42,8 +42,8 @@
 
         async function setup() {
             let msg = await store.logon(null);
-            let casManagementService = await store.addServices('casManagement');
-            let servers = await store.apiCall(casManagementService.links('servers'));
+            let {casManagement} = await store.addServices('casManagement');
+            let servers = await store.apiCall(casManagement.links('servers'));
 
             let casServerName = servers.itemsList(0);
             let p = { data: { name: 'restAF' } };

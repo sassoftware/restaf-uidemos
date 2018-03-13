@@ -16,9 +16,14 @@
  *
  */
 
+/*
+ * place holder postinstall copy for testing purposes.
+ */
 'use strict';
 
 let shell = require( 'shelljs' );
+/*
 shell.echo( 'Begin copying modules to shared' );
-shell.cp( '-R', './node_modules/restaf-uicomponents/dist/restaf-uicomponents.js', './public/shared/lib' );
+shell.cp( '-R', './node_modules/restaf-uicomponents/dist/restaf.js', './public/shared/lib' );
+*/
 shell.echo( 'Completed copying modules to public/shared/lib' );
