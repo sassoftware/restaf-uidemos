@@ -32,8 +32,9 @@
 <script type="text/javascript" src="/shared/env.js"></script>
 <script type="text/javascript" src="/shared/showAlert.js"></script>
 <script type="text/javascript" src="/shared/util.js"></script>
+
+<script type="text/babel" src="shared/lib/SubmitItemViewer.js"></script>
 <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
-<script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 
     <style>
         .elabel{
@@ -53,60 +54,7 @@
             margin: 2px;
         }
     </style>
-    <script type="text/babel">
-        class LogViewer extends React.Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    selected    : null,
-                    store       : props.store,
-                    logLines    : null,
-                    handleChange: this.handleChange.bind(this),
-                    getLogLines : this.getLogLines.bind(this)
-                };
 
-            }
-            componentWillMount() {
-                debugger;
-                let selected = this.state.selected;
-                if (selected === null ) {
-                    selected = this.state.store.submitStatus().get(0);
-                }
-                this.state.getLogLines(selected);
-                this.setState( {selected: selected})
-            }
-
-            componentWillReceiveProps(nextProps) {
-                let {store} = nextProps;
-                debugger;
-                this.state.getLogLines(this.state.selected);
-                this.setState({store: store});
-            }
-
-            render() {
-                debugger;
-                return <div>
-                    <select value={this.state.selected} onChange={this.state.handleChange} onSelect={this.state.handleChange}>
-                        {this.state.store.submitStatus().map((jobid) => <option key={jobid} value={jobid}>{jobid}</option>)}
-                    </select>
-                    <div><pre>{this.state.logLines}</pre></div>
-                </div>
-            }
-
-            handleChange(e){
-                debugger;
-                console.log(e.target.value);
-                this.state.getLogLines(e.target.value);
-                this.setState({selected: e.target.value})
-            }
-
-            getLogLines(selected) {
-                debugger;
-                let currentJob = this.state.store.submitStatus(selected).job;
-                this.setState( {logLines: JSON.stringify(  currentJob.items( ), null, 4 )});
-            }
-        }
-    </script>
     <script type="text/javascript">
         debugger;
         var store = restaf.initStore();
@@ -165,13 +113,13 @@
             let completioncb = (document.getElementById('completioncb').checked) ? onCompletionb : null;
             runDemo(jobCount, delay, progresscb, completioncb)
                     .then( r => {
-                        document.getElementById('notify').value = "Job Submitted"
+                        document.getElementById('progress').value = "Job Submitted"
                     })
         }
 
         function viewLog() {
             ReactDOM.render(
-                    React.createElement(LogViewer, {store: store}, null),
+                    React.createElement(SubmitItemViewer, {store: store, serviceType: 'CAS'}, null),
                     document.getElementById('logPanel')
             );
         }
@@ -214,7 +162,7 @@
         <br>
 
         <form class="info">
-            <label for="progress" class="elabel">Progess </label>
+            <label for="progress" class="elabel">Progress </label>
             <input class="einput" type="text" id="progress" disabled value="">
             <br>
             <label for="completed" class="elabel">Completed</label>

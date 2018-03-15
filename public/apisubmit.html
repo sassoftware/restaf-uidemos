@@ -32,7 +32,7 @@
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
-    <script type="text/babel" src="shared/lib/LogViewer.js"></script>
+    <script type="text/babel" src="shared/lib/SubmitItemViewer.js"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
     <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 
@@ -104,6 +104,13 @@
             }
             viewLog();
         }
+        function viewLog() {
+            ReactDOM.render(
+                    React.createElement(SubmitItemViewer, {store: store, serviceType: 'COMPUTE'}, null),
+                    document.getElementById('logPanel')
+            );
+        }
+
         async function initApp () {
             let msg       = await store.logon ( null );
             let {compute} = await store.addServices ('compute');
@@ -112,7 +119,6 @@
         }
 
         async function runDemo(noOfJobs, delay, progresscb, completioncb) {
-            debugger;
             let createSession = contexts.itemsCmd(contextName, 'createSession');
             document.getElementById( 'completed').value = '';
             document.getElementById('progress').value   = '';
@@ -147,12 +153,7 @@
                     .catch (err => showAlert(err))
         }
 
-        function viewLog() {
-            ReactDOM.render(
-                    React.createElement(LogViewer, {store: store}, null),
-                    document.getElementById('logPanel')
-            );
-        }
+
     let onClickb      = onClick.bind(null);
     let viewLogb      = viewLog.bind(null);
     let progressb     = progress.bind(this);
