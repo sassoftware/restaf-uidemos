@@ -45,7 +45,7 @@
     let store = restaf.initStore( );
     async function setup( ) {
         debugger;
-        let msg         = await store.logon( null );
+        let msg         = await store.logon(LOGONPAYLOAD);
         let services    = await store.addServices( 'reports', 'reportImages' );
         let reportsService  = services.reports;
         let imagesService   = services.reportImages;

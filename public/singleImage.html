@@ -54,7 +54,7 @@
     async function getReport( reportNo ) {
         try {
 
-            let msg = await store.logon( null );
+            let msg = await store.logon(LOGONPAYLOAD);
             let {reports} = await store.addServices( 'reports' );
             let reportList = await store.apiCall( reports.links( 'reports' ) );
             let rafLink = reportList.itemsCmd( reportList.itemsList( 0 ), 'view' );

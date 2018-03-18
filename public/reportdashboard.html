@@ -79,7 +79,7 @@
     //
     async function setup( ) {
         debugger;
-        let msg        = await store.logon( null );
+        let msg        = await store.logon(LOGONPAYLOAD);
         let services   = await store.addServices( 'reports', 'reportImages' );
         reportsService = services.reports;
         imagesService  = services.reportImages;

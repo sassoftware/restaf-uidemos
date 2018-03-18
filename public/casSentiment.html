@@ -57,7 +57,7 @@
         async function setupDMS(){
             try {
                 debugger;
-                let msg             = await store.logon( null );
+                let msg             = await store.logon(LOGONPAYLOAD);
                 let {casManagement} = await store.addServices( 'casManagement' );
 
                 let servers    = await store.apiCall( casManagement.links( 'servers' ) );

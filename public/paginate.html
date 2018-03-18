@@ -51,7 +51,7 @@
 
         var store = restaf.initStore( );
         async function setup() {
-            let msg = await store.logon(null);
+            let msg = await store.logon(LOGONPAYLOAD);
             return await listOfItems('files');
         }
         setup()

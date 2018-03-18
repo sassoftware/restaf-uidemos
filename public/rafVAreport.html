@@ -53,7 +53,7 @@
     // Notes: remember that an async function returns a promise
     //
     async function setup( ) {
-        let msg  = await store.logon( null );
+        let msg  = await store.logon(LOGONPAYLOAD);
         let { reports, reportImages } = await store.addServices( 'reports', 'reportImages' );
         let reportsList = await store.apiCall( reports.links( 'reports' ) );
         /*

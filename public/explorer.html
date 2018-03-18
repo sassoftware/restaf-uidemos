@@ -49,10 +49,8 @@
     <script type="text/javascript">
 
         function showExplorer() {
-            // init restAF
-            debugger;
             let store = restaf.initStore();
-            store.logon( null )
+            store.logon(LOGONPAYLOAD)
                  .then( msg => {
                      let props = {
                          store: store

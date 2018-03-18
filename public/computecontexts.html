@@ -53,13 +53,13 @@
     <script type="text/javascript" src="/shared/util.js"></script>
     <script type="text/babel" src="/shared/lib/ItemsListViewer.js"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
-
+    <!-- script src="/shared/lib/restaf.js"></script> -->
 
     <script type="text/javascript">
         var store = restaf.initStore();
-
+        debugger;
         async function setup ( ){
-            await store.logon(null);
+            await store.logon(LOGONPAYLOAD);
             let {compute} = await store.addServices('compute');
             let contexts = await store.apiCall(compute.links('contexts'));
             return contexts;

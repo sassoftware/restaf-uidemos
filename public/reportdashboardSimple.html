@@ -71,7 +71,7 @@
     //
     debugger;
     async function setup(){
-        let msg = await store.logon(null);
+        let msg = await store.logon(LOGONPAYLOAD);
         let services = await store.addServices('reports', 'reportImages');
         reportsService      = services.reports;
         reportImagesService = services.reportImages;

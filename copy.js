@@ -22,8 +22,7 @@
 'use strict';
 
 let shell = require( 'shelljs' );
-/*
+
 shell.echo( 'Begin copying modules to shared' );
-shell.cp( '-R', './node_modules/restaf-uicomponents/dist/restaf.js', './public/shared/lib' );
-*/
+// shell.cp( '-R', './node_modules/restaf/dist/restaf.js', './public/shared/lib' );
 shell.echo( 'Completed copying modules to public/shared/lib' );

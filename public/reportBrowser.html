@@ -78,7 +78,7 @@
     let store = restaf.initStore( );
 
     async function setup( ) {
-        await store.logon(null);
+        await store.logon(LOGONPAYLOAD);
         let {reports, reportImages}  = await store.addServices( 'reports', 'reportImages' );
         reportsList = await store.apiCall( reports.links( 'reports' ) );
         return true;

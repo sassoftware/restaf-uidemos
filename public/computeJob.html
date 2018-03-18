@@ -38,7 +38,7 @@
     <script type="text/javascript">
         var store = restaf.initStore();
         async function runDemo () {
-            let msg = await store.logon(null);
+            let msg = await store.logon(LOGONPAYLOAD);
 
             let {compute} = await store.addServices('compute');
             let contexts  = await store.apiCall(compute.links('contexts'));
