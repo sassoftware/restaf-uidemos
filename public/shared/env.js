@@ -19,7 +19,7 @@
 
 // password flow
 
-let VIYA_SERVER = 'http"://<your-via-server>';
+let VIYA_HOST = 'http://vd03.fbi.sashq-r.openstack.sas.com';
 
 //Valid AUTHOPTIONS values are: 'password' | 'implicit' | 'proxy' | 'external'
 
@@ -32,10 +32,11 @@ let VIYA_SERVER = 'http"://<your-via-server>';
 // external - assumes that you are running inside a previous authenticated session
 //            use case is when using as an embedded url in VA
 
+
 let AUTHOPTIONS = 'proxy';
 
 let LOGONPAYLOAD = null;
-
+debugger;
 switch( AUTHOPTIONS ) {
     case 'proxy': {
         LOGONPAYLOAD = null;
@@ -44,7 +45,7 @@ switch( AUTHOPTIONS ) {
     case 'password': {
         LOGONPAYLOAD = {
             authType    : 'password',
-            host        : VIYA_SERVER,
+            host        : VIYA_HOST,
             user        : 'user',
             password    : 'pw',
             clientID    : 'clientid',
@@ -55,16 +56,16 @@ switch( AUTHOPTIONS ) {
     case 'implicit': {
         LOGONPAYLOAD = {
             authType: 'implicit',
-            host: VIYA_SERVER,
+            host: VIYA_HOST,
             clientID: 'implicit clientid',
-            redirect: 'redirect html'
+            redirect: 'redirect html' /* might be obsolete based on what happpens in Viya 3.4 release */
         };
         break;
     }
-    case 'external': {
-        let LOGONPAYLOAD = {
-            authType:'server',
-            host: VIYA_SERVER
+    case 'implicitproxy': {
+        LOGONPAYLOAD = {
+            authType:'implicitproxy',
+            host: VIYA_HOST
         };
         break;
     }

@@ -20,23 +20,25 @@ cd restaf-uidemos
 npm install
 ```
 
-## Configure the app
-### Server setup
-To run this application you need to do the following:
-
-1. Ask your system administrator to enable CORS using the SAS Environment Manager.
-
-2. Ask your system administrator to give you a clientid and clientSecret apporpriate
-for password flow.
-
 ### Creating env file
 Copy the uidemos.env file to some location.
 Edit uidemos.env file and follow the instructions in the file.
 Key values to set:
 
-1. VIYA_SERVER
-2. CLIENTID
-3. CLIENTSECRET
+1. portno - set this to a port available on your server. The default is 5002.
+
+
+### Authentication Setup
+
+To run this application you need to do the following:
+
+1. Ask your system administrator to enable CORS using the SAS Environment Manager.
+
+2. Ask your system administrator to give you a implicit flow clientid.  There are two key values you will need
+
+    - The clientid assigned to your application
+    - Make sure you tell the adminstrator where you are running this application so that the admin can create the proper redirect_uri.
+    For example if you are running http://mydesktop:5002 then the redirect_uri should be http;//mydesktop:5002/uidemos/main
 
 
 
@@ -48,7 +50,15 @@ ex: let us say you saved the myenv file one level above the project directory
 npm start ../myenv.file
 ```
 
-Now visit the site indicated in the console. You will be prompted for userid and
-password. If logon is successful you will see the application.
+Now visit the site indicated in the console.
+
+The initial window will prompt you for:
+
+1. The Viya server you wish to use. Specify the full url including http or https.
+2. The clientid you obtained from your adminstrator.
+
+You will be prompted for your userid and password. If logon is successful you will then be prestened with a list
+of demos that you can try.
+
 
 

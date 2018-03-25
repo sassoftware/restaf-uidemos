@@ -1,12 +1,11 @@
 {
   "name": "restaf-uidemos",
   "version": "0.4.0",
-  "description": "web applications using restaf",
+  "description": "Examples of web applications using restaf",
   "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "start": "node index.js",
-    "postinstall": "node copy.js"
+    "start": "node index.js uidemos.env"
   },
   "main": "app.js",
   "repository": {
@@ -17,6 +16,7 @@
     "restaf-server": "latest"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1"
+    "babel-eslint": "^8.2.1",
+    "shelljs": "^0.8.1"
   }
 }
