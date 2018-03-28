@@ -78,7 +78,7 @@
             viewLog();
         }
         async function initApp () {
-            let msg     = await store.logon (null);
+            let msg     = await store.logon (LOGONPAYLOAD);
             let {casManagement} = await store.addServices ('casManagement');
             let servers         = await store.apiCall(casManagement.links('servers'));
             let casServerName   = servers.itemsList(0);

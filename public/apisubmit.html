@@ -112,7 +112,7 @@
         }
 
         async function initApp () {
-            let msg       = await store.logon ( null );
+            let msg       = await store.logon ( LOGONPAYLOAD );
             let {compute} = await store.addServices ('compute');
             contexts      = await store.apiCall(compute.links( 'contexts'));
             contextName   = contexts.itemsList(0);

@@ -27,9 +27,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js "></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/shared/raf.css">
-
-
 
     <style>
         .container {
@@ -119,7 +118,7 @@
         <div>
             <p>&nbsp;</p>
             <form>
-                <input type="button" id="explore" value="Explore" onclick="exploreb()" >
+                <input type="button" id="explore" value="Logon" onclick="exploreb()" >
             </form>
         </div>
 
@@ -133,8 +132,13 @@
 
                 <ul>
                     <li>configuration ->(Definitions from the view dropdown)</li>
-                    <li>Select sas.commons.web.security.  Make sure allowedHeaders, allowedMethods and AllowedOrigin are set to * or some whitelist</li>
-                    </li>
+                    <li>Select sas.commons.web.security.cors.  Make sure allowedHeaders, allowedMethods and AllowedOrigin are set to * or some whitelist</li>
+                </ul>
+                <li> To view SAS Visual Analytics reports in an iframe ask your administrator to permit iframes.</li>
+                <ul>
+                    <li>configuration ->(Definitions from the view dropdown)</li>
+                    <li>Select sas.commons.web.security.  Set the proper options for SAS Report Viewer and restart the service</li>
+
                 </ul>
                 <li>Ask your system administrator for a clientid and clientsecret  for implicit OAuth2 flow.
                 </li>

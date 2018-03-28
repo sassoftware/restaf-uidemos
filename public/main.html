@@ -37,9 +37,9 @@
     let store = restaf.initStore();
     let LogInfo = {};
 
-    store.logon(null)
+    store.logon(LOGONPAYLOAD)
             .then ( msg => {
-                LogInfo = store.loggedOn();
+                LogInfo = store.connection();
             })
             .catch( err => showAlert( err ));
 
