@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="./app.css">
 
     <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <!-- script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
     <!-- this brings in the raf library -->
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
     <script type="text/javascript" src="/shared/env.js"></script>
@@ -151,15 +151,18 @@
     }
 
     function imagePayload( reportsList, index, page ) {
-        return {
-            data: {
-                reportUri   : reportsList.itemsCmd( reportsList.itemsList( index ), 'self', 'link', 'uri' ),
+        let data =
+            {
+                reportUri: reportsList.itemsCmd(reportsList.itemsList(index), 'self', 'link', 'uri'),
                 sectionIndex: page,
-                layoutType  : 'entireSection',
-                size        : "400x400"
+                layoutType: 'entireSection',
+                size: "400x400"
             }
-         } ;
+        console.log(data)
+        debugger;
+        return data;
     }
+
 
     function createUI() {
         let select = document.getElementById( 'reportNo' );
@@ -191,6 +194,9 @@
         reports       = services.reports;
         reportImages  = services.reportImages;
         reportsList = await store.apiCall( reports.links( 'reports' ) );
+        if ( reportsList.itemsList().size === 0 ) {
+            throw 'No reports to view';
+        }
         createUI();
 
         document.getElementById('progress').style.display = 'none';

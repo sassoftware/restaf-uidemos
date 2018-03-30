@@ -80,6 +80,9 @@
         await store.logon(LOGONPAYLOAD);
         let {reports, reportImages}  = await store.addServices( 'reports', 'reportImages' );
         reportsList = await store.apiCall( reports.links( 'reports' ) );
+        if (reportsList.itemsList().size === 0) {
+            throw 'No reports to View';
+        }
         return true;
     }
 
