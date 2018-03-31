@@ -20,14 +20,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Report 1, Page 1</title>
-    <link rel="stylesheet" type="text/css" href="./app.css">
 
-    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-    <!-- script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
-    <!-- this brings in the raf library -->
-    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+
+
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
+    <script type="text/javascript" src="/shared/util.js"></script>
+    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
     <style>
         .notes {
             border: 2px;
@@ -110,26 +115,31 @@
     let reportImages = null;
     let reportsList         = null;
     let sectionName         = null;
-    let reportNo            = 0;
     let currentHref         = null;
+    let reportNo;
 
     //
     // create image payload
     //
 
     async function getImage() {
-        let page = document.getElementById( "page" ).value;
+        let page1 = document.getElementById( "page" ).value;
+        let page = parseInt(page1);
+        debugger;
         reportNo = document.getElementById( "reportNo" ).selectedIndex;
         document.getElementById('progress').style.display = 'block';
         document.getElementById('getreport').disabled = true;
-        let job = await store.apiCall( reportImages.links( 'createJob' ), imagePayload( reportsList, reportNo, page ) );
+        let p = imagePayload( reportsList, reportNo, page );
+        console.log( p );
+        let job = await store.apiCall( reportImages.links( 'createJob' ), {data: p} );
         let status = await store.jobState( job, { qs: { wait: 1.5} } , 5, 2 );
         if ( status.data !== 'completed' ) {
             throw `Job failed ${status.data}`;
+        } else {
+            sectionName = status.job.items(status.job.itemsList(0), 'data', 'sectionName');
+            let image = await store.apiCall(status.job.itemsCmd(status.job.itemsList(0), 'image'))
+            viewer(image.items());
         }
-        sectionName = status.job.items( status.job.itemsList( 0 ), 'data', 'sectionName' );
-        let image   = await store.apiCall( status.job.itemsCmd( status.job.itemsList( 0 ), 'image' ) )
-        viewer(image.items());
     }
 
     function viewer( image ) {
@@ -180,10 +190,11 @@
     let gotoGetImage = getImageHandler.bind( this );
 
     function getReportHandler () {
+        let host = store.connection().host;
         document.getElementById('reportViewer').style.display ='block';
         document.getElementById('imageViewer').style.display = 'none';
         let options = "&appSwitcherDisabled=true&reportViewOnly=true&printEnabled=true&sharedEnabled=true&informationEnabled=true&commentEnabled=true&reportViewOnly=true";
-        let href = `${VIYA_HOST}/SASReportViewer/?reportUri=${currentHref}&page=${sectionName}${options}`
+        let href = `${host}/SASReportViewer/?reportUri=${currentHref}&page=${sectionName}${options}`
         document.getElementById('reportViewer').setAttribute('src',href);
     }
     let gotoGetReport = getReportHandler.bind( this );
