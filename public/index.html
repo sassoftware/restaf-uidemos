@@ -65,16 +65,10 @@
 <script>
     let store = restaf.initStore();
     function explore() {
-        debugger;
-        let v = document.querySelector('input[name="flow"]:checked').value;
-        let host = document.getElementById('host').value;
-        if ( host.length === 0 ) {
-            host = v;
-        }
         let s = document.getElementById('clientsecret').value;
         let clientSecret = (s.length > 0) ? s : '';
         let payload = {
-            host        : host,
+            host        : document.getElementById('host').value,
             clientID    : document.getElementById('clientid').value,
             clientSecret: clientSecret,
             redirect    : 'uidemos/main.html',
@@ -105,12 +99,6 @@
             <form action="">
                 <label class="elabel">Viya Server: </label><input class="einput" type="url" id="host"
                                                                   placeholder="http://mycoolViya.com" size="50">
-                <br>
-                <p> Or select one of the demo servers</p>
-                <input  type="radio" checked id="sgf31" name="flow" onclick="authType(this)" value="http://sgf31.secdb.sashq-d.openstack.sas.com"> <label for="sgf31">Primary</label>
-                <br>
-                <input  type="radio" id="sgf30" name="flow"  onclick="authType(this)" value="http://sgf30.fbi.sashq-r.openstack.sas.com"> <label for="sgf30">Backup</label>
-
             </form>
         </div>
         <div>
