@@ -19,8 +19,7 @@
 
 // password flow
 
-let VIYA_HOST = '<your viys server';
-// Note: if running under implicit flow you can use store.connection.host in your authenticated app
+let VIYA_HOST = 'http://samples.com';
 
 //Valid AUTHOPTIONS values are: 'password' | 'implicit' | 'proxy' | 'external'
 
@@ -63,9 +62,9 @@ switch( AUTHOPTIONS ) {
         };
         break;
     }
-    case 'implicitproxy': {
+    case 'server': {
         LOGONPAYLOAD = {
-            authType:'implicitproxy',
+            authType:'server',
             host: VIYA_HOST
         };
         break;
