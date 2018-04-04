@@ -34,7 +34,9 @@
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
 
-    <script type="text/babel" src="/shared/lib/ItemsListViewer.js"> </script>
+    <script type="text/babel" src="/shared/lib/ItemsTableViewer.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <script type="text/javascript" src="/shared/lib/listOfItems.js"> </script>
     </head>
 
@@ -55,14 +57,14 @@
             return await listOfItems('files');
         }
         setup()
-            .then ( filesList => ItemsListViewer(store, filesList, '#container') )
+            .then ( filesList => ItemsTableViewer(store, filesList,'files', '#container') )
             .catch( err => showAlert(err))
 
     </script>
 </head>
 
 <body>
-<h1> Paginating thru files via files Service</h1>
+<h1> List of files with pagination</h1>
 
     <div id="container" class="content" >
         </div>

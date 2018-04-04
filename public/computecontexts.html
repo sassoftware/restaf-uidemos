@@ -51,7 +51,9 @@
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
-    <script type="text/babel" src="/shared/lib/ItemsListViewer.js"></script>
+    <script type="text/babel" src="/shared/lib/ItemsTableViewer.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
 
     <script type="text/javascript">
@@ -65,14 +67,14 @@
         }
 
         setup()
-            .then( contexts => ItemsListViewer( store, contexts, '#container'))
+            .then( contexts => ItemsTableViewer( store, contexts,'Contexts','#container'))
             .catch( err => showAlert( err ) );
     </script>
 </head>
 
 <body>
 
-<h1> Id Viewer using restAF</h1>
+<h1> List of Compute Server Contexts</h1>
 
     <div id="container" class="content" >
         </div>
