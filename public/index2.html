@@ -68,18 +68,15 @@
         debugger;
         let v = document.querySelector('input[name="flow"]:checked').value;
         let host = document.getElementById('host').value;
-        let clientId = '';
         if ( host.length === 0 ) {
             host = v;
-            clientId = (v.indexOf('unx') > 0) ? 'restafu' : 'uidemos';
-        } else {
-            let s = document.getElementById('clientId').value;
-            clientId = (s.length > 0) ? s : '';
         }
+        let s = document.getElementById('clientsecret').value;
+        let clientSecret = (s.length > 0) ? s : '';
         let payload = {
             host        : host,
-            clientID    : clientId,
-            clientSecret: '',
+            clientID    : document.getElementById('clientid').value,
+            clientSecret: clientSecret,
             redirect    : 'uidemos/main.html',
             authType    : 'implicit',
         };
