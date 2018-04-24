@@ -43,9 +43,11 @@
             })
             .catch( err => showAlert( err ));
 
-    function showDemo(w){
+
+    function showDemo(w) {
         debugger;
-        let href = `${w}`;
+        let h = `${window.location.protocol}//${window.location.host}`;
+        let href = `${h}${w}?host=${LogInfo.host}&token_type=bearer&access_token=${LogInfo.token}`;
         window.open(href);
     }
 

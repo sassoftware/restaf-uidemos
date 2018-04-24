@@ -6,6 +6,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "start": "node index.js uidemos.env",
+    "proxy": "node index.js",
     "postinstall": "node copy.js"
   },
   "main": "app.js",
