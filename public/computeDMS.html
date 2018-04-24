@@ -155,70 +155,17 @@
             onClickLog();
         }
 
-        function logViewer( store, job, type ) {
-            store.apiCall( job.links( type ) )
-               .then( folder => {
-                   let props = {
-                       store: store,
-                       folder: folder
-                   };
-                   setButtonColor( type );
-                   rafuip.LogList( props, "#SASContent" );
-               } )
-               .catch( err => {
-                   debugger;
-                   alert( err )
-               } );
-        }
-
-        function odsViewer( store, job, type  ) {
-            debugger;
-            store.apiCall( job.links( 'results') )
-               .then ( results => findODS ( results ) )
-               .then ( odsFolder => store.apiCall( odsFolder ) )
-               .then ( ods => {
-                   setButtonColor( type );
-                   let props = {
-                       ods   : ods.items()
-                   }
-                rafuip.ODS( props, "#SASContent" )  ;
-            } )
-            .catch ( err => {
-                setButtonColor( type );
-                let props = {
-                    ods: '<h2> No ODS output detected </h2>'
-                }
-                rafuip.ODS( props, "#SASContent" )  ;
-            } );
-
-        }
-
-        function setButtonColor( type ) {
-            let ba = [ 'log', 'listing', 'ods' ];
-
-            ba.forEach( b => {
-                if ( b === type ) {
-                    document.getElementById(type).style.color = 'black';
-                } else {
-                    document.getElementById(b).style.color = 'grey';
-                }
-
-            } )
-        }
-
         setupDMS();
     </script>
 
 <h1> restAF at Work - Simple DMS Example </h1>
-    <div id="container" class="content" >
-        <div id="sourcediv">
+    <div id="container">
+        <div id="sourcediv" class="rafuip-main-content">
          <p> Code here </p>
         </div>
-
-        <br>
     </div>
-<br/>
-<div id="results" >
+<br>
+<div id="results" class="rafuip-main-content">
     <ul>
         <li>  <button  id='log' onclick="onClickLog()" > Log </button></li>
         <li>  <button  id='listing' onclick="onClickListing()" > Listing </button></li>

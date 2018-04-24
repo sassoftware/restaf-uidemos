@@ -130,7 +130,6 @@
         document.getElementById('progress').style.display = 'block';
         document.getElementById('getreport').disabled = true;
         let p = imagePayload( reportsList, reportNo, page );
-        console.log( p );
         let job = await store.apiCall( reportImages.links( 'createJob' ), {data: p} );
         let status = await store.jobState( job, { qs: { wait: 1.5} } , 5, 2 );
         if ( status.data !== 'completed' ) {
@@ -191,11 +190,13 @@
 
     function getReportHandler () {
         let host = store.connection().host;
+        console.log(host);
         document.getElementById('reportViewer').style.display ='block';
         document.getElementById('imageViewer').style.display = 'none';
         let options = "&appSwitcherDisabled=true&reportViewOnly=true&printEnabled=true&sharedEnabled=true&informationEnabled=true&commentEnabled=true&reportViewOnly=true";
         let href = `${host}/SASReportViewer/?reportUri=${currentHref}&page=${sectionName}${options}`
         document.getElementById('reportViewer').setAttribute('src',href);
+        console.log(href);
     }
     let gotoGetReport = getReportHandler.bind( this );
 
@@ -234,7 +235,8 @@
 
         Report No:  <select id="reportNo"> </select>
         Section Number: <input type="number" name="Section" id="page" value="0" >
-        <br/>
+        <br>
+        <br>
         <progress id="progress" value="50" max="100"  style="display: none;"></progress>
 
             <div class="wrapper2">

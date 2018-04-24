@@ -45,8 +45,7 @@
 
     function showDemo(w){
         debugger;
-        let h = `${window.location.protocol}//${window.location.host}`;
-        let href = `${h}${w}?host=${LogInfo.host}&token_type=bearer&access_token=${LogInfo.token}`;
+        let href = `${w}`;
         window.open(href);
     }
 
@@ -72,6 +71,8 @@
     <li> <a href="javascript:showDemo(`/uidemos/casFileInfo.html`)" > Create a session and run table.fileInfo </a></li>
     <li> <a href="javascript:showDemo(`/uidemos/casListNodes.html`)" > List Nodes </a></li>
     <li> <a href="javascript:showDemo(`/uidemos/casDMS.html`)" > Create a session and run user specified action </a></li>
+    <li> <a href="javascript:showDemo(`/uidemos/casUpload.html`)" > Explore CAS Actions </a></li>
+
 </ul>
 
 <h2> Apps using Cas Actions </h2>
@@ -98,18 +99,6 @@
 <ul>
     <li> <a href="javascript:showDemo(`/uidemos/reportdashboardSimple.html`)" > Simple dashboard</a></li>
     <li> <a href="javascript:showDemo(`/uidemos/oneImage.html`)" >Report Browser with embedded Visual Analytics Reports </a> </li>
-</ul>
-
-<h3> Demos that use webComponent raf-vareport</h3>
-<note>
-    At this time works only on Chrome browser. This was written with earlier version of webcomponent specs.
-    At some point need to change over to V1. Volunteers welcomed.
-</note>
-<ul>
-    <li> <a href="javascript:showDemo(`/uidemos/rafVAreport.html`)" >Zero to Embedded VA reports in 5 minutes </a> </li>
-    <li> <a href="javascript:showDemo(`/uidemos/reportdashboard.html`)" > Dashboard with links to reports</a></li>
-    <li> <a href="javascript:showDemo(`/uidemos/reportBrowser.html`)" > Report Browser - List and View reports </a></li>
-
 </ul>
 
 

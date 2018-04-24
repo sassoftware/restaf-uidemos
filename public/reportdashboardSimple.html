@@ -101,12 +101,16 @@
     function makeImageTasks ( rafLink, reportsList, count ) {
         debugger;
         let apiParms = [];
-        for ( let i = 0 ; i < count ; i++ ) {
-            let a = {
-                rafLink: rafLink,
-                payload: imagePayload( reportsList, i, 0 )
-            };
-            apiParms.push( a );
+        let size  = reportsList.itemsList().size;
+
+        for ( let i = 0 ; i < size; i++ ) {
+            if ( reportsList.itemsList(i).indexOf('Batting') >= 0 ) {
+                let a = {
+                    rafLink: rafLink,
+                    payload: imagePayload(reportsList, i, 0)
+                };
+                apiParms.push(a);
+            }
         }
         return apiParms;
     }
@@ -171,7 +175,7 @@
 
 <!-- Visual part of the demo -->
 
-<h4> This is a dashboard built with restAF using reportImage Service</h4>
+<h4> BaseBall Stats</h4>
 <div class="wrapper">
     <div id="left">
         <p id="repLink0"> </p>

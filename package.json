@@ -14,7 +14,7 @@
     "url": "https://github.com/sassoftware/restaf-uidemos"
   },
   "dependencies": {
-    "restaf-server": "latest"
+    "restaf-server": "file:../restaf-server"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

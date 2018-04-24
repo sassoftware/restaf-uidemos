@@ -41,7 +41,8 @@
 <script type="text/javascript" src="/shared/showAlert.js"></script>
 <script type="text/javascript" src="/shared/util.js"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
-    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
+    <!-- script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script> -->
+    <script src="/shared/lib/restaf-uicomponents.js"></script>
 
 </head>
     <body onload="setWatch()">
@@ -90,25 +91,28 @@
            };
            debugger;
            rafuip.TextEditor( props, "#sourcediv" );
-           document.getElementById( 'CASOUTPUT' ).textContent = 'ready';
+           document.getElementById( 'CASOUTPUT1' ).textContent = 'ready';
        }
 
        function runCode ( text, uploadFile, cb ) {
             createPayload( text, uploadFile, ( err, payload ) => {
                 debugger;
                 if ( err == null ) {
-                    document.getElementById( 'CASOUTPUT' ).textContent = 'Running...';
+                    document.getElementById( 'CASOUTPUT1' ).textContent = 'Running...';
                     store.apiCall( executeCmd, payload )
                          .then( f => {
                              let props = {
                                  store  : store,
                                  folder : f
                              };
+                             debugger;
+                             document.getElementById( 'CASOUTPUT1' ).textContent = 'Running...';
                              rafuip.CasOutput( props, '#CASOUTPUT' );
                              cb( true );
                          } )
                          .catch( err => {
-                             document.getElementById( 'CASOUTPUT' ).textContent = JSON.stringify( err, null, 4 );
+                             debugger;
+                             document.getElementById( 'CASOUTPUT1' ).textContent = JSON.stringify( err, null, 4 );
                              cb( false );
                          } )
 
@@ -205,6 +209,9 @@
     <br/>
 
 <div >
+    <div id="CASOUTPUT1">
+
+    </div>
     <div id="CASOUTPUT">
 
     </div>

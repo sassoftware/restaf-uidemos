@@ -32,7 +32,7 @@
     <script type="text/javascript" src="/shared/env.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
-    <script type="text/babel" src="shared/lib/SubmitItemViewer.js"></script>
+    <script type="text/babel" src="/shared/lib/SubmitItemViewer.js"></script>
     <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
     <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 
@@ -166,46 +166,51 @@
 <body onload="initApp()">
     <h1> Demonstration of submit - Compute Service</h1>
 
-    <div>
-        <form>
-        <textarea id="pgm" rows="10" cols="50">
-            data _null_;
-            array x{10};
-            do j = 1 to 100000000;
-              do i = 1 to 10;
-                x{i} = i * 10;
-                end;
-              output;
-              end;
-            run;
-        </textarea>
-        <br>
-        <label for="jobCount" class="elabel">Job Count </label>
-            <input type="number" id="jobCount" value="1">
-        <br>
-        <label for="delay" class="elabel">Delay(sec): </label>
-            <input  type="number" id="delay" value="5">
-        <br>
-        <input type="checkbox" id="progresscb" value="Report Progress" checked="true">
-        <label for="progresscb">Report Progress</label>
-        <br>
-        <input type="checkbox" id="completioncb" value="On completion" checked="true">
-        <label for="completioncb">Report completion</label>
-        <br>
-        <input type="button" value="Click to run Job"  onclick="onClickb()">
-            </form>
-        <br>
-        <br>
+    <div id="container">
+        <div class="rafuip-main-content">
+                <textarea id="pgm" rows="10" cols="50">
+                    data _null_;
+                    array x{10};
+                    do j = 1 to 100000000;
+                      do i = 1 to 10;
+                        x{i} = i * 10;
+                        end;
+                      output;
+                      end;
+                    run;
+                </textarea>
 
-        <form class="info">
-            <label for="progress" class="elabel">Progress </label>
-            <input class="einput" type="text" id="progress" disabled value="">
-            <br>
-            <label for="completed" class="elabel">Completed</label>
-            <input class="einput" type="text" id="completed" disabled value="">
-            <input type="button" value="Are we there yet?"  id="RWTY" hidden onclick="viewLogb()">
-        </form>
+                <p>&nbsp;</p>
+
+            <form>
+                <label for="jobCount">Job Count: </label><input type="number" id="jobCount" value="1">
+                <br>
+                <br>
+                <label for="delay" >Delay(sec): </label> <input  type="number" id="delay" value="5">
+                <br>
+                <br>
+                <input type="checkbox" id="progresscb" value="Report Progress" checked="true"> <label for="progresscb">Report Progress</label>
+                <br>
+                <br>
+                <input type="checkbox" id="completioncb" value="On completion" checked="true"> <label for="completioncb">Report completion</label>
+                <br>
+                <br>
+                <input type="button" value="Click to run Job"  onclick="onClickb()">
+            </form>
+        </div>
         <br>
+        <br>
+        <div class="rafuip-main-content">
+            <form >
+                <label for="progress">Progress </label> <input type="text" id="progress" class="einput" disabled value="">
+                <br>
+                <br>
+                <label for="completed">Completed</label> <input  type="text" id="completed" class="einput" disabled value="">
+                <br>
+                <br>
+                <input type="button" value="Are we there yet?"  id="RWTY" hidden onclick="viewLogb()">
+            </form>
+        </div>
 
     </div>
     <br>
