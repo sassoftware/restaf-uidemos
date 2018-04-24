@@ -45,8 +45,7 @@
 
     function showDemo(w){
         debugger;
-        let h = `${window.location.protocol}//${window.location.host}`;
-        let href = `${h}${w}?host=${LogInfo.host}&token_type=bearer&access_token=${LogInfo.token}`;
+        let href = `${w}`;
         window.open(href);
     }
 
