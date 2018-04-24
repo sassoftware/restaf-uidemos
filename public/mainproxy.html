@@ -19,7 +19,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>restAF uidemos using implicit flow</title>
+    <title>restAF uidemos using a proxy server </title>
  <style>
      a.noclick       {
          pointer-events: none;
@@ -33,20 +33,8 @@
 
 </head>
 <script>
-    debugger;
-    let store = restaf.initStore();
-    let LogInfo = {};
 
-    store.logon(LOGONPAYLOAD)
-            .then ( msg => {
-                LogInfo = store.connection();
-            })
-            .catch( err => showAlert( err ));
-
-    function showDemo(w){
-        debugger;
-        let h = `${window.location.protocol}//${window.location.host}`;
-        let href = `${h}${w}?host=${LogInfo.host}&token_type=bearer&access_token=${LogInfo.token}`;
+    function showDemo(href){
         window.open(href);
     }
 
@@ -98,18 +86,6 @@
 <ul>
     <li> <a href="javascript:showDemo(`/uidemos/reportdashboardSimple.html`)" > Simple dashboard</a></li>
     <li> <a href="javascript:showDemo(`/uidemos/oneImage.html`)" >Report Browser with embedded Visual Analytics Reports </a> </li>
-</ul>
-
-<h3> Demos that use webComponent raf-vareport</h3>
-<note>
-    At this time works only on Chrome browser. This was written with earlier version of webcomponent specs.
-    At some point need to change over to V1. Volunteers welcomed.
-</note>
-<ul>
-    <li> <a href="javascript:showDemo(`/uidemos/rafVAreport.html`)" >Zero to Embedded VA reports in 5 minutes </a> </li>
-    <li> <a href="javascript:showDemo(`/uidemos/reportdashboard.html`)" > Dashboard with links to reports</a></li>
-    <li> <a href="javascript:showDemo(`/uidemos/reportBrowser.html`)" > Report Browser - List and View reports </a></li>
-
 </ul>
 
 
