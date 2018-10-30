@@ -5,7 +5,7 @@
   "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "start": "node index.js uidemos.env",
+    "start": "node index.js",
     "proxy": "node index.js",
     "postinstall": "node copy.js"
   },
