@@ -18,7 +18,7 @@
     "restaf-server": "latest"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
-    "shelljs": "^0.8.1"
+    "babel-eslint": "^10.0.1",
+    "shelljs": "^0.8.3"
   }
 }
