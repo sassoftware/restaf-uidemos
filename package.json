@@ -6,8 +6,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "start": "node index.js uidemos.env",
-    "proxy": "node index.js",
-    "postinstall": "node copy.js"
+    "proxy": "node index.js uiproxy.env"
   },
   "main": "app.js",
   "repository": {
@@ -15,10 +14,9 @@
     "url": "https://github.com/sassoftware/restaf-uidemos"
   },
   "dependencies": {
-    "restaf-server": "latest"
+    "restaf-server": "^6.11.1"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "shelljs": "^0.8.3"
+    "babel-eslint": "^10.0.1"
   }
 }
