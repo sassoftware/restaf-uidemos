@@ -5,8 +5,8 @@
   "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "start": "node index.js uidemos.env",
-    "proxy": "node index.js uiproxy.env"
+    "start": "node index.js",
+    "test": "node index.js uidemos.env"
   },
   "main": "app.js",
   "repository": {
