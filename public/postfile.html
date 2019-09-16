@@ -41,13 +41,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
 
-    <script type="text/javascript" src="/shared/env.js"></script>
+    <script src="/appenv"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
-    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+    <script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
 
     <script type="text/babel">
-        var store = restaf.initStore();
+        let store = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
+
         async function setup(){
             await store.logon(LOGONPAYLOAD);
             let {files}   = await store.addServices('files');

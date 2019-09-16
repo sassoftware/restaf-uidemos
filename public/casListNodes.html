@@ -30,17 +30,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
 
 
-    <script type="text/javascript" src="/shared/env.js"></script>
+    <script src="/appenv"></script>
     <script type="text/javascript" src="/shared/showAlert.js"></script>
     <script type="text/javascript" src="/shared/util.js"></script>
-    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+    <script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
     <!-- script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script> -->
     <script src="/shared/lib/restaf-uicomponents.js"></script>
 
 
     <script type="text/javascript">
 
-        let store = restaf.initStore();
+        let store = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
         debugger;
 
         async function setup() {
@@ -55,7 +55,7 @@
             p = {
                 action: 'listNodes'
             };
-            let actionResult = await store.apiCall( session.links( 'execute' ), p );
+            let actionResult = await store.runAction( session, p );
             let props = {
                 store  : store,
                 folder : actionResult

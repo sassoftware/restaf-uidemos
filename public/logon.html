@@ -18,138 +18,33 @@
   -->
 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
 
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-    <script type="text/javascript" src="/shared/showAlert.js "></script>
-    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <script type="text/javascript" src="/appenv"></script>
+        <script>
+            function logonButton() {
+                logon(LOGONPAYLOAD);
+            }
+            function logon(payload) {
+                debugger;
+                let x = `${payload.host}/SASLogon/oauth/authorize?response_type=token&client_id=${payload.clientID}`;
+                //noinspection JSUnresolvedVariable
+                if (payload.redirect != null) {
+                    //noinspection JSUnresolvedVariable
+                    let redirectUri = `${window.location.protocol}//${window.location.host}/${payload.redirect}?host=${payload.host}`;
 
-    <link rel="stylesheet" type="text/css" href="/shared/raf.css">
+                    x = `${x}&redirect_uri=${redirectUri}`
+                }
+                window.location.replace(x);
+            }
+        </script>
+    </head>
 
-    <style>
-        .container {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            min-height: 800px;
-        }
-        .elabel{
-            display: inline-block;
-            float: left;
-            clear: left;
-            width: 250px;
-            text-align: right;
-        }
-        .einput {
-            display: inline-block;
-            float: left;
-        }
-        .div1 {
-            border: 1px solid black;
-            background: lightskyblue;
-
-        }
-        .div2 {
-            border: 1px solid black;
-            background: lightskyblue;
-            height: 200px;
-        }
-    </style>
-
-</head>
-<body>
-<script>
-    let store = restaf.initStore();
-    function explore() {
-        debugger;
-        let host = document.getElementById('host').value;
-
-        let s = document.getElementById('clientsecret').value;
-        let clientSecret = (s.length > 0) ? s : '';
-        let payload = {
-            host        : host,
-            clientID    : document.getElementById('clientid').value,
-            clientSecret: clientSecret,
-            redirect    : 'uidemos/index.html',
-            authType    : 'implicit',
-        };
-        if (payload.host.length > 0 && payload.clientID.length > 0) {
-            store.logon(payload)
-                 .then(msg => console.log(msg))
-                 .catch(err => {
-                     showAlert(err)
-                 })
-        } else {
-            showAlert({Note: 'The server URL and clientID are required'});
-        }
-
-    }
-    let exploreb = explore.bind(this);
-</script>
-
-
-<div id="container">
-    <div id="rafuip-main-content">
-
-        <h1> Examples of Web Applications built with restAF</h1>
-        <h2> Please enter your Server Information </h2>
-        <div class="rafuip-content">
-            <p> Please specify your SAS Viya Server and clientId and clientSecret</p>
-            <form action="">
-                <label class="elabel">Viya Server: </label><input class="einput" type="url" id="host"
-                                                                  placeholder="http://mycoolViya.com" size="50">
-                <br>
-            </form>
-        </div>
+    <body onload="logonButton()">
         <div>
-            <p>&nbsp;</p>
         </div>
-        <div class="rafuip-content">
-            <form action="">
-                <label class="elabel">Client ID: </label><input class="einput" type="text" id="clientid"
-                                                                size="50">
-                <p>&nbsp;</p>
-                <label class="elabel">Client Secret: </label><input class="einput" type="text" id="clientsecret"
-                                                                    size="50">
-            </form>
+        </script>
+    </body>
 
-
-        </div>
-        <div>
-            <p>&nbsp;</p>
-            <form>
-                <input type="button" id="explore" value="Logon" onclick="exploreb()" >
-            </form>
-        </div>
-
-        <div>
-            <p>&nbsp;</p>
-            <h2> Important Usage Note</h2>
-
-            <ul>
-                <li> Ask your system administrator to enable CORS using the SAS Environment Manager. If you own the server
-                    you should logon as administrator to Environment Manager and do the following:</li>
-
-                <ul>
-                    <li>configuration ->(Definitions from the view dropdown)</li>
-                    <li>Select sas.commons.web.security.cors.  Make sure allowedHeaders, allowedMethods and AllowedOrigin are set to * or some whitelist</li>
-                </ul>
-                <li> To view SAS Visual Analytics reports in an iframe ask your administrator to permit iframes.</li>
-                <ul>
-                    <li>configuration ->(Definitions from the view dropdown)</li>
-                    <li>Select sas.commons.web.security.  Set the proper options for SAS Report Viewer and restart the service</li>
-
-                </ul>
-                <li>Ask your system administrator for a clientid and clientsecret  for implicit OAuth2 flow.
-                </li>
-            </ul>
-        </div>
-
-    </div>
-</div>
-</body>
 </html>

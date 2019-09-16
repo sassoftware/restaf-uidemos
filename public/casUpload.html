@@ -38,13 +38,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
 
 
-<script type="text/javascript" src="/shared/env.js"></script>
+<script src="/appenv"></script>
 <script type="text/javascript" src="/shared/showAlert.js"></script>
 <script type="text/javascript" src="/shared/util.js"></script>
 <script type="text/babel" src="/shared/lib/casTableViewer.js"></script>
     <script type="text/javascript" src="/shared/lib/selectElement.js"></script>
     <script type="text/javascript" src="/shared/lib/listCasOutputTables.js"></script>
-<script src="https://unpkg.com/restaf/dist/restaf.min.js"></script>
+<script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
 <!-- script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script> -->
 <script src="/shared/lib/restaf-uicomponents.js"></script>
 
@@ -57,11 +57,11 @@
 
         // init restAF
         debugger;
-        let store      = restaf.initStore();
+        let store      = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
         let ReactTable = window.ReactTable.default;
         let session    = null;
         let caslibs    = null;
-        let executeCmd = null ;
+    
         let dmsOutput   = null;
 
         async function setup(){
@@ -74,7 +74,7 @@
                 let payload    = { data: { name: 'restAF' } };
                 let serverName = servers.itemsList( 0 );
                 session        = await store.apiCall(servers.itemsCmd( serverName, 'createSession' ), payload );
-                executeCmd     = session.links('execute');
+            
                 caslibs        = await store.apiCall( servers.itemsCmd( serverName, 'caslibs'));
                 selectElement(caslibs, 'caslib');
                 editor();
@@ -135,7 +135,7 @@
                }
            }
            debugger;
-           store.apiCall( executeCmd, payload )
+           store.runAction( session, payload )
                .then ( r => {
                    viewData(name);
                })
@@ -156,7 +156,7 @@
                    }
                }
            };
-           store.apiCall(executeCmd, p)
+           store.runAction(session, p)
                 .then(fetchResult => {
                     casTableViewer(fetchResult, 'Fetch', '#container');
                     return true;
@@ -171,7 +171,7 @@
             createPayload( text, uploadFile, ( err, payload ) => {
                 debugger;
                 if ( err == null ) {
-                    store.apiCall( executeCmd, payload )
+                    store.runAction( session, payload )
                          .then( f => {
                              dmsOutput = f;
                              listCasOutputTables(f, "OUTPUTTABLES");

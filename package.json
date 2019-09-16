@@ -1,12 +1,12 @@
 {
   "name": "restaf-uidemos",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Examples of web applications using restaf",
   "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "start": "node index.js",
-    "test": "node index.js uidemos.env"
+    "start": "npx restaf-server --env=overridesBosc.env --docker=Dockerfile",
+    "implicit": "npx restaf-server --env=overridesBos.env --docker=Dockerfile"
   },
   "main": "app.js",
   "repository": {
@@ -14,7 +14,7 @@
     "url": "https://github.com/sassoftware/restaf-uidemos"
   },
   "dependencies": {
-    "restaf-server": "^6.11.1"
+    "restaf-server": "^7.0.6"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1"
