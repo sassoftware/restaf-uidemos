@@ -24,9 +24,9 @@ class IdViewer extends React.Component {
                 folder: props.folder,
                 onClick: {
                     first: this.doCommand.bind(this, 'first'),
-                    next: this.doCommand.bind(this, 'next'),
-                    prev: this.doCommand.bind(this, 'prev'),
-                    last: this.doCommand.bind(this, 'last')
+                    next : this.doCommand.bind(this, 'next'),
+                    prev : this.doCommand.bind(this, 'prev'),
+                    last : this.doCommand.bind(this, 'last')
                 }
             };
         }

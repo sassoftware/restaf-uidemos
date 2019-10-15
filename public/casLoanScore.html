@@ -9,11 +9,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
+        <script src="https://unpkg.com/restaflib@dev/dist/restaflib.min.js"></script>
         
         <script type="text/javascript" src="/appenv"></script>
-        <script src="/shared/lib/scoreAsJson.js"></script>
-        <script src="/shared/lib/casSetup.js"></script>
-        <script src="/shared/lib/score.js"></script>
         
         <style>
             body {
@@ -116,66 +114,47 @@
         <script>
             let svg;
             let session;
+            let store = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
+
             let defaults = {
                 JOB: 'J1', CLAGE: 100, CLNO: 20, DEBTINC: 20, DELINQ: 2, DEROG: 0, MORTDUE: 4000, NINQ: 1, YOJ: 10
             };
-
             let ids = [ 'LOAN', 'VALUE' ];
-
-            let store = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
-
             //
             // This section creates a cas session
             //
             function setup() {
-                appInit()
-                    .then(r => console.log(r))
-                    .catch(err => console.log(err))
+               restaflib.casSetup(store,LOGONPAYLOAD)
+                .then ( r => {session = r.session;})
+                .catch( e => alert(e));
             }
-            async function appInit() {
-                let msg = await store.logon(LOGONPAYLOAD);
-                session = await casSetup(store);
-                return 'initialization completed';
-            }
-
-            //
+            
             // This section takes user input and sends it to CAS for scoring
             //
 
             function onSubmit() {
                 // create user data payload
                 let inputValues = Object.assign({}, defaults);
-
                 ids.map(name => {
                     inputValues[ name ] = parseFloat(document.getElementById(name).value);
                 });
 
-                // call scoring function below
-                runScore(inputValues)
-                    .then(r => {
-                        let value = parseFloat(r.P_BAD);
+                // if model is published then the model refers to the sashdat associated with the destination
+                // modelName is required if using published model(ignored for all other cases)
+
+                let payload = {
+                    model    :  {caslib: 'public', name: 'GRADIENT_BOOSTING___BAD_2'},
+                    modelName: '',
+                    scenario : inputValues
+                };
+
+                restaflib.caslScore(store,session, payload)
+                    .then ( r => {
+                        let value = parseFloat(r[0].P_BAD);
                         viewDial(value);
                     })
-                    .catch(e => {
-                        console.log(JSON.stringify(e, null, 4));
-                    })
-            }
-
-            // setup information for astore.score action call and execute it
-            async function runScore(inputValues) {
-                let data = {
-                    rstore: {
-                        caslib: 'public',
-                        name  : 'GRADIENT_BOOSTING___BAD_2'
-                    },
-                    input: inputValues
+                    .catch(err => alert(err))
                 }
-                // see /shared/lib/score.js for this function
-                let r = await score(store, session, data);
-                return r;
-
-            }
-
             //
             // setup the display of the resulting score(D3 is ei)
             //

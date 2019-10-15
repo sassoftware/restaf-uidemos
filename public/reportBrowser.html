@@ -27,68 +27,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
-    <!-- Load Custom Elements es5 adapter -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/custom-elements-es5-adapter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js" integrity="sha256-oN2JNfdNjF2gsa0aRXIgxyAFBQ3JXp2uCWbb76YVw20=" crossorigin="anonymous"></script>
-    <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js.map"></script> -->
-
 
 
     <script src="/appenv"></script>
-    <script type="text/javascript" src="/shared/showAlert.js"></script>
-    <script type="text/javascript" src="/shared/util.js"></script>
     <script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/shared/app.css">
-    <link rel="import" href="/shared/raf-vareport.html">
-    <style>
-        .notes {
-            border: 2px;
-            background: cyan;
-        }
-        #left{
-            float:left;
-            width:80%;
-            overflow:hidden;
-            border-style: solid;
-            border: 5px;
-            height: 80%;
-        }
-        #right{
-            float:left;
-            width:50%;
-            overflow:hidden;
-            border-style: solid;
-            border: 5px;
-            height: 100%;
-        }
-        .imagediv {
-            border-style: groove;
-        }
-    </style>
+    <script async src="https://unpkg.com/@sassoftware/va-report-components@0.2/dist/umd/va-report-components.js"></script>
+    <script src="https://unpkg.com/@webcomponents/custom-elements"></script>
+
 </head>
 <body>
 
 <script type="text/javascript">
 
-    let reports;
     let reportsList;
-    let reportImages;
-    let store = restaf.initStore( );
+    let store = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
+    let host = LOGONPAYLOAD.host;
+    let objectElement = null;
+    let attached = false;
 
     async function setup( ) {
         await store.logon(LOGONPAYLOAD);
-        let {reports, reportImages}  = await store.addServices( 'reports', 'reportImages' );
+        let {reports} = await store.addServices( 'reports');
         reportsList = await store.apiCall( reports.links( 'reports' ) );
         if (reportsList.itemsList().size === 0) {
             throw 'No reports to View';
-        }
+        };
+
+        objectElement =  new  vaReportComponents.SASReportElement();
+        objectElement.authenticationType="credentials";
+        objectElement.url = host;
+        objectElement.reportUri = '/reports/reports/xxxx';
+        objectElement.style.width = '100vh';
+        objectElement.style.height = '100vh';
+        objectElement.style.display = 'block';
         return true;
     }
 
     setup()
         .then( r  => createUI() )
-        .catch ( err => showAlert( err ) );
+        .catch ( err => alert( err ) );
 
     //
     // Handle UI
@@ -103,46 +82,39 @@
         } );
     }
 
-    function getImage() {
-        let sectionIndex = document.getElementById( "page" ).value;
-        let reportNo = document.getElementById( "reportNo" ).selectedIndex;
-        let va = document.getElementById( `va` );
-        va.properties = {
-            host         : VIYA_HOST,
-            store        : store,
-            reportsList  : reportsList,
-            imagesService: reportImages,
-            reportNo     : reportNo,
-            sectionIndex : sectionIndex - 1,
-            aspectRatio  : 'none',
-            options      : {
-                printEnabled      : true,
-                shareEnabled      : false,
-                informationEnabled: false,
-                commentsEnabled   : false,
-                alertsEnabled     : false,
-                reportViewOnly    : true,
-                appSwitcherEnabled: false
-            }
+    function getReport() {
+        debugger;
+        let reportNo   = document.getElementById( "reportNo" ).selectedIndex;
+        let reportName = reportsList.itemsList(reportNo);
+        let reportUri  = reportsList.itemsCmd(reportName, 'self', 'link','uri');
+        console.log(reportUri);
+        objectElement.reportUri = reportUri;
+        if (attached === true) {
+            let l = document.getElementById("report0");
+            l.removeChild(l.childNodes[0]);
+        }
+        document.getElementById('report0').appendChild(objectElement);
+        attached = true;
+
         };
-    }
+    
 
 </script>
 
 <!-- Visual part of the demo -->
 
 <div id="container" class="content" >
-    <h1> A report browser built with restAF </h1>
+    <h1> A report browser built with VA SDK(0.2) SDK and restaf </h1>
 
     Report: <select id="reportNo"> </select>
-    Section: <input type="number" name="Section" id="page" value="1" >
-    <button id="getimage" onclick="getImage();"> Get Image </button>
+   <!-- Section: <input type="number" name="Section" id="page" value="1" > -->
+    <button id="getreport" onclick="getReport();"> Get Report </button>
 
     <div class="wrapper-2">
         <div id="left">
             <p id="tabereport"> </p>
-            <div id="image0" class="imagediv">
-                <raf-vareport id="va"> </raf-vareport>
+            <div id="report0" class="imagediv">
+                <!--raf-vareport id="va"> </raf-vareport> -->
             </div>
         </div>
     </div>

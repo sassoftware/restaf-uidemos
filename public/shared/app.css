@@ -131,3 +131,7 @@ body {
     .main  { order: 2; }
     .xyz-2 { order: 3; }
 }
+.container {
+    height: 100vh;
+    width: auto;
+}
