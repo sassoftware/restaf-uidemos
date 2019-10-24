@@ -17,12 +17,12 @@
  */
 
  import React from 'react';
- function  Table(props) {
+ function  Table (props) {
     let {data} = props;
     debugger;
     let theadRows =  data.get('schema').map(s => {
         let name = s.get('name');
-        if ( name !== '_Index_') {
+        if (name !== '_Index_') {
            return <th scope="col" style={{backgroundColor: 'lightgrey'}} >{name}</th>
         }
     });
@@ -33,9 +33,9 @@
         let thisRow = <tr>
         {
             row.map((col, index)=> {
-                if ( index > 0 ) {
+                if (index > 0) {
                     let v = <input type="text"  value={col}/>
-                    return ( <td> {v} </td>)
+                    return (<td> {v} </td>)
                 }
                 })
             }
@@ -56,17 +56,17 @@
 }
 
 class TableViewer extends React.Component {
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
-            data      : props.data,
-            title     : props.title
+            data : props.data,
+            title: props.title
         };
     }
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps (nextProps) {
         this.setState({data: nextProps.data, title: nextProps.title });
     }
-    render() {
+    render () {
         return (
             <div>
             <Table data={this.state.data}  title={this.state.title}  />

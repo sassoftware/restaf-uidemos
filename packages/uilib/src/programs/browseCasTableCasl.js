@@ -3,7 +3,7 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 
-function browseCasTableCasl() {
+function browseCasTableCasl () {
     let code =`
     results = getData(_args_.caslib, _args_.name , _args_.from, _args_.count,  _args_.format);   
     send_response({casResults = results});  

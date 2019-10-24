@@ -16,7 +16,7 @@
  *
  */
 
-const tableInfo = ( result, table ) => {
+const tableInfo = (result, table) => {
     let data = result.items('tables', table);
     let itemRows = data.get('rows');
     let columns = [];

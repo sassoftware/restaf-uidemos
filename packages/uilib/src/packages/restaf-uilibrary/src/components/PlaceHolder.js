@@ -2,7 +2,7 @@ import React from 'react';
 // import {AppContext} from '../providers';
 import "../css/styles.css";
 
-function PlaceHolder(props) {
+function PlaceHolder (props) {
   // static contextType = AppContext;
     debugger;
     let model = props.match.path;

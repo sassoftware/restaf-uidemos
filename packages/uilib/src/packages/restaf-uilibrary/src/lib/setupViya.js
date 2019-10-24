@@ -18,7 +18,7 @@ async function setupViya (store, appEnv, logonPayload) {
         for (let i = 0; i < l; i++) {
             let payload = {
                 action: 'builtins.loadActionSet',
-                data: { actionSet: actionSets[ i ] }
+                data  : { actionSet: actionSets[ i ] }
             };
             await store.runAction(session, payload);
         }

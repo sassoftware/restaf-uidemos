@@ -9,7 +9,7 @@ class ListItemLink extends React.Component {
     debugger;
 
 
-    render() {
+    render () {
       const { icon, primary, styles} = this.props;
        return (
         <li>

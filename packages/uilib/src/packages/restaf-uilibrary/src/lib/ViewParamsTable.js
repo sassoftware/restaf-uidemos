@@ -22,20 +22,20 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table-next';
 
 //https://www.valentinog.com/blog/how-async-await-in-react/
 class ViewParamsTable extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
-      data: props.data,
+      data    : props.data,
       optimize: props.optimize,
-      objType: props.objType
+      objType : props.objType
     };
   }
 
   componentWillReceiveProps (nextProps) {
     this.setState({
-      data: nextProps.data,
+      data    : nextProps.data,
       optimize: nextProps.optimize,
-      objType: nextProps.objType
+      objType : nextProps.objType
     });
   }
 
@@ -94,15 +94,15 @@ class ViewParamsTable extends React.Component {
 
   render () {
     var selectRowProp = {
-      mode: "checkbox",
+      mode         : "checkbox",
       clickToSelect: true,
-      bgColor: "rgb(238, 193, 213)"
+      bgColor      : "rgb(238, 193, 213)"
     };
 
     const mycellEditProp = {
-      mode: 'click',
+      mode          : 'click',
       beforeSaveCell: this.onBeforeSaveCell,
-      afterSaveCell: this.onAfterSaveCell
+      afterSaveCell : this.onAfterSaveCell
     };
 
     const options = {
@@ -118,7 +118,7 @@ class ViewParamsTable extends React.Component {
     debugger;
     return this._display()
 
-  };
+  }
 
   _display = () => {
     return (
@@ -132,8 +132,8 @@ class ViewParamsTable extends React.Component {
           condensed
           search
         >
-          <TableHeaderColumn width='50%' dataField='Product_Name' isKey dataAlign="center" dataSort={true} >Product Name</TableHeaderColumn>
-          <TableHeaderColumn width='50%' dataField='demand' dataAlign="center" dataSort={true} dataFormat={this.numFormatter}>Required Number of Facilities</TableHeaderColumn>
+          <TableHeaderColumn width="50%" dataField="Product_Name" isKey dataAlign="center" dataSort={true} >Product Name</TableHeaderColumn>
+          <TableHeaderColumn width="50%" dataField="demand" dataAlign="center" dataSort={true} dataFormat={this.numFormatter}>Required Number of Facilities</TableHeaderColumn>
         </BootstrapTable>
         <form>
           <h4>What type of cost would you like to minimize?</h4>

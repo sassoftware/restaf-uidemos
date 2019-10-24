@@ -1,6 +1,6 @@
 import tableInfo from '../lib/tableToJson'
 
-async function loadParamsData(APPENV, session, store){
+async function loadParamsData (APPENV, session, store){
  let caslStatements = `
    action table.dropTable / name='${APPENV.OPTABLENAME}' caslib='${APPENV.WORKLIBNAME}' quiet=TRUE;
    action table.dropTable / name='${APPENV.COSTTABLENAME}' caslib='${APPENV.WORKLIBNAME}' quiet=TRUE;
@@ -52,7 +52,7 @@ async function loadParamsData(APPENV, session, store){
 
  let payload = {
      action: 'sccasl.runCasl',
-     data: {code: caslStatements}
+     data  : {code: caslStatements}
  }
  debugger;
  let r1 = await store.runAction(session, payload);
@@ -80,7 +80,7 @@ async function loadParamsData(APPENV, session, store){
 
  payload = {
      action: 'sccasl.runCasl',
-     data: {code: caslStatements2}
+     data  : {code: caslStatements2}
  }
 
  let r2 = await store.runAction(session, payload);
@@ -107,7 +107,7 @@ async function loadParamsData(APPENV, session, store){
  
  payload = {
      action: 'sccasl.runCasl',
-     data: {code: caslStatements3}
+     data  : {code: caslStatements3}
  }
  debugger;
  let r3 = await store.runAction(session, payload);

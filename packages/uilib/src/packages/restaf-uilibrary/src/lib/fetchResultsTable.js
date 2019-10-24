@@ -17,7 +17,7 @@
  */
 import tableInfo from '../lib/tableToJson'
 
-async function fetchResultsTable(APPENV, session, store) {
+async function fetchResultsTable (APPENV, session, store) {
   debugger;
   let caslStatements = `
 
@@ -40,7 +40,7 @@ async function fetchResultsTable(APPENV, session, store) {
 
   let payload = {
       action: 'sccasl.runCasl',
-      data: {code: caslStatements}
+      data  : {code: caslStatements}
   }
   debugger;
   let r = await store.runAction(session, payload);

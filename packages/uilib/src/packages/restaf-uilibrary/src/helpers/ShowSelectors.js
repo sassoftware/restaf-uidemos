@@ -21,7 +21,7 @@ import Button from '@material-ui/core/button';
 
 import Select from '@material-ui/core/Select';
  
-function ShowSelectors(props){
+function ShowSelectors (props){
     const useStyles = makeStyles(theme => ({
         root: {
             display: 'flex',
@@ -30,22 +30,22 @@ function ShowSelectors(props){
              margin: theme.spacing(3),
          },
         container: {
-          display: 'flex',
+          display : 'flex',
           flexWrap: 'wrap',
         },
         paper: {
-          padding: theme.spacing(3, 2), 
-          marginLeft: theme.spacing(2),
-          marginRight: theme.spacing(2),
-          marginTop: theme.spacing(3),
+          padding     : theme.spacing(3, 2), 
+          marginLeft  : theme.spacing(2),
+          marginRight : theme.spacing(2),
+          marginTop   : theme.spacing(3),
           marginBotton: theme.spacing(3)
         },
         selectField: {
-          marginLeft: theme.spacing(2),
-          marginRight: theme.spacing(2),
-          marginTop: theme.spacing(3),
+          marginLeft  : theme.spacing(2),
+          marginRight : theme.spacing(2),
+          marginTop   : theme.spacing(3),
           marginBotton: theme.spacing(3),
-          width: 200,
+          width       : 200,
         },
         dense: {
           marginTop: 19,
@@ -54,7 +54,7 @@ function ShowSelectors(props){
           width: 200,
         },
         button: {
-          color: 'primary',
+          color  : 'primary',
           padding: '0 30px'
         }
       }));
@@ -66,7 +66,7 @@ function ShowSelectors(props){
  
     debugger;
     let t = [];
-    for ( let key in selectors) {
+    for (let key in selectors) {
         let inputProps = {name: key, id: key};
         let tsub =
           <FormControl variant="outlined" margin="normal">

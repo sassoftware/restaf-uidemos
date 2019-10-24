@@ -16,7 +16,7 @@
  *
  */
 
- async function loadVAreport(store, reportName, services, host) {
+ async function loadVAreport (store, reportName, services, host) {
     debugger;
 
     let reportUri = await updateInputReport(store, reportName, services);
@@ -28,13 +28,13 @@
     return href;
 }
 
-async function updateInputReport(store, reportName, services) {
+async function updateInputReport (store, reportName, services) {
     let {reports } = services;
 
     debugger;
 
-    let reportsList = await getReport( store, reports, reportName);
-    if ( reportsList === null ) {
+    let reportsList = await getReport(store, reports, reportName);
+    if (reportsList === null) {
         let e = {Error: `${reportName} not found`};
         throw e;
     }
@@ -43,14 +43,14 @@ async function updateInputReport(store, reportName, services) {
     return reportUri;
 }
 
-async function getReport( store, reports, name ) {
+async function getReport (store, reports, name) {
     let payload = {
         qs: {
             filter: `eq(name,'${name}')`
         }
     }
     let reportsList = await store.apiCall(reports.links('reports'), payload);
-    return (reportsList.itemsList().size === 0 ) ? null : reportsList;
+    return (reportsList.itemsList().size === 0) ? null : reportsList;
 }
 
 export default loadVAreport;

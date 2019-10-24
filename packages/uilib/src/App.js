@@ -11,57 +11,57 @@ import { AppContext } from './providers';
 
 let menuFuture = [
 	{
-		path: '/scoreAstore',
-		text: 'scoring with any astore',
-		icon: null,
+		path     : '/scoreAstore',
+		text     : 'scoring with any astore',
+		icon     : null,
 		component: PlaceHolder
 	},
 	{
-		path: '/loan',
-		text: 'Loan Analysis',
-		icon: null,
+		path     : '/loan',
+		text     : 'Loan Analysis',
+		icon     : null,
 		component: PlaceHolder
 	},
 	{
-		path: '/browseTable',
-		text: 'Browse a Cas table',
-		icon: null,
+		path     : '/browseTable',
+		text     : 'Browse a Cas table',
+		icon     : null,
 		component: CasTableSelectorp
 	},
 	{
-		path: '/ViewReports',
-		text: 'View reports(non-sdk)',
-		icon: null,
+		path     : '/ViewReports',
+		text     : 'View reports(non-sdk)',
+		icon     : null,
 		component: PlaceHolder
 	},
 	{
-		path: '/vasdk',
-		text: 'Example of VA SDK',
-		icon: null,
+		path     : '/vasdk',
+		text     : 'Example of VA SDK',
+		icon     : null,
 		component: PlaceHolder
 	},
 	{
-		path: '/jobexec',
-		text: 'Example of Job Execution',
-		icon: null,
+		path     : '/jobexec',
+		text     : 'Example of Job Execution',
+		icon     : null,
 		component: PlaceHolder
 	},
 	{
-		path: '/casdms',
-		text: 'Run casl on cas server',
-		icon: null,
+		path     : '/casdms',
+		text     : 'Run casl on cas server',
+		icon     : null,
 		component: PlaceHolder
 	},
 	{
-		path: '/spredms',
-		text: 'Run compute service',
-		icon: null,
+		path     : '/spredms',
+		text     : 'Run compute service',
+		icon     : null,
 		component: PlaceHolder
 	},
 	{
-		path: '/testStuff',
-		text: 'Testing Zone',
-		icon: null,
+		path     : '/testStuff',
+		text     : 'Testing Zone',
+		icon     : null,
 		component: TestStuff
 	}
 ];
@@ -69,7 +69,7 @@ let menuFuture = [
 //
 // To start at a different component change SideBar to your component
 //
-function App(props) {
+function App (props) {
 	const appContext = useContext(AppContext);
 	debugger;
 	let appEnv = appContext.viya.appEnv;
@@ -79,20 +79,20 @@ function App(props) {
 
 	let menu = [
 		{
-			path: '/',
-			text: 'Home',
-			icon: null,
+			path     : '/',
+			text     : 'Home',
+			icon     : null,
 			component: ProblemDescription,
-			model: null
+			model    : null
 		}
 	];
 	models.forEach(m => {
 		let subsetVars = m.explainVars.map(s => s.toLowerCase());
 		m.explainVars = subsetVars;
 		let mrow = {
-			path: m.route,
-			text: m.desc,
-			icon: null,
+			path : m.route,
+			text : m.desc,
+			icon : null,
 			model: m
 		};
 		mrow.component = m.scoreMethod === 'dsscore' ? DsScoring : PlaceHolder;

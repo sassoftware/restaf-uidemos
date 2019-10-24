@@ -147,14 +147,10 @@
                     modelName: '',
                     scenario : inputValues
                 };
-
-                restaflib.caslScore(store,session, payload)
-                    .then ( r => {
-                        let value = parseFloat(r[0].P_BAD);
-                        viewDial(value);
-                    })
-                    .catch(err => alert(err))
-                }
+                restaflib.caslScore(store, session, payload)
+                 .then ( r => viewDial(r.P_BAD))
+                 .catch( e => alert(e))
+            }
             //
             // setup the display of the resulting score(D3 is ei)
             //

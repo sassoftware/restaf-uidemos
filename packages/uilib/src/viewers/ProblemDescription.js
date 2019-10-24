@@ -17,5 +17,5 @@ function ProblemDescription () {
     </div>
 
   );
-};
+}
 export default ProblemDescription;

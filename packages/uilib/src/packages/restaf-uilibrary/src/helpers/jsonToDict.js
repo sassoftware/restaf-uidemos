@@ -29,7 +29,7 @@ module.exports = function jsonToDict (obj, name) {
     }
     return `${name} = ${o1};`
 }
-function handleObject(obj) {
+function handleObject (obj) {
     let r    = '{ ';
     let sep =  ' ';
     for (let k in obj) {
@@ -51,7 +51,7 @@ function handleObject(obj) {
    return r;
 }
 
-function handleArray(obj) {
+function handleArray (obj) {
     let r    = '{';
     let sep =  ' ';
     let size = obj.length;

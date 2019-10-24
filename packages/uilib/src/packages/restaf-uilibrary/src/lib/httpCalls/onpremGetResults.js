@@ -3,10 +3,10 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 
-async function onpremGetResults(path, data, serverInfo){
+async function onpremGetResults (path, data, serverInfo){
     let caslStatements = caslFunctions();
     let _appEnv_ = {
-        path:  path, 
+        path : path, 
         model: serverInfo.model, 
         table: serverInfo.table
      };
@@ -15,7 +15,7 @@ async function onpremGetResults(path, data, serverInfo){
      } else {
          _appEnv_.filter = data;
      }
-     caslStatements = jsonToDict( _appEnv_, '_appEnv_') + ' ' + caslStatements;
+     caslStatements = jsonToDict(_appEnv_, '_appEnv_') + ' ' + caslStatements;
 
      let payload = {
         code: caslStatements
@@ -211,7 +211,7 @@ function jsonToDict (obj, name) {
     }
     return `${name} = ${o1};`
 }
-function handleObject(obj) {
+function handleObject (obj) {
     let r    = '{ ';
     let sep =  ' ';
     for (let k in obj) {
@@ -233,7 +233,7 @@ function handleObject(obj) {
    return r;
 }
 
-function handleArray(obj) {
+function handleArray (obj) {
     let r    = '{';
     let sep =  ' ';
     let size = obj.length;

@@ -20,16 +20,16 @@ import Paper from '@material-ui/core/Paper';
 // import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
  
-function ShowScore(props){
+function ShowScore (props){
     const useStyles = makeStyles(theme => ({
         root: {
             display: 'flex',
           },
         paper: {
-          padding: theme.spacing(3, 2), 
-          marginLeft: theme.spacing(2),
-          marginRight: theme.spacing(2),
-          marginTop: theme.spacing(3),
+          padding     : theme.spacing(3, 2), 
+          marginLeft  : theme.spacing(2),
+          marginRight : theme.spacing(2),
+          marginTop   : theme.spacing(3),
           marginBotton: theme.spacing(3),
 
         },
@@ -37,31 +37,31 @@ function ShowScore(props){
              margin: theme.spacing(3),
          },
         container: {
-          display: 'flex',
+          display : 'flex',
           flexWrap: 'wrap',
         },
         selectField: {
-          marginLeft: theme.spacing(2),
-          marginRight: theme.spacing(2),
-          marginTop: theme.spacing(3),
+          marginLeft  : theme.spacing(2),
+          marginRight : theme.spacing(2),
+          marginTop   : theme.spacing(3),
           marginBotton: theme.spacing(3),
-          width: 200,
+          width       : 200,
         },
         dense: {
           marginTop: 19,
         },
       }));
 
-    let [score, setScore] = useState(props.score);
-    let [model, setModel] = useState(props.model);
+    let [ score, setScore ] = useState(props.score);
+    let [ model, setModel ] = useState(props.model);
 
     const classes = useStyles();
 
-    useEffect( () => {
+    useEffect(() => {
       setScore(props.score);
       setModel(props.model);
       console.log(`setting score as ${props.score}`);
-    },[props.score, props.model])
+    },[ props.score, props.model ])
 
     debugger;
   

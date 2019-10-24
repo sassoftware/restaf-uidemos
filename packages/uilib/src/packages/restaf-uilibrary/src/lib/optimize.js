@@ -17,13 +17,13 @@
  */
  import genCode from './genCode';
 
- async function optimize(store, session, objType, APPENV){
+ async function optimize (store, session, objType, APPENV){
    debugger;
    let caslStatements = genCode(objType, APPENV);
 
    let payload = {
        action: 'sccasl.runCasl',
-       data: {code: caslStatements}
+       data  : {code: caslStatements}
    }
    let r = await store.runAction(session, payload);
    debugger;

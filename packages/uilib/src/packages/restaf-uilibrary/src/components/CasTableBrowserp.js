@@ -9,13 +9,13 @@ import TableBrowser from "../lib/TableBrowser";
 import jsonToDict from "../lib/jsonToDict";
 import browseCasTableCasl from "../programs/browseCasTableCasl";
 
-function CasTableBrowserp(props) {
+function CasTableBrowserp (props) {
   const { useState, useEffect, useRef } = React;
 
-  const [from, setFrom] = useState(props.from);
-  const [result, setResult] = useState(null);
+  const [ from, setFrom ] = useState(props.from);
+  const [ result, setResult ] = useState(null);
  
-  const [errors, setErrors] = useState(null);
+  const [ errors, setErrors ] = useState(null);
 
   let {store, session} = props;
   debugger;
@@ -27,9 +27,9 @@ function CasTableBrowserp(props) {
   });
 
   let control = {
-    table: props.table,
-    from: lastTable.current !== props.table ? props.from : from,
-    count: count,
+    table : props.table,
+    from  : lastTable.current !== props.table ? props.from : from,
+    count : count,
     format: props.format
   };
 
@@ -52,13 +52,13 @@ function CasTableBrowserp(props) {
       setErrors(null);
     }
     debugger;
-    let [lib, name] = control.table.split(".");
+    let [ lib, name ] = control.table.split(".");
     control.caslib = lib;
     control.name = name;
     let args = jsonToDict(control, "_args_");
     let payload = {
       action: "sccasl.runcasl",
-      data: { code: args + browseCasTableCasl() }
+      data  : { code: args + browseCasTableCasl() }
     };
 
     store
@@ -66,16 +66,16 @@ function CasTableBrowserp(props) {
       .then(r => handleResult(r))
       .catch(err => handleErrors(err));
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [from, props.table]);
+  }, [ from, props.table ]);
 
   const _onScroll = direction => {
     let f =
       direction === "up" ? result.pagination.prev : result.pagination.next;
     setFrom(f);
     control = {
-      table: props.table,
-      from: f,
-      count: result.pagination.count,
+      table : props.table,
+      from  : f,
+      count : result.pagination.count,
       format: props.format
     };
   };

@@ -12,18 +12,18 @@ import caslibListCasl from "../programs/caslibListCasl";
 import casTableListCasl from "../programs/casTableListCasl";
 import {AppContext} from '../providers';
 
-function CasTableSelectorp(props) {
+function CasTableSelectorp (props) {
 
   const { useState, useEffect, useContext } = React;
 
-  let [caslibList, setCaslibList] = useState([]);
-  let [tableList, setTableList] = useState([]);
+  let [ caslibList, setCaslibList ] = useState([]);
+  let [ tableList, setTableList ] = useState([]);
 
-  let [caslib, setCaslib] = useState(null);
-  let [name, setName] = useState(null);
+  let [ caslib, setCaslib ] = useState(null);
+  let [ name, setName ] = useState(null);
 
-  let [errors, setErrors] = useState(null);
-  let [fullName, setFullName] = useState(null);
+  let [ errors, setErrors ] = useState(null);
+  let [ fullName, setFullName ] = useState(null);
 
   let appContext = useContext(AppContext);
   let viya = appContext.viya;
@@ -54,7 +54,7 @@ function CasTableSelectorp(props) {
   useEffect(() => {
     let payload = {
       action: "sccasl.runCasl",
-      data: { code: caslibListCasl() }
+      data  : { code: caslibListCasl() }
     };
 
     // get list of caslibs at start - currently no refresh
@@ -71,13 +71,13 @@ function CasTableSelectorp(props) {
 
   // get list of tables on selected caslib
   useEffect(() => {
-    if (caslib == null ) {
+    if (caslib == null) {
       return;
     }
     let _args_ = jsonToDict({ caslib: caslib.value }, "_args_");
     let payload = {
       action: "sccasl.runcasl",
-      data: { code: _args_ + casTableListCasl() }
+      data  : { code: _args_ + casTableListCasl() }
     };
     
     store.runAction(session, payload)
@@ -88,7 +88,7 @@ function CasTableSelectorp(props) {
       .catch(err => {
         setErrors(JSON.stringify(err));
       });
-  }, [caslib, session, store]);
+  }, [ caslib, session, store ]);
 
   let show = 
     <div className="container">

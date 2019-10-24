@@ -15,7 +15,7 @@ import ListItemLink from './ListItemLink';
 
 const styles = {
 	list: {
-		width: 250,
+		width          : 250,
 		backgroundColor: 'white',
 		foregroundColor: 'black'
 	},
@@ -30,7 +30,7 @@ const styles = {
 		flexGrow: 1,
 	},
 	menuButton: {
-		marginLeft: -12,
+		marginLeft : -12,
 		marginRight: 20,
 	},
 	appBar1: {
@@ -46,8 +46,8 @@ const styles = {
 
 function Header (props) {
 	const { useState, useEffect, useRef } = React;
-	let [itemsList, setItemsList] = useState(null);
-	let [isOpen, setIsOpen] = useState(false);
+	let [ itemsList, setItemsList ] = useState(null);
+	let [ isOpen, setIsOpen ] = useState(false);
 	const { classes } = props;
 
 
@@ -67,14 +67,14 @@ function Header (props) {
 
 	debugger;
 
-	useEffect ( () => {
-		if ( lastMenu.current !== props.menu) {
+	useEffect (() => {
+		if (lastMenu.current !== props.menu) {
 			lastMenu.current = control.menu;
 			let l = makeList (props.menu);
 			setItemsList(l);
 		}
 		
-	},[props.menu])
+	},[ props.menu ])
 
 	let control = {
 		menu: props.menu

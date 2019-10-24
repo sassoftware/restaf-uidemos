@@ -15,7 +15,7 @@ import ShowScore from '../helpers/ShowScore';
 import { ServerStyleSheets } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid'
 
-function DsScoring(props) {
+function DsScoring (props) {
 
   // const appContext = useContext(AppContext);
 
@@ -35,15 +35,15 @@ function DsScoring(props) {
   */
 
   // const [routePath, setRoutePath] = useState(props.match.path);
-  const [selectorValues, setSelectorValues] = useState(null);
-  const [selectedValues, setSelectedValues]  = useState({});
-  const [initialValues, setInitialValues] = useState(null);
-  const [scenarioResult, setScenarioResult] = useState(null);
-  const [modelName, setModelName] = useState(props.model.name);
+  const [ selectorValues, setSelectorValues ] = useState(null);
+  const [ selectedValues, setSelectedValues ]  = useState({});
+  const [ initialValues, setInitialValues ] = useState(null);
+  const [ scenarioResult, setScenarioResult ] = useState(null);
+  const [ modelName, setModelName ] = useState(props.model.name);
 
   let {store, model} = props;
   // const [scenarios, setScenarioValues] = useState(null)
-  const [errors, setErrors] = useState('loading...');
+  const [ errors, setErrors ] = useState('loading...');
   debugger;
 
 
@@ -98,14 +98,14 @@ function DsScoring(props) {
       
     const makeSelectionList = (invalue) =>  {
       let type = typeof invalue[0] === 'number' ? 'number': 'text';
-      let options = invalue.map( v => {
+      let options = invalue.map(v => {
         return { value: v, label: v, type: type};
       })
       return options;
     };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [modelName, props.model]);
+  }, [ modelName, props.model ]);
 
     function handleChange (event) {
       console.log(event.target.name);
@@ -140,13 +140,13 @@ function DsScoring(props) {
     });
   }
 
-  function describeData(casResults) {
+  function describeData (casResults) {
     let oldrow = casResults.describe[0];
     let describe ={};
-    for ( let k in oldrow) {
+    for (let k in oldrow) {
       let kl= k.toLowerCase();
       describe[kl] = oldrow[k];
-    };
+    }
 
     let editRow = {};
     model.explainVars.forEach(k =>  {
@@ -172,7 +172,7 @@ function DsScoring(props) {
              if (k.toLowerCase() === scoreVar) {
              score = results[k];
              }
-         };
+         }
       console.log(score);
       setScenarioResult(score);
       setErrors(null);
@@ -197,7 +197,7 @@ function DsScoring(props) {
            <Grid key={2} item>
               <EditScenario data={initialValues.editRow} setScenario={getNewValues} />
           </Grid> : null }
-        {( scenarioResult !== null) ? 
+        {(scenarioResult !== null) ? 
            <Grid key={3} item>
              <ShowScore model={model} score={scenarioResult}/>
             </Grid> : null }

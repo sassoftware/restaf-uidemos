@@ -16,8 +16,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Paper from '@material-ui/core/Paper';
 
- function EditScenario(props){
-    const [state, setState] = useState({...props.data});
+ function EditScenario (props){
+    const [ state, setState ] = useState({...props.data});
     const {setScenario} = props;
 
     const useStyles = makeStyles(theme => ({
@@ -28,23 +28,23 @@ import Paper from '@material-ui/core/Paper';
              margin: theme.spacing(3),
          },
         container: {
-          display: 'flex',
+          display : 'flex',
           flexWrap: 'wrap',
         },
         paper: {
-          padding: theme.spacing(3, 2), 
-          marginLeft: theme.spacing(2),
-          marginRight: theme.spacing(2),
-          marginTop: theme.spacing(3),
+          padding     : theme.spacing(3, 2), 
+          marginLeft  : theme.spacing(2),
+          marginRight : theme.spacing(2),
+          marginTop   : theme.spacing(3),
           marginBotton: theme.spacing(3)
         },
 
         inputField: {
-          marginLeft: theme.spacing(1),
-          marginRight: theme.spacing(1),
-          marginTop: theme.spacing(3),
+          marginLeft  : theme.spacing(1),
+          marginRight : theme.spacing(1),
+          marginTop   : theme.spacing(3),
           marginBotton: theme.spacing(3),
-          width: 200,
+          width       : 200,
         },
         dense: {
           marginTop: 19,
@@ -53,7 +53,7 @@ import Paper from '@material-ui/core/Paper';
           width: 200,
         },
         button: {
-            color: 'primary',
+            color  : 'primary',
             padding: '0 30px'
           }
       }));
@@ -63,19 +63,19 @@ import Paper from '@material-ui/core/Paper';
 
     useEffect(() => {
       setState({...props.data});
-    }, [props.data])
+    }, [ props.data ])
 
-    function handleChange(event) {
+    function handleChange (event) {
         setState({ ...state, [event.target.name]: event.target.value });
-      };
+      }
 
     const onSubmit = () => {
         let out = {};
         let errors = 0;
-        for ( let s in state) {
+        for (let s in state) {
           if (typeof state[s] === 'string') {
             let d = parseFloat(state[s]);
-            if ( isNaN(d)) {
+            if (isNaN(d)) {
               errors = errors + 1;
             } else
                out[s] = d;
@@ -89,12 +89,12 @@ import Paper from '@material-ui/core/Paper';
         }
     };
 
-    if ( props.data === null) {
+    if (props.data === null) {
       return null;
     }
     let table = [];
  
-    for ( let key in state) {
+    for (let key in state) {
       
         let t = <FormControl variant="outlined" margin="normal">
             <InputLabel htmlFor= {key}>{key}</InputLabel>

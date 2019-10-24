@@ -15,14 +15,14 @@
  * ---------------------------------------------------------------------------------------
  *
  */
- async function loadInput( store, session, data, caslib, name) {
+ async function loadInput (store, session, data, caslib, name) {
     let csv = makecsv(data);
     debugger;
      // upload data as csv
      let JSON_Parameters = {
       casout: {
-          caslib: `${caslib}`, /* a valid caslib */
-          name: `${name}`, /* name of output file on cas server */
+          caslib : `${caslib}`, /* a valid caslib */
+          name   : `${name}`, /* name of output file on cas server */
           replace: true
       },
 
@@ -32,32 +32,32 @@
     };
     let payload = {
       headers: { 'JSON-Parameters': JSON_Parameters },
-      data: csv,
-      action: 'table.upload'
+      data   : csv,
+      action : 'table.upload'
     };
    let result = await store.runAction(session, payload, 'upload');
    return result;
  }
 
 
- function makecsv( data ) {
+ function makecsv (data) {
     let columns = Object.keys(data[0]);
     let colNames = columns[0];
-    for ( let i = 1 ; i < columns.length ; i++ ) {
+    for (let i = 1 ; i < columns.length ; i++) {
         colNames = colNames + ',' + columns[i]
-    };
+    }
  
     let dataRows = null;
 
     debugger;
-    data.map( r => {
+    data.map(r => {
     
         let row = null;
-        for ( let k in r) {
+        for (let k in r) {
             row = (row === null) ?  r[k] : (row +',' +r[k]);
 
         }
-    dataRows = (dataRows === null ) ? row :  dataRows + '\n' + row;
+    dataRows = (dataRows === null) ? row :  dataRows + '\n' + row;
  
     })
 

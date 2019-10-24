@@ -3,7 +3,7 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 
-function casTableListCasl() {
+function casTableListCasl () {
   let code =  `
     action table.fileInfo r=result/ 
        caslib=_args_.caslib;

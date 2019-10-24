@@ -17,7 +17,7 @@
  */
 import optCode from './optCode';
 
-function genCode(objType, APPENV) {
+function genCode (objType, APPENV) {
 	let pgm = optCode(objType, APPENV);
   let caslStatements = `
 

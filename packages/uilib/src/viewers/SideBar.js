@@ -11,9 +11,9 @@ function SideBar (props) {
    let {menu, store} = props;
 
    debugger;
-   let switches = menu.map ( m => {
+   let switches = menu.map (m => {
      let s;
-     if ( m.path === '/') {
+     if (m.path === '/') {
        s = <Route exact path={m.path} component={m.component} />
      } else {
        
@@ -29,7 +29,7 @@ function SideBar (props) {
     return (
       <Router>
         <div id="App" className="sm-navy w-100 h-100">
-            <Header menu={menu} title='Viya At Work'></Header>
+            <Header menu={menu} title="Viya At Work"></Header>
             <Switch>
              {switches}
             </Switch>

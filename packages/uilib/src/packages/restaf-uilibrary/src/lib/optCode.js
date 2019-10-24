@@ -16,7 +16,7 @@
  *
  */
 
- function optCode(ObjType, APPENV) {
+ function optCode (ObjType, APPENV) {
    let pgm = `
    set <str> PRODUCTS;
  	   set <str> FACILITIES init {};

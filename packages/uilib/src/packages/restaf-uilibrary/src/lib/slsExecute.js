@@ -3,16 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-async function slsExecute(path, store, model, inputData) {
+async function slsExecute (path, store, model, inputData) {
 
 	let data = {...model, ...inputData};
 
 	let config = {
-		url: `${model.slsUrl}/${path}`,
-		method: 'POST',
-		data: data,
+		url    : `${model.slsUrl}/${path}`,
+		method : 'POST',
+		data   : data,
 		headers: {
-			'Accept': 'application/json',
+			'Accept'      : 'application/json',
 			'Content-Type': 'application/json'
 		}
 	};

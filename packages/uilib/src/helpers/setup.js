@@ -14,7 +14,7 @@ debugger;
 let store = restaf.initStore();
 debugger;
 setupViya(store, appEnv, window.optUI.logonPayload)  
-    .then ( (r) => {
+    .then ((r) => {
         ReactDOM.render(
             <AppProvider value={{store: store, viya: r}}>  
                 <App />     

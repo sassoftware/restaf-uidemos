@@ -4,9 +4,9 @@
 */
 
 
-async function slsGetResults(path,data,store, appEnv, currentModel){
+async function slsGetResults (path,data,store, appEnv, currentModel){
     let args = {
-      path : path,
+      path  : path,
       filter: {}
     }
     let control = appEnv[currentModel];
@@ -14,14 +14,14 @@ async function slsGetResults(path,data,store, appEnv, currentModel){
 
     if (path === 'score') {
         args.filter = data;
-    };
+    }
     debugger;
     let config = {
-        url : `${appEnv.url}/${path}`,
-        method: 'POST',
-        data: args,
+        url    : `${appEnv.url}/${path}`,
+        method : 'POST',
+        data   : args,
         headers: {
-          Accept: 'application/json',
+          Accept        : 'application/json',
           'Content-Type': 'application/json'
         }
       };
