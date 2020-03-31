@@ -61,18 +61,23 @@
 
     </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.development.js"></script>
+    
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
-
-
-<script src="/appenv"></script>
-<script type="text/javascript" src="/shared/showAlert.js"></script>
-<script type="text/javascript" src="/shared/util.js"></script>
-    <script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
+    
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf/dist/restaf.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaflib/dist/restaflib.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restafuilib/dist/restafuilib.js"></script>
+    <script type="text/javascript" src="/shared/showAlert.js"></script>
+    <script type="text/javascript" src="/shared/util.js"></script>
+    <script type="text/javascript" src="/appenv"></script>
     <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
 
 
@@ -88,7 +93,7 @@
         let currentJob     = null;
 
         async function setupDMS() {
-            debugger;
+            ;
             try {
                 let msg       = await store.logon(LOGONPAYLOAD) ;
                 let {compute} = await store.addServices( 'compute' );
@@ -104,7 +109,7 @@
         }
 
         function editor ( ) {
-            debugger;
+            ;
             let props = {
                 onRun: runCode,
                 text  : ' ',
@@ -119,7 +124,7 @@
         }
 
        function runCode ( text, uploadF, cb ) {
-           debugger;
+           ;
            let code    = text.split(/\r?\n/);
            let payload = { data: { code: code } };
 
@@ -128,7 +133,7 @@
 
            // Submit the program to SAS
            document.getElementById( 'results' ).style.visibility = 'hidden';
-           debugger;
+           ;
            store.apiCall( executeCmd, payload )
               .then( job => store.jobState( job , { qs: { timeout: 2 } }, 10 ) )
                 .then ( status  => {

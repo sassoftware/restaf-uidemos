@@ -4,16 +4,19 @@
     <head>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-        <script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
+        
+        <!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <!-- script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" src=https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min>
+        <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+        <!--script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.js"></script>
+        <script src="https://unpkg.com/@sassoftware/restaf/dist/restaf.min.js"></script>
+        <script src="https://unpkg.com/@sassoftware/restaflib/dist/restaflib.min.js"></script>
         
         <script type="text/javascript" src="/appenv"></script>
-        <script src="/shared/lib/scoreAsJson.js"></script>
-        <script src="/shared/lib/casSetup.js"></script>
-        <script src="/shared/lib/score.js"></script>
         
         <style>
             body {
@@ -116,66 +119,80 @@
         <script>
             let svg;
             let session;
+            let uploaded = false;
+            ;
+            let store = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
+
             let defaults = {
                 JOB: 'J1', CLAGE: 100, CLNO: 20, DEBTINC: 20, DELINQ: 2, DEROG: 0, MORTDUE: 4000, NINQ: 1, YOJ: 10
             };
-
             let ids = [ 'LOAN', 'VALUE' ];
-
-            let store = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
-
             //
             // This section creates a cas session
             //
             function setup() {
-                appInit()
-                    .then(r => console.log(r))
-                    .catch(err => console.log(err))
+                ;
+               restaflib.casSetup(store,LOGONPAYLOAD)
+                .then ( r => {
+                    ;
+                    session = r.session;
+                })
+                .catch( e => {
+                    ;
+                    console.log(e)
+                    alert(e);
+                });
             }
-            async function appInit() {
-                let msg = await store.logon(LOGONPAYLOAD);
-                session = await casSetup(store);
-                return 'initialization completed';
-            }
-
-            //
+            
             // This section takes user input and sends it to CAS for scoring
             //
 
             function onSubmit() {
                 // create user data payload
                 let inputValues = Object.assign({}, defaults);
-
                 ids.map(name => {
                     inputValues[ name ] = parseFloat(document.getElementById(name).value);
                 });
 
-                // call scoring function below
-                runScore(inputValues)
-                    .then(r => {
-                        let value = parseFloat(r.P_BAD);
-                        viewDial(value);
-                    })
-                    .catch(e => {
-                        console.log(JSON.stringify(e, null, 4));
-                    })
-            }
+                // if model is published then the model refers to the sashdat associated with the destination
+                // modelName is required if using published model(ignored for all other cases)
 
-            // setup information for astore.score action call and execute it
-            async function runScore(inputValues) {
-                let data = {
-                    rstore: {
-                        caslib: 'public',
-                        name  : 'GRADIENT_BOOSTING___BAD_2'
-                    },
-                    input: inputValues
+                
+                
+                uploadAndScore()
+                 .then ( r => viewDial(r.P_BAD))
+                 .catch( e => alert(e))
+            }
+            
+            async function uploadAndScore() {
+                ;
+                if (uploaded === false){
+                    let payload = {
+                        method: 'GET',
+                        url   : `${window.location.protocol}//${window.location.host}/data/gradBoost.sashdat`,
+                        headers: {
+                            'accept': 'binary/octet-stream'
+                        }
+                    }
+                    ;
+                    let d = await store.request(payload);
+                    ;
+                    let r = await restaflib.casUpload(store, session, 'gradBoost.sashdat', 'casuser.gradBoost', true, d.data);
+                    ;
+                    console.log(r);
+                    uploaded = true;
                 }
-                // see /shared/lib/score.js for this function
-                let r = await score(store, session, data);
+                let scenario = {
+                    model    :  {caslib: 'casuser', name: 'gradBoost'},
+                    modelName: '',
+                    scenario : inputValues
+                };
+                r = await restaflib.caslScore(store, session, scenario);
+                console.log(r);
                 return r;
-
             }
-
+                ;
+           
             //
             // setup the display of the resulting score(D3 is ei)
             //
@@ -193,13 +210,13 @@
                 //     var colors = d3.scale.category10();
                 var colors = [ "#07A018", "#F5F5F5" ]
 
-                var pies = d3.layout.pie()
+                var pies = d3.pie() /*d3.layout.pie()*/
                     .value(d => d)
                     .sort(null)
                     .startAngle(anglesRange * -1)
                     .endAngle(anglesRange)
 
-                var arc = d3.svg.arc()
+                var arc = d3.arc()
                     .outerRadius(radis)
                     .innerRadius(radis - thickness)
 

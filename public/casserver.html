@@ -20,24 +20,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
-    <!-- link rel="import" href="/shared/../../webcomponent.js/webcomponents-lite.js"> -->
-    <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-loader.js"></script>
-    -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    
+        <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf/dist/restaf.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaflib/dist/restaflib.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/@sassoftware/restafuilib/dist/restafuilib.js"></script>
+        <script type="text/javascript" src="/appenv"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
-    <script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
-    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
-    <script src="/appenv"></script>
-    <script type="text/javascript" src="/shared/showAlert.js"></script>
-    <script type="text/javascript" src="/shared/util.js"></script>
-    <script type="text/babel" src="/shared/lib/ItemsTableViewer.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+        
 
 
     <style>
@@ -57,31 +52,47 @@
 
     </style>
   
-
-
-</head>
-<body>
-
     <script type="text/javascript">
-        debugger;
-        let store = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
+        ;
+
+        let store = restaf.initStore();
         async function setup( ) {
-            await store.logon( LOGONPAYLOAD );
-            let {casManagement} = await store.addServices( 'casManagement' );
-            let servers = await store.apiCall( casManagement.links( 'servers' ) );
+
+            //
+            // Using restaf methods
+            //
+            // await store.logon( LOGONPAYLOAD );
+            // let {casManagement} = await store.addServices( 'casManagement' );
+            // let servers = await store.apiCall( casManagement.links( 'servers' ) );
+            // return servers;
+
+            // Using the wrapper methods of restaflib
+            // Use restaf methods if you need finer control of your api calls
+            //
+            let {servers} = await restaflib.casSetup(store, LOGONPAYLOAD);
             return servers;
         }
-
-        setup()
-                .then( servers => ItemsTableViewer( store, servers,'CAS Servers', '#container'))
-                .catch( err => showAlert( err ) );
+        
+        function show() {
+            setup()
+            .then( servers => {
+                let props = {
+                    store : store,
+                    title : 'List of CAS Servers',
+                    folder: servers
+                }
+                ;
+                return restafuilib.display('ItemsTableViewer', props,  document.getElementById('container'));
+            })
+            .catch( err => alert(JSON.stringify(err,null,4) ) );
+        }
 
 </script>
-
+</head>
+<body onload="show()">
 <h1> List of CAS Servers</h1>
 
     <div id="container" class="content" >
         </div>
-
 </body>
 </html>

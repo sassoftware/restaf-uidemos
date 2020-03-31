@@ -29,27 +29,28 @@
 
     </style>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
-
-
-<script  src="/appenv"></script>
-<script type="text/javascript" src="/shared/showAlert.js"></script>
-<script type="text/javascript" src="/shared/util.js"></script>
-    <script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
-    <!-- script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script> -->
-    <script src="/shared/lib/restaf-uicomponents.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.production.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+    
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf/dist/restaf.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaflib/dist/restaflib.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restafuilib/dist/restafuilib.js.js"></script>
+    <script  src="/appenv"></script>
+    <script type="text/javascript" src="/shared/showAlert.js"></script>
+    <script type="text/javascript" src="/shared/util.js"></script>
+    <script type="text/babel" src="/shared/lib/SubmitItemViewer.js"></script>
+    <script src="https://unpkg.com/restaf-uicomponents/dist/restaf-uicomponents.js"></script>
+    
 </head>
     <body onload="setWatch()">
     <script type="text/javascript">
 
         // init restAF
-        debugger;
+        ;
         let store = restaf.initStore((LOGONPAYLOAD.authType === 'server') ? {casProxy:true} : null);
         let session    = null;
         let executeCmd = null ;
@@ -57,7 +58,7 @@
 
         async function setupDMS(){
             try {
-                debugger;
+                ;
                 let msg             = await store.logon(LOGONPAYLOAD);
                 let {casManagement} = await store.addServices(  'casManagement' );
 
@@ -73,7 +74,7 @@
             }
         }
 
-           debugger;
+           ;
 
        function editor ( ) {
            let it = "return ( { \n" +
@@ -89,14 +90,14 @@
                msg  : ' ',
                upload: true
            };
-           debugger;
+           ;
            rafuip.TextEditor( props, "#sourcediv" );
            document.getElementById( 'CASOUTPUT1' ).textContent = 'ready';
        }
 
        function runCode ( text, uploadFile, cb ) {
             createPayload( text, uploadFile, ( err, payload ) => {
-                debugger;
+                ;
                 if ( err == null ) {
                     document.getElementById( 'CASOUTPUT1' ).textContent = 'Running...';
                     store.runAction( session, payload )
@@ -105,13 +106,13 @@
                                  store  : store,
                                  folder : f
                              };
-                             debugger;
+                             ;
                              document.getElementById( 'CASOUTPUT1' ).textContent = 'Running...';
                              rafuip.CasOutput( props, '#CASOUTPUT' );
                              cb( true );
                          } )
                          .catch( err => {
-                             debugger;
+                             ;
                              document.getElementById( 'CASOUTPUT1' ).textContent = JSON.stringify( err, null, 4 );
                              cb( false );
                          } )

@@ -21,23 +21,22 @@
 
     <head>
         <meta charset="UTF-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+        <!-- script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.3/runtime.min.js"></script> -->
+        <script src="https://unpkg.com/@sassoftware/restaf/dist/restaf.min.js"></script>
+
         <script type="text/javascript" src="/appenv"></script>
+
+    
         <script>
             function logonButton() {
-                logon(LOGONPAYLOAD);
+                ;
+                let store = restaf.initStore();
+                store.logon(LOGONPAYLOAD)
+                 .then(msg => console.log(msg))
+                 .catch(err => alert(err))
             }
-            function logon(payload) {
-                debugger;
-                let x = `${payload.host}/SASLogon/oauth/authorize?response_type=token&client_id=${payload.clientID}`;
-                //noinspection JSUnresolvedVariable
-                if (payload.redirect != null) {
-                    //noinspection JSUnresolvedVariable
-                    let redirectUri = `${window.location.protocol}//${window.location.host}/${payload.redirect}?host=${payload.host}`;
 
-                    x = `${x}&redirect_uri=${redirectUri}`
-                }
-                window.location.replace(x);
-            }
         </script>
     </head>
 

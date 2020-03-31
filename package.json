@@ -1,22 +1,21 @@
 {
   "name": "restaf-uidemos",
-  "version": "0.7.0",
-  "description": "Examples of web applications using restaf",
-  "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
-  "license": "SEE LICENSE IN LICENSE",
+  "version": "1.7.22",
+  "description": "UI demos for Viya using restaf, restaflib and uilibrary",
+  "main": "index.js",
   "scripts": {
-    "start": "npx restaf-server --env=overridesBosc.env --docker=Dockerfile",
-    "implicit": "npx restaf-server --env=overridesBos.env --docker=Dockerfile"
+    "implicit": "npx @sassoftware/restaf-server --appenv=./appenv.js --env=./overrideImplicit.env --docker=./Dockerfile",
+    "start": "npx @sassoftware/restaf-server --appenv=./appenv.js --env=./overrideCode.env --docker=./Dockerfile",
+    "rproxy": "npx @sassoftware/restaf-server --appenv=./appenv.js --env=./overrideCoder.env --docker=./Dockerfile",
+    "indocker": "npx @sassoftware/restaf-server",
+    "buildapp": "docker build -f Dockerfile -t viyaapp .",
+    "runapp": "docker run -p 8080:8080  --env-file overrides.env  -t viyaapp"
   },
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sassoftware/restaf-uidemos"
-  },
+  "repository": "https://github.com/sassoftware/restaf/tree/gen2/packages/uidemos",
+  "keywords": [],
+  "author": "Deva Kumar <deva.kumar@sas.com>",
+  "license": "Apache-2.0",
   "dependencies": {
-    "restaf-server": "^7.0.6"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.1"
+    "@sassoftware/restaf-server": "^7.5.2"
   }
 }
