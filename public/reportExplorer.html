@@ -25,25 +25,26 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
-    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf/dist/restaf.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaflib/dist/restaflib.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restafuilib/dist/restafuilib.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf@prod/dist/restaf.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaflib@prod/dist/restaflib.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restafuilib@prod/dist/restafuilib.js"></script>
     <script type="text/javascript" src="/appenv"></script>
 
 
     <link rel="stylesheet" type="text/css" href="/shared/app.css">
-    <!-- script async src="https://unpkg.com/@sassoftware/va-report-components@0.3/dist/umd/va-report-components.js"></script> -->
-    <script async src="http://dvr.na.sas.com/web-sdk-test/va-sdk/0.3.12/va-report-components.js"></script>
-    
+    <script async src="https://unpkg.com/@sassoftware/va-report-components@0.4/dist/umd/va-report-components.js"></script> -->
+  
      <!-- <script src="https://unpkg.com/@webcomponents/custom-elements"></script> -->
 
      <style>
-       sas-report {
-            width: 75%;
-            height: 75%;
-            --sas-report-padding: 10px;
-            display: block;
-      }
+   .va-report {
+        width: 100%;
+        height: 100%;
+    }
+    .test {
+        height: inherit;
+        width: inherit;
+    }
      </style>
 </head>
 <body>
@@ -123,10 +124,10 @@
     Report: <select id="reportNo"> </select>
     <button id="getreport" onclick="getReport();"> Get Report </button>
 
-    <div class="wrapper-2">
-        <div id="left">
-            <sas-report id="report0"></sas-report>
-            </div>
+    <div class="test1">
+    
+            <sas-report class="va-report" id="report0"></sas-report>
+        
         </div>
     </div>
 

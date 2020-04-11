@@ -21,14 +21,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
     
         <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf@prod/dist/restaf.min.js"></script>
         <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaflib@prod/dist/restaflib.min.js"></script>
         <script type="text/javascript" src="https://unpkg.com/@sassoftware/restafuilib@prod/dist/restafuilib.js"></script>
-        <script type="text/javascript" src="/appenv"></script>
+        <script type="text/javascript" src="/viyaapp/appenv"></script>
+
+        
+        
+
 
     <style>
         body {
@@ -42,41 +47,48 @@
         }
         .idTable {
             background-color: bisque;
+
         }
 
     </style>
-
-
-    <!-- this brings in the raf library -->
-    
+  
     <script type="text/javascript">
         ;
+
         let store = restaf.initStore();
-        ;
-        async function setup ( ){
-            ;
-            await store.logon(LOGONPAYLOAD);
-            let {compute} = await store.addServices('compute');
-            let contexts = await store.apiCall(compute.links('contexts'));
-            return contexts;
+        async function setup( ) {
+           debugger;
+           await store.logon(LOGONPAYLOAD);
+           debugger
+           let {microanalyticScore} = await store.addServices('microanalyticScore');
+           let modList = await store.apiCall(microanalyticScore.links('modules'));
+           debugger;
+           if (modList.itemsList().size === 0) {
+               throw {Warning: 'No modules in MAS'};
+           }
+           return modList;
         }
-
-        function show(){
+        
+        function show() {
             setup()
-            .then( contexts => {
-                return restafuilib.display( 'ItemsTableViewer', {store: store, folder: contexts, title: 'Compute Contexts'},document.getElementById('container'))
+            .then( modList => {
+                let props = {
+                    store : store,
+                    title : 'List of Published Models',
+                    folder: modList
+                }
+                ;
+                return restafuilib.display('ItemsTableViewer', props,  document.getElementById('container'));
             })
-            .catch( err => alert( JSON.stringify(err, null,4) ) );
+            .catch( err => alert(JSON.stringify(err,null,4) ) );
         }
-    </script>
+
+</script>
 </head>
-
-<body onload="show();">
-
-<h1> List of Compute Server Contexts</h1>
+<body onload="show()">
+<h1> List of Models(Modules) in MAS</h1>
 
     <div id="container" class="content" >
         </div>
-
 </body>
 </html>

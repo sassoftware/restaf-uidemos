@@ -13,8 +13,8 @@
         <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
         <!--script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.js"></script>
-        <script src="https://unpkg.com/@sassoftware/restaf/dist/restaf.min.js"></script>
-        <script src="https://unpkg.com/@sassoftware/restaflib/dist/restaflib.min.js"></script>
+        <script src="https://unpkg.com/@sassoftware/restaf@prod/dist/restaf.min.js"></script>
+        <script src="https://unpkg.com/@sassoftware/restaflib@prod/dist/restaflib.min.js"></script>
         
         <script type="text/javascript" src="/appenv"></script>
         
@@ -131,14 +131,11 @@
             // This section creates a cas session
             //
             function setup() {
-                ;
                restaflib.casSetup(store,LOGONPAYLOAD)
                 .then ( r => {
-                    ;
                     session = r.session;
                 })
                 .catch( e => {
-                    ;
                     console.log(e)
                     alert(e);
                 });
@@ -184,7 +181,6 @@
                 }
                 let scenario = {
                     model    :  {caslib: 'casuser', name: 'gradBoost'},
-                    modelName: '',
                     scenario : inputValues
                 };
                 r = await restaflib.caslScore(store, session, scenario);

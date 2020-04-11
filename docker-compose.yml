@@ -1,10 +1,9 @@
-uidemos:
+viyaapp:
     build: .
     restart: always
     ports:
       - 8080:8080
     environment:
-      - APPENTRY=index.html
-      - CLIENTID=callback
-      - VIYA_SERVER-your-viya-server
+      - VIYA_SERVER=http://kdk2013.fbi.sashq-d.openstack.sas.com
+      - CLIENTID=rafdemos
 
