@@ -1,10 +1,10 @@
-FROM docker.sas.com/kumar/appbase
+FROM node:12.16.1-alpine
 LABEL maintainer="deva.kumar@sas.com"
 RUN apk add --no-cache --upgrade bash
 WORKDIR /usr/src/app
 COPY package*.json ./
 # RUN rm -r node_modules
-RUN npm install
+# RUN npm install
 COPY . .
 EXPOSE 8080
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
@@ -24,5 +24,6 @@ ENV CLIENTID=rafdemos
 ENV CLIENTSECRET=secret
 ENV KEEPALIVE=YES
 ENV SAMESITE=None,false
+RUN ls
 # ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 CMD ["npm", "run", "indocker"]
