@@ -8,15 +8,14 @@
     "start": "npx @sassoftware/restaf-server --appenv=./appenv.js --env=./overrideCode.env --docker=./Dockerfile",
     "rproxy": "npx @sassoftware/restaf-server --appenv=./appenv.js --env=./overrideCoder.env --docker=./Dockerfile",
     "indocker": "npx @sassoftware/restaf-server",
-    "buildapp": "docker build -f Dockerfile -t viyapp .",
-    "runapp": "docker run -p 8080:8080  --env-file overrideCode.env  -t viyaapp"
+    "dkrbuild": "docker build -f Dockerfile -t viyaapp .",
+    "dkrrun": "docker run -p 8080:8080  --env-file overrideImplicit.env  -t viyaapp"
   },
   "repository": "https://github.com/sassoftware/restaf/tree/gen2/packages/uidemos",
   "keywords": [],
-  "author": "Deva Kumar <deva.kumar@sas.com>",
-  "license": "Apache-2.0",
   "dependencies": {
-    "@sassoftware/restaf-server": "^7.5.8",
-    "win-ca": "^3.1.1"
-  }
+    "@sassoftware/restaf-server": "prod"
+  },
+  "author": "Deva Kumar <deva.kumar@sas.com>",
+  "license": "Apache-2.0"
 }

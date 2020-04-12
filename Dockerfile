@@ -3,9 +3,10 @@ LABEL maintainer="deva.kumar@sas.com"
 RUN apk add --no-cache --upgrade bash
 WORKDIR /usr/src/app
 COPY package*.json ./
-# RUN rm -r node_modules
-RUN npm install
+
+# RUN npm install
 COPY . .
+RUN ls
 EXPOSE 8080
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 
@@ -22,7 +23,7 @@ ENV APPENV=appenv.js
 ENV AUTHFLOW=code
 ENV CLIENTID=rafdemos
 ENV CLIENTSECRET=secret
-ENV KEEPALIVE=YES
+ENV KEEPALIVE=NO
 ENV SAMESITE=None,false
 # ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 CMD ["npm", "run", "indocker"]
