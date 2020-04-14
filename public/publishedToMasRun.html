@@ -75,23 +75,25 @@
         }
         function getModelInput() {
            let modelNo   = document.getElementById( "models" ).selectedIndex;
-           console.log(modelNo + modList.itemsList(modelNo))
+           console.log(modelNo + modList.itemsList(modelNo));
+           document.getElementById('modelname').innerHTML = `Model:  ${modList.itemsList(modelNo)}`;
+           document.getElementById('describe').textContent = 'TBD: Display input fields and score input values';
         }
-        function modelRun() {
-        
-        }
+     
 
 </script>
 </head>
 <body onload="setup()">
-<h1> List of Models(Modules) in MAS</h1>
+<h1> Scoring selected Models in MAS</h1>
 
     <div id="container" class="content" >
     Report: <select id="models"> </select>
     <button id="getModel" onclick="getModelInput();"> Score Model</button>
     <br/>
-    <input id='selectedModel' disabled>
-    
+    <h2 id="modelname"></h2>
+    <br/>
+    <pre id="describe"></pre>
+    <br/>
     </div>
 </body>
 </html>
