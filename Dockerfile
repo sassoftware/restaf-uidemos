@@ -4,8 +4,10 @@ RUN apk add --no-cache --upgrade bash
 WORKDIR /usr/src/app
 COPY package*.json ./
 
-# RUN npm install
+RUN npm install
 COPY . .
+RUN npm install
+
 RUN ls
 EXPOSE 8080
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
@@ -20,9 +22,6 @@ ENV APPNAME=viyaapp
 ENV APPLOC=./public
 ENV APPENTRY=index.html
 ENV APPENV=appenv.js
-ENV AUTHFLOW=code
-ENV CLIENTID=rafdemos
-ENV CLIENTSECRET=secret
 ENV KEEPALIVE=NO
 ENV SAMESITE=None,false
 RUN ls

@@ -36,9 +36,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
     
   
-    <script type="module" src="https://unpkg.com/@sassoftware/restaf@prod/dist/restaf.min.js"></script>
-    <script type="module" src="https://unpkg.com/@sassoftware/restaflib@prod/dist/restaflib.min.js"></script>
-      <!-- script type="module" src="https://unpkg.com/@sassoftware/restafuilib@prod/dist/restafuilib.js.js"></script>-->
+    <script type="module" src="https://unpkg.com/@sassoftware/restaf/dist/restaf.min.js"></script>
+    <script type="module" src="https://unpkg.com/@sassoftware/restaflib/dist/restaflib.min.js"></script>
+      <!-- script type="module" src="https://unpkg.com/@sassoftware/restafuilib/dist/restafuilib.js.js"></script>-->
     
     <script type="text/javascript" src="/viyaapp/appenv"></script>
     <script type="text/javascript" src="/viyaapp/user"></script>
@@ -54,6 +54,7 @@
                     .then ( name => {
                         logInfo = store.connection();
                         document.getElementById('user').innerHTML = `Welcome ${name}`;
+                        document.getElementById('viya').innerHTML = LOGONPAYLOAD.host;
                         return true;
                     })
                     .catch( err => {
@@ -74,14 +75,6 @@
     
        async function logonUser() {
            await store.logon(LOGONPAYLOAD);
-           /*
-           let {identities} = await store.addServices('identities');
-           let name = 'SAS User';
-           if ( identities.links().size !== 0 ){
-             let r = await store.apiCall(identities.links('currentUser'));
-             name = r.items('name');
-           }
-           */
            return USER_NAME;
        }
 
@@ -96,12 +89,11 @@
 
 <h1> Using restaf and restaflib to build web apps </h1>
 <h2 id="user"></h2>
+<h3 id="viya"></h3>
 <button id="logout" onclick="logout()"> Logout </button>
 
 <h2> Explore VA reports using VA-SDK </h2>
-<p>
-    VA SDK examples will only work if using Oauth2 authorization_code flow
-</p>
+
 <ul>
     <li> <a href="javascript:showDemo(`/viyaapp/reportExplorer.html`)" > View selected report using VA-SDK</a></li>
     <li> <a href="javascript:showDemo(`/viyaapp/reportExplorerReact.html`)" > View selected report in a React component </a></li>
@@ -168,13 +160,5 @@
 <ul>
     <li> <a href="javascript:showDemo(`/viyaapp/postfile.html`)" > Post a new file and view it</a></li>
 </ul>
-
-<!--
-<h2> For testing browser supports</h2>
-<li> <a href="javascript:showDemo(`/viyaapp/testrestaf.html`)" > test using restaf (axios)</a></li>
-<li> <a href="javascript:showDemo(`/viyaapp/testfetch.html`)" > test using with fetch </a></li>
-<li> <a href="javascript:showDemo(`/viyaapp/testajax.html`)" > test using with ajax </a></li>
-<li> <a href="javascript:showDemo(`/viyaapp/testscript.html`)" > test script </a></li>
--->
 </body>
 </html>
