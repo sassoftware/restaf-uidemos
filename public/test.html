@@ -1,71 +1,87 @@
 <!DOCTYPE html>
 <!--
-/*
- * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
-*/
--->
+  ~ Copyright (c) SAS Institute Inc.
+  ~  Licensed under the Apache License, Version 2.0 (the "License");
+  ~  you may not use this file except in compliance with the License.
+  ~  You may obtain a copy of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  ~
+  -->
 
+<!--suppress JSUnfilteredForInLoop -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+         
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
+       
+        <script type="text/javascript" src="/appenv"></script>
 
-    <!--
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-    <script type="text/javascript" src="/shared/dist/uiLibrary"></script>
- 
-    <script src="https://unpkg.com/restaf/dist/restaf.min.js"></script> 
-    -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.10.0/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.10.0/umd/react-dom.production.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
-    <script src="https://unpkg.com/restaf@dev/dist/restaf.min.js"></script>
-
-    <script type="text/javascript" src="/shared/dist/uiLibrary.js"></script>
-
+        
+        
 
 
     <style>
-        .container {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            min-height: 800px;
+        body {
+            height: 100%;
         }
-        .elabel{
-            display: inline-block;
-            clear: left;
-            width: 250px;
-            text-align: right;
+        .content {
+            height: 100%;
         }
-        .einput {
-            display: inline-block;
+        .button {
+            margin: 10px;
         }
-        .div1 {
-            border: 1px solid black;
-            background: lightskyblue;
+        .idTable {
+            background-color: bisque;
 
         }
-        .div2 {
-            border: 1px solid black;
-            background: lightskyblue;
-            height: 200px;
-        }
+
     </style>
+  
+    <script type="text/javascript">
+        let host = LOGONPAYLOAD.host; /* see restaf-server doc for what LOGONPAYLOAD is */
+        function setup() {
+            makeViyaCall()
+            .then ( r => {
+                document.getElementById("result").innerHTML = JSON.stringify(r, null,4);
+            })
+            .catch ( err =>  {
+                document.getElementById("result").innerHTML = JSON.stringify(r, null,4);
+            })
+        }
+        async function makeViyaCall () {
+            let config = {
+                url         : host + '/files/',
+                method      : 'GET',
+                withCredentials: true,
+                headers     : {
+                    'accept': 'application/json, application/vnd.sas.api+json',
+                }
+            };
+            console.log(config);
+            let r = await axios(config) 
+            return r.data;
+        };
 
-</head>
-<body>
-<script>
-      debugger;
- 
-      console.log(uiLibrary);
 </script>
+</head>
+<body onload="setup()">
+    <h1> Test access to Viya Service</h1>
+
+    <div id="container" class="content" >
+        <pre id="result">
+        </pre>
+        </div>
+
 </body>
 </html>
