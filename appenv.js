@@ -1,4 +1,0 @@
-
-       let placeholder = {};
-       return placeholder;
-       

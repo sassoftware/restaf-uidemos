@@ -1,0 +1,14 @@
+ods html style=barrettsblue; 
+data work.dtemp1;
+    array x{&cols};  
+    do j = 1 to 10;  
+        do i = 1 to &cols;  
+        x{i} = i * 10;  
+        end;  
+    output;  
+    put _ALL_;  
+    end;  
+    run;  
+    proc print;run;  
+    ods html close;
+    run;

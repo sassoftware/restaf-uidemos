@@ -1,0 +1,11 @@
+{
+    "info": {
+        "title"     : "Test API",
+        "version"   : "0.0.1",
+        "description": "This document was auto-generated at run time"
+    },
+    "schemes": ["http", "https"],
+    "cors": true,
+    "debug": true
+    
+}

@@ -1,0 +1,4 @@
+action table.fetch r = result/
+  table = {caslib = _args_.caslib name = _args_.name};
+
+send_response({data=result.fetch});

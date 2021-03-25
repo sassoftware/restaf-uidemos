@@ -1,46 +1,26 @@
 {
-	"name": "restaf-uidemos",
-	"version": "1.9.1",
-	"private": true,
-	"dependencies": {
-		"@material-ui/core": "^4.11.0",
-		"@material-ui/icons": "^4.9.1",
-		"@sassoftware/restaf": "^2.2.0",
-		"@sassoftware/restaf-server": "^8.0.7",
-		"@sassoftware/restaflib": "^2.2.0",
-		"@testing-library/jest-dom": "^4.2.4",
-		"@testing-library/react": "^9.3.2",
-		"@testing-library/user-event": "^7.1.2",
-		"cross-env": "^7.0.2",
-		"cross-spawn": "^7.0.3",
-		"http-proxy-middleware": "^1.0.5",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
-		"react-router-dom": "^5.2.0",
-		"react-scripts": "3.4.1",
-		"rimraf": "^3.0.2"
-	},
+	"name": "viyaapi",
+	"version": "0.1.0",
+	"description": "",
+	"main": "index.js",
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"dev": "cross-env APPENTRY=/develop APPLOC=./public node server --env=.env --docker=Dockerfile --appenv=appenv.js",
-		"app": "cross-env APPENTRY=index.html APPLOC=./build node server --env=.env --docker=Dockerfile --appenv=appenv.js"
+		"test": "cd test && cross-env VIYA_SERVER=%vx% node",
+		"start": "cross-env VIYA_SERVER=%vx% node index.js --env=./.env --docker=./Dockerfile",
+		"debug": "node --inspect-brk index.js   --env=./.env --appenv=./appenv.js --docker=./Dockerfile",
+		"indocker": "node index.js",
+		"app": "cd webapp && npm start",
+		"format": "prettier-eslint --eslint-config-path ./.eslintrc.json --write '**/*.js'",
+		"lint": "eslint . --ext .js --fix"
 	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
+	"keywords": [],
+	"author": "",
+	"license": "Apache-2",
+	"dependencies": {
+		"@sassoftware/restaf": "test",
+		"@sassoftware/restaflib": "test",
+		"@sassoftware/viya-apiserverjs": "test",
+		"cross-env": "^7.0.3",
+		"dotenv": "^8.2.0",
+		"joi": "^17.3.0"
 	}
 }
