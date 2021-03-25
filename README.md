@@ -1,66 +1,45 @@
-# Quick Start tool for Building SAS Viya Applications
+# A Viya Web Application using react and restaf
 
 ---
 
-## Key Feature
+## Introduction
 
 ---
 
-This Quick Start tool allows you to build new SAS Viya applications with minimal setup. Once you have setup your local development enviroment you can add new applications as shown in the diagram below:
+This is a react-based application built with create-react-app using the viya-app-quickstart template.
+Over time examples from other projects will be migrated to this repository.
+Feel free to contribute.
 
-![Quick start](https://github.com/sassoftware/restaf/blob/2.0.0/images/quickstart.png)
+## Docker and K8s
 
-Please see the details below.
+The repository comes with docker-compose file to help create container image and also to test the app in a container.
 
-The following key libraries are installed by default:
+The k8s directory has a basic set of config files to deploy the application in k8s.
 
-1. [restaf and restaflib to make REST API calls to Viya](https://github.com/sassoftware/restaf)
-
-2. [restaf-server for the application server](https://github.com/sassoftware/restaf-server)
-
-3. [Material-ui for react components](https://material-ui.com)
-
-You can replace and/or add other react component libraries.
-
----
-
-## Getting started
-
----
-
-Do the 3 steps - **Ready, Set and Go** as described below
-
-## **Ready**
-
-Setup the development environment as follows:
-
-1. Issue this command
+## Installation
 
 ```sh
-
-npx @sassoftware/create-react-restaf-viya-app [directoryName] --webapp <you application name>  quickstart
-
-Ex:
-npx @sassoftware/create-react-resaf-viya-app myapp quickstart --webapp viyademo
-
+git clone https://github.com/sassoftware/react-uidemos reactaapp -b reactapp
+cd reactapp
+yarn
 ```
 
-This will create a sub-directory called myapp and install a starter application that is ready for execution once you complete the VIYA_SERVER related configurations.
+## Configuration
 
-## **Set**
+1. Configure your Viya server as described in this [link](https://github.com/sassoftware/restaf/wiki/usefulTips).
 
-The required configurations are explained at this [link](https://github.com/sassoftware/restaf/wiki/usefulTips).
+2. Edit the .env file and set the appropiate values.
 
 The default clientId information are:
 
 - Oauth flow: authorization_code
-- clientid: same as the webapp option to the cli
+- clientid: appcom
 - secret: secret
-- redirect_uri: <http://localhost:5000/your-webapp-name>
+- redirect_uri: <http://localhost:8000/viyaapp>
 
-Once the server setup is completed, complete the setup of your development environment:
+3.Set the VIAY_SERVER to your Viya URL (ex: https://....)
 
-1. Set an environment variable as follows
+- Set an environment variable as follows
 
 ```sh
 set VIYA_SERVER=<your viya server: ex: <http://myviyaserver.com>
@@ -76,7 +55,7 @@ yarn buildapp
 
 > The buildapp script does some necessary housekeeping before running the standard start script of create-react-app. So use buildapp to build the application
 
-## **Go**
+## Run the application
 
 Now you are ready to run the default application.
 
@@ -86,26 +65,20 @@ Enter the following commands
 yarn app
 ```
 
-At this point you should visit <http://localhost:5000/your-webapp>. If webapp value is viyademo then visit
+At this point you should visit <http://localhost:8080/viyaapp>
 
 ```text
-http://localhost:5000/viyademo
+http://localhost:8080/viyaapp
 
 ```
 
-## Default Applications
+## Run in dev mode
 
-These are default applications that you can access from the hamburger menu in the banner.
+To run with Mot Module Replacement active issue this command
 
-1. Run a casl program in Cas
-
-2. Run a SAS program in spre
-
-3. View the props these applications (and the new ones you will write) will have access to.
-
-These are good examples for learning how to use restaf to make REST API calls to SAS Viya. Feel free to remove or update all the default components.
-
-> You are also free to replace the Header.js and Home.js to suit your needs. Both of these components receive the appMenu as a prop - this allows you to display the menu as you see fit.
+```sh
+yarn dev
+```
 
 ---
 
@@ -169,8 +142,19 @@ The content of appOptions is:
 
 These are accessed as usual:
 
- let {store, host, appName,appOptions} = props;
+ let {classes, store, host, appName,appOptions} = props;
  ```
+
+### useAppContext
+
+An alternate way to get to these props is by using the useAppContext.
+
+```js
+import {useAppContext} from '../../providers';
+let {classes, store, appOptions} = useAppContext();
+```
+
+See providers/setupViya and App.js on how this Use function is setup. This is useful in the helper components where you might need access to the props.
 
 `Group 2 props`
 
