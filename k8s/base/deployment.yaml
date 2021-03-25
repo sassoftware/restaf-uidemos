@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactapp
+  labels:
+    app: reactapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reactapp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: reactapp
+    spec:
+      containers:
+      - env:
+        - name: APPNAME
+          valueFrom:
+            configMapKeyRef:
+              name: reactapp-configmap
+              key: APPNAME
+        - name: APPPORT
+          valueFrom:
+            configMapKeyRef:
+              name: reactapp-configmap
+              key: APPPORT
+        - name: CLIENTID
+          valueFrom:
+            configMapKeyRef:
+              name: reactapp-configmap
+              key: CLIENTID
+        - name: VIYA_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: reactapp-configmap
+              key: VIYA_SERVER
+        - name: LOGLEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: reactapp-configmap
+              key: LOGLEVEL
+  # secrets - missing something simple in secret setup
+        - name: CLIENTSECRET
+          valueFrom:
+            secretKeyRef:
+              name: reactapp-secret
+              key: CLIENTSECRET  
+  # tls
+        - name: TLS_CRT
+          valueFrom:
+            secretKeyRef:
+              name: reactapp-tls
+              key: tls.crt
+        - name: TLS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: reactapp-tls
+              key: tls.key
+  # image
+        image: docker.example.com/reactapp:1.0.0
+        imagePullPolicy: "Always"
+        name: reactapp
+        ports:
+        - containerPort: 8080
+        resources: {}

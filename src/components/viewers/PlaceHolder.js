@@ -1,15 +1,15 @@
-import React from 'react';
-import { useParams } from 'react-router';
-
+import React , {useContext} from 'react';
+import { useLocation } from 'react-router-dom';
+import {useAppContext} from '../../providers';
 function PlaceHolder (props) {
-  // static contextType = AppContext;
-  debugger;
-  let { name } = useParams();
-  console.log(props);
+
+  
+  let r = useAppContext();
   let show =
     <div id="page-wrap">
-      <h2> Path is {name}</h2>
-      <pre> {name + JSON.stringify(props, null, 4)} </pre>
+      <pre> {JSON.stringify(useLocation().state, null, 4)} </pre>
+      <pre> {JSON.stringify(props, null,4)}</pre>
+
     </div>;
   return show;
   }
