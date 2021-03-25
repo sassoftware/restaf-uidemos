@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: reactapp
+  name: viyaapp
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
@@ -10,13 +10,13 @@ spec:
   tls:
   - hosts:
     - viyans.ingress-nginx.kdksecdb-m1.secdb.sashq-d.openstack.sas.com
-    secretName: reactapp-tls
+    secretName: viyaapp-tls
   rules:
   - host: viyans.ingress-nginx.kdksecdb-m1.secdb.sashq-d.openstack.sas.com
     http:
       paths:
-      - path: /reactapp
+      - path: /viyaapp
         pathType: Prefix
         backend:
-          serviceName: reactapp
+          serviceName: viyaapp
           servicePort: 8080

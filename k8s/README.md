@@ -1,4 +1,4 @@
-# Configuration files for reactapp 
+# Configuration files for viyaapp 
 
 ---
 
@@ -49,7 +49,7 @@ The combination of specifying https protocol for the VIYA_SERVER and the presenc
 # APPNAME is thename of your apiserver
 VIYA_SERVER=https://your-viya-url
 APPHOST=localhost
-APPNAME=reactapp
+APPNAME=viyaapp
 APPPORT=8080
 CLIENTID=apicom
 CLIENTSECRET=secret
@@ -97,16 +97,16 @@ Use the docker-compose.yml file to run the app in docker. Modify the values to s
 ```docker
 version: "3.3"
 services:
-  reactapp:
+  viyaapp:
       build: .
       restart: always
       ports:
         - 8080:8080
       environment:
-        - VIYA_SERVER=https://reactapp.ingress-nginx.kumar-app5-m1.stobosh.sashq-d.openstack.sas.com
+        - VIYA_SERVER=https://viyaapp.ingress-nginx.kumar-app5-m1.stobosh.sashq-d.openstack.sas.com
         - CLIENTID=apicom
         - CLIENTSECRET=secret
-        - APPNAME=reactapp
+        - APPNAME=viyaapp
         - TLS_CREATE=TLS_CREATE="C:US,ST:NC,L:Cary,O:SAS Institute,OU:deptname,CN:localhost"
 ```
 
@@ -129,8 +129,8 @@ Once you are happy with the container, tag and publish the image to a docker rep
 
 
 ```docker
-docker tag reactapp:latst docker.sas.com/xxx/reactapp:1.0.0
-docker publish docker.sas.com/xxx/reactapp:1.0.0
+docker tag viyaapp:latst docker.sas.com/xxx/viyaapp:1.0.0
+docker publish docker.sas.com/xxx/viyaapp:1.0.0
 ```
 ### Test the published image
 
@@ -139,8 +139,8 @@ Test the published image using the following docker-compose.yml file
 ```docker
 version: "3.3"
 services:
-  reactapp:
-      image: docker.sas.com/xxxx/reactapp:1.0.0
+  viyaapp:
+      image: docker.sas.com/xxxx/viyaapp:1.0.0
       restart: always
       ports:
         - 8080:8080
@@ -148,7 +148,7 @@ services:
         - VIYA_SERVER=https://your-viya-url
         - CLIENTID=apicom
         - CLIENTSECRET=secret
-        - APPNAME=reactapp
+        - APPNAME=viyaapp
         - TLS_CREATE="C:US,ST:NC,L:Cary,O:SAS Institute,OU:STO,CN:localhost"
 ```
 
@@ -164,7 +164,7 @@ services:
 This project use kustomize to create the final yaml files for deployment.
 The config files are all in the k8s-configurations sub-directory for each of the services in this repository.
 
-> At this point only the reactapp service is being developed with the hope that the other services that be able to use a common base configuration.
+> At this point only the viyaapp service is being developed with the hope that the other services that be able to use a common base configuration.
 
 ### Some useful links
 1. https://blog.stack-labs.com/code/kustomize-101
@@ -183,7 +183,7 @@ The env values specified in docker-compose are not split into multiple files bas
 echo -n "string" | base64 
 ```
 
-3. Create reactapp-tls-cert.yaml - this is for the tls.key and tls.crt needed to run with SSL enabled.
+3. Create viyaapp-tls-cert.yaml - this is for the tls.key and tls.crt needed to run with SSL enabled.
 
 The tls.crt and tls.key need to configured via a k8 secret object.(see cloud directory in this repo). See this link for information - <https://go.documentation.sas.com/?cdcId=sasadmincdc&cdcVersion=v_008&docsetId=calencryptmotion&docsetTarget=n1xdqv1sezyrahn17erzcunxwix9.htm&locale=en#n0309hwuyq56x2n17mkapfltqau6>.
  Run these commands to get tls information from your viya server

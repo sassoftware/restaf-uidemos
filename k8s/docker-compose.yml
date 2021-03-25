@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  reactapp:
+  viyaapp:
       build: .
       restart: always
       ports:
@@ -9,7 +9,7 @@ services:
         - VIYA_SERVER=https://your-viya-app
         - CLIENTID=appcom
         - CLIENTSECRET=secret
-        - APPNAME=reactapp
+        - APPNAME=viyaapp
         - TLS_KEY=/certs/tls.key
         - TLS_CERT=/certs/tls.crt
         - LOGLEVEL=info

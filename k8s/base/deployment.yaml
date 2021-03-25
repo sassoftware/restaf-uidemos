@@ -1,69 +1,69 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reactapp
+  name: viyaapp
   labels:
-    app: reactapp
+    app: viyaapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: reactapp
+      app: viyaapp
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: reactapp
+        app: viyaapp
     spec:
       containers:
       - env:
         - name: APPNAME
           valueFrom:
             configMapKeyRef:
-              name: reactapp-configmap
+              name: viyaapp-configmap
               key: APPNAME
         - name: APPPORT
           valueFrom:
             configMapKeyRef:
-              name: reactapp-configmap
+              name: viyaapp-configmap
               key: APPPORT
         - name: CLIENTID
           valueFrom:
             configMapKeyRef:
-              name: reactapp-configmap
+              name: viyaapp-configmap
               key: CLIENTID
         - name: VIYA_SERVER
           valueFrom:
             configMapKeyRef:
-              name: reactapp-configmap
+              name: viyaapp-configmap
               key: VIYA_SERVER
         - name: LOGLEVEL
           valueFrom:
             configMapKeyRef:
-              name: reactapp-configmap
+              name: viyaapp-configmap
               key: LOGLEVEL
   # secrets - missing something simple in secret setup
         - name: CLIENTSECRET
           valueFrom:
             secretKeyRef:
-              name: reactapp-secret
+              name: viyaapp-secret
               key: CLIENTSECRET  
   # tls
         - name: TLS_CRT
           valueFrom:
             secretKeyRef:
-              name: reactapp-tls
+              name: viyaapp-tls
               key: tls.crt
         - name: TLS_KEY
           valueFrom:
             secretKeyRef:
-              name: reactapp-tls
+              name: viyaapp-tls
               key: tls.key
   # image
-        image: docker.example.com/reactapp:1.0.0
+        image: docker.example.com/viyaapp:1.0.0
         imagePullPolicy: "Always"
-        name: reactapp
+        name: viyaapp
         ports:
         - containerPort: 8080
         resources: {}
