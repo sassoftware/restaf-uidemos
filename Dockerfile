@@ -35,7 +35,7 @@ ENV SAMESITE=None,secure
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 
 # This is the default if other ssl information is not provided.
-ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Myco,OU:STO,CN:localhost"
+# ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Myco,OU:STO,CN:localhost"
 
 #####################################################################
 CMD ["node", "server"]
