@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - viyans.ingress-nginx.kdksecdb-m1.secdb.sashq-d.openstack.sas.com
+    - viyans.ingress-ngnix.something.com
     secretName: viyaapi-tls
   rules:
-  - host: viyans.ingress-nginx.kdksecdb-m1.secdb.sashq-d.openstack.sas.com
+  - host: viyans.ingress-ngnix.something.com
     http:
       paths:
       - path: /viyaapi

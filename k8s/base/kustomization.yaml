@@ -24,7 +24,7 @@ configMapGenerator:
     - APPNAME: viyaapi
     - APPPORT: 8080
     - CLIENTID: tkapi
-    - VIYA_SERVER: https://your-viya-url
+    - VIYA_SERVER: https://viyans.ingress-ngnix.something.com
     - LOGLEVEL: error
     - HAPIDEBUG: NO
 

@@ -61,7 +61,7 @@ spec:
               name: viyaapi-tls
               key: tls.key
   # image
-        image: docker.sas.com/kumar/viyaapi:1.5.0
+        image: <your docker image>
         imagePullPolicy: "Always"
         name: viyaapi
         ports:
