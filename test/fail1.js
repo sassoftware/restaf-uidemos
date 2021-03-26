@@ -3,13 +3,14 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 const setupTest = require('./setupTest');
+require('dotenv').config();
 
-module.exports = async function fail1 () {
+async function run () {
    let {store, token} = await setupTest();
    
    let payload = {
        method : 'POST',
-       url    : 'http://localhost:8080/myapi/casAction',
+       url    : `${process.env.APISERVER}/casAction`,
        headers: {
           authorization: 'bearer ' + token
        },
@@ -25,3 +26,7 @@ module.exports = async function fail1 () {
    console.log(r.data);
    return 'done';
 };
+
+run() 
+.then (r => console.log(r))
+.catch(err => console.log(err));

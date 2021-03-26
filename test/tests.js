@@ -6,7 +6,7 @@ const compute = require("./compute");
 const coolStuff = require("./coolStuff");
 const fail1 = require("./fail1");
 
-test('casAction', async () => {
+test.only('casAction', async () => {
     let l = await casAction();
     expect(l).toBe('done');
 });

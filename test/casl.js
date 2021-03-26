@@ -4,11 +4,12 @@
 */
 
 const setupTest = require('./setupTest');
-module.exports = async function casl () {
+require('dotenv').config();
+async function run () {
    let {store,token} = await setupTest();
    let payload = {
        method : 'POST',
-       url    : 'http://localhost:8080/myapi/casl',
+       url    : `${process.env.APISERVER}/casl`,
        headers: {
           authorization: token
        },
@@ -33,3 +34,6 @@ module.exports = async function casl () {
    console.log(r.data);
    return 'done';
 };
+run() 
+.then (r => console.log(r))
+.catch(err => console.log(err));

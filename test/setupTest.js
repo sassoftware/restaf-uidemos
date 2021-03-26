@@ -7,7 +7,7 @@ let fs = require('fs').promises;
 let restaf = require('@sassoftware/restaf');
 module.exports = async function setupTest () {
     let store = restaf.initStore();
-
+    console.log(process.env.TOKENFILE);
     if (process.env.TOKENFILE != null) {
         let token = await fs.readFile(process.env.TOKENFILE, 'utf8');
         console.log('Using saved token');

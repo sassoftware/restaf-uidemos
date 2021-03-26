@@ -4,12 +4,14 @@
 */
 
 const setupTest = require('./setupTest');
-module.exports = async function casAction () {
+require('dotenv').config();
+async function run () {
+   debugger;
    let {store, token} = await setupTest();
 
    let payload = {
        method : 'POST',
-       url    : 'http://localhost:8080/myapi/casAction',
+       url    : `${process.env.APISERVER}/casAction`,
        headers: {
           authorization: token
        },
@@ -25,3 +27,7 @@ module.exports = async function casAction () {
    console.log(r.data);
    return 'done';
 };
+
+run() 
+.then (r => console.log(r))
+.catch(err => console.log(err));

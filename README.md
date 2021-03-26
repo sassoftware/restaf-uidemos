@@ -1,6 +1,6 @@
 # viyaapi - Sample api server for SAS Viya
 
-This is a simple example of using viya-apiserverjs to creat an api server. 
+This is a simple example of using viya-apiserverjs to creat an api server.
 > Docker and K8s
 The repository comes with a sample docker-compose file and configurations for deploying on k8s.
 
@@ -252,11 +252,13 @@ Every handler must have a return value. Please hapi documentation for the rules 
 
 > In the handler you can call any service (Viya or others). You will notice that I follow a certain pattern in my examples. Pick your own programming style.
 
-### `Testing using jest`
+### `Testing`
 
-jest is not installed by default since the current version still uses deprecated request.js. If you want to use it, install it.
-The package uses Jest to create tests. Please see the test directory for examples. To avoid storing your password in the test scripts create a token and save it in a file. Then set the environment variable TOKENFILE with the path to this file.
+The test directory has examples of accessing the api using tokens.
+You can either pass the location of the token thru the TOKENFILE environment variable or by specifing the userid and password. If both are specified the TOKENFILE take precedence.
+
+To test issue this command
 
 ```sh
-npm test
+npm test name-of-test
 ```

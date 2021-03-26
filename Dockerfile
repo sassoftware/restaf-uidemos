@@ -23,7 +23,7 @@ ENV APPENTRY=index.html
 # ENV APPENV=appenv.js
 
 ENV AUTHFLOW=code
-ENV CLIENTID=myapi
+ENV CLIENTID=apicom
 ENV CLIENTSECRET=secret
 
 ##########################
