@@ -1,46 +1,31 @@
 {
-	"name": "restaf-uidemos",
-	"version": "1.9.1",
-	"private": true,
+	"name": "viyaapp",
+	"version": "0.1.0",
+	"main": "server.js",
+	"description": "Simple Viya app",
+	"author": "Deva Kumaraswamy <deva.kumar@sas.com>",
+	"license": "Apache-2.0",
+	"repository": "https://github.com/sassoftware/restaf-uidemos.git",
+	"bugs": {
+		"url": "https://github.com/sassoftware/restaf-uidemos/issues"
+	},
+	"homepage": "https://github.com/sassoftware/restaf-uidemos/blob/viyaapp/README.md",
+	"keywords": [
+		"restaf",
+		"Viya",
+		"SAS",
+		"server",
+		"RESTAPI"
+	],
+	"engines": {
+		"node": ">=12.14.0"
+	},
 	"dependencies": {
-		"@material-ui/core": "^4.11.0",
-		"@material-ui/icons": "^4.9.1",
-		"@sassoftware/restaf": "^2.2.0",
-		"@sassoftware/restaf-server": "^8.0.7",
-		"@sassoftware/restaflib": "^2.2.0",
-		"@testing-library/jest-dom": "^4.2.4",
-		"@testing-library/react": "^9.3.2",
-		"@testing-library/user-event": "^7.1.2",
-		"cross-env": "^7.0.2",
-		"cross-spawn": "^7.0.3",
-		"http-proxy-middleware": "^1.0.5",
-		"react": "^16.13.1",
-		"react-dom": "^16.13.1",
-		"react-router-dom": "^5.2.0",
-		"react-scripts": "3.4.1",
-		"rimraf": "^3.0.2"
+		"@sassoftware/viya-appserverjs": "test"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"dev": "cross-env APPENTRY=/develop APPLOC=./public node server --env=.env --docker=Dockerfile --appenv=appenv.js",
-		"app": "cross-env APPENTRY=index.html APPLOC=./build node server --env=.env --docker=Dockerfile --appenv=appenv.js"
-	},
-	"eslintConfig": {
-		"extends": "react-app"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
+		"start": "npx @sassoftware/viya-appserverjs --env=./.env --docker=./Dockerfile",
+		"app": "node server --env=./.env --docker=./Dockerfile",
+		"indocker": "node server"
 	}
 }

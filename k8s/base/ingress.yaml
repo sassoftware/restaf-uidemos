@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: viyaapp
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  namespace: dev
+spec:
+  tls:
+  - hosts:
+    - viya.ingress-nginx.something.com
+    secretName: viyaapp-tls
+  rules:
+  - host: viya.ingress-nginx.something.com
+    http:
+      paths:
+      - path: /viyaapp
+        pathType: Prefix
+        backend:
+          serviceName: viyaapp
+          servicePort: 8080

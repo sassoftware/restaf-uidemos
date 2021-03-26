@@ -1,0 +1,32 @@
+{
+	"name": "viyaapp",
+	"version": "1.0.0",
+	"description": "Simple Viya app",
+	"author": "Deva Kumaraswamy <deva.kumar@sas.com>",
+	"license": "Apache-2.0",
+	"main": "./lib/index.js",
+	"keywords": [
+		"restaf",
+		"Viya",
+		"SAS",
+		"server",
+		"RESTAPI"
+	],
+	"engines": {
+		"node": ">=12.14.0"
+	},
+	"homepage": "https://gitlab.sas.com/kumar/viyaapp",
+	"repository": {
+		"type": "git",
+		"url": "https://gitlab.sas.com/kumar/github.com/viyaapp.git"
+	},
+	"bugs": {
+		"url": "https://gitlab.sas.com/kumar/github.com/viyaapp/issues"
+	},
+	"scripts": {
+		"start": "cross-env VIYA_SERVER=%vx% npx @sassoftware/viya-appserverjs --env=./.env --docker=./Dockerfile"
+	},
+	"dependencies": {
+		"@sassoftware/viya-appserverjs": "latest"
+	}
+}

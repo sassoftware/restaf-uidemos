@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  viyaapp:
+      image: docker.sas.com/kumar/viyaapp:1.0.0
+      restart: always
+      ports:
+        - 8080:8080
+      environment:
+        - VIYA_SERVER=https://viyaapp.ingress-nginx.kumar-app5-m1.stobosh.sashq-d.openstack.sas.com
+        - CLIENTID=apicom
+        - CLIENTSECRET=secret
+        - APPNAME=viyaapp
+        - TLS_KEY=/certs/tls.key
+        - TLS_CERT=/certs/tls.crt
+        - LOGLEVEL=info
+      volumes:
+         - c:/Public/dev/viya-server-samples/certs:/certs
