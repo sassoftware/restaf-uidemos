@@ -7,23 +7,23 @@ resources:
 # Secret generator
 # Maps to TLS_KEY and TLS_CERT in docker-compose|(.env + Dockerfile in bareos)
 secretGenerator:
-  - name: viyaapp-tls
+  - name: reactapp-tls
     type: kubernetes.io/tls
     files:
     - ./secrets/tls.crt
     - ./secrets/tls.key
-  - name: viyaapp-secret
+  - name: reactapp-secret
     type: Opaque
     files:
     - ./secrets/CLIENTSECRET
 # env variables
 # maps to env of docker-compose/(.env + Dockefile in bareos)
 configMapGenerator:
-  - name: viyaapp-configmap
+  - name: reactapp-configmap
     literals:
-    - APPNAME=viyaapp
+    - APPNAME=reactapp
     - APPPORT=8080
-    - CLIENTID=k8sapp
+    - CLIENTID=reactapp
     - VIYA_SERVER=https://your-viya-server
 #  - HAPIDEBUG=YES
 #  - LOGLEVEL=info
