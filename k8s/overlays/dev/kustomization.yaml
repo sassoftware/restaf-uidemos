@@ -1,5 +1,33 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
+configMapGenerator:
+  - name: app-configmap
+    literals:
+    - APPNAME=viyaapi
+    - APPPORT=8080
+    - CLIENTID=viyaapi
+    - VIYA_SERVER=https://yourviyaserver
+    - LOGLEVEL=error
+    - HAPIDEBUG=NO
+
+resources:
+  - ./namespace.yaml
+  - ./ingress.yaml
+
+namespace: viyaapi
+images:
+  - name: docker.sas.com/placeholder
+    newTag: 1.6.0
+    newName: docker.com/org/viyaapi
 bases:
 - ../../base
-namespace: dev
+
+######################################################################################################
+# README:
+# APPNAME - this is also used as name of  namespace and also as prefix in ingress.
+# set the CLIENTID. Recommend making it the same as the APPNAME as shown here - makes it easier to track
+# SET VIYA_SERVER value to your Viya server url
+# Set the newTag and newName to the appropriate values for your image
+#####################################################################################################
+  

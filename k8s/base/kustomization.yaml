@@ -3,29 +3,20 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
-- ingress.yaml
 # Secret generator
 # Maps to TLS_KEY and TLS_CERT in docker-compose|(.env + Dockerfile in bareos)
 secretGenerator:
-  - name: viyaapi-tls
+  - name: tls-secret
     type: kubernetes.io/tls
     files:
     - ./secrets/tls.crt
     - ./secrets/tls.key
-  - name: viyaapi-secret
+  - name: clientid-secret
     type: Opaque
     files:
     - ./secrets/CLIENTSECRET
 # env variables
 # maps to env of docker-compose/(.env + Dockefile in bareos)
-configMapGenerator:
-  - name: viyaapi-configmap
-    literals:
-    - APPNAME: viyaapi
-    - APPPORT: 8080
-    - CLIENTID: tkapi
-    - VIYA_SERVER: https://viyans.ingress-ngnix.something.com
-    - LOGLEVEL: error
-    - HAPIDEBUG: NO
+
 
 

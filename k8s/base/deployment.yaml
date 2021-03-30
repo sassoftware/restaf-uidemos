@@ -1,69 +1,69 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: viyaapi
+  name: viyaapp
   labels:
-    app: viyaapi
+    app: viyaapp
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: viyaapi
+      app: viyaapp
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: viyaapi
+        app: viyaapp
     spec:
       containers:
       - env:
         - name: APPNAME
           valueFrom:
             configMapKeyRef:
-              name: viyaapi-configmap
+              name: app-configmap
               key: APPNAME
         - name: APPPORT
           valueFrom:
             configMapKeyRef:
-              name: viyaapi-configmap
+              name: app-configmap
               key: APPPORT
         - name: CLIENTID
           valueFrom:
             configMapKeyRef:
-              name: viyaapi-configmap
+              name: app-configmap
               key: CLIENTID
         - name: VIYA_SERVER
           valueFrom:
             configMapKeyRef:
-              name: viyaapi-configmap
+              name: app-configmap
               key: VIYA_SERVER
         - name: LOGLEVEL
           valueFrom:
             configMapKeyRef:
-              name: viyaapi-configmap
+              name: app-configmap
               key: LOGLEVEL
-  # secrets - missing something simple in secret setup
+  # secret for clientid
         - name: CLIENTSECRET
           valueFrom:
             secretKeyRef:
-              name: viyaapi-secret
+              name: clientid-secret
               key: CLIENTSECRET  
   # tls
         - name: TLS_CRT
           valueFrom:
             secretKeyRef:
-              name: viyaapi-tls
+              name: tls-secret
               key: tls.crt
         - name: TLS_KEY
           valueFrom:
             secretKeyRef:
-              name: viyaapi-tls
+              name: tls-secret
               key: tls.key
   # image
-        image: <your docker image>
+        image: docker.sas.com/placeholder
         imagePullPolicy: "Always"
-        name: viyaapi
+        name: viyaapp
         ports:
         - containerPort: 8080
         resources: {}
