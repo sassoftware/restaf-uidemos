@@ -25,10 +25,3 @@ spec:
         backend:
           serviceName: viyaapp
           servicePort: 8080
-##########################################################################
-# README:
-# viyaapi matches APPNAME. 
-# Note that it is used in the annotation also as cookie name
-# Set viyaserver.com to your viya server url
-# Set timeouts to whatever meets your needs.
-##########################################################################

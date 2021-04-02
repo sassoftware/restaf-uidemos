@@ -18,7 +18,7 @@ As always you have to do some setup thru the .env and Dockerfile in the project 
 
 To get going I recommend the following:
 
-1. Register a clientid with a secret with the value *secret*.
+1. Register a clientid/secret as follows: viyaapi/secret.
 
 The details on the clientid I use are shown below.
 Note the grant-types and redirect_uri
@@ -26,12 +26,11 @@ Note the grant-types and redirect_uri
 ```js
 {
   scope: [ 'openid', '*' ],
-  client_id: 'myapi',
+  client_id: 'viyaapi',
   resource_ids: [ 'none' ],
   authorized_grant_types: [ 'password', 'authorization_code', 'refresh_token' ],   
   redirect_uri: [
-    'http://localhost:8080/viyaapi/api',
-    'http://localhost:8080/viyaapi/logon'
+    'https://localhost:8080/viyaapi/logon'
   ],
   autoapprove: [ 'true' ],
   access_token_validity: 86400,
@@ -41,6 +40,9 @@ Note the grant-types and redirect_uri
   required_user_groups: []
 }
 ```
+
+> To deploy in a namespace in the same cluster as Viya add the following redirect:
+<https://your-viya-server/viyaapi/logon>
 
 2.Configure the *.env* file
 

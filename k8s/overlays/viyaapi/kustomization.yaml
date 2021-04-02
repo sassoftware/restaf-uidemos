@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+configMapGenerator:
+  - name: app-configmap
+    literals:
+    - APPNAME=viyaapi
+    - APPPORT=8080
+    - CLIENTID=tk8api
+    - VIYA_SERVER=https://viyaserver.com
+    - LOGLEVEL=info
+    - HAPIDEBUG=NO
+
+resources:
+  - ./namespace.yaml
+  - ./ingress.yaml
+
+namespace: viyaapi
+images:
+  - name: docker.sas.com/placeholder
+    newTag: 1.6.0
+    newName: docker.sas.com/kumar/viyaapi
+bases:
+- ../../base
+
+
+  

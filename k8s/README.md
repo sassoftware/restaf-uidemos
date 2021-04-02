@@ -1,219 +1,36 @@
-# Configuration files for viyaapi 
+# K8s files for applications in ths @sassoftware/restaf-uidemos repo
 
----
+## Usage
 
-**World of docker**
+clone this repo and edit the files to meet your needs.
 
----
+1. Get ssl key and crt from Viya 2020.x or create your own and save it in the secrets directory.
 
-### `Dockerfile`
+2. Create the appropriate clientid and clientsecrets for the apps. I use this standard:
+    - clientid value is the name of the app (viyaapi, reactapp, ...)
+    - clientsecret is always simply the string **secret**
+    - redirect is<https://viyaserver/appname> for your apps. But for api servers the redirect is <https://viyaserver/appname/logon>
 
-Make your Dockerfile look like this:
+## Organization
 
-```docker
-FROM node:12.16.1-alpine
-LABEL maintainer="your-email"
-WORKDIR /usr/src/app
-# COPY package*.json ./
-COPY . .
-RUN npm install
-EXPOSE 8080
-ENV APPPORT=8080
+- base -- This covers most of the common configurations used in applications using react-server based apps.
 
-# will change to localhost in non-docker environments
-ENV APPHOST=0.0.0.0
+- secrets -- This is where you will keep your crt and key for ssl. Also store the secret for the clientid. For convenience this assumes that all then clientids have the same secret. If not true move secrets to the overlays.
 
-ENV APPLOC=./public
-ENV APPENTRY=index.html
+- overlays -- each application has its own overlay in this directory.
 
-##########################
-# TLS Setup
-##########################
+## Things to investigate
 
-ENV NODE_TLS_REJECT_UNAUTHORIZED=0
-ENV SAMESITE=None,secure
+### `Kustomize`
 
-#####################################################################
+1. How to set the viya server info in only one place - currently it is set in configmap and in ingress.
 
-CMD ["npm","run", "indocker"]
-```
+2. How to set the backend prefix in ingress to match the APPNAME in configmap?
 
-## `.env file`
+### `clientid notes'
 
-Recommend using .env as the name for the env file. Replace the values to match your setup. 
+1. Under investigation: How to set the redirect to relative value /appname or /appname/logon. I think this is related to accessing services in the Viya namespace with the syntax of (servicename.viyanamespace.svc.cluster.local).
 
-The combination of specifying https protocol for the VIYA_SERVER and the presence of the TLS_CREATE will result in your app server running with SSL.
+### Others
 
-```env
-# APPHOST = localhost | dns name of the server(ex: acme.unx.sas.com) | * to use hostname
-# APPNAME is thename of your apiserver
-VIYA_SERVER=https://your-viya-url
-APPHOST=localhost
-APPNAME=viyaapi
-APPPORT=8080
-CLIENTID=apicom
-CLIENTSECRET=secret
-TLS_CREATE="C:US,ST:NC,L:Cary,O:SAS Institute,OU:STO,CN:localhost"
-```
-
-## `A note on TLS`
-
-In the default setup the TLS_CREATE option causes the server to create a temporary self-signed certificate. You can also specify signed certificates. The option are listed below.
-
-```env
-# Option 1
-# ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:SAS Institute,OU:deptname,CN:localhost"
-
-# Option 2
-# TLS_CERT=path to cert
-# TLS_KEY=path-to-key.pem
-# 
-
-# Option 3 -- useful when running in K8 (see later in this document) 
-# TLS_CRT=actual-crt-string
-# TLS_KEY=actual-key-string
-
-# Option 4
-# TLS_PFX=../certs/sascert/sascert2.pfx
-# TLS_PW=rafdemo
-
-```
-
-### A note for Viya 20.x
-
-In Viya 20.x it is easy to get the certificate and key from the Viya and use it in your env file ( option 2)
-Use these commands to get the certicate and use the tls.crt and tls.key in the env file(option2).
-
-```sh
-kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/ca.crt ./ca.crt
-kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/tls.crt ./tls.crt
-kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/tls.key ./tls.key
-```
-
-## docker-compose file
-
-Use the docker-compose.yml file to run the app in docker. Modify the values to suit your needs.
-
-```docker
-version: "3.3"
-services:
-  viyaapp:
-      build: .
-      restart: always
-      ports:
-        - 8080:8080
-      environment:
-        - VIYA_SERVER=https://viyaapp.ingress-nginx.kumar-app5-m1.stobosh.sashq-d.openstack.sas.com
-        - CLIENTID=apicom
-        - CLIENTSECRET=secret
-        - APPNAME=viyaapp
-        - TLS_CREATE=TLS_CREATE="C:US,ST:NC,L:Cary,O:SAS Institute,OU:deptname,CN:localhost"
-```
-
-To run the application in docker issue this command:
-
-Recommend you add the following script to your package.json
-
-```js
-"scripts" {
-   "indocker": "npx @sassoftware/viya-apiserverjs"
-}
-```
-The to build and run the image in docker run this command:
-
-```sh
-docker-compose up
-```
-
-Once you are happy with the container, tag and publish the image to a docker repository. See the example below.
-
-
-```docker
-docker tag viyaapp:latst docker.sas.com/xxx/viyaapp:1.0.0
-docker publish docker.sas.com/xxx/viyaapp:1.0.0
-```
-### Test the published image
-
-Test the published image using the following docker-compose.yml file
-
-```docker
-version: "3.3"
-services:
-  viyaapi:
-      image: docker.sas.com/xxxx/viyaapi:1.0.0
-      restart: always
-      ports:
-        - 8080:8080
-      environment:
-        - VIYA_SERVER=https://your-viya-url
-        - CLIENTID=apicom
-        - CLIENTSECRET=secret
-        - APPNAME=viyaapi
-        - TLS_CREATE="C:US,ST:NC,L:Cary,O:SAS Institute,OU:STO,CN:localhost"
-```
-
----
-
-**The world of K8**
-
----
-
-
-> Tip: A quick way to jump start the migration to K8 is use the kompose utility to convert the docker-compose to a deployment.yaml and service.yaml. You can thend edit those files and add other configurations  <https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/>
-
-This project use kustomize to create the final yaml files for deployment.
-The config files are all in the k8s-configurations sub-directory for each of the services in this repository.
-
-> At this point only the viyaapi service is being developed with the hope that the other services that be able to use a common base configuration.
-
-### Some useful links
-1. https://blog.stack-labs.com/code/kustomize-101
-
-
-### Tips for quick adoption
-
-The env values specified in docker-compose are not split into multiple files based on my understanding of how k8s configuation should be done.
-
-1. base/clientFile.txt -- for clientid and clientsecret
-2. configFile.txt -- information you used to specify in the .env and/or Dockerfile
-3. tls-certs -- the certificate and key that was discussed earlier in this doc.
-
-
-```
-echo -n "string" | base64 
-```
-
-3. Create viyaapi-tls-cert.yaml - this is for the tls.key and tls.crt needed to run with SSL enabled.
-
-The tls.crt and tls.key need to configured via a k8 secret object.(see cloud directory in this repo). See this link for information - <https://go.documentation.sas.com/?cdcId=sasadmincdc&cdcVersion=v_008&docsetId=calencryptmotion&docsetTarget=n1xdqv1sezyrahn17erzcunxwix9.htm&locale=en#n0309hwuyq56x2n17mkapfltqau6>.
- Run these commands to get tls information from your viya server
-
-```sh
-kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/ca.crt ./ca.crt
-kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/tls.crt ./tls.crt
-kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/tls.key ./tls.key
-```
-
-Then convert the tls.crt and tls.key to base64 and create the yaml file.
-
-A quick way to build the required file is to use this command
-```
-kubectl create secret tls tls-secret \
-  --cert=path/to/cert/file \
-  --key=path/to/key/file
-
-```
-## Create Deployment yaml
-
-See  configmap.yaml for an example. 
-
-### Pointers
-
-1. The image you pushed to docker registry is referenced here.
-2. The labels in the spec are important. This will be used by service objects to find the correct pods.
-3. The tls-secret, secret and configmap we created earlier are referenced here. 
-
-
-
-## K8 configurations
-
+1. Do not fully understand how the cookies are handled when replica is greater than 1 - it works but why?

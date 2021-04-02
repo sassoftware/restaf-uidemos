@@ -7,9 +7,9 @@ services:
         - 8080:8080
       environment:
         - VIYA_SERVER=
-        - CLIENTID=myapi
+        - CLIENTID=viyaapi
         - CLIENTSECRET=secret
-        - APPNAME=myapi
+        - APPNAME=viyaapi
 # Mounts volume for tokens(if using saved tokens, and other files)
 # volumes:
 #    - c:/Public/dev/data/sas:/sasin

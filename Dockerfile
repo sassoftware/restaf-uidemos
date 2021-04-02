@@ -18,8 +18,8 @@ ENV APPHOST=0.0.0.0
 
 ENV PLUGIN=hapi-swagger
 ENV SWAGGER=./swagger.json
-ENV APPLOC=./public
-ENV APPENTRY=index.html
+# ENV APPLOC=./public
+# ENV APPENTRY=index.html
 # ENV APPENV=appenv.js
 
 ENV AUTHFLOW=code
