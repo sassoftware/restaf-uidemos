@@ -231,7 +231,7 @@ function SimpleDataForm(props) {
 }
 SimpleDataForm.propTypes = {
     /** data  */
-    data: PropTypes.object.isRequired,
+    data: PropTypes.array.isRequired,
     /** title */
     title: PropTypes.string.isRequired,
 
@@ -239,7 +239,7 @@ SimpleDataForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 
     /**disable all components if true */
-    disabled: PropTypes.boolean
+    disabled: PropTypes.bool
         
 }
 export default SimpleDataForm;

@@ -4,6 +4,7 @@ import CaslResult from './CaslResult';
 import DefaultViewer from './DefaultViewer'; 
 import FileSelectorButton from './FileSelectorButton'; 
 import Header from './Header'; 
+import HtmlViewer from './HtmlViewer'; 
 import ItemsListMenu from './ItemsListMenu'; 
 import ItemsMenu from './ItemsMenu'; 
 import ListMenu from './ListMenu'; 
@@ -30,6 +31,7 @@ CaslResult,
 DefaultViewer,
 FileSelectorButton,
 Header,
+HtmlViewer,
 ItemsListMenu,
 ItemsMenu,
 ListMenu,

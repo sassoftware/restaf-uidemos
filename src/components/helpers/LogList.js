@@ -1,50 +1,24 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {useAppContext} from '../../providers';
+import HtmlViewer from './HtmlViewer';
+import log2Html from '../lib/log2Html';
 
 /**
  * Display SPRE log or list
  * @param {} props 
  */
 function LogList (props) {
-	let { computeInfo, type, classes} = props;
-	let {store, restaflib} = useAppContext();
+	let { computeInfo, type} = props;
+	debugger;
+	let {store, restaflib, classes} = useAppContext();
 	let {computeResults} = restaflib;
     let [ log, setLog ] = useState('');
 	useEffect(() => {
-		const _logLines = (logl) => {
-			let outAll = [];
-			logl.forEach((l,i) => {
-				let line = l.line;
-				if (line.length === 0) {
-					line = '  ';
-				}
-				let out;
-				let c = classes[`l${type}`];
-				if (l.type === 'title') {
-					out = (
-						<h2 key={i} className={c}>
-							{' '}
-							{line}{' '}
-						</h2>
-					);
-				} else {
-					out = (
-						<p key={i} className={c}>
-							{' '}
-							{line}{' '}
-						</p>
-					);
-				}
-				outAll.push(out);
-			});
-		
-			return outAll;
-		};
-
 		const _format = async () => {
-			let tlog = await computeResults(store, computeInfo.result, (type === 'listing) '? 'listing' : 'log'));
-			return _logLines(tlog);
+			let tlog = await computeResults(store, computeInfo.result, (type === 'listing) ' ? 'listing' : 'log'));
+			debugger;
+			return log2Html(tlog, classes);
 		};
 		if (computeInfo.result !== null) {
 			_format()
@@ -57,7 +31,7 @@ function LogList (props) {
 
 	return (
 		<Fragment>
-			{log}
+			<HtmlViewer html={log}></HtmlViewer>
 		</Fragment>
 	);
     

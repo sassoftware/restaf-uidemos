@@ -14,6 +14,14 @@ let appMenus =  [
 			title: 'Default Applications',
 		},
 	},
+	{
+	
+		component: 'OptApp',
+		props: {
+			text: 'Promotion optimization App',
+			three: 3,
+		}
+	},
 	/*
 	{
 		component: 'MasModel',

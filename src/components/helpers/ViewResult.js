@@ -12,7 +12,7 @@ function ViewResult (props) {
 
 	let docInfo = { doc: (typeof result === 'object') ? JSON.stringify(result, null, 4) : result };
 	let show = <Fragment>
-		<WrapAceEditor currentDoc={docInfo} mode={mode} {...others}/>
+		<WrapAceEditor doc={docInfo.doc} mode={mode} {...others}/>
         </Fragment>;
     return show;
     

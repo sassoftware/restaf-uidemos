@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-text';
+import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import {useAppContext} from '../../providers';
@@ -18,7 +19,7 @@ import {useAppContext} from '../../providers';
 
 function WrapAceEditor (props) {
       
-    let { currentDoc, mode} = props;
+    let { doc, mode} = props;
     let {classes} = useAppContext();
     
     let show = (
@@ -27,7 +28,7 @@ function WrapAceEditor (props) {
                 <AceEditor
                     style={{width: "inherit"}}
                     mode={mode}
-                    value={currentDoc.doc}
+                    value={doc}
                     theme="github"
                     readOnly={true}/>
             </main>
@@ -39,6 +40,7 @@ function WrapAceEditor (props) {
 WrapAceEditor.propTypes = {
     /** Information on current document */
     /* currentDoc: string, mode: string */
-    currentDoc: PropTypes.object.isRequired
+    doc : PropTypes.string.required,
+    mode: PropTypes.string.required
 };
 export default WrapAceEditor;

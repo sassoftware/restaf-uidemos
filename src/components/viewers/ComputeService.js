@@ -111,7 +111,7 @@ function ComputeService(props) {
 
 					let msgIcon = Warning;
 					let msgText = 'Selected file: ' + name;
-					let status = 'completed';
+					let status = result.SASJobStatus;
 					debugger;
 
 					msgText = `${msgText} ......  SAS job Status: ${status}`;

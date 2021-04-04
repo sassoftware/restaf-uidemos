@@ -10,15 +10,15 @@ function defaultStyles () {
 
   const useStyles = makeStyles((theme) => ({
 		list: {
-			width          : 250,
+			width: 250,
 			backgroundColor: 'white',
 			foregroundColor: 'black',
-			textTransform  : 'none',
+			textTransform: 'none',
 		},
 		listitem: {
 			width: 'auto',
 			whiteSpace: 'normal',
-            wordBreak: 'break-word'
+			wordBreak: 'break-word',
 		},
 		fullList: {
 			width: 'auto',
@@ -30,8 +30,8 @@ function defaultStyles () {
 			flexGrow: 1,
 		},
 		menuButton: {
-			marginLeft   : -12,
-			marginRight  : 20,
+			marginLeft: -12,
+			marginRight: 20,
 			textTransform: 'none',
 		},
 		appBar1: {
@@ -43,17 +43,17 @@ function defaultStyles () {
 		},
 		tabsv: {
 			textTransform: 'none',
-			width        : 240,
+			width: 240,
 		},
 		paper: {
 			backgroundColor: 'white',
-			margin         : "10px"
+			margin: '10px',
 		},
 		table: {
 			minWidth: 650,
 		},
 		menudrawer: {
-			width     : 240,
+			width: 240,
 			flexShrink: 0,
 		},
 		drawerPaper: {
@@ -64,11 +64,11 @@ function defaultStyles () {
 		},
 		// necessary for content to be below app bar
 		content: {
-			flexGrow       : 1,
+			flexGrow: 1,
 			backgroundColor: theme.palette.background.default,
 		},
 		maincontent: {
-			width          : '100%',
+			width: '100%',
 			backgroundColor: theme.palette.background.default,
 		},
 		button: {
@@ -91,48 +91,46 @@ function defaultStyles () {
 			foregroundColor: 'yellow',
 		},
 		span0: {
-			color          : 'red',
+			color: 'red',
 			backgroundColor: 'white',
 		},
 		span1: {
-			color          : 'purple',
+			color: 'purple',
 			backgroundColor: 'white',
 		},
 		span2: {
-			color          : 'green',
+			color: 'green',
 			backgroundColor: 'white',
 		},
 		span3: {
-			color          : 'pink',
+			color: 'pink',
 			backgroundColor: 'white',
 		},
 		span4: {
-			color          : 'blue',
+			color: 'blue',
 			backgroundColor: 'white',
 		},
 		margin: {
 			height: theme.spacing(3),
-		  },
+		},
 		typography: {
-			border: '3px'
+			border: '3px',
 		},
 		divborder: {
-			border: "3px",
-			padding: "10px"
+			border: '3px',
+			padding: '10px',
 		},
 		slider: {
-			padding: "5px"
+			padding: '5px',
 		},
 		fabgood: {
-			color: "green",
-			textTransform  : 'none',
+			color: 'green',
+			textTransform: 'none',
 		},
 		fabbad: {
-			color: "red",
-			textTransform  : 'none',
-		}
-
-
+			color: 'red',
+			textTransform: 'none',
+		},
   }));
   
 	

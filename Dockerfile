@@ -5,7 +5,7 @@ RUN apk add --no-cache --upgrade curl
 
 WORKDIR /usr/src/app
 # COPY package.json .
-RUN npm install -g @sassoftware/viya-appserverjs@test
+RUN npm install -g @sassoftware/viya-appserverjs@next
 COPY ./build ./public
 # COPY ./start.sh ./start.sh
 COPY ./appenv.js ./appenv.js
@@ -14,9 +14,9 @@ COPY ./appenv.js ./appenv.js
 EXPOSE 8080
 EXPOSE 443
 
-#######################################################################
+#############################################################################
 # You can override these in .env file| docker--co,mpose fle| k8s config files
-########################################################################
+#############################################################################
 
 ENV APPNAME=viyaapp
 ENV AUTHFLOW=code
