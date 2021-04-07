@@ -27,12 +27,11 @@
 
     <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf@next/dist/restaf.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaflib@next/dist/restaflib.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restafuilib@prod/dist/restafuilib.js"></script>
-    <script type="text/javascript" src="/viyaapp/appenv"></script>
+    <script type="text/javascript" src="/uidemos/appenv"></script>
 
 
     <link rel="stylesheet" type="text/css" href="/shared/app.css">
-    <script async src="https://unpkg.com/@sassoftware/va-report-components@0.4@prod/dist/umd/va-report-components.js"></script> -->
+    <script async src="https://unpkg.com/@sassoftware/va-report-components/dist/umd/va-report-components.js"></script> -->
   
      <!-- <script src="https://unpkg.com/@webcomponents/custom-elements"></script> -->
 
@@ -64,11 +63,17 @@
     async function setup( ) {
         await store.logon(LOGONPAYLOAD);
         let {reports} = await store.addServices( 'reports');
+        console.log(reports);
+        console.log(JSON.stringify(reports.itemsList(), null,4));
+        debugger;
         reportsList = await restaflib.getReportUri( store, null );
+
         if (reportsList === null) {
             throw 'No reports to View';
         };
-        
+        debugger;
+        console.log(reportsList);
+        debugger;
         objectElement =  document.getElementById('report0');
         objectElement.authenticationType ="credentials";
         objectElement.url           = host;

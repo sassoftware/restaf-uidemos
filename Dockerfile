@@ -16,12 +16,12 @@ ENV APPPORT=8080
 # will change to localhost in non-docker environments
 ENV APPHOST=0.0.0.0
 
-ENV APPLOC=./public
-ENV APPENTRY=index.html
+# ENV APPLOC=./public
+# ENV APPENTRY=index.html
 # ENV APPENV=appenv.js
 
 ENV AUTHFLOW=code
-ENV CLIENTID=appcom
+ENV CLIENTID=uidemos
 ENV CLIENTSECRET=secret
 
 ##########################

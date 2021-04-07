@@ -13,7 +13,7 @@
   "repository": "https://github.com/sassoftware/restaf/tree/gen2/packages/uidemos",
   "keywords": [],
   "dependencies": {
-    "@sassoftware/viya-appserverjs": "test"
+    "@sassoftware/viya-appserverjs": "next"
   },
   "author": "Deva Kumar <deva.kumar@sas.com>",
   "license": "Apache-2.0"
