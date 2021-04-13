@@ -146,12 +146,6 @@ The following will be created:
 https://blog.thundra.io/debugging-kubernetes-deployments?utm_source=adwords&utm_medium=cpc&utm_campaign=PdSrch_Google_Dynamic_INT__&utm_content=&utm_term=&hsa_acc=2925991331&hsa_cam=6461560272&hsa_grp=76915793229&hsa_ad=495998564829&hsa_src=g&hsa_tgt=dsa-424991837698&hsa_kw=&hsa_mt=b&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwx6WDBhBQEiwA_dP8rZUqizXbWUiYsKHQZg_3us3_fYI9Gg_7_3wx-ZRUqYnT5vA6s5AKhBoCZ_0QAvD_BwE) is useful when your service will not deploy properly.
 
 
-## Next Steps
-
-The next project on my list to deploy an api server on Azure and access it from MSFT Power Apps - something along these lines:
-
-![viya-apiserverjs](https://github.com/sassoftware/restaf-uidemos/blob/k8s/API_Server.png)
-
 
 
 
