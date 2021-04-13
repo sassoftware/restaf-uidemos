@@ -34,7 +34,8 @@
     "app": "cross-env  APPLOC=./build APPENTRY=index.html node server --env=.env --docker=Dockerfile",
     "compose": "docker-compose build && docker-compose up",
     "format": "prettier-eslint --eslint-config-path ./.eslintrc.json --write '**/*.js'",
-    "lint": "eslint . --ext .js --fix"
+    "lint": "eslint . --ext .js --fix",
+    "indocker": "node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

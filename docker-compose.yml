@@ -1,17 +1,16 @@
 version: "3.3"
 services:
-  viyaapp:
-      image: <your image location>
+  reactapp:
+      build: .
       restart: always
       ports:
         - 8080:8080
       environment:
-        - VIYA_SERVER=https://your-viya-app
+        - VIYA_SERVER=
         - CLIENTID=reactapp
         - CLIENTSECRET=secret
-        - APPNAME=viyaapp
-        - TLS_KEY=/certs/tls.key
-        - TLS_CERT=/certs/tls.crt
-        - LOGLEVEL=info
-      volumes:
-         - your-cert-location:/certs
+        - APPLOC=./public
+        - APPNAME=reactapp
+        - APPHOST=localhost
+        - APPPORT=8080
+        - LOGLEVEL=error
