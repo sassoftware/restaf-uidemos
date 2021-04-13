@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./namespace.yaml
+
+namespace: PROJECT
+
+#
+# Enter your environment variables(except tls key and crt) below
+#
+
+configMapGenerator:
+  - name: viyaapp-configmap
+    literals:
+    - VIYA_SERVER=https://VIYAURL
+    - CLIENTID=PROJECT
+    - APPNAME=PROJECT
+    - APPPORT=8080
+    - APPENV=appenv.js
+    - LOGLEVEL=error
+
+#
+# Update your docker image here
+#
+images: 
+  - name: placeholder-image
+    newTag: 1.7.0
+    newName: your-image
+
+bases:
+- ../../base

@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: viyaapp
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "PROJECT"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+  namespace: placeholder-namespace
+spec:
+  tls:
+  - hosts:
+    - VIYAURL
+    secretName: tls-secret
+  rules:
+  - host: VIYAURL
+    http:
+      paths:
+      - path: /PROJECT
+        pathType: Prefix
+        backend:
+          serviceName: viyaapp
+          servicePort: 8080
