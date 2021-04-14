@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  viyaapp:
+      build: .
+      restart: always
+      ports:
+        - 8080:8080
+      environment:
+        - VIYA_SERVER=
+        - CLIENTID=viyaapp
+        - CLIENTSECRET=secret
+        - APPNAME=viyaapp
+        - APPENV=appenv.js
+# Mounts volume for tokens(if using saved tokens, and other files)
+# volumes:
+#    - c:/Public/dev/data/sas:/sasin
