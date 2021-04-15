@@ -110,6 +110,9 @@ kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1
 kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/tls.key ./tls.key
 ```
 
+### A note on clientid
+
+A typical redirect for the clientid is of this form `<my viya url>/project/<something>`
 
 ### Deploy the application
 
