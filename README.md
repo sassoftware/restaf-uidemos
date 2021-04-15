@@ -1,4 +1,6 @@
-# Quick Start for migrating your Viya Application to Kubernetes
+# K8s !== a 4 letter word 
+
+>Quick Start for migrating your Viya Application to Kubernetes
 
 This is a set of  very opinionated Quick Start configuration files to help you jump start the migration of  SAS Viya applications to run in its own namespace in the same cluster as Viya.
 
