@@ -9,8 +9,7 @@ services:
         - VIYA_SERVER=
         - CLIENTID=reactapp
         - CLIENTSECRET=secret
-        - APPLOC=./public
+        - APPNAME=uidemos
         - APPNAME=reactapp
-        - APPHOST=localhost
         - APPPORT=8080
         - LOGLEVEL=error

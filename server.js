@@ -20,7 +20,9 @@ restafServer.icli(null/*customRoutes */, true, customize);
 
 function customize(key) {
 	let info = {
-		APPENV: {},
+		APPENV: {
+			homeNotes:  process.env.HOMENOTES
+		},
 		SWAGGEROPTIONS: {}
 	};
 	return info[key];

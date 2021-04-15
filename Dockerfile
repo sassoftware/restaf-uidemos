@@ -11,19 +11,17 @@ COPY ./build ./public
 COPY ./appenv.js ./appenv.js
 COPY ./server.js ./server.js
 
+ENV APPHOST=0.0.0.0
 
 EXPOSE 8080
-EXPOSE 443
+
 
 #############################################################################
 # You can override these in .env file| docker--co,mpose fle| k8s config files
 #############################################################################
 
-ENV APPNAME=viyaapp
+ENV APPNAME=reactapp
 ENV AUTHFLOW=code
-ENV CLIENTID=appcom
-ENV CLIENTSECRET=secret
-
 # The following are defaults 
 # ENV APPLOC=./public
 # ENV APPENTRY=index.html -- since we are overriding this thru cross-env
