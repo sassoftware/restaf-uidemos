@@ -28,7 +28,7 @@ services:
 
 These configuration files help you achieve a deployment shown below with a few key strokes.
 
-![layout](https://ddd)
+![layout](https://github.com/sassoftware/restaf-uidemos/blob/k8s/k8.png)
 ---
 
 ## Quick Start
