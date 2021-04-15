@@ -7,20 +7,20 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/affinity: "cookie"
-    nginx.ingress.kubernetes.io/session-cookie-name: "PROJECT"
+    nginx.ingress.kubernetes.io/session-cookie-name: "reactapp"
     nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
     nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
   namespace: placeholder-namespace
 spec:
   tls:
   - hosts:
-    - VIYAURL
+    - viyans.ingress-nginx.kdksecdb-m1.secdb.sashq-d.openstack.sas.com
     secretName: tls-secret
   rules:
-  - host: VIYAURL
+  - host: viyans.ingress-nginx.kdksecdb-m1.secdb.sashq-d.openstack.sas.com
     http:
       paths:
-      - path: /PROJECT
+      - path: /reactapp
         pathType: Prefix
         backend:
           serviceName: viyaapp

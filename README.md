@@ -1,17 +1,6 @@
-# Quick Start for migrating your Viya Application to K8s
+# Quick Start for migrating your Viya Application to Kubernetes
 
-This is a set of  very opinionated Quick Start K8s configuration files to help you jump start the migration of  SAS Viya applications to kubernetes.
-
-The primary audience: Aplications developers using one or more of these.
-
- -   [@sassoftware/restaf-server](https://github.com/sassoftware/restaf-server/wiki)
- - [@sassoftware/viya-appserverjs](https://github.com/sassoftware/restaf-server/tree/next/packages/viya-appserverjs)
- - [viya-app-quickstart](https://github.com/sassoftware/restaf/tree/main/packages/cra-template-viya-app-quickstart) 
- - [create-viya-api](https://github.com/sassoftware/restaf-server/wiki/apiserver) 
-
-*Even if you are not a fan of these libraries, you might find these set of configuration files useful in some small way - an example written by a beginner is usually not too complicated to understand.*
-
-restaf-server users: Before using this please upgrade to @sassoftware/viya-appserverjs@next. If developing api server use @sassoftware/viya-apiserverjs@next.
+This is a set of  very opinionated Quick Start configuration files to help you jump start the migration of  SAS Viya applications to run a namespace in the same cluster as Viya.
 
 ## Background
 
@@ -37,16 +26,14 @@ services:
          - location of certs:/certs
 ```
 
->  A note on CLIENTID redirect: It should be <https://your-viya-url/your-project-name>. For api servers it should be
-<https://your-viya-server/your-project-name/logon>. In the example this will be <https://myviya.unx.com/viyaapi/logon>
+These configuration files help you achieve a deployment shown below with a few key strokes.
 
-
+![layout](https://ddd)
 ---
 
 ## Quick Start
 
 ---
-
 
 1. Clone the repository
 
@@ -104,7 +91,7 @@ images:
 
 bases:
 - ../../base
-``` 
+```
 
 5. Set your tls cert and key in the base/secrets directory. To obtain these from SAS Viya use the tip shown below
 
@@ -115,7 +102,7 @@ kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1
 ```
 
 
-5. Now you ready to deploy and run your application as indicated below
+6. Now you ready to deploy and run your application as indicated below
 
 
 ## Deploy the application

@@ -4,20 +4,16 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
 
-namespace: PROJECT
-
-#
-# Enter your environment variables(except tls key and crt) below
-#
+namespace: reactapp
 
 configMapGenerator:
   - name: viyaapp-configmap
     literals:
-    - VIYA_SERVER=https://VIYAURL
-    - CLIENTID=PROJECT
-    - APPNAME=PROJECT
+    - VIYA_SERVER=https://viyaserver.unx.com
+    - CLIENTID=reactapp
+    - CLIENTSECRET=secret
+    - APPNAME=reactapp
     - APPPORT=8080
-    - APPENV=appenv.js
     - LOGLEVEL=error
 
 #
@@ -25,8 +21,8 @@ configMapGenerator:
 #
 images: 
   - name: placeholder-image
-    newTag: 1.7.0
-    newName: your-image
+    newTag: 0.1.0
+    newName: registry.org/reactapp
 
 bases:
 - ../../base
