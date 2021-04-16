@@ -1,4 +1,4 @@
-# K8s !== a 4 letter word 
+# K8s !== a 4 letter word
 
 >Quick Start for migrating your Viya Application to Kubernetes
 
@@ -28,7 +28,7 @@ services:
          - location of certs:/certs
 ```
 
-With a few key strokes you can achieve a deployment that is illustrated in the figure below. 
+With a few key strokes you can achieve a deployment that is illustrated in the figure below.
 
 ![layout](https://github.com/sassoftware/restaf-uidemos/blob/k8s/k8.png)
 ---
@@ -49,7 +49,7 @@ You will need the following information
 
 - your project name (ex: ORAPP, viyaapp, etc...). This value will be assigned to the following:
   - namespace  -- every application runs in its own name space
-  - /path  -- this allows users to access your app as <https://myviya.unx.com/{project name}>
+  - /path  -- this allows users to access your app as <<https://myviya.unx.com/{project> name}>
 
 ### Edit the files
 
