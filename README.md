@@ -31,6 +31,7 @@ services:
 With a few key strokes you can achieve a deployment that is illustrated in the figure below.
 
 ![layout](https://github.com/sassoftware/restaf-uidemos/blob/k8s/k8.png)
+
 ---
 
 ## Quick Start
