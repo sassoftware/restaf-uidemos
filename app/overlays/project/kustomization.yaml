@@ -4,15 +4,15 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
 
-namespace: reactapp
+namespace: PROJECT
 
 configMapGenerator:
   - name: viyaapp-configmap
     literals:
-    - VIYA_SERVER=https://viyaserver.unx.com
-    - CLIENTID=reactapp
+    - VIYA_SERVER=https://VIYAURL
+    - CLIENTID=PROJECT
     - CLIENTSECRET=secret
-    - APPNAME=reactapp
+    - APPNAME=PROJECT
     - APPPORT=8080
     - LOGLEVEL=error
 
@@ -22,7 +22,7 @@ configMapGenerator:
 images: 
   - name: placeholder-image
     newTag: 0.1.0
-    newName: registry.org/reactapp
+    newName: registry.org/PROJECT
 
 bases:
 - ../../base
