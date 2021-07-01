@@ -8,9 +8,10 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@sassoftware/restaf": "next",
     "@sassoftware/restaflib": "next",
-    "@sassoftware/viya-appserverjs": "next",
+    "@sassoftware/viya-appserverjs": "1.2.31",
     "@tinymce/tinymce-react": "^3.12.2",
     "ace-builds": "^1.4.12",
+    "concurrently": "^6.0.2",
     "cross-env": "^7.0.2",
     "env-cmd": "^10.1.0",
     "http-proxy-middleware": "^1.0.5",
@@ -31,6 +32,7 @@
     "eject": "react-scripts eject",
     "buildapp": "node createRoutes && env-cmd --file ./.env react-scripts build",
     "dev": "node createRoutes.js && cross-env APPENTRY=/develop APPLOC=./public node server --env=.env --docker=Dockerfile",
+    "newdev": "npx concurrently \"npm run app\" \"webpack-dev-server -d --open --content-base dist\"",
     "app": "cross-env  APPLOC=./build APPENTRY=index.html node server --env=.env --docker=Dockerfile",
     "compose": "docker-compose build && docker-compose up",
     "format": "prettier-eslint --eslint-config-path ./.eslintrc.json --write '**/*.js'",
@@ -57,5 +59,6 @@
     "prettier": "^2.1.2",
     "prettier-eslint": "^11.0.0",
     "prettier-eslint-cli": "^5.0.0"
-  }
+  },
+  "proxy": "https://localhost:8080"
 }

@@ -35,10 +35,13 @@ function MasRun(props) {
                 let t = {...runState};
                 t.scoreResult = r;
                 t.newData = newData;
+                debugger;
                 setRunState(t);
             })
             .catch(err => {
-                errInfo = {msg: err, title: `Scoring ${runState.name}`};
+                debugger;
+                errInfo = { msg: err, title: `Scoring ${runState.name}` };
+                console.log(errInfo);
             })
     }
 
@@ -46,7 +49,7 @@ function MasRun(props) {
     const _score = async (newData) => {
         let name = result.itemsList(index);
         let r = await restaflib.masRun(store, masControl, name, newData, 'score', 'execute');
-        return r.toJS();
+        return r;
     }
 
     useEffect(() => {
