@@ -20,7 +20,7 @@ EXPOSE 8080
 # You can override these in .env file| docker--co,mpose fle| k8s config files
 #############################################################################
 
-ENV APPNAME=reactapp
+ENV APPNAME=viyaapp
 ENV AUTHFLOW=code
 # The following are defaults 
 # ENV APPLOC=./public
