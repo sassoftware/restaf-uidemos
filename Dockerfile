@@ -22,6 +22,7 @@ EXPOSE 8080
 
 ENV APPNAME=viyaapp
 ENV AUTHFLOW=code
+ENV USETOKEN=YES
 # The following are defaults 
 # ENV APPLOC=./public
 # ENV APPENTRY=index.html -- since we are overriding this thru cross-env
