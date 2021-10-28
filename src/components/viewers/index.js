@@ -6,8 +6,11 @@ import Home from './Home';
 import ItemsViewerTest from './ItemsViewerTest'; 
 import JobManager from './JobManager'; 
 import MasModel from './MasModel'; 
+import MasViewerTest from './MasViewerTest'; 
+import MLPA from './MLPA'; 
 import OptApp from './OptApp'; 
 import PlaceHolder from './PlaceHolder'; 
+import ScoreContainer from './ScoreContainer'; 
 import SimpleDataFormTest from './SimpleDataFormTest'; 
 export default {
 Casl,
@@ -17,7 +20,10 @@ Home,
 ItemsViewerTest,
 JobManager,
 MasModel,
+MasViewerTest,
+MLPA,
 OptApp,
 PlaceHolder,
+ScoreContainer,
 SimpleDataFormTest,
 };

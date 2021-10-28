@@ -29,8 +29,8 @@ let appMenus =  [
 			text : 'Covid Infection Analysis',
 			models: [
 				{
-				 label: 'Covid Analysis',
-				 name : 'deva_manuel',
+				 label: 'Machine Failure',
+				 name : 'Machine Failure',
 				 viewData: {
 					 income             : {label: 'Income(x1000)',       value: 10000, multiplier: 1000, viewType: 'slider', min: 0, max: 900000},
 					 respiratory_tests  : {label: 'Respiratory Tests',   value :30,  viewType: 'slider', min:0, max: 15},
@@ -54,6 +54,19 @@ let appMenus =  [
 			tabs      : [ { label: 'Mas Model', component: 'MasList' } ],
 		},
 	},
+	{
+        component: 'CommonViewer',
+        props: {
+            text: 'Pipeline Management',
+            service: 'mlPipelineAutomation',
+            initialRel: 'collection',
+            tabs: [
+                { label: 'View Projects', component: 'ViewPipelines' },
+                { label: 'Create Project', component: 'CreatePipeline' },
+                { label: 'View MAS Modules', component: 'ViewMas', service: "microanalyticScore", initialRel: 'modules' },
+            ]
+        },
+    },
 	{
 		component: 'Casl',
 		// hide: true,

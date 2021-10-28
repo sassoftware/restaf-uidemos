@@ -20,12 +20,14 @@ function RunMasModel (props) {
 
 	const _setUp = async () => {
 		let name = props.name;
+		debugger;
 		let control = await restaflib.masSetup(store, []);
 		await restaflib.masAddModel(store, control, [name]);
 		if (control.steps[name] == null) {
 			throw {Error: 'Model not found'}
 		}
-		let desc = restaflib.masDescribe(control, [name], 'score');
+		debugger;
+		let desc = restaflib.masDescribe(control, [name], null);
 		let metaData = props.viewData;
 		let data;
 		if (metaData !== null ) {
@@ -65,8 +67,8 @@ function RunMasModel (props) {
     }
 
     const _score = async (newData) => {
-		
-		let r = await restaflib.masRun(store, masControl, state.name, newData, 'score', 'execute');
+		debugger;
+		let r = await restaflib.masRun(store, masControl, state.name, newData, null, 'execute');
 		;
 		let d = r.filter( t1 => t1.name === props.target);
         return d;

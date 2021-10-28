@@ -15,12 +15,12 @@ function MasRun(props) {
     })
     let errInfo = null;
     let {restaflib, store} = useAppContext();
-
+    console.log(masControl);
     const _getDesc = async () => {
         let name = result.itemsList(index);
-        
+        debugger;
         await restaflib.masAddModel(store, masControl, [name]);
-        
+        debugger;
         let desc = restaflib.masDescribe(masControl, name, 'score');
         
         return {desc: desc, name: name}

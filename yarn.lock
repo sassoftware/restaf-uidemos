@@ -1962,10 +1962,10 @@
     url-parse "^1.4.7"
     uuid "^3.3.3"
 
-"@sassoftware/restaflib@next":
-  version "3.3.0"
-  resolved "https://registry.npmjs.org/@sassoftware/restaflib/-/restaflib-3.3.0.tgz"
-  integrity sha512-QFlAMyiQi1qTkagGTTO8n4QxfJLDsSbwxeX6ykEocNVvfcaYQeHf4KkGv20vATsqVpeK0b485TCuU32d/UwQ8w==
+"@sassoftware/restaflib@3.3.2":
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@sassoftware/restaflib/-/restaflib-3.3.2.tgz#baab6b702df77ebbc4ffb1b8f18534c0682bae59"
+  integrity sha512-+u/btfGq23okLcyMO36QnE+DoYvdcNnvS+o/iJa0/h2sRlFzQz4argLUBdrqkGzhIzm4592s1DCpWF2P1k3CYA==
   dependencies:
     colors "^1.4.0"
     jsdoc "^3.6.3"
