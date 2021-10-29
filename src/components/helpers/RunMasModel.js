@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -20,14 +20,15 @@ function RunMasModel (props) {
 
 	const _setUp = async () => {
 		let name = props.name;
-		debugger;
+		
 		let control = await restaflib.masSetup(store, []);
 		await restaflib.masAddModel(store, control, [name]);
 		if (control.steps[name] == null) {
 			throw {Error: 'Model not found'}
 		}
-		debugger;
+		
 		let desc = restaflib.masDescribe(control, [name], null);
+		
 		let metaData = props.viewData;
 		let data;
 		if (metaData !== null ) {
@@ -67,24 +68,35 @@ function RunMasModel (props) {
     }
 
     const _score = async (newData) => {
-		debugger;
+		
 		let r = await restaflib.masRun(store, masControl, state.name, newData, null, 'execute');
-		;
+		
 		let d = r.filter( t1 => t1.name === props.target);
         return d;
 	}
 
 	let Icon = Done;
 	let fabclass = classes.fabgood;
-	let value;
+	let svalue = '';
+	let bstate = false;
 	if (state.score != null) {
-		value = `${state.score[0].value} - Not at Risk`;
-		if (state.score[0].value < props.threshold) {
-			Icon  = WarningRounded;
-			fabclass = classes.fabbad;
-			value = `${state.score[0].value} - At Risk`;
+		svalue = state.score[0].value;
+		if ( props.threshold != null) {
+			if (typeof props.threshold === 'string') {
+				if (svalue === props.threshold) {
+					bstate = true;
+				}
+			} else if (svalue < props.threshold) {
+				bstate = true;
+			}
 		}
 	};
+	let value = `Recommendation: ${svalue}`;
+
+	if (bstate === true) {
+		Icon  = WarningRounded;
+		fabclass = classes.fabbad;
+	}
 	let show = 
 	<Fragment>
 	<Grid container justify="flex-start" alignItems="flex-start" spacing={2} direction="row">

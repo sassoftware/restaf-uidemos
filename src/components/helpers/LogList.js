@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 import React, { Fragment, useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import {useAppContext} from '../../providers';
@@ -10,14 +14,14 @@ import log2Html from '../lib/log2Html';
  */
 function LogList (props) {
 	let { computeInfo, type} = props;
-	debugger;
+	
 	let {store, restaflib, classes} = useAppContext();
 	let {computeResults} = restaflib;
     let [ log, setLog ] = useState('');
 	useEffect(() => {
 		const _format = async () => {
 			let tlog = await computeResults(store, computeInfo.result, (type === 'listing) ' ? 'listing' : 'log'));
-			debugger;
+			
 			return log2Html(tlog, classes);
 		};
 		if (computeInfo.result !== null) {

@@ -1,5 +1,5 @@
 /*
- * Copyright Â© 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright Â© 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, { useEffect, useState, Fragment, useRef } from 'react';
@@ -91,7 +91,7 @@ function ComputeService(props) {
 		return () => {
 			let session = currentInfo.current;
 			currentInfo.current = null;
-			debugger;
+			
 
 			if (session != null) {
 				return session.links('delete');
@@ -112,11 +112,11 @@ function ComputeService(props) {
 					let msgIcon = Warning;
 					let msgText = 'Selected file: ' + name;
 					let status = result.SASJobStatus;
-					debugger;
+					
 
 					msgText = `${msgText} ......  SAS job Status: ${status}`;
 					msgIcon = status === 'warnings' ? 'warning' : status === 'error' ? 'error' : 'info';
-					debugger;
+					
 					setComputeInfo({
 						session: session,
 						result: result,
@@ -131,7 +131,7 @@ function ComputeService(props) {
 					let msgIcon = 'error';
 					let msgText = 'Selected file: ' + name;
 					msgText = `${msgText}    Job completed with status of failed`;
-					debugger;
+					
 					setComputeInfo({
 						session: computeInfo.session,
 						result: null,

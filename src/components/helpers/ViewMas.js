@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 import React, { useEffect, useState, Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
@@ -42,15 +46,15 @@ function ViewMas(props) {
     });
 
     const _setUp = async () => {
-        debugger;
+        
         let r = await store.addServices(service); //adding the microanalyticScore service
-        debugger;
+        
         // r is {microanalyticScore: rafobject}
         // r.microanalyticScore  == r[service]
         //  js: t ={x:1, y:2}
         // t.x or t['x']
         let result = await store.apiCall(r[service].links(initialRel));
-        debugger;
+        
         let masControl = await restaflib.masSetup(store, []);
         // let d = result.items(result.itemsList(selected), 'data').toJS();
         return { result, masControl };
@@ -63,7 +67,7 @@ function ViewMas(props) {
         // let n = appInfo.result.itemsList(appInfo.index);
         // let n = appInfo.result.itemsList(appInfo.index);
         // let d = result.items(result.itemsList(selected), 'data').toJS();
-        debugger;
+        
         _setUp()
             .then((x) => {
                 setAppInfo({ result: x.result, msgText: null, msgIcon: null, index: 0, content: null, masControl: x.masControl, desc: null })
@@ -79,7 +83,7 @@ function ViewMas(props) {
         t.index = index;
         t.name = name;
         t.label = name;
-        debugger;
+        
         setAppInfo(t)
     }
 
@@ -95,9 +99,9 @@ function ViewMas(props) {
     //     let result = await restaflib.masRun(store, masControl, model, scenario, 'score');
     //     console.log(JSON.stringify(result, null, 4));
     //     // let masControl = await restaflib.masSetup(store, [name]);
-    //     // debugger;
+    //     // 
     //     // let desc = restaflib.masDescribe(masControl, name, "execute");
-    //     // debugger;
+    //     // 
     //     // console.log(desc);
     //     // return desc
 
@@ -130,7 +134,7 @@ function ViewMas(props) {
 
             appOptions.runAndReport(rafLink, p, jobContext);
         } else if (rel === 'registerChampionModel') {
-            debugger;
+            
             console.log(JSON.stringify(rafLink, null, 4));
             let p = {
                 qs: {

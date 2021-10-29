@@ -1,4 +1,7 @@
-
+/*
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 import React, { useState, Fragment, useEffect } from 'react';
 import uploadData from '../lib/uploadData';
 import SimpleDataForm from './SimpleDataForm';
@@ -49,16 +52,16 @@ function CreatePipeline(props) {
     });
 
     const _setup = async () => {
-        debugger;
+        
         let { casManagement } = await store.addServices('casManagement', 'compute');
         let servers = await store.apiCall(casManagement.links('servers'));
-        debugger;
+        
         let serverName = servers.itemsList(0);
         let p = {
             qs: { limit: 100 }
         }
         let caslibs = await store.apiCall(servers.itemsCmd(serverName, 'caslibs'), p);
-        debugger;
+        
         let caslibList = caslibs.itemsList().toJS();
         return caslibList;
     }
@@ -67,7 +70,7 @@ function CreatePipeline(props) {
             .then(r => {
                 let appi = { ...appInfo };
                 let c = appi.userData.find((row => row.name === 'caslib'));
-                debugger;
+                
                 c.selections = r;
                 setAppInfo(appi);
             })
@@ -78,7 +81,7 @@ function CreatePipeline(props) {
     }, []);
 
     const _createPipeline = async (newInfo, uri) => {
-        debugger;
+        
         let { mlPipelineAutomation } = await store.addServices('mlPipelineAutomation');
         let data = {
             "name": newInfo.name.trim(),
@@ -100,7 +103,7 @@ function CreatePipeline(props) {
         };
 
         // eslint-disable-next-line no-unused-vars
-        debugger;
+        
         // eslint-disable-next-line no-unused-vars
         let jobContext = {
             id: `${newInfo.name} createPipeline`,
@@ -110,12 +113,12 @@ function CreatePipeline(props) {
         let job = store.submit(mlPipelineAutomation.links('createProject'), p, 5, jobContext, onCompletion, progress);
         //let job = await store.apiCall(mlPipelineAutomation.links('createProject'),p)
 
-        debugger;
+        
         return data;
     }
 
     const _upload = (newData) => {
-        debugger;
+        
 
         let newInfo = {};
         newData.forEach(s => {
@@ -130,7 +133,7 @@ function CreatePipeline(props) {
             if (['csv', 'xlsx', 'xls', 'sashdat', 'sas7bdat'].indexOf(type) === -1) {
                 alert(`File type of f.name currently not supported`);
             } else {
-                debugger;
+                
                 if (newInfo.tableName.trim().length > 0) {
                     fname = newInfo.tableName.trim();
                 }

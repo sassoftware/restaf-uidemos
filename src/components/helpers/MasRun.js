@@ -1,4 +1,7 @@
-
+/*
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 import React, { useState, useEffect, Fragment } from 'react';
 import { PropTypes } from 'prop-types';
 import { Grid } from '@material-ui/core';
@@ -18,10 +21,10 @@ function MasRun(props) {
     console.log(masControl);
     const _getDesc = async () => {
         let name = result.itemsList(index);
-        debugger;
+        
         await restaflib.masAddModel(store, masControl, [name]);
-        debugger;
-        let desc = restaflib.masDescribe(masControl, name, 'score');
+        
+        let desc = restaflib.masDescribe(masControl, name, null);
         
         return {desc: desc, name: name}
     }
@@ -35,11 +38,11 @@ function MasRun(props) {
                 let t = {...runState};
                 t.scoreResult = r;
                 t.newData = newData;
-                debugger;
+                
                 setRunState(t);
             })
             .catch(err => {
-                debugger;
+                
                 errInfo = { msg: err, title: `Scoring ${runState.name}` };
                 console.log(errInfo);
             })
@@ -48,7 +51,7 @@ function MasRun(props) {
 
     const _score = async (newData) => {
         let name = result.itemsList(index);
-        let r = await restaflib.masRun(store, masControl, name, newData, 'score', 'execute');
+        let r = await restaflib.masRun(store, masControl, name, newData, null, 'execute');
         return r;
     }
 

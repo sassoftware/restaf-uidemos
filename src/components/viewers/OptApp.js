@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 import React, { useContext, useState, useRef, useEffect, Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppContext } from '../../providers';
@@ -93,12 +97,12 @@ ods html close;
 		}
 
 		let computeInfo = await computeRun(store, session, sascode, macros, 'wait', 2);
-		debugger;
+		
 		console.log(computeInfo.SASJobStatus);
 		let ods = await computeResults(store, computeInfo, 'ods');
 		let log = await computeResults(store, computeInfo, 'log');
 
-		debugger;
+		
 		let newJob = { session: session, ods: ods, log: log, userInput: inputValues };
 		setMessage(null);
 		return newJob;

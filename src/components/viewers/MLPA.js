@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -49,7 +53,6 @@ function Mlpa (props) {
 
     let currentInfo = useRef(null);
       
-
     let tabsBar = tabs.map((t, i) => {
         return <Tab label={t.label} value={i} key={i} className={classes.tab} />;
     });
@@ -72,6 +75,7 @@ function Mlpa (props) {
         setCurrentTab(newValue);
     };
 
+    /*
     const _getCollections = async () => {
         let { mlPipelineAutomation } = await store.addServices('mlPipelineAutomation');
         let projects = await store.apiCall(mlPipelineAutomation.links('collection'));
@@ -79,6 +83,7 @@ function Mlpa (props) {
         return true;
     
     }
+    */
 
    
 

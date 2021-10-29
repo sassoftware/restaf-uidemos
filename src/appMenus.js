@@ -1,6 +1,6 @@
 
 /*
-* Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+* Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
 * SPDX-License-Identifier: Apache-2.0
 */
 
@@ -22,30 +22,31 @@ let appMenus =  [
 			three: 3,
 		}
 	},
-	/*
+	
 	{
 		component: 'MasModel',
 		props    : {
-			text : 'Covid Infection Analysis',
+			text : 'Car Auction',
 			models: [
 				{
-				 label: 'Machine Failure',
-				 name : 'Machine Failure',
+				 label: 'Car Auction',
+				 name : 'mfgCarAuction1_0',
 				 viewData: {
-					 income             : {label: 'Income(x1000)',       value: 10000, multiplier: 1000, viewType: 'slider', min: 0, max: 900000},
-					 respiratory_tests  : {label: 'Respiratory Tests',   value :30,  viewType: 'slider', min:0, max: 15},
-					 cholesterol_level  : {label: 'Cholesterol Level',   value :30,  viewType: 'slider', min:0, max:1200},
-					 city_infection_rate: {label: 'City Infection Rate', value :1.0, viewType: 'slider', min:0, max:210}
+					 make_     : {label: 'Make of Car', viewType: 'select', value: 'FORD', selections: ['FORD', 'BMW', 'LEXUS', 'PRIUS']},
+					 mileage_  : {label: 'Mileage', value :10000,  viewType: 'slider', min:5000, max: 50000},
+					 num_vehicles_  : {label: 'No. of similar vehicles',   value :10,  viewType: 'slider', min:0, max: 20},
+					 quality_: {label: 'Quality of vehicles', value :5.0, viewType: 'slider', min:0, max:10}
 					 },
 				 target: {
-					 name     : 'P_INFECTED1',
-					 threshold: 0.7 
+					 name     : 'OFFER',
+					 threshold: 'NO OFFER'
+
 				 }
 			 }
 		  ]
 		}
 	},
-	*/
+	
 	{
 		component: 'CommonViewer',
 		props    : {

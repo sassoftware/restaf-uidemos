@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, { useEffect, useState, Fragment } from 'react';
@@ -36,7 +36,7 @@ function ViewPipelines(props) {
     const _setup = async () => {
         let r = await store.addServices(service);
         console.log(r);
-        debugger;
+        
         let result = await store.apiCall(r[service].links(initialRel));
         console.log(result)
         return result;
@@ -54,7 +54,7 @@ function ViewPipelines(props) {
             })
     }
     useEffect(() => {
-        debugger;
+        
         _setup()
             .then((result) => {
                 setAppInfo({ result: result, msgText: null, msgIcon: null, index: 0, content: null });
@@ -100,7 +100,7 @@ function ViewPipelines(props) {
 
             appOptions.runAndReport(rafLink, p, jobContext);
         } else if (rel === 'registerChampionModel') {
-            debugger;
+            
             console.log(JSON.stringify(rafLink, null, 4));
             let p = {
                 qs: {
@@ -119,7 +119,7 @@ function ViewPipelines(props) {
     const _setButton = () => {
         let n = appInfo.result.itemsList(appInfo.index);
         let t = appInfo.result.itemsCmd(n, 'championModel') == null ? true : false;
-        debugger;
+        
         return t;
     }
     let show = (
