@@ -74,6 +74,7 @@
        //  window.onload = setup;
     
        async function logonUser() {
+           console.log(LOGONPAYLOAD);
            await store.logon(LOGONPAYLOAD);
            return  '';
        }
