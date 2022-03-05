@@ -32,11 +32,11 @@ ENV SAMESITE=None,secure
 #
 # HTTPS=true
 # Option 1
-ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Company,OU:dep,CN:localhost"
+# ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Company,OU:dep,CN:localhost"
 
 # Option 2
-# TLS_KEY=../certs/self/key.pem
-# TLS_CERT=../certs/self/certificate.pem
+ENV TLS_KEY=../secrets/tls.key
+ENV TLS_CERT=../secrets/tls.crt
 
 # Option 3
 # TLS_PFX=../certs/sascert/sascert2.pfx
@@ -45,5 +45,6 @@ ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Company,OU:dep,CN:localhost"
 # Optional
 # TLS_CABUNDLE=../certs/pems/roots.pem
 
+# ENV USETOKEN=YES
 #####################################################################
 CMD ["npm", "run", "indocker"]
