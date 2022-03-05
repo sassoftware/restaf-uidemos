@@ -21,10 +21,11 @@
 		"node": ">=12.14.0"
 	},
 	"dependencies": {
-		"@sassoftware/viya-appserverjs": "next"
+		"@sassoftware/viya-appserverjs": "next",
+		"cross-env": "^7.0.3"
 	},
 	"scripts": {
-		"start": "npx @sassoftware/viya-appserverjs --env=./.env --docker=./Dockerfile",
+		"start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 npx @sassoftware/viya-appserverjs --env=./.env --docker=./Dockerfile",
 		"app": "node server --env=./.env --docker=./Dockerfile",
 		"indocker": "node server"
 	}
