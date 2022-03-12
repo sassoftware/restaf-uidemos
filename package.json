@@ -21,7 +21,7 @@
 		"node": ">=12.14.0"
 	},
 	"dependencies": {
-		"@sassoftware/viya-appserverjs": "^1.2.54",
+		"@sassoftware/viya-appserverjs": "^1.3.5",
 		"cross-env": "^7.0.3"
 	},
 	"scripts": {

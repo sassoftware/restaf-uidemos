@@ -31,8 +31,8 @@
 		></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-		<script src="https://unpkg.com/@sassoftware/restaf/dist/restaf.js"></script>
-		<script src="https://unpkg.com/@sassoftware/restaflib/dist/restaflib.js"></script>
+		<script src="https://unpkg.com/@sassoftware/restaf@dbg/dist/restaf.js"></script>
+		<script src="https://unpkg.com/@sassoftware/restaflib@dbg/dist/restaflib.js"></script>
 		<script src="/ORAPP/appenv"></script>
 
 	
@@ -65,7 +65,9 @@
 		</style>
 	
 		<script>
-			let store = restaf.initStore({casProxy: false});
+			debugger;
+			/* default options: {casProxy: false, withCredentials: true}*/
+			let store = restaf.initStore() ; 
 			let session = null;
 			let servers = null;
 			let services = null;
@@ -224,7 +226,7 @@
 				);
 				let payload = {
 					action: 'builtins.echo',
-					data: { code: { x: 1 } }
+					data:  { code: 'data casuser.data1; x=1;put x= ; run; ' }
 				};
 				let r = await store.runAction(session, payload);
 				console.log('echo completed');
@@ -311,6 +313,7 @@
 			</button>
 			<br />
 			<br />
+			
 		</div>
 
 		<div>

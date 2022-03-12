@@ -19,7 +19,7 @@ ENV APPHOST=0.0.0.0
 # ENV APPENV=appenv.js
 
 ENV AUTHFLOW=code
-ENV CLIENTID=appjs
+ENV CLIENTID=apidev3
 ENV CLIENTSECRET=secret
 
 ##########################
@@ -32,11 +32,11 @@ ENV SAMESITE=None,secure
 #
 # HTTPS=true
 # Option 1
-# ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Company,OU:dep,CN:localhost"
+ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Company,OU:dep,CN:localhost"
 
 # Option 2
-ENV TLS_KEY=../secrets/tls.key
-ENV TLS_CERT=../secrets/tls.crt
+# ENV TLS_KEY=../secrets/tls.key
+# ENV TLS_CERT=../secrets/tls.crt
 
 # Option 3
 # TLS_PFX=../certs/sascert/sascert2.pfx
