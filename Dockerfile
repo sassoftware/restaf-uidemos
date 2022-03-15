@@ -1,5 +1,5 @@
 FROM node:12.16.1-alpine
-LABEL maintainer="your-email"
+LABEL maintainer="deva.kumar@sas.com"
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install
@@ -18,8 +18,9 @@ ENV APPHOST=0.0.0.0
 
 # ENV APPENV=appenv.js
 
+ENV APPNAME=ORAPP
 ENV AUTHFLOW=code
-ENV CLIENTID=apidev3
+ENV CLIENTID=appjs
 ENV CLIENTSECRET=secret
 
 ##########################
@@ -45,6 +46,6 @@ ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Company,OU:dep,CN:localhost"
 # Optional
 # TLS_CABUNDLE=../certs/pems/roots.pem
 
-# ENV USETOKEN=YES
+ENV USETOKEN=YES
 #####################################################################
 CMD ["npm", "run", "indocker"]

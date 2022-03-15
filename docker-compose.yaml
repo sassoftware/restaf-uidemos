@@ -6,8 +6,7 @@ services:
       ports:
         - 5002:8080
       environment:
-        - VIYA_SERVER=https:xxxx
-        - APPNAME=ORAPP
+        - VIYA_SERVER= 
 # Mounts volume for tokens(if using saved tokens, and other files)
 # volumes:
 #    - c:/Public/dev/data/sas:/sasin
