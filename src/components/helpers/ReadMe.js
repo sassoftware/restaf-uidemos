@@ -3,16 +3,14 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 import React, {Fragment} from 'react';
-const ReactMarkdown = require('react-markdown/with-html');
+import ReactMarkdown from 'react-markdown';
 
 function ReadMe (props) {
   let { text } = props;
     
   return <Fragment>
 
-    <ReactMarkdown escapeHtml={false} disallowedtypes={[ "inlinecode" ]}
-           source={text}
-        />;
+    <ReactMarkdown children={text} disallowedtypes={[ "inlinecode" ]} />;
   </Fragment>
 }
 
