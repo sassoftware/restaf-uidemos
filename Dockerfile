@@ -18,9 +18,9 @@ ENV APPHOST=0.0.0.0
 
 # ENV APPENV=appenv.js
 
-ENV APPNAME=ORAPP
+ENV APPNAME=viyaapp
 ENV AUTHFLOW=code
-ENV CLIENTID=appjs
+ENV CLIENTID=clientapp
 ENV CLIENTSECRET=secret
 
 ##########################
@@ -46,6 +46,6 @@ ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Company,OU:dep,CN:localhost"
 # Optional
 # TLS_CABUNDLE=../certs/pems/roots.pem
 
-ENV USETOKEN=YES
+# ENV USETOKEN=YES
 #####################################################################
 CMD ["npm", "run", "indocker"]
