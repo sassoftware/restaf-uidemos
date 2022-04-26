@@ -18,10 +18,7 @@ ENV APPHOST=0.0.0.0
 
 # ENV APPENV=appenv.js
 
-ENV APPNAME=viyaapp
 ENV AUTHFLOW=code
-ENV CLIENTID=clientapp
-ENV CLIENTSECRET=secret
 
 ##########################
 # TLS Setup

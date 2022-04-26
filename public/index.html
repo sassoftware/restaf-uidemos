@@ -20,296 +20,46 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-
-		<script
-			crossorigin
-			src="https://unpkg.com/react@16/umd/react.production.min.js"
-		></script>
-		<script
-			crossorigin
-			src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"
-		></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-		<script src="https://unpkg.com/@sassoftware/restaf@dbg/dist/restaf.js"></script>
-		<script src="https://unpkg.com/@sassoftware/restaflib@dbg/dist/restaflib.js"></script>
+		<!-- the script below  returns useful information from server in a javascript object name LOGONPAYLOAD -->
+		<!-- The most useful element is LOGONPAYLOAD.host , the url of the Viya server -->
+		<!-- This helps avoid hard codung the Viya host url in the html -->
 		<script src="/viyaapp/appenv"></script>
 
-	
-		<style>
-			.container {
-				display: flex;
-				flex-direction: column;
-				flex-wrap: nowrap;
-				min-height: 800px;
-			}
-			.elabel {
-				display: inline-block;
+		<!-- http package to make calls to Viya -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-				clear: left;
-				width: 250px;
-				text-align: right;
-			}
-			.einput {
-				display: inline-block;
-			}
-			.div1 {
-				border: 1px solid black;
-				background: lightskyblue;
-			}
-			.div2 {
-				border: 1px solid black;
-				background: lightskyblue;
-				height: 200px;
-			}
-		</style>
 	
 		<script>
-			debugger;
-			/* default options: {casProxy: false, withCredentials: true}*/
-			let store = restaf.initStore() ; 
-			let session = null;
-			let servers = null;
-			let services = null;
-			let files = null;
-			let reports = null;
-			let compute = null;
-
 			function setup() {
-				
-				document.getElementById('output').innerHTML = '...initializing';
-				
-				initSession()
-					.then(r => {
-						document.getElementById('output').innerHTML = 'ready';
-						keepAlive();
-					})
-					.catch(e => {
-						
-						console.log(e);
-					});
-			}
-			function keepAlive() {
-				if (LOGONPAYLOAD.keepAlive != null) {
-					let interval = 120;
-					let timeout = 14400;
-					if (LOGONPAYLOAD.timers != null) {
-						let opts = LOGONPAYLOAD.timers.split(',');
-						interval = parseInt(opts[ 0 ]);
-						timeout = parseInt(opts[ 1 ]);
-					}
-					console.log(`Keepalive is active`);
-					store.keepViyaAlive(LOGONPAYLOAD.keepAlive, interval, timeout, () => {
-						console.log('timed out at', Date());
-						let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`;
-						window.open(`${appOptions.logonPayload.host}/SASLogon/timedout`, 'Timed Out', params);
-						return true;
-					});
-				}
-
-			}
-			function logoff() {
-				let url = `${window.location.protocol}//${window.location.host}/${LOGONPAYLOAD.appName}/logout?callbackUrl=onlogoff.html`;
-				window.location.replace(url);
-
-					
-			}
-			async function initSession() {
-				
-				console.log(LOGONPAYLOAD);
-				console.log(APPENV);
-				let msg = await store.logon(LOGONPAYLOAD);
-				
-				services = await store.addServices(
-					'files', 'compute', 'casManagement'
-				);
-				
-				return 'done';
+				console.log(LOGONPAYLOAD);  /* for learning purposes */
 			}
 			function runit(type) {
-				
-				debugger;
 				document.getElementById('output').innerHTML = '...running';
-				let testcase;
-				switch (type) {
-					case 'files': {
-						testcase = SASfileService;
-						break;
-					}
-					case 'compute': {
-						testcase = dsCompute;
-						break;
-					}
-					case 'cas': {
-						testcase = runCas;
-						break;
-					}
-					case 'timedout': {
-						testcase = timedout;
-						break;
-					}
-					case 'redir': {
-						testcase= noaction;
-						
-						break;
-					}
-					case 'testget': {
-						debugger;
-						testcase= testGet;
-						break;
-					}
-					case 'testpost': {
-						testcase= testPost;
-						break;
-					}
-					default: {
-						testcase = SASfileService;
-						break;
-					}
+				let config = {
+					url   : `${LOGONPAYLOAD.host}/files/files`,
+					method: 'GET',
+					withCredentials: true   /* This is required. This allows the browser communicate the credentials to the server */
 				}
-				debugger;
-				testcase(store)
-					.then(r => {
-						document.getElementById(
-							'output'
-						).innerHTML = JSON.stringify(r, null, 4);
+				axios(config)
+					.then (r => {
+						console.log(r.data.items);
+						let items = r.data.items.map( item => {	return item.id;})
+						document.getElementById('output').innerHTML = JSON.stringify(items, null, 4);
 					})
 					.catch(err => {
-						
-						document.getElementById(
-							'output'
-						).innerHTML = JSON.stringify(err, null, 4);
-					});
-			}
-			async function noaction() {
-				r = {msg: 'redirects completed'};
-				return r;
-			}
-			async function testGet(store) {
-				debugger;
-				let p = {
-					method: 'GET',
-					url   : `${APPENV.APISERVER}/testroute`,
-					withCredentials: true
+						document.getElementById('output').innerHTML = JSON.stringify(err, null, 4);
+					})
+				
 				}
-				debugger;
-				console.log(p);
-				let r = await store.request(p);  //replace store.request(uses axios)with your favorite http library
-				return r.data;
-			}
-			async function testPost(store) {
-				debugger;
-				let config = {
-					method: 'POST',
-					url   : `${APPENV.APISERVER}/casl`,
-					withCredentials: true,
-					data: {"input": {"x" : 1},"code": "print 10; send_response(_args_);"}
-					}
-				let r = await store.request(config); //replace store.request(uses axios) with your favorite http library
-				return r.data;
-			}
-			async function timedout(store) {
-				console.log('timed out at', Date() );
-				let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`;
-				window.open(`${LOGONPAYLOAD.host}/SASLogon/timedout`,'Timed Out', params);
-				return true;
-			}
-			async function runCas(store) {
-				
-				let {casManagement} = await store.addServices('casManagement');
-				let servers = await store.apiCall(
-					casManagement.links('servers')
-				);
-				let serverName = servers.itemsList(0);
-				let session = await store.apiCall(
-					servers.itemsCmd(serverName, 'createSession')
-				);
-				let payload = {
-					action: 'builtins.echo',
-					data:  { code: 'data casuser.data1; x=1;put x= ; run; ' }
-				};
-				let r = await store.runAction(session, payload);
-				console.log('echo completed');
-				await store.apiCall(session.links('delete'));
-				return r.items();
-			}
-
-			async function SASfileService(store) {
-				
-				let {files} = await store.addServices('files');
-				console.log(JSON.stringify(files.links(), null, 4));
-				let payload = {
-					data: { x: 1, y: 'This was saved earlier in the step' },
-					headers: { 'content-type': 'application/json' }
-				};
-				let createCmd = files.links('create');
-				let newFile = await store.apiCall(createCmd, payload);
-
-				let content = await store.apiCall(newFile.links('content'));
-				
-				return content.items();
-			}
-			async function dsCompute(store) {
-				let log = null;
-				let {compute} = await store.addServices('compute');
-
-				let contexts = await store.apiCall(compute.links('contexts'));
-
-				// lookup the name of the first context and then use it to get the associated createSession restafLink
-				let createSession = contexts.itemsCmd(
-					contexts.itemsList(0),
-					'createSession'
-				);
-				let session = await store.apiCall(createSession);
-
-				// Now run a simple data step in that session
-				let payload = {
-					data: {
-						code: [`data _null_; do i = 1 to 100; x=1; end; run; `]
-					}
-				};
-
-				// Now execute the data step and wait for completion
-				let job = await store.apiCall(
-					session.links('execute'),
-					payload
-				);
-				let status = await store.jobState(job, null, 5, 2);
-
-				if (status.data === 'running') {
-					throw `ERROR: Job did not complete in allotted time`;
-				} else {
-					switch (status.data) {
-						case 'warning':
-							console.log(`Warning: check your log for warnings`);
-							break;
-						case 'error':
-							throw `Please correct errors and rerun program`;
-						default:
-							log = await store.apiCall(status.job.links('log'));
-							break;
-					}
-				}
-				return log === null ? status : log.items();
-			}
+			
 		</script>
 	</head>
 	<body onload="setup()">
 		<h1 id="head">Hi</h1>
-		<h2> Direct REST calls to Viya Server</h2>
+		<h2> Custom call to Viya Server</h2>
 		<div>
-			<button onclick="runit('files')">
-				Press to make a call to file service
-			</button>
-			<br />
-			<br />
-			<button onclick="runit('compute')">
-				Press to make a call compute service
-			</button>
-			<br />
-			<br />
-			<button onclick="runit('cas')">
-				Press to make a call to cas echo
+			<button onclick="runit()">
+				Press to list files from file service
 			</button>
 			<br />
 			<br />
@@ -317,6 +67,8 @@
 		</div>
 
 		<div>
+			<h3> List of files</h3>
+			<br>
 			<pre id="output"></pre>
 		</div>
 	</body>
