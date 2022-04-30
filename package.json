@@ -1,6 +1,6 @@
 {
 	"name": "viyaapp",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"main": "server.js",
 	"description": "Simple Viya app",
 	"author": "Deva Kumaraswamy <deva.kumar@sas.com>",
