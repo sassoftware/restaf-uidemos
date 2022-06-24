@@ -1,11 +1,11 @@
 {
   "name": "restaf-uidemos",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "UI demos for Viya using restaf, restaflib and uilibrary",
   "main": "index.js",
   "scripts": {
-    "start": "npx @sassoftware/viya-appserverjs --appenv=./appenv.js --env=./.env --docker=./Dockerfile",
-    "indocker": "npx @sassoftware/viya-appserverjs",
+    "start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 npx @sassoftware/viya-appserverjs --appenv=./appenv.js --env=./.env --docker=./Dockerfile",
+    "indocker": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 npx @sassoftware/viya-appserverjs",
     "dkrbuild": "docker build -f Dockerfile -t viyaapp .",
     "dkrrun": "docker run -p 8080:8080  --env-file .env  --name uidemos -t viyaapp",
     "dkrtest": "docker run -p 8081:8081 --env-file .env  --name uidemostest -v C:/Public/dev/reports:/mydata -t viyaapp"
@@ -13,7 +13,8 @@
   "repository": "https://github.com/sassoftware/restaf/tree/gen2/packages/uidemos",
   "keywords": [],
   "dependencies": {
-    "@sassoftware/viya-appserverjs": "^1.3.7"
+    "@sassoftware/viya-appserverjs": "^2.0.2",
+    "cross-env": "^7.0.3"
   },
   "author": "Deva Kumar <deva.kumar@sas.com>",
   "license": "Apache-2.0"
