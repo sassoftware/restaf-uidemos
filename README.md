@@ -13,12 +13,12 @@ Create an authorization_code flow clientid and clientsecret(ex: sample value sho
 
 - clientid     = rafdrk
 - clientsecret = secret
-- redirectUri  = http://localhost:8080/viyaapp
+- redirectUri  = <http://localhost:8080/viyaapp>
 
 ## Install
 
 ```script
-git clone https://sassoftware/restaf-uidemos
+git clone https://github.com/sassoftware/restaf-uidemos
 cd restaf-uidemos
 npm install
 ```
@@ -42,13 +42,12 @@ Then run the following command:
 npm start
 ```
 
-Visit this site on your browser:  http://localhost:8080/viyaapp
+Visit this site on your browser:  <http://localhost:8080/viyaapp>
 
 You will be prompted for your userid and password. If logon is successful you will be presented a web page with choices for running different applications.
 
 You can add your own apps to this list ( see index.html )
 
-
 ## Docker container
 
-Use the scripts dkrbuild and dkrrun in package.json to setup and run the app in docker.
+Use the scripts dkrbuild and dkrrun in package.json to setup and run the app in docker
