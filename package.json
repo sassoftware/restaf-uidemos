@@ -6,7 +6,8 @@
   "author": "K. Deva Kumar",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf -rf lib && babel src --out-dir lib"
+    "build": "rimraf -rf lib && babel src --out-dir lib",
+    "pub": "npm publish --tag test --access public"
   },
   "eslintConfig": {
     "extends": "react-app"
