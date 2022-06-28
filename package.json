@@ -12,11 +12,14 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/sassoftware/restaf-uidemos"
   },
-  "unpkg": "lib/index.js",
+  "unpkg": "./lib/index.js",
   "keywords": [
     "viya",
     "dataeditor",
