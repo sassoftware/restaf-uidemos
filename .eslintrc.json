@@ -1,54 +1,42 @@
 {
-  "root": true,
-  "plugin": [
-    "eslint-plugin-react"
-  ],
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
-  },
-  "parser": "babel-eslint",
-  "extends": [
-    "eslint:recommended"
-  ],
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "rules": {
-    "key-spacing": [
-      2,
-      {
-        "align": "colon"
-      }
-    ],
-    "jsx-quotes": [
-      2,
-      "prefer-double"
-    ],
-    "no-console": 0,
-    "no-unused-vars": [
-      0,
-      {
-        "args": "none"
-      }
-    ],
-    "no-debugger": 0,
-    "react/prop-types": 0,
-    "array-bracket-spacing": [
-      2,
-      "always"
-    ],
-    "space-in-parens": [
-      2,
-      "always"
-    ]
-
-  }
+	"root": true,
+	"env": {
+		"browser": true,
+		"node": true,
+		"es6": true
+	},
+	"parser": "@babel/eslint-parser",
+	"extends": ["eslint:recommended", "prettier", "react-app"],
+	"parserOptions": {
+		"requireConfigFile": false,
+		"babelOptions": {"configFile": "./.babelrc"},
+		"ecmaVersion": 6,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"rules": {
+		"key-spacing": [
+			2,
+			{
+				"align": "colon"
+			}
+		],
+		"jsx-quotes": [2, "prefer-double"],
+		"no-console": 0,
+		"no-unused-vars": [
+			1,
+			{
+				"args": "none"
+			}
+		],
+		"no-debugger": 0,
+		"react/prop-types": 0,
+		"array-bracket-spacing": [2, "never"],
+		"space-in-parens": [2, "never"],
+		"space-before-function-paren": [2, "always"],
+		"semi": [2, "always"],
+		"no-prototype-builtins": 0
+	}
 }
-
-
