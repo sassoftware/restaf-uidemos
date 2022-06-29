@@ -4,7 +4,7 @@ const pkg = require('./package.json');
 const path = require('path');
 const libraryName= pkg.name;
 module.exports = {
-    entry: path.join(__dirname, "./src/index.js"),
+    entry: path.join(__dirname, "./lib/index.js"),
     mode: "development",
     output: {
         path: path.join(__dirname, './dist'),
@@ -38,9 +38,13 @@ module.exports = {
         },
         {
             test: /\.(js|jsx)$/,
-            use: ["babel-loader"],
-            include: path.resolve(__dirname, "src"),
+           
+            include: path.resolve(__dirname, "lib"),
             exclude: /node_modules/,
+            use: {
+                loader: "babel-loader"
+            }
+            
         },
         {
             test: /\.(eot|ttf|woff|woff2)$/,
