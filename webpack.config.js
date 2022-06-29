@@ -1,15 +1,16 @@
-const webpack = require('webpack');
+// const webpack = require('webpack');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const pkg = require('./package.json');
+// import pkg from './package.json';
 const path = require('path');
-const libraryName= pkg.name;
+
+const pkg = require('./package.json');
 module.exports = {
     entry: path.join(__dirname, "./lib/index.js"),
     mode: "development",
     output: {
         path: path.join(__dirname, './dist'),
         filename: 'viyaedit.js',
-        library: libraryName,
+        library: 'viyaedit',
         libraryTarget: 'umd',
         publicPath: '/dist/',
         umdNamedDefine: true

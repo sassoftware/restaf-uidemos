@@ -3,16 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-const casUpdateRow     = require('./casUpdateRow');
-const cellEditEvent    = require('./cellEditEvent');
-const commonHandler    = require('./commonHandler');
-const fetchTableRows   = require('./fetchTableRows');
-const prepFormData     = require('./prepFormData');
-const setInitialState  = require('./setInitialState');
-const setupConnections = require('./setupConnections');
-const text2Float       = require('./text2Float');
 
-export default {
+import casUpdateRow  from './casUpdateRow';
+import cellEditEvent from './cellEditEvent';
+import commonHandler  from './commonHandler';
+import fetchTableRows   from './fetchTableRows';
+import prepFormData     from './prepFormData';
+import setInitialState  from './setInitialState';
+import setupConnections from './setupConnections';
+import text2Float       from './text2Float';
+
+export {
     casUpdateRow,
     cellEditEvent,
     commonHandler,

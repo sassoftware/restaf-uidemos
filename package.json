@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "babelit": "rimraf -rf lib && babel src --out-dir lib",
     "build": "rimraf -rf build && webpack --config webpack.config.js",
-    "pub": "npm publish --tag test --access public"
+    "pub": "npm publish --tag test --access public",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -71,6 +73,14 @@
     "@babel/plugin-transform-strict-mode": "^7.16.7",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.18.6",
+    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-interactions": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/builder-webpack4": "^6.5.9",
+    "@storybook/manager-webpack4": "^6.5.9",
+    "@storybook/react": "^6.5.9",
+    "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.2.5",
     "eslint": "^8.16.0",
     "eslint-plugin-react": "^7.30.0",
