@@ -14,8 +14,7 @@
     "extends": "react-app"
   },
   "files": [
-    "dist",
-    "lib"
+    "dist"
   ],
   "repository": {
     "type": "git",
