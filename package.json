@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/viyaedit",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "component library for data-edit",
   "main": "dist/index.js",
   "author": "K. Deva Kumar",
@@ -84,7 +84,5 @@
     "webpack-cli": "4.5.0",
     "webpack-node-externals": "2.5.2"
   },
-  "dependencies": {
-    
-  }
+  "dependencies": {}
 }
