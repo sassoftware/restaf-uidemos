@@ -14,12 +14,13 @@ import setupConnections from '../lib/setupConnections';
 import DataViewer from './DataViewer';
 
 function DataEditor(props) {
-    const { appProps, viyaConnection, tableForm, selectEditor } = props;
+    const { viyaConnection } = props;
     const [state, setState] = useState({});
 
     useEffect(() => {
         setupConnections(viyaConnection)
             .then((r) => {
+                r.appProps = props.appProps;
                 setState(r);
             })
             .catch((err) => {
@@ -36,11 +37,11 @@ function DataEditor(props) {
         show = (
             <div id='page-wrap' key={Date()}>
                 <DataViewer
-                    appProps={appProps}
-                    selectEditor={selectEditor}
+                    appProps={props.appProps}
+                    selectEditor={props.selectEditor}
                     appEnv={state}
-                    from={appProps.from}
-                    tableForm={tableForm}
+                    from={props.appProps.from}
+                    tableForm={props.tableForm}
                 />
             </div>
         );

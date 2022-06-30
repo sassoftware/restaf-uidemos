@@ -39,6 +39,7 @@ function DataEditorVisual(props) {
         data[e.rowIndex] = r.data;
         // r.status handling
         setModFlag(!modFlag);
+        onEdit(r.data, e.rowIndex);
 
         if (appProps.autoSave === true) {
             const w = {};
@@ -48,11 +49,8 @@ function DataEditorVisual(props) {
             casUpdateRow(table, r.data, w, columns, appEnv)
                 .then((r) => {
                     setModFlag(!modFlag);
-                    onEdit(r.data, e.rowIndex);
                 })
                 .catch((err) => console.log(err));
-        } else {
-            onEdit(r.data, e.rowIndex);
         }
     };
 
