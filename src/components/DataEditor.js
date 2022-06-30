@@ -9,40 +9,42 @@
  * tableForm (object) - form for this table
  * selecteditor (function) - function returns React framework component
  */
-import React , {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import setupConnections from '../lib/setupConnections';
 import DataViewer from './DataViewer';
 
-function DataEditor (props) {
-	let {appProps, viyaConnection, tableForm, selectEditor} = props;
-	const [state, setState] = useState({});
+function DataEditor(props) {
+    const { appProps, viyaConnection, tableForm, selectEditor } = props;
+    const [state, setState] = useState({});
 
     useEffect(() => {
-		
-		setupConnections(viyaConnection)
-		.then (r => {
-			setState(r);
-		})
-		.catch (err => {
-			throw {Error: JSON.stringify(err)};
-		});
+        setupConnections(viyaConnection)
+            .then((r) => {
+                setState(r);
+            })
+            .catch((err) => {
+                throw { Error: JSON.stringify(err) };
+            });
+    }, [
+        props.appProps.editor,
+        props.appProps.table.caslib,
+        props.appProps.table.name
+    ]);
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.appProps.editor, props.appProps.table.caslib,  props.appProps.table.name]);
-
-   let show = null;
-   if (state.session != null) {
-	show =
-		<div id="page-wrap" key={Date()}>
-			<DataViewer
-				appProps={appProps}
-				selectEditor={selectEditor}
-				appEnv={state}
-				from={appProps.from}
-				tableForm={tableForm}
-				/>
-		</div>;
-	}
-  return show;
+    let show = null;
+    if (state.session != null) {
+        show = (
+            <div id='page-wrap' key={Date()}>
+                <DataViewer
+                    appProps={appProps}
+                    selectEditor={selectEditor}
+                    appEnv={state}
+                    from={appProps.from}
+                    tableForm={tableForm}
+                />
+            </div>
+        );
+    }
+    return show;
 }
 export default DataEditor;
