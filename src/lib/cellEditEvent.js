@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import text2Float from "./text2Float";
+import text2Float from './text2Float.js';
 import commonHandler from './commonHandler';
 
 function cellEditEvent (e, state, columns, handlers, appEnv) {
