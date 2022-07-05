@@ -15,7 +15,7 @@ import setInitialState  from './lib/setInitialState';
 import setupConnections from './lib/setupConnections';
 
 
-export { DataEditor, 
+export default { DataEditor, 
          DataEditorVisual,
          cellEditEvent,
          casUpdateRow,
