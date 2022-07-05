@@ -14,6 +14,28 @@ async function prepFormData (result, tableForm, appEnv) {
   let {schema, rows} = result;
   let {form, handlers} = tableForm;
 
+  const makeRowObject = (columns, row, form) => {
+    let rowObj = {};
+    row.forEach((r, i) => {
+      let s = columns[i];
+      let name = s.Column.toLowerCase();
+      if (s.Label == null) {
+        s.Label = s.Column;
+      }
+      rowObj[name] = r;
+    });
+
+    if (form.customColumns != null) {
+      for (let k in form.customColumns) {
+        let c = form.customColumns[k];
+        let name = c.Column.toLowerCase();
+        rowObj[name] = c.value;
+      }
+    }
+    return rowObj;
+  };
+
+
   let newRows = [];
   for (let i=0; i < rows.length; i++) {
      let t = makeRowObject(schema, rows[i], form);
@@ -58,29 +80,5 @@ async function prepFormData (result, tableForm, appEnv) {
     rowsObject: newRows
   };
 
-  //
-  
-  function makeRowObject (columns, row, form) {
-    let rowObj = {};
-    row.forEach((r, i) => {
-      let s = columns[i];
-      let name = s.Column.toLowerCase();
-      if (s.Label == null) {
-        s.Label = s.Column;
-      }
-      rowObj[name] = r;
-    });
-
-    if (form.customColumns != null) {
-      for (let k in form.customColumns) {
-        let c = form.customColumns[k];
-        let name = c.Column.toLowerCase();
-        rowObj[name] = c.value;
-      }
-    }
-    
-
-    return rowObj;
-  }
 }
 export default prepFormData;
