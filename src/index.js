@@ -6,6 +6,22 @@
 
 import DataEditor from './components/DataEditor.js';
 import DataEditorVisual from './components/DataEditorVisual.js';
-// import lib from './lib';
+import casUpdateRow  from './lib/casUpdateRow';
+import cellEditEvent from './lib/cellEditEvent';
+import commonHandler  from './lib/commonHandler';
+import fetchTableRows   from './lib/fetchTableRows';
+import prepFormData     from './lib/prepFormData';
+import setInitialState  from './lib/setInitialState';
+import setupConnections from './lib/setupConnections';
 
-export { DataEditor, DataEditorVisual}
+
+export { DataEditor, 
+         DataEditorVisual,
+         cellEditEvent,
+         casUpdateRow,
+         commonHandler,
+         fetchTableRows,
+         setInitialState,
+         setupConnections,
+         prepFormData
+     }

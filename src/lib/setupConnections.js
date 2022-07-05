@@ -9,6 +9,7 @@ async function setupConnections (logonPayload) {
         store       : store,
         session     : r.session,
         servers     : r.servers,
+        restaflib   : lib,
         logonPayload: logonPayload
     };
     return appEnv;

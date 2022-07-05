@@ -13,7 +13,7 @@ import React, { useEffect, useState } from 'react';
 import setupConnections from '../lib/setupConnections';
 import DataViewer from './DataViewer';
 
-function DataEditor(props) {
+function DataEditor (props) {
     const { viyaConnection } = props;
     const [state, setState] = useState({});
 
@@ -35,7 +35,7 @@ function DataEditor(props) {
     let show = null;
     if (state.session != null) {
         show = (
-            <div id='page-wrap' key={Date()}>
+            <div id="page-wrap" key={Date()}>
                 <DataViewer
                     appProps={props.appProps}
                     selectEditor={props.selectEditor}

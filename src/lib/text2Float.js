@@ -6,7 +6,7 @@ function text2Float (value, f) {
     let svalue = value;
     if (typeof svalue === 'string' && (f.Type === 'decimal' || f.Type === 'number' || f.Type === 'double')) {
         svalue = parseFloat(value * 1.0);
-        if (isNan(value) === true) {
+        if (isNaN(value) === true) {
             value = 0;
         }
     }

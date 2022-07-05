@@ -8,9 +8,9 @@
 import React, { useState, Fragment } from 'react';
 
 import cellEditEvent from '../lib/cellEditEvent';
-import casUpdateRow from '../lib/casUpdateRow';
 
-function DataEditorVisual(props) {
+
+function DataEditorVisual (props) {
     const {
         table,
         columns,
@@ -28,32 +28,20 @@ function DataEditorVisual(props) {
     const [modFlag, setModFlag] = useState(false);
 
     const _handleSelect = (e) => {
-        const r = cellEditEvent(
-            e,
-            data[e.rowIndex],
-            columns,
-            handlers,
-            appEnv,
-            data
-        );
-        data[e.rowIndex] = r.data;
-        // r.status handling
-        setModFlag(!modFlag);
-        onEdit(r.data, e.rowIndex);
+        cellEditEvent (e, data[e.rowIndex], columns, handlers,table, appProps.autoSave, currentForm.keys4Update, appEnv, data)
+        .then (r => {
+            data[e.rowIndex] = r.data;
+            setModFlag(!modFlag);
+            onEdit(r.data, e.rowIndex);
+        })
+        .catch(err => {
+            throw new Error(JSON.stringify(err));
+        });
+        
 
-        if (appProps.autoSave === true) {
-            const w = {};
-            currentForm.keys4Update.forEach((k) => {
-                w[k] = r.data[k];
-            });
-            casUpdateRow(table, r.data, w, columns, appEnv)
-                .then((r) => {
-                    setModFlag(!modFlag);
-                })
-                .catch((err) => console.log(err));
-        }
+        
     };
-
+/*
     const _onSelect = (selection) => {
         switch (selection.action) {
             case 'up':
@@ -71,7 +59,7 @@ function DataEditorVisual(props) {
                 break;
         }
     };
-
+*/
     // Now create the body of the table
 
     // const V = viewType === "table" ? TableEditorMui : DataFormMulti;
@@ -86,8 +74,8 @@ function DataEditorVisual(props) {
                     columns={columns}
                     tableForm={currentForm}
                     onEdit={_handleSelect}
-                    onselect={_onSelect}
                     onScroll={onScroll}
+                    onSave={onSave}
                     appProps={props.appProps}
                     appEnv={appEnv}
                     currentRow={props.currentRow}

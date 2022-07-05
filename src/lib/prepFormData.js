@@ -10,18 +10,20 @@
 */
 import commonHandler from './commonHandler';
 
-function prepFormData (result, tableForm, appEnv) {
+async function prepFormData (result, tableForm, appEnv) {
   let {schema, rows} = result;
   let {form, handlers} = tableForm;
 
-  let newRows = rows.map((row, i) => {
-     let t = makeRowObject(schema, row, form);
-     let [t1,status] = commonHandler('init', t, i, handlers, appEnv);
+  let newRows = [];
+  for (let i=0; i < rows.length; i++) {
+     let t = makeRowObject(schema, rows[i], form);
+     let [t1,status] = await commonHandler('init', t, i, handlers, appEnv);
      if (status.code !== 0) {
        console.log(JSON.stringify(status, null,4));
      }
-     return t1;
-    });
+     newRows.push(t1);
+    };
+
 
   let keyList = rows[0].map((r, i) => {
     let s = schema[i];

@@ -12,8 +12,8 @@ async function fetchTableRows (control, tableForm, appEnv) {
     if (control.where == null) {
         control.where = {};
     }
-    let r =   await casFetchRows(store, session, control);
-    let t = prepFormData(r.data, tableForm, appEnv);
+    let r = await casFetchRows(store, session, control);
+    let t = await prepFormData(r.data, tableForm, appEnv);
     t.pagination = {...r.pagination};
     return  t;
         

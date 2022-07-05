@@ -8,7 +8,7 @@ import DataEditorVisual from './DataEditorVisual.js';
 import fetchTableRows from '../lib/fetchTableRows';
 import casUpdateRow from '../lib/casUpdateRow';
 
-function DataViewer(props) {
+function DataViewer (props) {
     const { appProps, tableForm, selectEditor, appEnv } = props;
     const { useState, useEffect, useRef } = React;
 
@@ -29,14 +29,15 @@ function DataViewer(props) {
     /* same as pagination structure */
     const ftable = `${appProps.table.caslib}.${appProps.table.name}`;
     let control = {
-        table: { ...appProps.table },
-        from: lastTable.current !== ftable ? props.from : from,
-        count: appProps.count,
-        where: appProps.where,
+        table : { ...appProps.table },
+        from  : lastTable.current !== ftable ? props.from : from,
+        count : appProps.count,
+        where : appProps.where,
         format: appProps.format
     };
 
     const _handleResults = (r) => {
+        
         setErrors(null);
         setModFlag(0);
         setPagination(r.pagination);
@@ -65,9 +66,11 @@ function DataViewer(props) {
 
         fetchTableRows(control, tableForm, appEnv)
             .then((r) => {
+                
                 _handleResults(r);
             })
             .catch((err) => {
+                
                 _handleErrors(err);
             });
     }, [from, appProps.table.caslib, appProps.table.name, appProps.editor]);
@@ -75,7 +78,7 @@ function DataViewer(props) {
     // scroll based on pagination data from previous fetch
     const _onScroll = (direction) => {
         // TBD: Add checks for modified rows */
-
+        // add save call prior to scroll */
         control = direction === 'up' ? pagination.prev : pagination.next;
         setFrom(control.from);
     };
@@ -102,7 +105,7 @@ function DataViewer(props) {
             appProps.table,
             result,
             tableForm.form.keys4Update,
-            modified,
+            columns,
             appEnv
         )
             .then((r) => {

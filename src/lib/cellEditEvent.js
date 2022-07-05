@@ -3,27 +3,35 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import text2Float from './text2Float.js';
+import text2Float from "./text2Float";
 import commonHandler from './commonHandler';
+import casUpdateRow from '../lib/casUpdateRow';
 
-function cellEditEvent (e, state, columns, handlers, appEnv) {
+async function cellEditEvent (e, state, columns, handlers, table,autoSave, keys4Update, appEnv) {
    /* do not modify the stae directly. caller will do a setState */
     let {value, name } = e.target;
     let rowIndex       = e.rowIndex;
-    let t = {...state};
-    t[name] = text2Float(value, columns[name]);
+    let newDataRow = {...state};
+    newDataRow[name] = text2Float(value, columns[name]);
+    let status = {status: 0, msg: ''};
   
     if (handlers[name] != null) {
-        let [newDataRow, status] = handlers[name](t, value, name, appEnv, rowIndex);
-        let [newDataRow2, status2] = commonHandler("main", newDataRow, rowIndex, handlers, appEnv);
-        let msg = status.msg + " \n" + (status2.msg != null ? status2.msg : "");
-        status2.msg = msg;
-        return ({data: newDataRow2, status: status2});
-    } else {
-        let [newt, st] = commonHandler("main", t, rowIndex, handlers, appEnv);
-        return {data: newt, status: st};
+        let r = await handlers[name](newDataRow, name, rowIndex, appEnv);
+        newDataRow = r[0];
+        status = r[1];
+    } 
+    let [newDataRow2, status2] = await commonHandler("main", newDataRow, rowIndex, handlers, appEnv);
+    let msg = status.msg + " \n" + (status2.msg != null ? status2.msg : "");
+    status2.msg = msg;
+
+    let w = {};
+    if (autoSave === true) {
+        keys4Update.forEach((k) => {
+            w[k] = newDataRow2[k];
+        });
+        await casUpdateRow(table, newDataRow2, w, columns, appEnv);
     }
+    return ({data: newDataRow2, status: status2});
     
 }
-
 export default cellEditEvent;
