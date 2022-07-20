@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/viyaedit",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Made with create-react-library",
   "author": "devaKumaraswamy",
   "license": "Apache-2.0",
@@ -31,7 +31,6 @@
     "@sassoftware/restaflib": "^4.2.11"
   },
   "unpkg": "dist/index.js",
-
   "devDependencies": {
     "@sassoftware/restaf": "^4.2.11",
     "@sassoftware/restaflib": "^4.2.11",
