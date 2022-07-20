@@ -4,24 +4,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import DataEditor from './components/DataEditor.js';
-import DataEditorVisual from './components/DataEditorVisual.js';
-import casUpdateRow  from './lib/casUpdateRow';
-import cellEditEvent from './lib/cellEditEvent';
-import commonHandler  from './lib/commonHandler';
-import fetchTableRows   from './lib/fetchTableRows';
-import prepFormData     from './lib/prepFormData';
-import setInitialState  from './lib/setInitialState';
-import setupConnections from './lib/setupConnections';
+import cellEdit         from './cellEdit';
+import commonHandler    from './commonHandler';
+import fetchTableRows   from './fetchTableRows';
+import updateTableRows  from './updateTableRows';
+import scrollTable      from './scrollTable';
+import setup            from './setup';
 
-
-export default { DataEditor, 
-         DataEditorVisual,
-         cellEditEvent,
-         casUpdateRow,
+export default { 
+         cellEdit,
          commonHandler,
          fetchTableRows,
-         setInitialState,
-         setupConnections,
-         prepFormData
+         scrollTable,
+         updateTableRows,
+         setup
      }

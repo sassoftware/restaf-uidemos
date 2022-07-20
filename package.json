@@ -3,17 +3,18 @@
   "version": "0.5.3",
   "description": "Made with create-react-library",
   "author": "devaKumaraswamy",
-  "license": "MIT",
-  "repository": "https://github.com/sassoftware/restaf-uidemos",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/sassoftware/restaf-uidemos/tree/viyaedit",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
+  "browser": "dist/index.umd.js",
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "build": "microbundle-crl --no-compress --format modern,cjs,umd",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs,umd",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
@@ -22,18 +23,18 @@
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
-    "pub": "npm publish --tag test --access public"
+    "pub": "npm publish --tag test --access public",
+    "jsdoc": "jsdoc -c jsdoc.json"
   },
   "peerDependencies": {
-    "@sassoftware/restaf": "^4.2.7",
-    "@sassoftware/restaflib": "^4.2.7",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@sassoftware/restaf": "^4.2.11",
+    "@sassoftware/restaflib": "^4.2.11"
   },
   "unpkg": "dist/index.js",
+
   "devDependencies": {
-    "@sassoftware/restaf": "^4.2.7",
-    "@sassoftware/restaflib": "^4.2.7",
+    "@sassoftware/restaf": "^4.2.11",
+    "@sassoftware/restaflib": "^4.2.11",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
@@ -44,7 +45,7 @@
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
     "microbundle-crl": "^0.13.10",
