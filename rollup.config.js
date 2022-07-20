@@ -4,7 +4,7 @@ import postcss from 'rollup-plugin-postcss'
 import resolve from 'rollup-plugin-node-resolve'
 
 import pkg from './package.json'
-
+let name = 'viyaedit';
 export default {
   input: 'src/index.js',
   output: [
@@ -17,6 +17,12 @@ export default {
       file: pkg.module,
       format: 'es',
       exports: 'named'
+    },
+    {
+      file: pkg.browser,
+      format: 'umd',
+      exports: 'named',
+      name: name
     }
   ],
   external: [
