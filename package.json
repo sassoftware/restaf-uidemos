@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/sassoftware/restaf-uidemos/tree/viyaedit",
   "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
   "source": "src/index.js",
   "engines": {
