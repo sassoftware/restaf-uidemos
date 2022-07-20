@@ -20,9 +20,6 @@ export default {
     }
   ],
   external: [
-    'react',
-    'react-dom',
-    'prop-types',
     'restaf',
     'restaflib'
   ],
@@ -32,6 +29,7 @@ export default {
     }),
     babel({
       exclude: 'node_modules/**'
+    
     }),
     resolve(),
     commonjs()

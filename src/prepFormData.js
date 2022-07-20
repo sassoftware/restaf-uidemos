@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /*
  * Copyright © 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
@@ -10,12 +9,20 @@
 * extended columns and data ready for use in dataform and table
 */
 import commonHandler from './commonHandler';
-
-async function prepFormData (result, tableForm, appEnv) {
-  let {schema, rows} = result;
-  let {form, handlers} = tableForm;
-
-  const makeRowObject = (columns, row, form) => {
+/**
+ * @description reduce fetch results
+ * @private
+ * @async
+ * @module prepFormData
+ * @param {object} result - result from casFetchRow(rows and schema)
+ * @param {object} appEnv - app Environment from setup
+ * @returns {promise}     - {columns: eColumns, rowsObject: newRows}
+ */
+async function prepFormData (result, appEnv) {
+  const {schema, rows} =  result;
+  const customColumns = appEnv.appControl.dataControl.customColumns;
+  
+  const makeRowObject = (columns, row) => {
     let rowObj = {};
     row.forEach((r, i) => {
       let s = columns[i];
@@ -26,9 +33,9 @@ async function prepFormData (result, tableForm, appEnv) {
       rowObj[name] = r;
     });
 
-    if (form.customColumns != null) {
-      for (let k in form.customColumns) {
-        let c = form.customColumns[k];
+    if (customColumns != null) {
+      for (let k in customColumns) {
+        let c = customColumns[k];
         let name = c.Column.toLowerCase();
         rowObj[name] = c.value;
       }
@@ -39,24 +46,19 @@ async function prepFormData (result, tableForm, appEnv) {
 
   let newRows = [];
   for (let i=0; i < rows.length; i++) {
-     let t = makeRowObject(schema, rows[i], form);
-     let [t1,status] = await commonHandler('init', t, i, handlers, appEnv);
+     let t = makeRowObject(schema, rows[i]);
+     
+     let [t1,status] = await commonHandler('init', t, i, appEnv);
+     
      if (status.code !== 0) {
        console.log(JSON.stringify(status, null,4));
      }
      newRows.push(t1);
     };
-
-
-  let keyList = rows[0].map((r, i) => {
-    let s = schema[i];
-    return { value: s.Column, label: s.Column, dataValue: r };
-  });
   
   //extend column and make it an object
   let eColumns = {};
   schema.forEach((s,i) => {
-      s.oldName = s.Column;
       let name = s.Column.toLowerCase();
       s.name    = name;
       s.Label   = (s.Label == null || s.Label.length === 0) ? s.Column : s.Label;
@@ -65,20 +67,19 @@ async function prepFormData (result, tableForm, appEnv) {
     });
 
   // add computed columns to the array.
-  if (form.customColumns != null) {
-    for (let k in form.customColumns) {
-      let c = { ...form.customColumns[k] };
+  if (customColumns != null) {
+    for (let k in customColumns) {
+      let c = { ...customColumns[k] };
       c.name = k;
-      c.Type = c.Type == null ? "double" : c.Type;
       c.custom = true;
       eColumns[k] = c;
     }
   }
 
+  
   return {
-    keyList   : keyList,
-    columns   : eColumns,
-    rowsObject: newRows
+    columns: eColumns,
+    data   : newRows
   };
 
 }
