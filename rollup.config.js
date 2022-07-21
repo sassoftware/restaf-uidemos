@@ -25,10 +25,10 @@ export default {
       name: name
     }
   ],
-  external: [
-    'restaf',
-    'restaflib'
-  ],
+  external: {
+    restaf: 'restaf',
+    restaflib: 'restaflib'
+  },
   plugins: [
     postcss({
       modules: true
