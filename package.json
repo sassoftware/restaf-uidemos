@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/viyaedit",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "source": "./src/index.js",
   "repository": "https://github.com/sassoftware/restaf-uidemos/tree/viyaedit",
   "unpkg": "/dist/index.umd.js",
