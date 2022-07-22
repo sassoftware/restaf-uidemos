@@ -10,8 +10,8 @@
     "@sassoftware/restaf": "^4.3.0",
     "@sassoftware/restafedit": "^0.8.0",
     "@sassoftware/restaflib": "^4.3.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": ">16.1",
+    "react-dom": ">16.1"
   },
   "scripts": {
     "build": "microbundle --jsx=React.createElement"
