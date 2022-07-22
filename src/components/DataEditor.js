@@ -43,4 +43,12 @@ function DataEditor (props) {
     }
     return show;
 }
+DataEditor.propTypes = {
+    /** Information to setup connection to Viya */
+    viyaConnection: PropTypes.object.isRequired,
+
+/** Information to setup application */
+    appControl: PropTypes.object.isRequired,
+
+};
 export default DataEditor;

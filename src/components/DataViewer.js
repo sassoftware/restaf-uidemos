@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment, PropTypes} from 'react';
 import {cellEdit, casUpdateRow, scrollTable} from '@sassoftware/restafedit';
 
 function DataViewer (props) {
@@ -64,4 +64,9 @@ function DataViewer (props) {
             </Fragment>
         );
 }
+DataViewer.propTypes = {
+    /** Application control */
+    appEnv: PropTypes.object.isRequired,
+
+};
 export default DataViewer;

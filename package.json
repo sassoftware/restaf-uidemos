@@ -7,9 +7,9 @@
   "main": "./dist/index.umd.js",
   "module": "/dist/index.module.js",
   "peerDependencies": {
-    "@sassoftware/restaf": "^4.3.0",
-    "@sassoftware/restafedit": "^0.8.0",
-    "@sassoftware/restaflib": "^4.3.0",
+    "@sassoftware/restaf": ">4.2.0",
+    "@sassoftware/restafedit": ">0.8.0",
+    "@sassoftware/restaflib": ">4.2.0",
     "react": ">16.1",
     "react-dom": ">16.1"
   },

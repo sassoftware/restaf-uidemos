@@ -6,10 +6,30 @@ This small react component library serves two purposes:
 - Demonstrates usage of @sassoftware/restafedit to manage reading, updating and writing data for CAS Tables.
     SAS Tables will be supported in the next version
 
-## React version## Usage
+## React version
+
+Should work with any  React version >= 16
 
 ### Install
 
-<https://www.fabiofranchino.com/blog/create-react-reusable-components-library-with-microbundle/>
+```
 
-https://github.com/developit/microbundle/issues/655
+npm install @sassoftware/viyaedit
+
+```
+
+### PeerDependencies
+
+If youy package manager does not install peer dependencies then install these manually.
+
+```js
+{
+    "@sassoftware/restaf": ">= 4.3.0",
+    "@sassoftware/restaflib": ">= 4.3.0",
+    "@sassoftware/restafedit": ">= 0.8.0"
+}
+
+```
+## Usage
+
+TBD.
