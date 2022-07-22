@@ -1,0 +1,1 @@
+npx microbundle  --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react --external="react,react-dom,restaf,restaflib,restafedit"
