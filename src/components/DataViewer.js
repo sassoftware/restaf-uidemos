@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, {useState, Fragment} from 'react';
+import {useState, Fragment} from 'react';
 import {cellEdit, casUpdateRow, scrollTable} from '@sassoftware/restafedit';
 
 function DataViewer (props) {

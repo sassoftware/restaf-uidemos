@@ -2,19 +2,12 @@
   "name": "@sassoftware/viyaedit",
   "version": "0.1.0",
   "private": true,
-  "unpkg": "/dist/lib.umd.js",
-  "main": "./dist/lib.umd.js",
-  "module": "/dist/lib.esm.js",
   "source": "./src/index.js",
+  "repository": "https://github.com/sassoftware/restaf/tree/restafedit",
+  "unpkg": "/dist/index.umd.js",
+  "main": "./dist/index.umd.js",
+  "module": "/dist/index.module.js",
 
-  "dependencies": {
-    "@sassoftware/restaf": "^4.3.0",
-    "@sassoftware/restafedit": "^0.8.0",
-    "@sassoftware/restaflib": "^4.3.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "web-vitals": "^2.1.4"
-  },
   "peerDependencies": {
     "@sassoftware/restaf": "^4.3.0",
     "@sassoftware/restafedit": "^0.8.0",
@@ -22,8 +15,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "scripts": {
-    "build": "microbundle  --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react"
+ 
+  "scripts":{
+    "build": "microbundle"
   },
   "eslintConfig": {
     "extends": [
