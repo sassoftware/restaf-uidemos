@@ -24,6 +24,7 @@
 		<!-- The most useful element is LOGONPAYLOAD.host , the url of the Viya server -->
 		<!-- This helps avoid hard codung the Viya host url in the html -->
 		<script src="/viyaapp/appenv"></script>
+		<script src="./js/data-editor-lib.js"></script>
 
 		<!-- http package to make calls to Viya -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -31,6 +32,7 @@
 	
 		<script>
 			function setup() {
+				debugger;
 				console.log(LOGONPAYLOAD);  /* for learning purposes */
 			}
 			function runit(type) {
