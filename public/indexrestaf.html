@@ -20,9 +20,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script src="https://unpkg.com/@sassoftware/restaf@4.2.12/dist/restaf.js"></script>
-    <script src="https://unpkg.com/@sassoftware/restaflib@4.2.12/dist/restaflib.js"></script>
-    <script src="https://unpkg.com/@sassoftware/viyaedit@0.8.0/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/@sassoftware/restaf@4.3.0/dist/restaf.js"></script>
+    <script src="https://unpkg.com/@sassoftware/restaflib@4.3.0/dist/restaflib.js"></script>
+   
 
     <script src="/viyaapp/appenv"></script>
 
@@ -272,6 +272,10 @@
               null,
               4
             );
+			console.log(data.rows);
+			console.log(data.rows[0][0]);
+	document.getElementById("total").value = data.rows[0][0].toString();
+	debugger;
 	return data;
 
 	}
@@ -302,8 +306,13 @@
             <label class="elabel"> x1: </label>
 			<input class="einput" type="input" id="x1" size="50" />
 			<br/>
+			<br/>
 			<label class="elabel"> x2: </label>
-			<input class="einput" type="input" id="x2" size="50" />
+			<input <class="einput" type="input" id="x2" size="50" />
+			<br/>
+			<br/>
+			<label class="elabel"> Computed Total: </label>
+			<input <class="einput" type="input" id="total" size="50" />
           </form>
           <br />
           <br />

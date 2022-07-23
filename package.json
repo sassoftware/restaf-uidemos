@@ -21,8 +21,6 @@
 		"node": ">=12.14.0"
 	},
 	"dependencies": {
-		"@sassoftware/restaf": "^4.2.6",
-		"@sassoftware/restaflib": "^4.2.6",
 		"@sassoftware/viya-appserverjs": "^2.0.2",
 		"cross-env": "^7.0.3"
 	},
