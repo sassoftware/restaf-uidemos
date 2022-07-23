@@ -22,10 +22,8 @@
     <meta charset="UTF-8" />
     <script src="https://unpkg.com/@sassoftware/restaf@4.3.0/dist/restaf.js"></script>
     <script src="https://unpkg.com/@sassoftware/restaflib@4.3.0/dist/restaflib.js"></script>
-   
 
     <script src="/viyaapp/appenv"></script>
-
 
     <style>
       .container {
@@ -60,13 +58,17 @@
 
       /* default options: {casProxy: false, withCredentials: true}*/
       let store = restaf.initStore({ casProxy: false });
+	  /*
       let session = null;
       let servers = null;
       let services = null;
       let files = null;
       let reports = null;
       let compute = null;
-	  let computeSession = null;
+	  */
+
+	  // Reuse compute session due to its performance
+      let computeSession = null;
 
       function setup() {
         document.getElementById("status").innerHTML = "...initializing";
@@ -79,12 +81,14 @@
             console.log(e);
           });
       }
+
       async function initSession() {
         /* setup restaf to connect to Viya server */
         let msg = await store.logon(LOGONPAYLOAD);
-		computeSession = await restaflib.computeSetup(store, null, null);
+        computeSession = await restaflib.computeSetup(store, null, null);
         return "done";
       }
+
       function runit(type) {
         debugger;
         document.getElementById("status").innerHTML = "...running";
@@ -102,10 +106,10 @@
             testcase = runCas;
             break;
           }
-		  case "compute2": {
-			testcase = dsCompute2;
-			break;
-		  }
+          case "compute2": {
+            testcase = easyCompute;
+            break;
+          }
           default: {
             testcase = SASfileService;
             break;
@@ -142,6 +146,10 @@
         return contexts.itemsList(index);
       }
 
+	  //
+	  // Run a CAS Action
+	  //
+
       async function runCas(store) {
         debugger;
         let { casManagement } = await store.addServices("casManagement");
@@ -174,6 +182,9 @@
         return r.items();
       }
 
+	  //
+	  // File Service
+	  //
       async function SASfileService(store) {
         let { files } = await store.addServices("files");
         console.log(JSON.stringify(files.links(), null, 4));
@@ -186,6 +197,11 @@
         let content = await store.apiCall(newFile.links("content"));
         return content.items();
       }
+
+	  //
+	  // Run compute service the "documented" way
+	  // See easyCompute (below) for a better developer experience
+	  //
       async function dsCompute(store) {
         let log = null;
         let { compute } = await store.addServices("compute");
@@ -222,15 +238,25 @@
         }
         return log === null ? status : log.items();
       }
-	  async function dsCompute2(store){
-		debugger;
-		
-		console.log(computeSession);
-		let macros = {
-			x1: document.getElementById('x1').value,
-			x2: document.getElementById('x2').value
-		}
-		let src = `
+
+	  //
+	  // Run compute service using user-friendly way 
+	  //
+
+      async function easyCompute(store) {
+
+		//
+		// These are prepended to src as macros
+		//
+
+        let macros = {
+          x1: document.getElementById("x1").value,
+          x2: document.getElementById("x2").value,
+        };
+		//
+		// Sample code - replace with your own
+		//
+        let src = `
 			ods html style=barrettsblue; 
 			data work.dtemp1;
 			total = &x1 + &x2;
@@ -239,46 +265,48 @@
 			ods html close;
 			run;
 				`;
-		let computeSummary = await restaflib.computeRun(
-			store,
-			computeSession,
-			src,	
-			macros,
-			15,2
-    );
-	
-	// print log to console
-	let log = await restaflib.computeResults(store, computeSummary, 'log');
-	document.getElementById("log").innerHTML = JSON.stringify(
-              log,
-              null,
-              4
-            );
-	let ods = await restaflib.computeResults(store, computeSummary, 'ods');
-	document.getElementById("ods").innerHTML = ods;
-	
-	
+		//
+		// Run compute service and reduce results
+		//
+        let computeSummary = await restaflib.computeRun(
+          store,
+          computeSession,
+          src,
+          macros,
+          15,
+          2
+        );
 
-	data = await restaflib.computeFetchData(
-			store,
-			computeSummary,
-			'DTEMP1',
-			'next',
-			{offset: 0, limit:1}
-		);
+        // show log
+        let log = await restaflib.computeResults(store, computeSummary, "log");
+        document.getElementById("log").innerHTML = JSON.stringify(log, null, 4);
 
-	document.getElementById("table").innerHTML = JSON.stringify(
-              data,
-              null,
-              4
-            );
-			console.log(data.rows);
-			console.log(data.rows[0][0]);
-	document.getElementById("total").value = data.rows[0][0].toString();
-	debugger;
-	return data;
+		// show ods
+        let ods = await restaflib.computeResults(store, computeSummary, "ods");
+        document.getElementById("ods").innerHTML = ods;
 
-	}
+		// Fetch data
+        data = await restaflib.computeFetchData(
+          store,
+          computeSummary,
+          "DTEMP1",
+          "next",
+          { offset: 0, limit: 1 }
+        );
+
+		// Display data as json
+        document.getElementById("table").innerHTML = JSON.stringify(
+          data,
+          null,
+          4
+        );
+
+		// show total in the input field
+        document.getElementById("total").value = data.rows[0][0].toString();
+        debugger;
+		// return data to caller.
+        return data;
+      }
     </script>
   </head>
   <body onload="setup()">
@@ -304,15 +332,15 @@
         <div>
           <form action="">
             <label class="elabel"> x1: </label>
-			<input class="einput" type="input" id="x1" size="50" />
-			<br/>
-			<br/>
-			<label class="elabel"> x2: </label>
-			<input <class="einput" type="input" id="x2" size="50" />
-			<br/>
-			<br/>
-			<label class="elabel"> Computed Total: </label>
-			<input <class="einput" type="input" id="total" size="50" />
+            <input class="einput" type="input" id="x1" size="50" />
+            <br />
+            <br />
+            <label class="elabel"> x2: </label>
+            <input <class="einput" type="input" id="x2" size="50" />
+            <br />
+            <br />
+            <label class="elabel"> Computed Total: </label>
+            <input <class="einput" type="input" id="total" size="50" />
           </form>
           <br />
           <br />
@@ -321,33 +349,29 @@
         </div>
         <br />
         <br />
-		<div>
-			<h2>ODS output</h2>
-			<pre id="ods"></pre>
-		</div>
-		<div>
-			<h2>Table as JSON for further processing</h2>
-			<pre id="table"></pre>
-		</div>
-		<div>
-			<h2> Log output - see the macros prepended</h2>
-			<pre id="log"></pre>
-		</div>
-       
+        <div>
+          <h2>ODS output</h2>
+          <pre id="ods"></pre>
+        </div>
+        <div>
+          <h2>Table as JSON for further processing</h2>
+          <pre id="table"></pre>
+        </div>
+        <div>
+          <h2>Log output - see the macros prepended</h2>
+          <pre id="log"></pre>
+        </div>
       </details>
 
       <br />
     </div>
 
-	<div>
-		
-	</div>
-	<div>
-		<pre id="status"></pre>
-	</div>
-	<div>
+    <div></div>
+    <div>
+      <pre id="status"></pre>
+    </div>
+    <div>
       <pre id="output"></pre>
     </div>
-	  
   </body>
 </html>
