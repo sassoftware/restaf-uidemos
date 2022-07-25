@@ -12,7 +12,7 @@ Should work with any  React version >= 16
 
 ### Install
 
-```
+```sh
 
 npm install @sassoftware/viyaedit
 
@@ -26,7 +26,7 @@ If youy package manager does not install peer dependencies then install these ma
 {
     "@sassoftware/restaf": ">= 4.3.0",
     "@sassoftware/restaflib": ">= 4.3.0",
-    "@sassoftware/restafedit": ">= 0.8.0"
+    "@sassoftware/restafedit": ">= 0.10.0"
 }
 
 ```
