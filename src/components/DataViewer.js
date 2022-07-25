@@ -4,7 +4,7 @@
  */
 
 import React, {useState, Fragment} from 'react';
-import {cellEdit, casUpdateRow, scrollTable} from '@sassoftware/restafedit';
+import {cellEdit, updateTableRows, scrollTable} from '@sassoftware/restafedit';
 import PropTypes from 'prop-types';
 
 function DataViewer (props) {
@@ -44,7 +44,7 @@ function DataViewer (props) {
     // Save only modified rows
     // TBD: propagate messages to UI app
     const _onSave = (result) => {
-        casUpdateRow(result, appEnv)
+        updateTableRows(result, appEnv)
             .then((r) => {
                 setStatus({status: 0, msg: r});
             })
