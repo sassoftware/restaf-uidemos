@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, {useState, Fragment, PropTypes} from 'react';
+import React, {useState, Fragment} from 'react';
 import {cellEdit, casUpdateRow, scrollTable} from '@sassoftware/restafedit';
+import PropTypes from 'prop-types';
 
 function DataViewer (props) {
     const {appEnv}   = props;

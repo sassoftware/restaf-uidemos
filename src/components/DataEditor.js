@@ -5,6 +5,7 @@
  */
 
 import React, { useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 import {setup, scrollTable} from '@sassoftware/restafedit';
 import DataViewer from './DataViewer';
 

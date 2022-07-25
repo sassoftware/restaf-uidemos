@@ -36,5 +36,8 @@
   },
   "devDependencies": {
     "microbundle": "^0.15.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1"
   }
 }
