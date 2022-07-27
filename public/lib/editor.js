@@ -66,31 +66,8 @@ function getAppControl() {
           autoSave: true, 
       
         },
-        appData: {
-          layout  : {},
-          formName: 'testdata',
-  
-          uiControl: {
-            defaultComponent: "InputEntry",
-            show            : ['id', 'total', 'x2', 'x1', 'x3'],
-            visuals         : {
-              x2: {
-                component: "Slider",
-                props    : {
-                min  : 0,
-                max  : 50,
-                steps: 1,
-                },
-              },
-              total: {
-                props: {
-                disabled: true,
-                },
-              }
-            }
-          }
+        appData: {}
         
-        }
         
      }
     }

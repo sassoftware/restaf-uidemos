@@ -1,5 +1,10 @@
 # editorapp  - Demo application for @sassoftware/restafedit
 
+This demo application uses plain old HTML to demonstrate the power and ease of use of
+@sassoftware/restafedit.
+
+![Basic FLow](./editorapp.png)
+
 ## Install
 
 ```sh
