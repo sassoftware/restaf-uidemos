@@ -27,8 +27,7 @@ ENV AUTHFLOW=code
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 ENV SAMESITE=None,secure
 # values below are samples - substititue your own.
-#
-# HTTPS=true
+# ENV HTTPS=false
 # Option 1
 ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Company,OU:dep,CN:localhost"
 

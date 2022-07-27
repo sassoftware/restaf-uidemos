@@ -1,15 +1,15 @@
 {
-	"name": "viyaapp",
+	"name": "editorapp",
 	"version": "1.1.0",
 	"main": "server.js",
 	"description": "Simple Viya app",
 	"author": "Deva Kumaraswamy <deva.kumar@sas.com>",
 	"license": "Apache-2.0",
-	"repository": "https://github.com/sassoftware/restaf-uidemos/tree/viyaapp",
+	"repository": "https://github.com/sassoftware/restaf-uidemos/tree/editorapp",
 	"bugs": {
 		"url": "https://github.com/sassoftware/restaf-uidemos/issues"
 	},
-	"homepage": "https://github.com/sassoftware/restaf-uidemos/blob/viyaapp/README.md",
+	"homepage": "https://github.com/sassoftware/restaf-uidemos/blob/editorapp/README.md",
 	"keywords": [
 		"restaf",
 		"Viya",
