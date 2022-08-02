@@ -14,7 +14,8 @@
     "react-dom": ">16.1"
   },
   "scripts": {
-    "build": "microbundle --jsx=React.createElement --name viyaedit"
+    "build": "microbundle --jsx=React.createElement --name viyaedit",
+    "pub": "npm publish --tag test --access public"
   },
   "eslintConfig": {
     "extends": [
