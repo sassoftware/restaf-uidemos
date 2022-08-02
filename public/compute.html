@@ -20,10 +20,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <script src="https://unpkg.com/@sassoftware/restaf@4.3.0/dist/restaf.js"></script>
-    <script src="https://unpkg.com/@sassoftware/restaflib@4.3.0/dist/restaflib.js"></script>
+    <script src="https://unpkg.com/@sassoftware/restaf@4.4.8"></script>
+    <script src="https://unpkg.com/@sassoftware/restaflib@4.4.8"></script>
 
     <script src="/viyaapp/appenv"></script>
+    <script src="./lib/logViewer.js"></script>
 
     <style>
       .container {
@@ -135,14 +136,12 @@
           store,
           computeSession,
           src,
-          macros,
-          15,
-          2
+          macros
         );
 
         // show log
         let log = await restaflib.computeResults(store, computeSummary, "log");
-        document.getElementById("log").innerHTML = JSON.stringify(log, null, 4);
+        document.getElementById("log").innerHTML = logViewer(log);
 
 		// show ods
         let ods = await restaflib.computeResults(store, computeSummary, "ods");
