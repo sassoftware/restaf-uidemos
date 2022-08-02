@@ -27,7 +27,7 @@ function DataFormMulti (props) {
   const menuList = [
     {text: 'previous',   action: 'prev', disabled: (currentPage.from === 1)},
     {text: 'next', action: 'next', disabled: (currentPage.next === -1)},
-    {text: 'Save', action: 'save', disabled: onSave === null }
+    {text: 'Save', action: 'save', disabled: true }
 ];
   
   

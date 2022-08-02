@@ -12,7 +12,7 @@
     "@sassoftware/restafedit": "^0.11.0",
     "@sassoftware/restaflib": "^4.4.8",
     "@sassoftware/viya-appserverjs": "^2.0.2",
-    "@sassoftware/viyaedit": "^0.9.2",
+    "@sassoftware/viyaedit": "^0.10.3",
     "@tinymce/tinymce-react": "^3.12.2",
     "ace-builds": "^1.4.12",
     "concurrently": "^6.0.2",

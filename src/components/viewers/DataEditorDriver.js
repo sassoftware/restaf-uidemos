@@ -24,20 +24,20 @@ function DataEditorDriver (props) {
   let handlerSet = appControl.editControl.handlerSet;
   let handlers = customForms[handlerSet];
   appControl.editControl.handlers = handlers;
-  const _selectViewer = (appData) => {
-    return helpers[appData.component];
+  const _selectViewer = () => {
+    return helpers[appControl.appData.component];
   };
 
-  // Do further customization
-  appControl.appData.getViewer = _selectViewer;
  
   let show = (
     <div key={Date()} className={classes.content}>
       <Grid container spacing={3} direction="row">
           <Grid item>
             <DataEditor key={Date()}
-                  appControl={appControl} renderViewer={(appEnv)=}
-                  viyaConnection={props.appOptions.logonPayload}      
+                  appControl={appControl} 
+                  viyaConnection={props.appOptions.logonPayload} 
+                  viewer={helpers[appControl.appData.component]}   
+                  editor={_selectViewer}  
                   />
           </Grid>
         </Grid>

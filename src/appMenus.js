@@ -46,7 +46,7 @@ let appMenus = [
 			},
 			editControl: {
 				handlers  : {},
-				save      : true,  
+				save      : false,  
 				autoSave  : true, 
 				handlerSet: 'testdata'
 		
