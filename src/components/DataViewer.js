@@ -43,12 +43,13 @@ function DataViewer (props) {
 
     // Save only modified rows
     // TBD: propagate messages to UI app
-    const _onSave = (result) => {
-        updateTableRows(result, appEnv)
+    const _onSave = (data,result) => {
+        updateTableRows(data, appEnv)
             .then((r) => {
                 setStatus({status: 0, msg: r});
             })
             .catch((err) => setStatus({status: 2, msg: err}));
+        
     };
     debugger;
     const V = editor();
