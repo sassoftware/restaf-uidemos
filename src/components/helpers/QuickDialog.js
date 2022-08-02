@@ -26,7 +26,7 @@ function QuickDialog (props) {
     };
     useEffect(() => {
       setOpen(true);
-    },[props.msg])
+    },[props.msg]);
     let t = (typeof props.msg === 'object') ? JSON.stringify(props.msg, null,4) : props.msg;
     let icon =  <Info/>;
     let show = <Snackbar 
@@ -39,13 +39,13 @@ function QuickDialog (props) {
                     oncClick={handleClick} startIcon={icon}>
                     {t}
             </Button>
-        </Snackbar>
+        </Snackbar>;
     
     return show;
-};
+}
 
 QuickDialog.propTypes = {
   /** messsage to be displayed in a snackk bar for 3 seconds */
   msg: PropTypes.string.isRequired
-}
+};
 export default QuickDialog;

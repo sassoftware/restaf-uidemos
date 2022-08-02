@@ -1,180 +1,98 @@
-# A Quick Start SAS Viya Application Builder
+[FSP on Viya	1](#_Toc583745382)
 
+[Introduction	1](#_Toc805632312)
 
+[A note on multi-user environments	1](#_Toc731399551)
 
-This Quick Start new SAS Viya applications with minimal setup. Once you have setup your local development enviroment you can add new applications. The following key libraries are installed by default:
+[Desired features in the work product	2](#_Toc562931818)
 
-<img src="./quickstart.png">
+[Demo Application	2](#_Toc413439152)
 
----
+[Currently Supported Features of the library	2](#_Toc1664768901)
 
-## Supporting cast
+[Basic Flow	4](#_Toc1528817640)
 
----
+[Future	5](#_Toc538713069)
 
-1. [restaf and restaflib to make REST API calls to Viya](https://github.com/sassoftware/restaf)
+#
 
-2. [restaf-server for the application server](https://github.com/sassoftware/restaf-server)
+# FSP on Viya
 
-3. [Material-ui for react components](https://material-ui.com)
+## Introduction
 
-You can replace and/or add other react component libraries.
+Going back in history, SAS had products like SAS/FSP and SAS/AF that allowed users to create simple or complex interactive applications. As SAS moved to the Viya platform these products were dropped. SAS provided REST API (application programming interfaces) as an industry standard way for creating applications.
 
-## Adding your own applications
+The key component of these applications is entering data. Common destinations of the modified data ARE:
 
----
+- The client application
+- Custom code on a Viya
+  - Compute server
+  - CAS (Cloud Analytic Server) server
+  - MAS (Micro Analytic Score)
+  - Other SAS services that can be accessed via REST API
+- Some external servers 
+  - Azure App running a SAS Decision using SAS Container Runtime (SCR)
+  - Others...
 
-It is a simple process to get your application appearing in the application menu. This menu is acccessed via the hamburger menu in the application's banner. The default app takes care of all the routing and passing the correct props to your application's main component.
+## Desired features in the work product
 
+The goal of this project is to create a small reusable library and components for data entry in SAS Viya. 
 
+This collection should have the following characteristics:
 
----
+1. Must be useable out of the box by users (internal and external)
 
-### Step 1
+2. Must address the basic capabilities of SAS/FSP and SAS/AF since these represent the requirements of SAS users over an extended period.
 
----
+3. The core functionality must be unaware of the UI (User Interface) environment it is running in. The assumption is that the UI capability will be supplied by SAS and/or users.
 
- Edit appMenus.js and add your application as a menu item. Your application will be displayed in the order it appears in the menu. The format of a menu item is:  
+4. React components (must be limited and serve as examples) must be agnostic of specific React Component libraries (ex: Nova, material-ui and others).
 
-Let us assume that your new component is called Mydemo.js
+5. Must be extendible to address the considerable number of requirements gathered by Product Management.
 
-```atom
-{
-    component: 'MyDemo',
-    hide: false,  /* if not specified it defaults to false */
-    props    : {
-        text: 'Total of two numbers',
-        n1: 10,
-        b2: 20
-    },
-}
-```
 
-The component name must match the name of the component you will create in Step 2.
-The props are specific to your component. Typically these are configuration information to make your application work correctly.
+## Table versus Form for data entry
 
-The text in props will appear as the selection in the menu displayed by Home.js
+There are significant differences in how the user interacts with an application which uses a Table versus a custom form.
 
-At times you want to hide an application from users while you are working on it. Set hide to true in the menu. It defaults to false if not specified.
+However, at the lowest level both require the same functionality - Accessing data, verifying the entered data, saving the modified records, executing additional processing on the server.
 
-There are two sets of props your application will receive when selected from the menu.
+One of the key goals of this project is to create a single code base to handle both scenarios.
+[TBD: Detailed document on the library functions and usage notes].
 
-`Group 1 Props`
+## Demo Application
 
-1. All the prop that were passed to App.js in your index.js
+The data-editor demo application will be available soon.
 
-2. This list is enhanced with the following:
+## Currently Supported Features of the library
 
-    - store -- restaf store object
-    - host  -- your current SAS Viya url
-    - appName -- the name of your application
-    - appOptions -- this information is set in appenv.js in your root directory and the logonpayload. {appEnv: <info from appenv,.js>, logonPayload: < viya-server related information>} More on this later in this document
+- Creation and management of CAS session
 
-The content of appOptions is:
+- Reading one or more records from a cas table
 
-```json
-{
-    appEnv:  < the object returned from appenv.js in the root directory. Used for passing application configuration information>
-    logonPayoad: < This has information related to logging on to Viya - used for implicit flow authentication >
-}
+- Update the records based on a key
 
-These are accessed as usual:
+- Scrolling through the table
 
-```js
- let {store, host, appName,appOptions} = props;
- ```
+- Allow users to specify calculations on modifying a value. The current options are:
+  - On the client using JavaScript
+  - On the cas server using casl or any cas action
+  - On an external server via http
+  - An Azure App for a SAS Decisioning Flow
 
-### AppContext
 
-You can access the enhanced list of props using the useApp hook in the providers directory. The hook also returns the classes object created with the defaultStyles.js
+## Basic Flow
 
-```js
-import {useApp} from '../../providers';
+The Table Editor in the picture below is supplied by the user.
+![viyaedit](DataEditorFlow.png)
 
-let {store, appOptions, classes} = useApp();
+##
 
-```
+##
+## Future
 
-`Group 2 props`
+- Support where clause for reading records
 
-The props provided in the menu defintion are available thru history as follows:
+- Editing with standard SAS tables
 
-```atom
-import { useLocation } from 'react-router-dom';
-    <snip>
-let location = useLocation();
-let appProps = location.state;
-
-```
-
-appProps now has the props specified in the appMenu.js for this component
-
-As an example the props for the "ComputeService" application item is defined in App.js as shown below
-
-```js
-{
-    component: 'ComputeService',
-    props: {
-        text: 'Import and Run SAS Program',
-        initialTab: 0,
-        tabs: [
-                { label: 'ODS', component: 'ODS' },
-                { label: 'Log', component: 'LogList' },
-            ],
-    },
-},
-```
-
-When you run the application your menu will appear on the home page. Selecting it will display your application.
-
----
-
-### Step 2
-
----
-
-Develop your main app component in the viewers directory. You can use any react library. By default this project installs @material-ui.
-
-```js
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-
-function MyApp(props) {
-    let {n1,n2,label} = useLocation().state;  
-
-    let total = n1 + n2;
-    return <div>
-     <h1> {label} <h1>
-     <p> {total} </p>
-     </div>;
-}
-default export MyApp;
-```
-
-`Notes
-
-1. Everytime you change appMenus.js or add a new viewer you must restart the app with the commands below. But normal editing of existing application will do a hot replacement of the app.
-
-2. Recommendation: Clone one of the default examples and modify the code to suit your needs.
-
-3. During development you should use the following command to have Hot Module Replacement enabled
-
-> yarn dev
-
-4.To create production build issue the command
-
-> yarn buildapp
-
-5.You can also run the application in docker(but first run yarn buildapp)
-
-Run this command to create an image
-
-> yarn dkrbuild
-
-Run this command to run the application
-
-> yarn dkrrun
-
-## **Conclusion**
-
-That is all there is to adding new components.
+- Examples of using non-SAS databases like SingleStore(?)

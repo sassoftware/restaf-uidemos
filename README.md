@@ -1,384 +1,99 @@
-# A Viya Web Application using react and restaf
+[FSP on Viya	1](#_Toc583745382)
 
----
+[Introduction	1](#_Toc805632312)
+
+[A note on multi-user environments	1](#_Toc731399551)
+
+[Desired features in the work product	2](#_Toc562931818)
+
+[Demo Application	2](#_Toc413439152)
+
+[Currently Supported Features of the library	2](#_Toc1664768901)
+
+[Basic Flow	4](#_Toc1528817640)
+
+[Future	5](#_Toc538713069)
+
+#
+
+# data-editor  - The Demo Application for FSP on Viya
 
 ## Introduction
 
----
+Going back in history, SAS had products like SAS/FSP and SAS/AF that allowed users to create simple or complex interactive applications. As SAS moved to the Viya platform these products were dropped. SAS provided REST API (application programming interfaces) as an industry standard way for creating applications.
 
-This is a react-based application built with create-react-app using the viya-app-quickstart template.
-Over time examples from other projects will be migrated to this repository.
-Feel free to contribute.
+The key component of these applications is entering data. Common destinations of the modified data ARE:
 
-## Docker and K8s
+- The client application
+- Custom code on a Viya
+  - Compute server
+  - CAS (Cloud Analytic Server) server
+  - MAS (Micro Analytic Score)
+  - Other SAS services that can be accessed via REST API
+- Some external servers 
+  - Azure App running a SAS Decision using SAS Container Runtime (SCR)
+  - Others...
 
-The repository comes with docker-compose file to help create container image and also to test the app in a container.
+see [Repo usage doc](READMEdeploy.md) on how to clone and use this application.
+## Desired features in the work product
 
-The k8s directory has a basic set of config files to deploy the application in k8s.
+The goal of this project is to create a small reusable library and components for data entry in SAS Viya. 
 
-## Installation
+This collection should have the following characteristics:
 
-```sh
-git clone https://github.com/sassoftware/react-uidemos reactaapp -b reactapp
-cd reactapp
-yarn
-```
+1. Must be useable out of the box by users (internal and external)
 
-## Configuration
+2. Must address the basic capabilities of SAS/FSP and SAS/AF since these represent the requirements of SAS users over an extended period.
 
-1. Configure your Viya server as described in this [link](https://github.com/sassoftware/restaf/wiki/usefulTips).
+3. The core functionality must be unaware of the UI (User Interface) environment it is running in. The assumption is that the UI capability will be supplied by SAS and/or users.
 
-2. Edit the .env file and set the appropiate values.
+4. React components (must be limited and serve as examples) must be agnostic of specific React Component libraries (ex: Nova, material-ui and others).
 
-The default clientId information are:
+5. Must be extendible to address the considerable number of requirements gathered by Product Management.
 
-- Oauth flow: authorization_code
-- clientid: appcom
-- secret: secret
-- redirect_uri: <http://localhost:8000/viyaapp>
 
-3.Set the VIAY_SERVER to your Viya URL (ex: https://....)
+## Table versus Form for data entry
 
-- Set an environment variable as follows
+There are significant differences in how the user interacts with an application which uses a Table versus a custom form.
 
-```sh
-set VIYA_SERVER=<your viya server: ex: <http://myviyaserver.com>
-```
+However, at the lowest level both require the same functionality - Accessing data, verifying the entered data, saving the modified records, executing additional processing on the server.
 
-Alternatively you can edit the .env file and add this information to it.
+One of the key goals of this project is to create a single code base to handle both scenarios.
+[TBD: Detailed document on the library functions and usage notes].
 
-The last step is to build the default application.
+## Demo Application
 
-```sh
-yarn buildapp
-```
+The data-editor demo application will be available soon.
 
-> The buildapp script does some necessary housekeeping before running the standard start script of create-react-app. So use buildapp to build the application
+## Currently Supported Features of the library
 
-## Run the application
+- Creation and management of CAS session
 
-Now you are ready to run the default application.
+- Reading one or more records from a cas table
 
-Enter the following commands
+- Update the records based on a key
 
-```sh
-yarn app
-```
+- Scrolling through the table
 
-At this point you should visit <http://localhost:8080/viyaapp>
+- Allow users to specify calculations on modifying a value. The current options are:
+  - On the client using JavaScript
+  - On the cas server using casl or any cas action
+  - On an external server via http
+  - An Azure App for a SAS Decisioning Flow
 
-```text
-http://localhost:8080/viyaapp
 
-```
+## Basic Flow
 
-## Run in dev mode
+The Table Editor in the picture below is supplied by the user.
+![viyaedit](./public/DataEditorFlow.png)
 
-To run with Mot Module Replacement active issue this command
+##
 
-```sh
-yarn dev
-```
+##
+## Future
 
----
+- Support where clause for reading records
 
-## Adding your own applications
+- Editing with standard SAS tables
 
----
-
-It is a simple process to get your application appearing in the application menu. This menu is acccessed via the hamburger menu in the application's banner. The default app takes care of all the routing and passing the correct props to your application's main component.
-
-![Quick start](https://github.com/sassoftware/restaf/blob/2.0.0/images/viya-app.png)
-
----
-
-### Step 1
-
----
-
- Edit appMenus.js and add your application as a menu item. Your application will be displayed in the order it appears in the menu. The format of a menu item is:  
-
-Let us assume that your new component is called Mydemo.js
-
-```atom
-{
-    component: 'MyDemo',
-    hide: false,  /* if not specified it defaults to false */
-    props    : {
-        text: 'Total of two numbers',/* text used in the application menu */
-        n1: 10,
-        b2: 20
-    },
-}
-```
-
-The component name must match the name of the component you will create in Step 2.
-The props are specific to your component. Typically these are configuration information to make your application work correctly.
-
-The text will appear as the selection in the menu displayed by Home.js
-
-At times you want to hide an application from users while you are working on it. Set hide to true in the menu. It defaults to false if not specified.
-
-There are two sets of props your application will receive when selected from the menu.
-
-`Group 1 Props`
-
-1. All the prop that were passed to App.js in your index.js
-
-2. This list is enhanced with the following:
-
-    - store -- restaf store object
-    - host  -- your current SAS Viya url -- useful if you are using Viya VA SDK
-    - appName -- the name of your application
-    - appOptions -- this information is set in appenv.js in your root directory and the logonpayload. {appEnv: <info from appenv,.js>, logonPayload: < viya-server related information>} More on this later in this document
-
-The content of appOptions is:
-
-```json
-{
-    appEnv:  < the object returned from appenv.js in the root directory. Used for passing application configuration information>
-    logonPayoad: < This has information related to logging on to Viya - used for implicit flow authentication >
-}
-
-These are accessed as usual:
-
- let {classes, store, host, appName,appOptions} = props;
- ```
-
-### useAppContext
-
-An alternate way to get to these props is by using the useAppContext.
-
-```js
-import {useAppContext} from '../../providers';
-let {classes, store, appOptions} = useAppContext();
-```
-
-See providers/setupViya and App.js on how this Use function is setup. This is useful in the helper components where you might need access to the props.
-
-`Group 2 props`
-
-The props provided in the menu defintion are available thru history as follows:
-
-```atom
-import { useLocation } from 'react-router-dom';
-    <snip>
-let location = useLocation();
-let appProps = location.state;
-
-```
-
-appProps now has the props specified in the appMenu.js for this component
-
-As an example the props for the "ComputeService" application item is defined in appMenu.js as shown below
-
-```js
-{
-    component: 'ComputeService',
-    props: {
-        text: 'Import and Run SAS Program',
-        initialTab: 0,
-        tabs: [
-                { label: 'ODS', component: 'ODS' },
-                { label: 'Log', component: 'LogList' },
-            ],
-    },
-},
-```
-
-The value of appProps for this example is:
-
-```js
-let appProps = {
-        text: 'Import and Run SAS Program',
-        initialTab: 0,
-        tabs: [
-                { label: 'ODS', component: 'ODS' },
-                { label: 'Log', component: 'LogList' },
-            ],
-};
-```
-
----
-
-### Step 2
-
----
-
-Develop your main app component in the viewers directory. You can use any react library. By default this project installs @material-ui.
-
-```js
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-
-function MyDemo(props) {
-    let {n1,n2,label} = useLocation().state;  
-
-    let total = n1 + n2;
-    return <div>
-     <h1> {label} <h1>
-     <p> {total} </p>
-     </div>;
-}
-default export MyApp;
-```
-
-`Notes
-
-1. Everytime you change appMenus.js or add a new viewer you must restart the app with the commands below. But normal editing of existing application will do a hot replacement of the app.
-
-2. Recommendation: Clone one of the default examples and modify the code to suit your needs.
-
-3. During development you should use the following command to have Hot Module Replacement enabled
-
-> yarn dev
-
-4.To create production build issue the command
-
-> yarn buildapp
-
-5.You can also run the application in docker(but first run yarn buildapp)
-
-Run this command to create an image
-
-> yarn dkrbuild
-
-Run this command to run the application
-
-> yarn dkrrun
-
----
-
-## Project Organization
-
----
-
-The src directory has 3 key sbu directories
-
-1. viewers -- this directory has the main entry of the applications selectable in the menu
-
-2. helpers  -- this directory is designed to hold react components used by the viewers
-
-3. lib      -- this directory is for code that is not UI related: Example: code to access Viya, data manipulations etc...
-
-yarn dev and yarn buildapp will scan the viewers and helpers directory and create the indexx.js in each of these directories.
-For every entry in viewers directory the application will create a route that can be referenced in the appMenu.js
-
-## **Conclusion**
-
-That is all there is to adding new application - no wiring of routes, servers, code for authentication etc...
-Use your extra free time doing other interesting stuff.
-
----
-
-## Using your own templates
-
----
-
-You can create a template that meets your corporate needs using the following steps.
-
-1. In a git repository create a project.
-
-2. In that project create one more branches. Each branch represents a template.
-
-3. Use the quickstart branch in <https://github.com/sassoftware/restaf> as a template
-
-## Creating clientids
-
----
-
-Most folks create clientid's using shell scripts run on the Viya server or using POSTMAN scripts. Here is a even simpler way.
-You must have admin privledges. The example below uses the default values for this repo. Feel free to change it to suite your needs.
-
-Step 1: Issue this command in a shell on your local machine
-
-```sh
-npx @sassoftware/registerclient --host=your-viya-server-url
-```
-
-Example:
-
-npx @sassoftware/registerclient --host=<http://mytestserver.com>
-
-Step 2: You will get a prompt on your shell. Enter "logon" as a command. You will be promoted for your userid and password
-
-Step 3: After successful logon enter the following(replace viyademo with the value of webapp)
-
-> add alldemos -t authorization_code -s secret -r <http://localhost:8080/viyademo,https://localhost/viyademo>
-
-Step 4: Enter help to explore other features or enter exit to get out of the application
-
----
-
-## Other information
-
----
-
-## Standard create-react-app Scripts
-
----
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: <https://facebook.github.io/create-react-app/docs/code-splitting>
-
-### Analyzing the Bundle Size
-
-This section has moved here: <https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size>
-
-### Making a Progressive Web App
-
-This section has moved here: <https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app>
-
-### Advanced Configuration
-
-This section has moved here: <https://facebook.github.io/create-react-app/docs/advanced-configuration>
-
-### Deployment
-
-This section has moved here: <https://facebook.github.io/create-react-app/docs/deployment>
-
-### `yarn build` fails to minify
-
-This section has moved here: <https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify>
+- Examples of using non-SAS databases like SingleStore(?)

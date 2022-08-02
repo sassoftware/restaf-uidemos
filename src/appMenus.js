@@ -4,7 +4,7 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 
-let appMenus =  [
+let appMenus = [
 	{
 		component: 'Home',
 		text     : 'Introduction',
@@ -15,101 +15,152 @@ let appMenus =  [
 		},
 	},
 	{
-	
-		component: 'OptApp',
-		props: {
-			text: 'Promotion optimization App',
-			three: 3,
-		}
-	},
-	
-	{
-		component: 'MasModel',
+		component: 'DataEditorDriver',
+		hide     : false,
 		props    : {
-			text : 'Car Auction',
-			models: [
-				{
-				 label: 'Car Auction',
-				 name : 'mfgCarAuction1_0',
-				 viewData: {
-					 make_     : {label: 'Make of Car', viewType: 'select', value: 'FORD', selections: ['FORD', 'BMW', 'LEXUS', 'PRIUS']},
-					 mileage_  : {label: 'Mileage', value :10000,  viewType: 'slider', min:5000, max: 50000},
-					 num_vehicles_  : {label: 'No. of similar vehicles',   value :10,  viewType: 'slider', min:0, max: 20},
-					 quality_: {label: 'Quality of vehicles', value :5.0, viewType: 'slider', min:0, max:10}
-					 },
-				 target: {
-					 name     : 'OFFER',
-					 threshold: 'NO OFFER'
+			text       : 'Form Editing',
+			dataControl: {
+				source: 'cas',
+				table : {caslib: 'casuser', name: 'testdata'},
+				access: {},
+				byvars: ['id'],
+				where : {},
+				
+				cachePolicy: true,
 
-				 }
-			 }
-		  ]
+				initialFetch: {
+					count : 1,
+					from  : 1,
+					format: false
+				},
+
+				customColumns: {
+					total: {
+						Column         : "Total",
+						Label          : "Grand Total",
+						FormattedLength: 12,
+						Type           : "double"
+						}
+				},
+				customRows: []
+			},
+			editControl: {
+				handlers  : {},
+				save      : true,  
+				autoSave  : true, 
+				handlerSet: 'testdata'
+		
+			},
+			appData: {
+				layout   : {},
+				component: 'DataFormMulti',
+				getViewer: null,
+		
+
+				form: {
+				  defaultComponent: "InputEntry",
+				  show            : ['id', 'total', 'x2', 'x1', 'x3'],
+				  classes         : {},
+				  title           : 'Editing data using forms',
+				  visuals         : {
+					x2: {
+					  component: "Slider",
+					  props    : {
+						min  : 0,
+						max  : 50,
+						steps: 1,
+					  },
+					},
+					total: {
+					  props: {
+						disabled: true,
+					  },
+					},
+					id: {
+						props: {
+						  disabled: true,
+						},
+					  }
+				  }
+				}
+			
+			}
 		}
+			
 	},
-	
 	{
-		component: 'CommonViewer',
+		component: 'DataEditorDriver',
+		hide     : false,
 		props    : {
-			text      : 'Browse MAS models and Score',
-			initialTab: 0,
-			tabs      : [ { label: 'Mas Model', component: 'MasList' } ],
-		},
-	},
-	{
-        component: 'CommonViewer',
-        props: {
-            text: 'Pipeline Management',
-            service: 'mlPipelineAutomation',
-            initialRel: 'collection',
-            tabs: [
-                { label: 'View Projects', component: 'ViewPipelines' },
-                { label: 'Create Project', component: 'CreatePipeline' },
-                { label: 'View MAS Modules', component: 'ViewMas', service: "microanalyticScore", initialRel: 'modules' },
-            ]
-        },
-    },
-	{
-		component: 'Casl',
-		// hide: true,
-		props    : {
-			text      : 'Import and Run Casl Code',
-			initialTab: 0,
-			tabs      : [ { label: 'Results', component: 'CaslResult' } ],
-		},
-	},
-	{
-		component: 'ComputeService',
-		//hide: true,
-		props    : {
-			text      : 'Import and Run SAS Program',
-			initialTab: 0,
-			tabs      : [
-				{ label: 'ODS', type: 'ods', component: 'ODS' },
-				{ label: 'Log', type: 'log', component: 'LogList' },
-			],
-		},
-	},
-	{
-		component: 'PlaceHolder',
-		// hide: true,
-		props    : {
-			text : 'Describe Viewer Props',
-			three: 3,
-		},
-	},
-	{
-		component: 'SimpleDataFormTest',
-		props    : {
-			text : 'Test Data form',
-			three: 3,
-		},
-	},
-	{
-		component: 'JobManager',
-		hide     : true,
-        props    : {
-            text: 'Job Manager'
-        }
-    }
+			text       : 'Table Editing',
+			dataControl: {
+				source: 'cas',
+				table : {caslib: 'casuser', name: 'testdata'},
+				access: {},
+				byvars: ['id'],
+				where : {},
+				
+				cachePolicy: true,
+
+				initialFetch: {
+					count : 10,
+					from  : 1,
+					format: false
+				},
+
+				customColumns: {
+					total: {
+						Column         : "Total",
+						Label          : "Grand Total",
+						FormattedLength: 12,
+						Type           : "double"
+						}
+				},
+				customRows: []
+			},
+			editControl: {
+				handlers  : {},
+				save      : true,  
+				autoSave  : true, 
+				handlerSet: 'testdata'
+		
+			},
+			appData: {
+				layout   : {},
+				component: 'TableEditorMui',
+				getViewer: null,
+		
+
+				form: {
+				  defaultComponent: "InputEntry",
+				  show            : ['id', 'total', 'x2', 'x1', 'x3'],
+				  classes         : {},
+				  title           : 'Editing data using forms',
+				  visuals         : {
+					x2: {
+					  component: "Slider",
+					  props    : {
+						min  : 0,
+						max  : 50,
+						steps: 1,
+					  },
+					},
+					total: {
+					  props: {
+						disabled: true,
+					  },
+					},
+					id: {
+						props: {
+						  disabled: true,
+						},
+					  }
+				  }
+				}
+			
+			}
+		
+	}
+	}
 ];
 export default appMenus;

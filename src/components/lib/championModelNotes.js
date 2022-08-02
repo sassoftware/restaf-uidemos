@@ -15,6 +15,6 @@ async function championModelNotes (store, result, selected) {
        r = `<h2>${n}</h2>` + r;
     }
     return r;
-};
+}
 
 export default championModelNotes;

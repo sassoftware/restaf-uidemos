@@ -10,8 +10,8 @@ function ReadMe (props) {
     
   return <Fragment>
 
-    <ReactMarkdown children={text} disallowedtypes={[ "inlinecode" ]} />;
-  </Fragment>
+    <ReactMarkdown children={text} disallowedtypes={["inlinecode"]} />;
+  </Fragment>;
 }
 
 export default  ReadMe;

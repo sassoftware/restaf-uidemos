@@ -4,7 +4,7 @@
  */
 
 let FormData = require('form-data');
-async function uploadData(caslib, fileName, file, type, store) {
+async function uploadData (caslib, fileName, file, type, store) {
     //Making this self contained 
     let {casManagement} = await store.addServices('casManagement');
     let servers = await store.apiCall(casManagement.links('servers'));
@@ -34,11 +34,11 @@ async function uploadData(caslib, fileName, file, type, store) {
     formData.append('file', file);  // note that we are passing the File object
     
     let p2 = {
-        data: formData,
+        data   : formData,
         headers: {
             'content-type': `multipart/form-data; boundary="----------12345678901234567"`
         }
-    }
+    };
     let upload = await store.apiCall(tables.links('upload'), p2);
 
     // get the table uri for use with other apis

@@ -2,13 +2,12 @@
  * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React , {useContext} from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
-import {useAppContext} from '../../providers';
+// import {useAppContext} from '../../providers';
 function PlaceHolder (props) {
-
   
-  let r = useAppContext();
+  // let r = useAppContext();
   let show =
     <div id="page-wrap">
       <pre> {JSON.stringify(useLocation().state, null, 4)} </pre>

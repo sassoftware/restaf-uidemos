@@ -10,13 +10,11 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import viewers from './components/viewers';
 import appMenus from './appMenus';
 import Header from './components/helpers/Header';
-function AppRouter(props) {
+function AppRouter (props) {
 	// const [setRef, dimensions] = useParentSize();
 	let title;
-
 	let homeState = {};
-	console.log(viewers);
-
+	
 	let switches = appMenus.map((m, key) => {
 		let Comp = viewers[m.component];
 		let path = `/${m.component}`;

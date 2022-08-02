@@ -42,7 +42,7 @@ function QuickNotes (props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if ( logInfo.log !== null) {
+    if (logInfo.log !== null) {
         let t = `@ ${logInfo.timeStamp}: ${logInfo.log}`;
         let icon = (logInfo.completed === true) ? <CheckCircle/> : <Info/>;
         let c= (logInfo.completed === true) ? 'primary': 'default';
@@ -57,10 +57,10 @@ function QuickNotes (props) {
                         startIcon={icon}>
                         {t}
                 </Button>
-            </Snackbar>
+            </Snackbar>;
     }
     return show;
-};
+}
 
 QuickNotes.propTypes = {
   /** msg to be displayed */
@@ -68,5 +68,5 @@ QuickNotes.propTypes = {
 
   /** title for dialog */
   title: PropTypes.string.isRequired
-}
+};
 export default QuickNotes;

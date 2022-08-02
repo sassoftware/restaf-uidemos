@@ -6,7 +6,7 @@
 import { useContext } from 'react';
 import AppContext from './AppContext';
 
-function useAppContext() {
+function useAppContext () {
 	const context = useContext(AppContext);
 	return context;
 }

@@ -3,8 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-
-
 import React, { useState, Fragment,  } from 'react';
 // import { PropTypes } from 'prop-types';
 
@@ -12,15 +10,16 @@ import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
+
 import { useLocation } from 'react-router-dom';
 import helpers from '../helpers';
-// import QuickNotes from '../helpers/QuickNotes';
-
+// import customForms from '../../customForms';
+let customForms = require('../../customForms');
 
 function CommonViewer (props) {
 	let { classes } = props;
-	let [ currentTab, setCurrentTab ] = useState(0);
-	let { initialTab, tabs } = useLocation().state;
+	let [currentTab, setCurrentTab] = useState(0);
+	let { initialTab, tabs, ...rest} = useLocation().state;
 
 	// Tab handling -- a good candidate as an helper component- wait for more usage examples
 	const _createTabBar = () => {
@@ -35,7 +34,10 @@ function CommonViewer (props) {
 					value={tabn}
 					onChange={_tabSelection}
 					aria-label="Horizontal tabs example"
-					className={classes.tab}>
+					className={classes.tab}
+					customForms={customForms}
+					
+					>
 					{tabsBar}
 				</Tabs>
 		);
@@ -51,7 +53,7 @@ function CommonViewer (props) {
 		let V = helpers[tabs[tabn].component];
 		return (
 			<Fragment>
-				<V {...props} />
+				<V {...props} appArgs={rest} fullName={null}/>
 			</Fragment>
 		);
 	};

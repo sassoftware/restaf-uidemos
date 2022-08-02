@@ -1,4 +1,4 @@
-
+/*eslint-disable */
 let info = {
        jobTrackerx: {
               delay   : 5,

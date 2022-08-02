@@ -1,29 +1,13 @@
 /* generated with createRoutes.js */ 
-import Casl from './Casl'; 
 import CommonViewer from './CommonViewer'; 
-import ComputeService from './ComputeService'; 
+import DataEditorDriver from './DataEditorDriver'; 
 import Home from './Home'; 
-import ItemsViewerTest from './ItemsViewerTest'; 
 import JobManager from './JobManager'; 
-import MasModel from './MasModel'; 
-import MasViewerTest from './MasViewerTest'; 
-import MLPA from './MLPA'; 
-import OptApp from './OptApp'; 
 import PlaceHolder from './PlaceHolder'; 
-import ScoreContainer from './ScoreContainer'; 
-import SimpleDataFormTest from './SimpleDataFormTest'; 
 export default {
-Casl,
 CommonViewer,
-ComputeService,
+DataEditorDriver,
 Home,
-ItemsViewerTest,
 JobManager,
-MasModel,
-MasViewerTest,
-MLPA,
-OptApp,
 PlaceHolder,
-ScoreContainer,
-SimpleDataFormTest,
 };

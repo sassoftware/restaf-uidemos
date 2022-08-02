@@ -8,8 +8,9 @@ import { PropTypes } from 'prop-types';
 import { Editor } from '@tinymce/tinymce-react';
 import hilite from '../lib/hilite';
 
-function HtmlViewer(props) {
+function HtmlViewer (props) {
     let {html, selections} = props;
+    // eslint-disable-next-line no-unused-vars
     let text = (selections != null) ? hilite(html, selections) : html;
     return (
         <div>
@@ -18,11 +19,11 @@ function HtmlViewer(props) {
                 disabled
                /* menubar={true}*/
                 init={{
-                    height: 'inherit',
-                    inline: true,
+                    height : 'inherit',
+                    inline : true,
                     toolbar: true,
                     menubar: false,
-                    plugins:[
+                    plugins: [
                         'advlist autolink lists link image charmap print preview anchor',
                         'searchreplace visualblocks code fullscreen',
                         'insertdatetime media table paste code help wordcount'
@@ -39,10 +40,10 @@ function HtmlViewer(props) {
             />
         </div>
     );
-};
+}
 
 HtmlViewer.propTypes = {
     html      : PropTypes.string.isRequired,
     selections: PropTypes.object
-}
+};
 export default HtmlViewer;

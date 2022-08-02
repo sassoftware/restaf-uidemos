@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { TrendingUpTwoTone } from '@material-ui/icons';
 
 // From material-ui online doc
-function AlertDialog(props) {
+function AlertDialog (props) {
   let {title, msg} = props;
   const [open, setOpen] = React.useState(TrendingUpTwoTone);
 
@@ -59,8 +59,8 @@ AlertDialog.protoTypes = {
    * Simple alert dialog
    */
   /** msg to show */
-  msg: PropTypes.any.isRequired,
+  msg  : PropTypes.any.isRequired,
   /** title of dialog */
   title: PropTypes.string.isRequired
-}
+};
 export default AlertDialog;

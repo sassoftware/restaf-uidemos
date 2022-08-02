@@ -21,7 +21,7 @@ function ListMenu (props) {
             newMenu.push(
                 <ListItem key={key} button onClick={() => onSelect(key, m)}>
                     <ListItemText primary={m.props.text} />
-                </ListItem>)
+                </ListItem>);
         }
     });
     let show =
@@ -43,5 +43,5 @@ ListMenu.propTypes = {
 /** default classes */
     classes: PropTypes.object.isRequired
 
-}
+};
 export default ListMenu;

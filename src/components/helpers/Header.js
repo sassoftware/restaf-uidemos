@@ -14,21 +14,22 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer'
+import Drawer from '@material-ui/core/Drawer';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { useHistory } from 'react-router-dom';
 import ListMenu    from './ListMenu';
 import QuickNotes from '../helpers/QuickNotes';
 import {useAppContext} from '../../providers';
+import deepcopy from 'deepcopy';
 
 
 function Header (props) {
     const {title, menu} = props;
-    let [ menuIsOpen, setMenuIsOpen ] = useState(false);
+    let [menuIsOpen, setMenuIsOpen] = useState(false);
     
     let {store, classes, appOptions} = useAppContext();
     let history = useHistory();
-    let [ admin, setUserAdmin ] = useState(null);
+    let [admin, setUserAdmin] = useState(null);
       
     async function isUserAdmin (store) {
         let { identities } = await store.addServices('identities');
@@ -61,10 +62,11 @@ function Header (props) {
     const _routeTo = (_index, m) => {
             let payload = {
                 pathname: `/${m.component}`,
-                state   : m.props,
+                state   : deepcopy(m.props)
             };
             setMenuIsOpen(false);
-            history.push(payload);
+            // history.push(payload);
+            history.replace(payload);
     };
     
     let jobTracker = appOptions.appEnv.jobTracker;
@@ -145,10 +147,10 @@ Header.propTypes = {
      * Displays an Header at the top of the page 
      * 
      */
-    menu   : PropTypes.array.isRequired,
+    menu: PropTypes.array.isRequired,
 
     /** Text to display in the Header */
-    title  : PropTypes.string.isRequired
+    title: PropTypes.string.isRequired
 
 };
 

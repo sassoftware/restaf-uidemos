@@ -10,6 +10,7 @@ makeIndex('./src/components/viewers')
 	.catch((err) => {
 		console.log(err);
 	});
+	
 async function makeIndex (dir) {
 	let files = await fs.readdir(dir);
 	let exp = '/* generated with createRoutes.js */ \n';
@@ -17,7 +18,7 @@ async function makeIndex (dir) {
 
 	let exportList = [];
 	files.forEach((file) => {
-		let [ name, ext ] = file.split('.');
+		let [name, ext] = file.split('.');
 		if (ext === 'js' && name !== 'index') {
 			let imp = `import ${name} from './${name}'; \n`;
 			exp = exp + imp;
