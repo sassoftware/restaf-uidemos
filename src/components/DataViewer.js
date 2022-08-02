@@ -8,7 +8,7 @@ import {cellEdit, updateTableRows, scrollTable} from '@sassoftware/restafedit';
 import PropTypes from 'prop-types';
 
 function DataViewer (props) {
-    const {appEnv, render}   = props;
+    const {appEnv, editor}   = props;
     const [modFlag, setModFlag] = useState(true);
     const [status, setStatus] = useState(null);
 
@@ -51,11 +51,17 @@ function DataViewer (props) {
             .catch((err) => setStatus({status: 2, msg: err}));
     };
     debugger;
-    //const V = appEnv.appControl.appData.getViewer(appEnv.appControl.appData);
+    const V = editor();
     debugger;
     return (
         <Fragment>
-            {props.render(_onEdit,_onScroll,_onSave,status,appEnv)}
+            <V 
+             onEdit={_onEdit}
+             onScroll={_onScroll}
+             onSave={_onSave}
+             status={status}
+             appEnv={appEnv}
+             />
         </Fragment>
         );
 }
@@ -63,7 +69,7 @@ DataViewer.propTypes = {
     /** Application control */
     appEnv: PropTypes.object.isRequired,
     /** user's component for editing     */
-    render: PropTypes.func.isRequired
+    editor: PropTypes.func.isRequired
 
 };
 export default DataViewer;

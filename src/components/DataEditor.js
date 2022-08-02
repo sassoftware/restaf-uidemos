@@ -40,7 +40,7 @@ function DataEditor (props) {
         show =
             <div id="page-wrap" key={Date()}>
                 <DataViewer appEnv={state} 
-                render ={props.render} />
+                 editor={_selectViewer} />
             </div>;
     }
     return show;
@@ -53,7 +53,7 @@ DataEditor.propTypes = {
     appControl: PropTypes.object.isRequired,
 
     /** user's component for editing     */
-    render: PropTypes.func.isRequired
+    editor: PropTypes.func.isRequired
 
 };
 export default DataEditor;

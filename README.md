@@ -30,6 +30,43 @@ If youy package manager does not install peer dependencies then install these ma
 }
 
 ```
-## Usage
 
-TBD.
+## Usage:
+
+DataEditor is the entry component
+
+### Sample React Component
+
+```js
+
+<DataEditor viyaConnection={viyaConnection} appControl={appControl}/>
+
+```
+
+## Props to DataEditor
+
+### viyaConnect
+
+Usually your app is running with authorization_code flow. So use this:
+
+```js
+{
+    host: <your Viya server url>,
+    authType: 'code'
+}
+```
+
+Sometimes even with authorization_flow you might want to use tokens. The use this:
+
+```js
+{
+    host: <your Viya server url>,
+    authType: 'code',
+    token: <your token>
+    tokenType: 'bearer
+}
+```
+
+### AppControl
+
+This is the same appControl used with @sassoftware/restafedit with an additional section for the editor component you will supply
