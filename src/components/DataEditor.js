@@ -11,7 +11,7 @@ import DataViewer from './DataViewer';
 
 function DataEditor (props) {
     debugger;
-    const { viyaConnection, appControl} = props;
+    const { viyaConnection, appControl, editor} = props;
     const [state, setState] = useState({});
 
     //
@@ -40,7 +40,7 @@ function DataEditor (props) {
         show =
             <div id="page-wrap" key={Date()}>
                 <DataViewer appEnv={state} 
-                 editor={_selectViewer} />
+                 editor={editor} />
             </div>;
     }
     return show;
