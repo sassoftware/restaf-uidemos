@@ -39,7 +39,8 @@ function DataEditor (props) {
     if (state.session != null) {
         show =
             <div id="page-wrap" key={Date()}>
-                <DataViewer appEnv={state} key={state.id} />
+                <DataViewer appEnv={state} 
+                render ={props.render} />
             </div>;
     }
     return show;
@@ -48,8 +49,11 @@ DataEditor.propTypes = {
     /** Information to setup connection to Viya */
     viyaConnection: PropTypes.object.isRequired,
 
-/** Information to setup application */
+    /** Information to setup application */
     appControl: PropTypes.object.isRequired,
+
+    /** user's component for editing     */
+    render: PropTypes.func.isRequired
 
 };
 export default DataEditor;
