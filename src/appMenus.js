@@ -15,6 +15,15 @@ let appMenus = [
 		},
 	},
 	{
+		component: 'Sample',
+		text     : 'Sample for Documentation',
+		hide     : false,
+		props    : {
+			text : 'Sample',
+			title: 'Sample Application',
+		},
+	},
+	{
 		component: 'DataEditorDriver',
 		hide     : false,
 		props    : {

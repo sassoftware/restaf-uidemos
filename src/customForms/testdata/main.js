@@ -6,7 +6,7 @@
 async function main (data, _rowIndex, appEnv,_type) {
     let status = {code: 0 , msg: "Main processing completed"};
     /* some code */
-    debugger;
+    
     data.total = data.x1 + data.x2 + data.x3 ;
     return [data, status];
 };
