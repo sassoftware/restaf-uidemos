@@ -69,6 +69,11 @@ function Sample (props) {
   // See below - moved it to a function for code readability
   let appControl = getAppControl();
   
+  let viyaConnection = {
+    host: 'https://myViyaServer.com',
+    authType: 'code'
+  }
+  
   // Used as editor function
   const _editor = () => {
     return helpers['SampleForm']; 
@@ -81,7 +86,7 @@ function Sample (props) {
           <Grid item>
             <DataEditor key={Date()}
                   appControl={appControl} 
-                  viyaConnection={props.appOptions.logonPayload}   
+                  viyaConnection={viyaConnection}   
                   editor={_editor}  
                   />
           </Grid>
