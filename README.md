@@ -54,7 +54,7 @@ DataEditor is the entry component
 
 ```
 
-Here is a link to a working [sample](https://github.com/sassoftware/restaf-uidemos/blob/editorappreact/src/components/viewers/Sample.js) that uses this. For convenience the code is included here. 
+Here is a link to a working [sample](https://github.com/sassoftware/restaf-uidemos/blob/editorappreact/src/components/viewers/Sample.js) that uses this. For convenience the code is included here.
 
 ```jsx
 
