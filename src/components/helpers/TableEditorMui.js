@@ -19,12 +19,12 @@ function TableEditorMui (props) {
     const appData = appEnv.appControl.appData;
     const form    = appData.form;
     let {defaultComponent, classes, visuals}  = form;
-    let {columns, currentPage} = appEnv.state;
+    let {columns } = appEnv.state;
     let data = [].concat(appEnv.state.data);
     
     const menuList = [
-        {text: 'previous',   action: 'prev', disabled: (currentPage.from === 1)},
-        {text: 'next', action: 'next', disabled: (currentPage.next === -1)},
+        {text: 'previous',   action: 'prev', disabled: false},
+        {text: 'next', action: 'next', disabled: false},
         {text: 'Save', action: 'save', disabled: true }
     ];
     let order = (form.show.length > 0) ? form.show : Object.keys(columns);

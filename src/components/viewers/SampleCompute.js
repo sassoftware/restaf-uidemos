@@ -11,7 +11,7 @@ import Grid from "@material-ui/core/Grid";
 
 // import {DataEditor} from '@sassoftware/restafedit';
 
-function Sample (props) {
+function SampleCompute (props) {
 
   // See below - moved it to a function for code readability
   let appControl = getAppControl();
@@ -22,7 +22,7 @@ function Sample (props) {
   
   // used as editor function
   const _editor = () => {
-    return helpers['SampleForm']; 
+    return helpers['TableEditorMui']; 
   };
 
  // main call
@@ -47,9 +47,8 @@ function Sample (props) {
 //
 async function init (data,row,appEnv,type) {
   let status = {code: 0, msg: `${type} processing completed`};
-  data.total = data.x1 + data.x2 + data.x3 ;
-  let newData = data; /* you can modify the incoming data and return it */
-  return [newData, status];
+  data.total = data.air*10;
+  return [data, status];
 };
 
 async function term (data, type) {
@@ -57,32 +56,23 @@ async function term (data, type) {
   return [data, status];
 };
 
-async function x1 (data, value, name) {
-let msg = {code: 0, msg: `${name} handler executed.`};
-if (data.x1 > 10) {
-    data.x1 = 10;
-    msg = {code: 0, msg: "Exceeded Max. Value reset to max"};
-}
-
-return [data, msg];
-};
 
 // Application control for restafedit to use.
 
 function getAppControl () {
   return {
-      description: 'Simple Example',
+      description: 'Editing SAS Table',
       dataControl: {
-        source: 'cas',
-        table : {caslib: 'casuser', name: 'testdata'},
+        source: 'compute',
+        table : {libref: 'SASHELP', name: 'AIR'},
         access: {},
-        byvars: ['id'],
+        byvars: ['date'],
         where : {},
 
         cachePolicy: true,
 
         initialFetch: {
-          count : 1,
+          count : 10,
           from  : 1,
           format: false
         },
@@ -98,15 +88,34 @@ function getAppControl () {
         customRows: []
       },
       editControl: {
-        handlers: {init: init, main: init, term: term, x1: x1}, 
+        handlers: {init: init, main: init, term: term}, 
         save    : true,  
-        autoSave: true, 
+        autoSave: false, 
     
       },
-      appData: {}    /* put here whatever you want to pass to your editor component */
+      appData: {
+         form: {
+          defaultComponent: "InputEntry",
+          show            : [],
+          classes         : {},
+          title           : 'Editing SAS Tables',
+          visuals         : {
+            total: {
+              props: {
+              disabled: true,
+              },
+            },
+            id: {
+              props: {
+                disabled: true,
+              },
+            }
+          }
+        }
+      }    /* put here whatever you want to pass to your editor component */
       
    };
   }
 
 }
-export default Sample;
+export default SampleCompute;

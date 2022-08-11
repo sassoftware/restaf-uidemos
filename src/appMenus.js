@@ -19,8 +19,17 @@ let appMenus = [
 		text     : 'Sample for Documentation',
 		hide     : false,
 		props    : {
-			text : 'Sample',
-			title: 'Sample Application',
+			text : 'Sample CAS',
+			title: 'Sample CAS Application',
+		},
+	},
+	{
+		component: 'SampleCompute',
+		text     : 'Sample for Documentation',
+		hide     : false,
+		props    : {
+			text : 'Sample Compute',
+			title: 'Sample Compute Application',
 		},
 	},
 	{
