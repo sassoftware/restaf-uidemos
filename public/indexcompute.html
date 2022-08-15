@@ -27,15 +27,15 @@
 		<!-- http package to make calls to Viya -->
     <head>
       <meta charset="UTF-8" />
-      <script src="https://unpkg.com/@sassoftware/restaf@4.4.1"></script>
-      <script src="https://unpkg.com/@sassoftware/restaflib@4.4.1"></script>
-      <script src="https://unpkg.com/@sassoftware/restafedit"></script>
+      <script src="https://unpkg.com/@sassoftware/restaf@dev"></script>
+      <script src="https://unpkg.com/@sassoftware/restaflib@dev"></script>
+      <script src="https://unpkg.com/@sassoftware/restafedit@dev"></script>
 
       <!-- editor.js has relevant javascript files-->
-      <script src="./lib/editor.js"> </script>/>
+      <script src="./lib/editorcompute.js"> </script>/>
   
       <script src="/editorapp/appenv"></script>
-  
+
       <style>
         .container {
           display: flex;
@@ -99,6 +99,7 @@
             .then (r => {
               appEnv = r;
               debugger;
+              document.getElementById('status').innerHTML= ' ';
               displayValues();
             })
             .catch (err => {
@@ -143,29 +144,18 @@
       <button  onclick="scrollTable('prev')"> Prev</button>
       <button  onclick="scrollTable('next')"> Next</button>
       <br/>
-
+      <p id="status">
+        Initializing...
+      </p>
       <form action="">
-        <label class="elabel"> _index_: </label>
-          <input class="edisabled" type="input"  disabled id="_index_" size="50" />
-          <br />
-          <br/>
-        <label class="elabel"> id: </label>
-          <input class="edisabled" type="input"  disabled id="id" size="50" />
+        <label class="elabel"> date: </label>
+          <input class="edisabled" type="input"  disabled id="date" size="50" />
           <br />
           <br/>
   
-        <label class="elabel"> x1: </label>
-          <input class="einput" type="text" onblur="onblurx('x1')" onkeypress="search('x1')" id="x1" size="50" />
+        <label class="elabel"> air: </label>
+          <input class="einput" type="text" onblur="onblurx('air')" onkeypress="search('air')" id="air" size="50" />
           <br />
-  
-          <label class="elabel"> x2: </label>
-          <input class="einput" type="text" onblur="onblurx('x2')" onkeypress="search('x2')" id="x2" size="50" />
-          <br />
-
-          <label class="elabel"> x3: </label>
-          <input class="einput" type="text" onblur="onblurx('x3')" onkeypress="search('x3')" id="x3" size="50" />
-          <br />
-          <br/>
 
           <label class="elabel"> Grand Total: </label>
           <input class="eresult" type="input" id="total" disabled size="50" />
