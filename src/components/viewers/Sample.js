@@ -72,30 +72,28 @@ return [data, msg];
 function getAppControl () {
   return {
       description: 'Simple Example',
-      dataControl: {
-        source: 'cas',
-        table : {caslib: 'casuser', name: 'testdata'},
-        access: {},
-        byvars: ['id'],
-        where : {},
 
-        cachePolicy: true,
+      source: 'cas',
+      table : {caslib: 'casuser', name: 'testdata'},
+      access: {},
+      byvars: ['id'],
+      where : {},
 
-        initialFetch: {
-          count : 1,
-          from  : 1,
-          format: false
-        },
+      cachePolicy: true,
 
-        customColumns: {
-          total: {
-            Column         : "Total",
-            Label          : "Grand Total",
-            FormattedLength: 12,
-            Type           : "double"
-            }
-        },
-        customRows: []
+      initialFetch: {
+        count : 1,
+        from  : 1,
+        format: false
+      },
+
+      customColumns: {
+        total: {
+          Column         : "Total",
+          Label          : "Grand Total",
+          FormattedLength: 12,
+          Type           : "double"
+          }
       },
       editControl: {
         handlers: {init: init, main: init, term: term, x1: x1}, 
@@ -104,9 +102,8 @@ function getAppControl () {
     
       },
       appData: {}    /* put here whatever you want to pass to your editor component */
-      
-   };
-  }
-
+    
+    };
+}
 }
 export default Sample;

@@ -36,8 +36,8 @@ let appMenus = [
 		component: 'DataEditorDriver',
 		hide     : false,
 		props    : {
-			text       : 'Form Editing',
-			dataControl: {
+			text      : 'Form Editing',
+			appControl: {
 				source: 'cas',
 				table : {caslib: 'casuser', name: 'testdata'},
 				access: {},
@@ -110,32 +110,31 @@ let appMenus = [
 		component: 'DataEditorDriver',
 		hide     : false,
 		props    : {
-			text       : 'Table Editing',
-			dataControl: {
-				source: 'cas',
-				table : {caslib: 'casuser', name: 'testdata'},
-				access: {},
-				byvars: ['id'],
-				where : {},
+			text: 'Table Editing',
+
+			source: 'cas',
+			table : {caslib: 'casuser', name: 'testdata'},
+			access: {},
+			byvars: ['id'],
+	
 				
-				cachePolicy: true,
+			cachePolicy: true,
 
-				initialFetch: {
-					count : 10,
-					from  : 1,
-					format: false
-				},
-
-				customColumns: {
-					total: {
-						Column         : "Total",
-						Label          : "Grand Total",
-						FormattedLength: 12,
-						Type           : "double"
-						}
-				},
-				customRows: []
+			initialFetch: {
+				count : 10,
+				from  : 1,
+				format: false
 			},
+
+			customColumns: {
+				total: {
+					Column         : "Total",
+					Label          : "Grand Total",
+					FormattedLength: 12,
+					Type           : "double"
+					}
+			},
+
 			editControl: {
 				handlers  : {},
 				save      : true,  
@@ -175,10 +174,8 @@ let appMenus = [
 					  }
 				  }
 				}
-			
 			}
-		
 	}
-	}
+}
 ];
 export default appMenus;

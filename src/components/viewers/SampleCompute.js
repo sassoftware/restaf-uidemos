@@ -15,6 +15,7 @@ function SampleCompute (props) {
 
   // See below - moved it to a function for code readability
   let appControl = getAppControl();
+  
   /*
   * viyaConnection is of the form
   * {host:<viya url>, authType: 'code'};
@@ -62,30 +63,28 @@ async function term (data, type) {
 function getAppControl () {
   return {
       description: 'Editing SAS Table',
-      dataControl: {
-        source: 'compute',
-        table : {libref: 'SASHELP', name: 'AIR'},
-        access: {},
-        byvars: ['date'],
-        where : {},
 
-        cachePolicy: true,
+      source: 'compute',
+      table : {libref: 'SASHELP', name: 'AIR'},
+      access: {},
+      byvars: ['date'],
+      where : {},
 
-        initialFetch: {
-          count : 10,
-          from  : 1,
-          format: false
-        },
+      cachePolicy: true,
 
-        customColumns: {
-          total: {
-            Column         : "Total",
-            Label          : "Grand Total",
-            FormattedLength: 12,
-            Type           : "double"
-            }
-        },
-        customRows: []
+      initialFetch: {
+        count : 10,
+        from  : 1,
+        format: false
+      },
+
+      customColumns: {
+        total: {
+          Column         : "Total",
+          Label          : "Grand Total",
+          FormattedLength: 12,
+          Type           : "double"
+          }
       },
       editControl: {
         handlers: {init: init, main: init, term: term}, 
