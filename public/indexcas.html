@@ -29,7 +29,7 @@
       <meta charset="UTF-8" />
       <script src="https://unpkg.com/@sassoftware/restaf@next"></script>
       <script src="https://unpkg.com/@sassoftware/restaflib@next"></script>
-      <script src="https://unpkg.com/@sassoftware/restafedit@next"></script>
+      <script src="https://unpkg.com/@sassoftware/restafedit@test"></script>
 
       <!-- editor.js has relevant javascript files-->
       <script src="./lib/casControl.js"></script>
@@ -127,8 +127,8 @@
         // handle keyboard events
         // My funky way of handling calculations on enter or on field exit
         function handleEnter(name) {
-          let valuec = document.getElementById(name).value;
-          let value = text2Float(valuec, name);
+          let value = document.getElementById(name).value;
+          // let value = text2Float(valuec, name);
           
           restafedit.cellEdit(name, value,0, currentRow, appEnv )
           .then ( r => {

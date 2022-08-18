@@ -40,6 +40,7 @@ async function initialize() {
   return r;
 
 }
+/*
 function text2Float (value, name) {
   console.log(appEnv.state.columns);
   let f = appEnv.state.columns[name];
@@ -53,6 +54,7 @@ function text2Float (value, name) {
   }
   return svalue;
 }
+*/
 
 // Run proc print and get the ODS output
 async function showODS() {
