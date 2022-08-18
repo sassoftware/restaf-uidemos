@@ -9,72 +9,68 @@
 async function init (data,rowIndex,appEnv,type) {
     let status = {code: 0, msg: `${type} processing completed`};
     data.total = data.x1 + data.x2 + data.x3 ;
-    let newData = data; /* you can modify the incoming data and return it */
-    return [newData, status];
+    return [data, status];
 };
-
+async function main (data, rowIndex,appEnv, type) {
+  let status = {code: 0, msg: `${type} processing completed`};
+  data.total = data.x1 + data.x2 + data.x3 ;
+  return [data, status];
+};
 async function term (data, rowIndex,appEnv, type) {
     let status = {code: 0, msg: `${type} processing completed`};
     return [data, status];
 };
 
 async function x1 (data, name, rowIndex, appEnv) {
-  console.log(rowIndex, ' ', name);
   let msg = {code: 1, msg: `${name} handler executed.`};
   if (data.x1 > 10) {
       data.x1 = 10;
-      msg = {code: 2, msg: "Exceeded Max. Value reset to max"};
+      msg = {code: 0, msg: "Exceeded Max. Value reset to max"};
   }
 
   return [data, msg];
 };
-
-//
-// app control information passed to restafedit.setup
-// see initialize function below
-//
-function getAppControl() {
-    return {
-        description: 'Simple Example',
-        source: 'cas',
-        table : {caslib: 'casuser', name: 'testdata'},
-        byvars: ['id'],
-        cachePolicy: true,
-  
-        initialFetch: {
-          count : 1,
-          from  : 1,
-          format: false
-        },
-  
-        customColumns: {
-          total: {
-            Column         : "Total",
-            Label          : "Grand Total",
-            FormattedLength: 12,
-            Type           : "double"
-            }
-        },
-        editControl: {
-          handlers: {init: init, main: init, term: term, x1: x1},/*note reuse of init*/
-          save    : true,  
-          autoSave: true, 
-      
-        },
-        appData: {}
-  
-     }
-}
-
-
 // Initialize the application
 async function initialize() {
   let appControl = getAppControl();
   // initialize a session
-  
-  let preamble = ``
+  let preamble = appControl.preamble;
   let r = await restafedit.setup(LOGONPAYLOAD, appControl, preamble);
   let r2 = await restafedit.scrollTable('first', r);
   return r;
 
+}
+function text2Float (value, name) {
+  console.log(appEnv.state.columns);
+  let f = appEnv.state.columns[name];
+  let svalue = value;
+  let t = f.type.toLowerCase();
+  if (typeof svalue === 'string' && (t === 'decimal' || t === 'number' || t === 'double'|| t ==='float')) {
+    svalue = parseFloat(value * 1.0);
+    if (isNaN(value) === true) {
+      value = 0;
+    }
+  }
+  return svalue;
+}
+
+// Run proc print and get the ODS output
+async function showODS() {
+  let table = appEnv.appControl.table;
+  let src = `
+  ods html style=barrettsblue;  
+  proc print data=${table.libref}.${table.name};run;
+  ods html close; 
+  run;
+  `;
+  let computeSummary = null;
+  
+  computeSummary = await restaflib.computeRun(
+    appEnv.store,
+    appEnv.session,
+    src
+  );  
+  let ods = await restaflib.computeResults(appEnv.store, computeSummary, 'ods');
+  
+  return ods;
 }

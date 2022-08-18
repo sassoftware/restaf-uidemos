@@ -27,12 +27,13 @@
 		<!-- http package to make calls to Viya -->
     <head>
       <meta charset="UTF-8" />
-      <script src="https://unpkg.com/@sassoftware/restaf@dev"></script>
-      <script src="https://unpkg.com/@sassoftware/restaflib@dev"></script>
-      <script src="https://unpkg.com/@sassoftware/restafedit@dev"></script>
+      <script src="https://unpkg.com/@sassoftware/restaf@next"></script>
+      <script src="https://unpkg.com/@sassoftware/restaflib@next"></script>
+      <script src="https://unpkg.com/@sassoftware/restafedit@next"></script>
 
       <!-- editor.js has relevant javascript files-->
-      <script src="./lib/editorcompute.js"> </script>/>
+      <script src="./lib/computeControl.js"></script>
+      <script src="./lib/editor.js"> </script>
   
       <script src="/editorapp/appenv"></script>
 
@@ -84,22 +85,28 @@
       
         // Set values in the field from appEnv.state
         function displayValues() {
-          debugger;
           currentRow = appEnv.state.data[0];
-          debugger;
           for (let k in currentRow) {
-            debugger;
             document.getElementById(k).value = currentRow[k];
           }
+          document.getElementById('status').innerHTML = 'Ready';
+          
+          showODS()
+            .then (r => {
+              document.getElementById('ODS').innerHTML = r;
+            } )
+            .catch(err => console.log(err));
+
         }
 
+        
         // setup viya connection and read in the first set of records
         function setup() {
           initialize() 
             .then (r => {
               appEnv = r;
-              debugger;
-              document.getElementById('status').innerHTML= ' ';
+              
+             
               displayValues();
             })
             .catch (err => {
@@ -109,6 +116,7 @@
         }
         // handle scrolling
         function scrollTable(direction) {
+          document.getElementById('status').innerHTML = 'Reading data...';
           restafedit.scrollTable(direction, appEnv)
             .then ( r => {
               displayValues();
@@ -119,7 +127,9 @@
         // handle keyboard events
         // My funky way of handling calculations on enter or on field exit
         function handleEnter(name) {
-          let value = document.getElementById(name).value;
+          let valuec = document.getElementById(name).value;
+          let value = text2Float(valuec, name);
+          
           restafedit.cellEdit(name, value,0, currentRow, appEnv )
           .then ( r => {
             displayValues();
@@ -140,22 +150,33 @@
 
 			</script>
 	 <body onload="setup()">
-    <h1> Example of editing in Viya using @sassoftware/restafedit</h1>
+    <h1> Example of editing SAS Tables Using @sassoftware/restafedit</h1>
       <button  onclick="scrollTable('prev')"> Prev</button>
       <button  onclick="scrollTable('next')"> Next</button>
       <br/>
-      <p id="status">
-        Initializing...
-      </p>
+      <p id="status"> Initializing Compute Session and Sample Data </p>
       <form action="">
-        <label class="elabel"> date: </label>
-          <input class="edisabled" type="input"  disabled id="date" size="50" />
+        <label class="elabel"> _index_: </label>
+          <input class="edisabled" type="input"  disabled id="_index_" size="50" />
+          <br />
+          <br/>
+        <label class="elabel"> id: </label>
+          <input class="edisabled" type="input"  disabled id="id" size="50" />
           <br />
           <br/>
   
-        <label class="elabel"> air: </label>
-          <input class="einput" type="text" onblur="onblurx('air')" onkeypress="search('air')" id="air" size="50" />
+        <label class="elabel"> x1: </label>
+          <input class="einput" type="text" onblur="onblurx('x1')" onkeypress="search('x1')" id="x1" size="50" />
           <br />
+  
+          <label class="elabel"> x2: </label>
+          <input class="einput" type="text" onblur="onblurx('x2')" onkeypress="search('x2')" id="x2" size="50" />
+          <br />
+
+          <label class="elabel"> x3: </label>
+          <input class="einput" type="text" onblur="onblurx('x3')" onkeypress="search('x3')" id="x3" size="50" />
+          <br />
+          <br/>
 
           <label class="elabel"> Grand Total: </label>
           <input class="eresult" type="input" id="total" disabled size="50" />
@@ -165,6 +186,7 @@
       </form>
       <br/>
       <br/>
+      <div id="ODS"></div>
 
 	</body>
 </html>
