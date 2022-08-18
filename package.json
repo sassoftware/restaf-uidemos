@@ -1,6 +1,6 @@
 {
 	"name": "editorapp",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"main": "server.js",
 	"description": "Simple Viya app",
 	"author": "Deva Kumaraswamy <deva.kumar@sas.com>",
