@@ -8,8 +8,8 @@ import ListMenu from './ListMenu';
 import QuickDialog from './QuickDialog'; 
 import QuickNotes from './QuickNotes'; 
 import ReadMe from './ReadMe'; 
-import ReviewDialog from './ReviewDialog'; 
 import SampleForm from './SampleForm'; 
+import SubmitDialog from './SubmitDialog'; 
 import TableEditor from './TableEditor'; 
 import TableEditorMui from './TableEditorMui'; 
 export default {
@@ -22,8 +22,8 @@ ListMenu,
 QuickDialog,
 QuickNotes,
 ReadMe,
-ReviewDialog,
 SampleForm,
+SubmitDialog,
 TableEditor,
 TableEditorMui,
 };

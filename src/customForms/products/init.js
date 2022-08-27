@@ -4,7 +4,7 @@
 /* status flags need to be designed */
 async function init (data,row,appEnv,type) {
     let status = {code: 0, msg: "Init processing completed"};
-    data.total = data.priceperuser * data.numberofusers*(1 - (data.discount/100));
+    data.price = data.priceperuser * data.numberofusers*(1 - (data.discount/100));
     return [data, status];
 };
 export default init;

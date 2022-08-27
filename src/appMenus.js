@@ -131,8 +131,8 @@ let appMenus = [
 			},
 
 			customColumns: {
-				total: {
-					Column         : "Total",
+				price: {
+					Column         : "Price",
 					Label          : "Price",
 					FormattedLength: 12,
 					Type           : "double"
@@ -154,7 +154,7 @@ let appMenus = [
 
 				form: {
 				  defaultComponent: "InputEntry",
-				  show            : ['viya4_solutions', 'version','priceperuser','numberofusers','discount','total'],
+				  show            : ['viya4_solutions', 'version','priceperuser','numberofusers','discount','price'],
 				  sort            : ['viya4_solutions', 'version'],
 				  title           : 'Product Offering',
 				  visuals         : {

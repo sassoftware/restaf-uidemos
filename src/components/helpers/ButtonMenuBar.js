@@ -5,25 +5,44 @@
 
 import React, { Fragment } from 'react';
 import Button from '@material-ui/core/Button';
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Divider from '@material-ui/core/Divider';
-
-import Grid from "@material-ui/core/Grid";;
+import Grid from "@material-ui/core/Grid";
 
 function ButtonMenuBar (props) {
-    
-    let { menuList, onSelect } = props;
-    const _select = (c => {
-        
-        onSelect(c);
+    let { menus, onSelect } = props;
+
+   
+    const _select = ((m) => {
+        let flag = !menus[m].state;
+        debugger;
+        onSelect(m, flag);
     });
-    let menu = menuList.map((c)  => {
-        let t = <Grid item key={c.text} >
-                   <Button  onClick= {() => _select(c) } key={c.action} disabled={c.disabled}
+
+    let menu = [];
+    for(let m in menus) {
+        let  c = menus[m];
+        let t;
+        debugger;
+        if (c.component === 'Switch') { 
+            t = <Grid item  key={c.text}>
+                <FormGroup>
+                    <FormControlLabel
+                control={<Switch checked={m.state} color="primary" onChange={()=> _select(m,false)}/>} 
+                label={c.text}/>
+                </FormGroup>
+            </Grid>;
+        } else {
+            t = <Grid item key={c.text} >
+                    <Button  onClick= {() => _select(m,false) } key={c.action} disabled={c.disabled}
                             variant="contained" color="primary" size="small">{c.text} </Button>
-                   <Divider orientation="vertical" flexItem />
-                   </Grid>;
-        return t;
-    });
+                    <Divider orientation="vertical" flexItem />
+                    </Grid>;
+        }
+        menu.push(t);
+        };
     
     return (
         <Fragment>

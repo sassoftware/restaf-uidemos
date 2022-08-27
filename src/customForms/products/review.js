@@ -1,4 +1,4 @@
-function onReview (data, _appEnv) {
+function review (data, _appEnv) {
     let newData = [];
     for (let i=0; i <data.length; i++) {
         if (data[i].numberofusers > 0) {
@@ -7,4 +7,4 @@ function onReview (data, _appEnv) {
     }
     return newData;
 }
-export default onReview;
+export default review;

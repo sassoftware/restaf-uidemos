@@ -5,7 +5,7 @@
 
 async function main (data, _rowIndex, appEnv,_type) {
     let status = {code: 0, msg: "Main processing completed"};
-    data.total = data.priceperuser*data.numberofusers*(1 - (data.discount/100));
+    data.price = data.priceperuser*data.numberofusers*(1 - (data.discount/100));
     return [data, status];
 };
 export default main;

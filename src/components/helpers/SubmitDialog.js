@@ -14,24 +14,52 @@ import Button from '@material-ui/core/Button';
 import Select from 'react-select';
 import TableEditor from './TableEditor';
 import Paper from '@material-ui/core/Paper';
-import {distinctValues, uploadData} from '@sassoftware/restafedit';
+import QuickDialog from './QuickDialog';
+import {distinctValues} from '@sassoftware/restafedit';
 
-function ReviewDialog (props) {
+function SubmitDialog (props) {
     const {appEnv, closecb} = props;
     const {support} = appEnv.appControl;
     const [open, setOpen] = useState(true);
     const [selectedValue, setSelectedValue] = useState([]);
+    const [snackMessage, setSnackMessage] = useState(null);
+    let submitStatus = null;
 
     const _handleClose = () => {
       setOpen(false);
       closecb();
     };
     const _handleChange = (event)=> {
-      setSelectedValue(event);
+      debugger;
+      setSelectedValue([event]);
     };
-    
-    const _onSubmit = () => {
 
+    const _closeSnack = () => {
+      setSnackMessage(null);
+    };
+    const _onSubmit = () => {
+      
+      if (selectedValue.length  === 0) {
+        setSnackMessage('Please select a customer');
+        return;
+      }
+
+      const userSubmit = appEnv.appControl.editControl.handlers.save;
+      debugger;
+      let finalData = appEnv.appControl.editControl.handlers.review(appEnv.state.data, appEnv);
+      debugger;
+      if (finalData.length === 0) {
+        setSnackMessage('No data to submit');
+      }
+      if (userSubmit !== null) {
+         userSubmit(finalData, selectedValue[0].label, appEnv)
+         .then (r => {
+            setSnackMessage('Data saved');
+         })
+         .catch(err => {
+            submitStatus = `ERROR: Save failed. ${err}`;
+         });
+      }
     };
 
     useEffect(() => {
@@ -55,6 +83,7 @@ function ReviewDialog (props) {
 
     let show =
     <Fragment>
+      {snackMessage != null ? <QuickDialog msg={snackMessage} closecb={_closeSnack}/> : null}
       <Paper>
       <Dialog open={open} fullScreen={false} maxWidth="lg" onClose={_handleClose}>
       <DialogTitle id="dialog-title">Review </DialogTitle>
@@ -66,7 +95,7 @@ function ReviewDialog (props) {
         {support.company.distinct !== null ? <Select label={support.company.column} options={support.company.distinct} value={selectedValue}
                 onChange={(e)=> _handleChange(e)}  closeMenuOnSelect={true} /> : null}
                 <DialogActions>
-          <Button onClick={_onSubmit} color="primary">
+          <Button onClick={_onSubmit}  color="primary">
             Submit
           </Button>
           <Button onClick={_handleClose} color="primary">
@@ -74,20 +103,21 @@ function ReviewDialog (props) {
           </Button>
         </DialogActions>
         <br/>
-        <TableEditor onEdit={null} review={true} appEnv={appEnv} status={null} key={Date()}/>
+        <TableEditor onEdit={null} saveDialog={true} appEnv={appEnv} status={null} key={Date()}/>
         
       </Dialog>
       </Paper>
+      {submitStatus}
     </Fragment>;
 
     
     return show;
 }
 
-ReviewDialog.propTypes = {
+SubmitDialog.propTypes = {
   /** appEnv */
   appEnv : PropTypes.object.isRequired,
   /** close function */
   closecb: PropTypes.func.isRequired
 };
-export default ReviewDialog;
+export default SubmitDialog;

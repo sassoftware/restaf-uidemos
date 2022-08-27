@@ -23,6 +23,9 @@ function QuickDialog (props) {
         return;
       }
       setOpen(false);
+      if(props.closecb != null) {
+        props.closecb();
+      }
     };
     useEffect(() => {
       setOpen(true);
@@ -46,6 +49,8 @@ function QuickDialog (props) {
 
 QuickDialog.propTypes = {
   /** messsage to be displayed in a snackk bar for 3 seconds */
-  msg: PropTypes.string.isRequired
+  msg    : PropTypes.string.isRequired,
+  /** userClose */
+  closecb: PropTypes.func
 };
 export default QuickDialog;
