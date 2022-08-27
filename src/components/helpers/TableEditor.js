@@ -11,41 +11,56 @@ import TableRow from '@material-ui/core/TableRow';
 import Grid from "@material-ui/core/Grid";
 import Paper from '@material-ui/core/Paper';
 import ButtonMenuBar from './ButtonMenuBar';
+import ReviewDialog from './ReviewDialog';
 import controls from '../controls';
 
 
-function TableEditorMui (props) {
+
+function TableEditor (props) {
     const { onEdit, onScroll, onSave, status, appEnv} = props;
     const [modified, setModified] = useState(0);
+    const [reviewStatus, setReviewStatus] = useState(false);
     const appData = appEnv.appControl.appData;
     const form    = appData.form;
     let {defaultComponent, classes, visuals}  = form;
     let {columns } = appEnv.state;
     let data = [].concat(appEnv.state.data);
+    debugger;
+    if (props.review === true && appEnv.appControl.editControl.handlers.onSave != null) {
+      data = appEnv.appControl.editControl.handlers.onSave(data, appEnv);
+    }
     
     const menuList = [
         {text: 'previous',   action: 'prev', disabled: false},
         {text: 'next', action: 'next', disabled: false},
-        {text: 'Save', action: 'save', disabled: true }
+        {text: 'review', action: 'review', disabled: false},
+        {text: 'reset', action: 'reset', disabled: false}
     ];
     let order = (form.show.length > 0) ? form.show : Object.keys(columns);
-    console.log(order);
-    console.log(columns);
     if (classes == null) {
        classes = {};
     }
 
     const _onEdit = (e) => {
+        if (props.preview === true || onEdit == null) {
+            return;
+        }
         data[e.rowIndex][e.target.name] = e.target.value;
         appEnv.state.data[e.rowIndex][e.target.name] = e.target.value;
         if (e.key !== 'Enter') {
             setModified(modified+1);
         } else {
-            
             onEdit(e.target.name, e.target.value, e.rowIndex, data[e.rowIndex]);
+        
         }
       };
 
+    const _reviewOpen = () => {
+        setReviewStatus(true);
+    };
+    const _reviewClose = () => {
+        setReviewStatus(false);
+    };
     const _onSelect = (selection) => {
         switch (selection.action) {
             case 'next': 
@@ -58,7 +73,15 @@ function TableEditorMui (props) {
                     onSave();
                  }
                   break;
-                }
+            }
+            case 'review': {
+                _reviewOpen();
+                break;
+            }
+            case 'reset': {
+                break;
+            }
+
             default: break;
     
         }
@@ -69,15 +92,9 @@ function TableEditorMui (props) {
     const _makeOneRow = (currentRow, rowIndex) => {
 
         let rowDisplay = [];
-        console.log(JSON.stringify(order));
 
         for(let i=0; i < order.length; i++) {
-
-            debugger;
             let k = order[i]; 
-            console.log(`${i} ${k}`);
-            console.log(columns[k]);
-
             let type = columns[k].Type;
             let align = (type === 'double' || type === 'int') ? 'right' : 'left';
             let key = `${k}${rowIndex}`;
@@ -91,11 +108,6 @@ function TableEditorMui (props) {
                 attr = visuals[k].props;
             }
             let V = controls[v];
-            debugger;
-            console.log(V);
-            console.log(currentRow[k]);
-            console.log(columns[k]);
-
             let cellObj = <V
                 value={currentRow[k]}
                 details={columns[k]}
@@ -115,18 +127,14 @@ function TableEditorMui (props) {
     const _makeColHeader = () => {
         let theadrow = [];
         for (let i=0; i < order.length ; i++) {
-            debugger;
             let kh = order[i];
             let c = columns[kh];
-            console.log(c);
             let align = (c.Type === 'double' || c.Type === 'int') ? 'right' : 'left';
             let key = `${kh}col`;
             theadrow.push(<TableCell align={align} key={key}>{kh}</TableCell>);
         }
         return theadrow;
     };
-
-   
 
     let thead = <TableHead>
         <TableRow>
@@ -146,8 +154,10 @@ function TableEditorMui (props) {
         <div key="sdf" className={classes.divborder}>
             <h1>{form.title}</h1>
             {status !== null ? <h3> {status.msg}</h3> : null}
+            {reviewStatus === true ? <ReviewDialog key={Date()} data={data} appEnv={appEnv} closecb={_reviewClose}
+                                                /> : null }
             <Grid container key="tableEditorMui" direction="column">
-                <ButtonMenuBar menuList={menuList} onSelect={_onSelect} ></ButtonMenuBar>
+                {props.review !== true ? <ButtonMenuBar menuList={menuList} onSelect={_onSelect} ></ButtonMenuBar> : null}
                 <Grid container key={"tableList"} direction="column">
                     <TableContainer classes={classes.tableContainer} component={Paper}>
                         <Table size="small" aria-label="a dense table">
@@ -162,4 +172,4 @@ function TableEditorMui (props) {
 
 }
 
-export default TableEditorMui;
+export default TableEditor;

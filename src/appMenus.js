@@ -1,4 +1,3 @@
-
 /*
 * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
 * SPDX-License-Identifier: Apache-2.0
@@ -36,44 +35,44 @@ let appMenus = [
 		component: 'DataEditorDriver',
 		hide     : false,
 		props    : {
-			text      : 'Form Editing',
-			appControl: {
-				source: 'cas',
-				table : {caslib: 'casuser', name: 'testdata'},
-				access: {},
-				byvars: ['id'],
-				where : {},
-				
-				cachePolicy: true,
+			text: 'Form Editing',
 
-				initialFetch: {
-					count : 1,
-					from  : 1,
-					format: false
-				},
+			source: 'cas',
+			table : {caslib: 'casuser', name: 'testdata'},
+			access: {},
+			byvars: ['id'],
 
-				customColumns: {
-					total: {
-						Column         : "Total",
-						Label          : "Grand Total",
-						FormattedLength: 12,
-						Type           : "double"
-						}
-				},
-				customRows: []
+			cachePolicy: true,
+
+			initialFetch: {
+				count : 1,
+				from  : 1,
+				format: false
 			},
+
+			customColumns: {
+				total: {
+					Column         : "Total",
+					Label          : "Grand Total",
+					FormattedLength: 12,
+					Type           : "double"
+					}
+			},
+			customRows: [],
+
+			secondaryTables: {
+				offers: {caslib: 'public', name: 'product_offers'}
+			},
+
 			editControl: {
-				handlers  : {},
-				save      : false,  
+				handlers  : {}, 
 				autoSave  : true, 
 				handlerSet: 'testdata'
-		
 			},
 			appData: {
 				layout   : {},
 				component: 'DataFormMulti',
 				getViewer: null,
-		
 
 				form: {
 				  defaultComponent: "InputEntry",
@@ -110,26 +109,31 @@ let appMenus = [
 		component: 'DataEditorDriver',
 		hide     : false,
 		props    : {
-			text: 'Table Editing',
+			text: 'Product Offering',
 
 			source: 'cas',
-			table : {caslib: 'casuser', name: 'testdata'},
+			table : {caslib: 'public', name: 'product_master'},
+
+			support: {
+				company: {table: {caslib: 'public', name: 'customer_master'}, column: 'company', distinct: []},
+				offers : {caslib: 'public', name: 'product_offers'}
+			},
 			access: {},
 			byvars: ['id'],
 	
-				
 			cachePolicy: true,
 
 			initialFetch: {
-				count : 10,
+				count : 200,
 				from  : 1,
-				format: false
+				format: false,
+				where : ' '
 			},
 
 			customColumns: {
 				total: {
 					Column         : "Total",
-					Label          : "Grand Total",
+					Label          : "Price",
 					FormattedLength: 12,
 					Type           : "double"
 					}
@@ -138,40 +142,27 @@ let appMenus = [
 			editControl: {
 				handlers  : {},
 				save      : true,  
-				autoSave  : true, 
-				handlerSet: 'testdata'
+				autoSave  : false, 
+				handlerSet: 'products'
 		
 			},
 			appData: {
 				layout   : {},
-				component: 'TableEditorMui',
+				component: 'TableEditor',
 				getViewer: null,
-		
+				
 
 				form: {
 				  defaultComponent: "InputEntry",
-				  show            : ['id', 'total', 'x2', 'x1', 'x3'],
-				  classes         : {},
-				  title           : 'Editing data using forms',
+				  show            : ['viya4_solutions', 'version','priceperuser','numberofusers','discount','total'],
+				  sort            : ['viya4_solutions', 'version'],
+				  title           : 'Product Offering',
 				  visuals         : {
-					x2: {
-					  component: "Slider",
-					  props    : {
-						min  : 0,
-						max  : 50,
-						steps: 1,
-					  },
-					},
 					total: {
 					  props: {
 						disabled: true,
 					  },
-					},
-					id: {
-						props: {
-						  disabled: true,
-						},
-					  }
+					}
 				  }
 				}
 			}

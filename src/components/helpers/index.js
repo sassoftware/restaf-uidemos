@@ -8,7 +8,9 @@ import ListMenu from './ListMenu';
 import QuickDialog from './QuickDialog'; 
 import QuickNotes from './QuickNotes'; 
 import ReadMe from './ReadMe'; 
+import ReviewDialog from './ReviewDialog'; 
 import SampleForm from './SampleForm'; 
+import TableEditor from './TableEditor'; 
 import TableEditorMui from './TableEditorMui'; 
 export default {
 AlertDialog,
@@ -20,6 +22,8 @@ ListMenu,
 QuickDialog,
 QuickNotes,
 ReadMe,
+ReviewDialog,
 SampleForm,
+TableEditor,
 TableEditorMui,
 };

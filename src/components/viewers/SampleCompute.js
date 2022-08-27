@@ -65,9 +65,9 @@ function getAppControl () {
       description: 'Editing SAS Table',
 
       source: 'compute',
-      table : {libref: 'SASHELP', name: 'AIR'},
+      table : {libref: 'public', name: 'tempdata'},
       access: {},
-      byvars: ['date'],
+      byvars: ['id'],
       where : {},
 
       cachePolicy: true,

@@ -23,26 +23,13 @@ function SampleForm (props) {
   // define visuals here
   let form = {
     defaultComponent: "InputEntry",
-    show            : ['id', 'total', 'x2', 'x1', 'x3'],
+    show            : [],
     classes         : {},
-    title           : 'Editing data using forms',
+    title           : 'Product Management',
     visuals         : {
-      x2: {
-        component: "Slider",
-        props    : {
-        min  : 0,
-        max  : 50,
-        steps: 1,
-        },
-      },
       total: {
         props: {
         disabled: true,
-        },
-      },
-      id: {
-        props: {
-          disabled: true,
         },
       }
     }

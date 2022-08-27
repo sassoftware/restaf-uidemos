@@ -22,7 +22,7 @@ function Sample (props) {
   
   // used as editor function
   const _editor = () => {
-    return helpers['SampleForm']; 
+    return helpers['']; 
   };
 
  // main call
@@ -47,7 +47,7 @@ function Sample (props) {
 //
 async function init (data,row,appEnv,type) {
   let status = {code: 0, msg: `${type} processing completed`};
-  data.total = data.x1 + data.x2 + data.x3 ;
+  data.total = data.priceperuser*data.numberofusers*data.discount;
   let newData = data; /* you can modify the incoming data and return it */
   return [newData, status];
 };
@@ -59,11 +59,6 @@ async function term (data, type) {
 
 async function x1 (data, value, name) {
 let msg = {code: 0, msg: `${name} handler executed.`};
-if (data.x1 > 10) {
-    data.x1 = 10;
-    msg = {code: 0, msg: "Exceeded Max. Value reset to max"};
-}
-
 return [data, msg];
 };
 
@@ -74,16 +69,15 @@ function getAppControl () {
       description: 'Simple Example',
 
       source: 'cas',
-      table : {caslib: 'casuser', name: 'testdata'},
-      access: {},
-      byvars: ['id'],
+      table : {caslib: 'public', name: 'product_master'},
+      byvars: ['pk'],
       where : {},
 
       cachePolicy: true,
 
       initialFetch: {
         count : 1,
-        from  : 1,
+        from  : 10,
         format: false
       },
 

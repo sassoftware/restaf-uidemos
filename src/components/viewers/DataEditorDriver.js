@@ -24,7 +24,7 @@ function DataEditorDriver (props) {
   let handlerSet = appControl.editControl.handlerSet;
   let handlers = customForms[handlerSet];
   appControl.editControl.handlers = handlers;
-;
+  debugger;
   const _selectViewer = () => {
       return helpers[appControl.appData.component];
   };
