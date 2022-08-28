@@ -57,7 +57,7 @@ function SubmitDialog (props) {
             setSnackMessage('Data saved');
          })
          .catch(err => {
-            submitStatus = `ERROR: Save failed. ${err}`;
+            setSnackMessage(`ERROR: Save failed. ${err}`);;
          });
       }
     };

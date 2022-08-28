@@ -39,7 +39,7 @@ function QuickDialog (props) {
             onClose={handleClose}
             message={t}>
             <Button size="small" variant="outlined" color="primary" className={classes.button}
-                    oncClick={handleClick} startIcon={icon}>
+                    onClick={handleClick} startIcon={icon}>
                     {t}
             </Button>
         </Snackbar>;
