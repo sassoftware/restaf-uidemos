@@ -61,10 +61,12 @@ function InputEntry (props) {
     const inputProps = {
         inputMode : 'text',
         onKeyPress: _onKeyPress,
-        onBlur    : _onBlur
+        onBlur    : _onBlur,
+        style     : {textAlign: props.align}
 
     };
     // let className = (disabled === true) ? classes.inputDisabled : classes.input;
+    debugger;
     let t = 
     <Fragment>
         {showLabel === true ? <InputLabel key={details.name} 

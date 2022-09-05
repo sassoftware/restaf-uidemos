@@ -109,7 +109,9 @@ function TableEditor (props) {
         for(let i=0; i < order.length; i++) {
             let k = order[i]; 
             let type = columns[k].Type;
+            console.log(type);
             let align = (type === 'double' || type === 'int') ? 'right' : 'left';
+            console.log(align);
             let key = `${k}${rowIndex}`;
 
             let v = defaultComponent;
@@ -130,6 +132,7 @@ function TableEditor (props) {
                 rowIndex={rowIndex}
                 showLabel={false}
                 classes={classes}
+                align={align}
             />;
             rowDisplay.push(<TableCell className={classes.tableCell} key={key} align={align}>{cellObj}</TableCell>);
         }

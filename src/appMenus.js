@@ -112,14 +112,14 @@ let appMenus = [
 			text: 'Product Offering',
 
 			source: 'cas',
-			table : {caslib: 'public', name: 'product_master'},
+			table : {caslib: 'public', name: 'PRODUCT_MASTER'},
 
 			support: {
-				company: {table: {caslib: 'public', name: 'customer_master'}, column: 'company', distinct: []},
-				offers : {caslib: 'public', name: 'product_offers'}
+				company: {table: {caslib: 'public', name: 'CUSTOMER_MASTER'}, column: 'company', distinct: []},
+				offers : {caslib: 'public', name: 'PRODUCT_OFFERS'}
 			},
 			access: {},
-			byvars: ['id'],
+			byvars: [],
 	
 			cachePolicy: true,
 
