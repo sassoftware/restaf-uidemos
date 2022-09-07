@@ -2,14 +2,13 @@
 	"name": "editorapp",
 	"version": "1.3.0",
 	"main": "server.js",
-	"description": "Simple Viya app",
+	"description": "Data Entry Example for SAS Viya using basic HTML and JS",
 	"author": "Deva Kumaraswamy <deva.kumar@sas.com>",
 	"license": "Apache-2.0",
 	"repository": "https://github.com/sassoftware/restaf-uidemos/tree/editorapp",
 	"bugs": {
 		"url": "https://github.com/sassoftware/restaf-uidemos/issues"
 	},
-	"homepage": "https://github.com/sassoftware/restaf-uidemos/blob/editorapp/README.md",
 	"keywords": [
 		"restaf",
 		"Viya",
