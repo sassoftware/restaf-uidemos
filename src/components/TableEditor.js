@@ -29,7 +29,7 @@ function TableEditor (props) {
     save: { text: 'Save', action: 'save', disabled: false, state: false }
   };
   let menus = (appEnv.appControl.appData.menus == null) ? defaultMenus : appEnv.appControl.appData.menus;
-  debugger;
+  
 
   let order = (form.show.length > 0) ? form.show : Object.keys(columns);
   order = order.map(o => o.toLowerCase());
@@ -49,7 +49,7 @@ function TableEditor (props) {
 
   const _onSelect = (action, flag) => {
     menus[action].state = flag;
-    debugger;
+    
     switch (action) {
       case 'next':
       case 'prev': {

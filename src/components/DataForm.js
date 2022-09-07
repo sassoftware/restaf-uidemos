@@ -29,7 +29,7 @@ function DataForm (props) {
     save: { text: 'Save', action: 'save', disabled: false, state: false }
   };
   let menus = (appEnv.appControl.appData.menus == null) ? defaultMenus : appEnv.appControl.appData.menus;
-  debugger;
+  
   /* Tack on scrolling */
 
   const _onEdit = (e) => {
@@ -85,7 +85,7 @@ function DataForm (props) {
 
   const _onSelect = (action, flag) => {
     menus[action].state = flag;
-    debugger;
+    
     switch (action) {
       case 'next':
       case 'prev': {

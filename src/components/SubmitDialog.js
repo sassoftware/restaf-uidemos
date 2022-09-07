@@ -30,7 +30,7 @@ function SubmitDialog (props) {
     closecb();
   };
   const _handleChange = (event) => {
-    debugger;
+    
     setSelectedValue([event]);
   };
 
@@ -44,9 +44,9 @@ function SubmitDialog (props) {
     }
 
     const userSubmit = appEnv.appControl.editControl.handlers.save;
-    debugger;
+    
     const finalData = appEnv.appControl.editControl.handlers.review(appEnv.state.data, appEnv);
-    debugger;
+    
     if (finalData.length === 0) {
       setSnackMessage('No data to submit');
     }
@@ -74,10 +74,9 @@ function SubmitDialog (props) {
         })
         .catch(err => {
           setSnackMessage('Distinct Value failed. Please see log');
-          console.log(err);
         });
     }
-    // // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [props.msg]);
 
   const show =

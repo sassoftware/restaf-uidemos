@@ -16,7 +16,7 @@ function ButtonMenuBar (props) {
 
   const _select = (m) => {
     const flag = !menus[m].state;
-    debugger;
+    
     onSelect(m, flag);
   };
 
@@ -24,7 +24,7 @@ function ButtonMenuBar (props) {
   for (const m in menus) {
     const c = menus[m];
     let t;
-    debugger;
+    
     if (c.component === 'Switch') { /* here as a sample */
       t = (
         <Grid item key={c.text}>

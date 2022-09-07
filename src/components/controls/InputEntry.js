@@ -62,7 +62,7 @@ function InputEntry (props) {
 
   };
     // let className = (disabled === true) ? classes.inputDisabled : classes.input;
-  debugger;
+  
   const t =
     <Fragment>
         {showLabel === true

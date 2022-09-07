@@ -1,5 +1,5 @@
 {
-  "name": "editorreact",
+  "name": "editorappreact",
   "version": "2.1.0",
   "private": true,
   "dependencies": {
@@ -38,9 +38,7 @@
     "buildapp": "env-cmd --file ./.env react-scripts build",
     "dev": "cross-env APPENTRY=/develop APPLOC=./public node server --env=.env --docker=Dockerfile",
     "app": "cross-env  APPLOC=./build APPENTRY=index.html node server --env=.env --docker=Dockerfile",
-    "lint": "eslint . --ext .js --fix",
-    "indocker": "node server.js",
-    "jsdoc": "jsdoc --readme ./src/components/viyaedit/lib/README.md -c jsdoc.json"
+    "lint": "eslint . --ext .js --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

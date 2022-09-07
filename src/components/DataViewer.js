@@ -45,7 +45,7 @@ function DataViewer (props) {
     // Useful only if autoSave is turned on, but will do it anyway
     // will replace the current version
     const _onSave = () => {
-        debugger;
+        
         saveTable(appEnv)
             .then((r) => {
                 setStatus(r);
@@ -53,9 +53,9 @@ function DataViewer (props) {
             .catch((err) => setStatus({status: 2, msg: err}));
         
     };
-    debugger;
+    
     const V = editor();
-    debugger;
+    
     return (
         <Fragment>
             <V 

@@ -21,9 +21,8 @@ restafServer.icli(null/*customRoutes */, true, customize);
 function customize (key) {
 	let info = {
 		APPENV: {
-			homeNotes: process.env.HOMENOTES
+			viewType: (process.env.VIEWTYPE == null) ? 'table' : process.env.VIEWTYPE
 		},
-		SWAGGEROPTIONS: {}
 	};
 	return info[key];
 }

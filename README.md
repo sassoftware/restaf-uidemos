@@ -1,4 +1,139 @@
-# Getting Started with Create React App
+# A Data Editor example using @sassoftware/restafedit and React components
+
+- [Install](#install)
+- [Configuration](#config)
+- [Usage](#usage)
+- [Modifiying the application](#modify)
+- [Configuring CAS](#casconfig)
+
+## Links
+
+Please see [this](https://sassoftware.github.io/restaf) for information on **@sassoftware/restaf, @sassoftware/restaflib and @sassoftware/restafedit**. These libraries are used in this example.
+
+## Install<a name="install"></a>
+
+```sh
+git clone https://github.com/sassoftware/restaf-uidemos -b editorappreact editorappreact
+cd editorappreact
+npm install
+```
+
+## Configuration<a name="#config"></a>
+
+1. The default setting to logon to Viya is defined in the .env file.
+2. See below for configuring CAS server for REST API calls.
+3. The appControl is specified in the public/lib/appControl. The sample csv file testdata.csv is included.
+4. You can switch between a table view and a form view by setting the VIEWTYPE in the .env file to either table or form. You will have to restart the application.
+
+## Usage<a name="#usage"></a>
+
+### Building the application
+
+```sh
+npm run buildapp
+```
+
+### Running the application
+
+```sh
+npm run app
+```
+
+## Modifiying the application<a name="modify"></a>
+
+You can use Hot Module Replacement(HMR) to debug any changes you make to the application with the following restriction
+
+The requirements are:
+
+The "Allowed Origins" in the CORS setting has to *
+
+Use the following command to run in development mode
+
+```sh
+npm run dev
+```
+
+## Configuring CAS for REST API<a name="casconfig"></a>
+
+### Notes on CAS env settings
+
+To access the CAS APIs your administraor has to set the TKHTTP_CORS_ALLOWED_ORIGINS for CAS as follows
+
+1. Set your KUBECONFIG
+2. Get a copy of the casdeployment custom resource file yaml:
+kubectl get casdeployment default -o json > cas.json  
+
+This command assumes your casdeployment name is ‘default’. If not default, use your casdeployment name from  the ‘kubectl get casdeployment’ command.
+
+Instead of directly editing the cas.json file without having a backup copy, you might want to make a copy of the file. This way, if a mistake is made when editing, and CAS won’t re-deploy, you will have a copy of the original you can apply and not have to redo your whole Viya deployment.
+
+3.If the environment variable TKHTTP_CORS_ALLOWED_ORIGINS does not exist in the json file, add it. If it does, modify it to for your purpose. Here is an example.
+
+Find the place in the file where the environment variables for containers are specified. For example, find “name”: “SAS_LICENSE”. Here is a snippet.
+
+```js
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "SAS_LICENSE",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "SAS_LICENSE",
+                                        "name": "sas-cas-license"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "CONSUL_HTTP_ADDR",
+                                "value": https://localhost:8500
+                            },
+```
+
+4. Add the TKHTTP_CORS_ALLOWED_ORIGINS env var below one of the env variables like so. If you add the new one as the last one, you won’t need the trailing comma of course.
+
+```js
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "SAS_LICENSE",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "SAS_LICENSE",
+                                        "name": "sas-cas-license"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "CONSUL_HTTP_ADDR",
+                                "value": https://localhost:8500
+                            },
+                            {
+                                "name": "TKHTTP_CORS_ALLOWED_ORIGINS",
+                                "value": https://localhost:5002,https://controller.sas-cas-server-default.cpq.svc.cluster.local:443,https://controller.sas-cas-server-default.cpq.svc.cluster.local:8777
+                            },
+```
+
+5. After saving your changes to cas.json, delete the casdeployment.
+Kubectl delete casdeployment default    (Use your casdeployment name if it is not ‘default’.)
+
+6. Wait for your casdeployment to go away such that
+‘kubectl get casdeployment’ no longer shows your deployment.
+
+7. Redeploy your casdeployment:
+Kubectl create -f cas.json
+
+8. Wait for your casdeployment to come up:
+Kubectl get casdeployment shows your deployment again.
+
+---
+
+## Standard readme from create-react-app
+
+---
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

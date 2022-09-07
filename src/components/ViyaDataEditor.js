@@ -11,14 +11,11 @@ import DataForm from './DataForm';
 import Grid from '@material-ui/core/Grid';
 
 function ViyaDataEditor (props) {
-  console.log('------------------ in ViyaDataEditor');
-  debugger;
-  console.log(props);
-  debugger;
+  
   const _selectViewer = () => {
     return (props.appControl.appData.viewType === 'table') ? TableEditor : DataForm;
   };
-  debugger;
+  
   const show = (
     <Fragment>
     <div key={Date()}>
@@ -34,7 +31,7 @@ function ViyaDataEditor (props) {
     </div>
     </Fragment>
   );
-  debugger;
+  
   return show;
 }
 export default ViyaDataEditor;
