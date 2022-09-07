@@ -6,6 +6,10 @@
 - [Modifiying the application](#modify)
 - [Configuring CAS](#casconfig)
 
+This is an example of editing SAS Tables in a react application. A companion example is [editorapp](https://github.com/sassoftware/restaf-uidemos/tree/editorapp) using HTML and plain old javascript.
+
+This particular example used [Version 4 material-ui](https://v4.mui.com/) as the component library. Feel free to use your prefered component library.  
+
 ## Links
 
 Please see [this](https://sassoftware.github.io/restaf) for information on **@sassoftware/restaf, @sassoftware/restaflib and @sassoftware/restafedit**. These libraries are used in this example.
@@ -90,7 +94,7 @@ Find the place in the file where the environment variables for containers are sp
                             },
 ```
 
-4. Add the TKHTTP_CORS_ALLOWED_ORIGINS env var below one of the env variables like so. If you add the new one as the last one, you won’t need the trailing comma of course.
+4.Add the TKHTTP_CORS_ALLOWED_ORIGINS env var below one of the env variables like so. If you add the new one as the last one, you won’t need the trailing comma of course.
 
 ```js
                 "containers": [
@@ -115,16 +119,16 @@ Find the place in the file where the environment variables for containers are sp
                             },
 ```
 
-5. After saving your changes to cas.json, delete the casdeployment.
+5.After saving your changes to cas.json, delete the casdeployment.
 Kubectl delete casdeployment default    (Use your casdeployment name if it is not ‘default’.)
 
-6. Wait for your casdeployment to go away such that
+6.Wait for your casdeployment to go away such that
 ‘kubectl get casdeployment’ no longer shows your deployment.
 
-7. Redeploy your casdeployment:
+7.Redeploy your casdeployment:
 Kubectl create -f cas.json
 
-8. Wait for your casdeployment to come up:
+8.Wait for your casdeployment to come up:
 Kubectl get casdeployment shows your deployment again.
 
 ---

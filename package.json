@@ -1,6 +1,13 @@
 {
   "name": "editorappreact",
   "version": "2.2.0",
+  "license": "Apache-2.0",
+  "description": "Data Entry Example for SAS Viya using React",
+  "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
+  "repository": "https://github.com/sassoftware/restaf-uidemos/tree/editorappreact",
+	"bugs": {
+		"url": "https://github.com/sassoftware/restaf-uidemos/issues"
+	},
   "private": true,
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
