@@ -13,12 +13,13 @@ function getAppControl() {
             end;
             run;`,
 
-      cachePolicy: true,
-
       initialFetch: {
-        count : 1,
-        from  : 1,
-        format: false
+        qs: {
+          start: 0,
+          limit: 1,
+          format: false,
+          where: ''
+        } 
       },
 
       customColumns: {
@@ -30,8 +31,7 @@ function getAppControl() {
           }
       },
     editControl: {
-      handlers: {init: init, main: main, term: term},/*note reuse of init*/
-      save    : true,  
+      handlers: {init: init, main: main, term: term},/*note reuse of init*/ 
       autoSave: true
   
     },

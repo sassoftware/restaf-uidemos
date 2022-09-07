@@ -1,0 +1,27 @@
+####################################################
+# Server configuration
+####################################################
+
+VIYA_SERVER=
+CLIENTID=clientapp
+CLIENTSECRET=secret
+# The valid redirect is https://{APPHOST}:{APPPORT}/{APPNAME}
+# As configured here: https://localhost:5002/viyaapp
+
+####################################################
+# App configuration
+####################################################
+
+APPNAME=editorapp
+
+APPHOST=localhost
+APPPORT=5002
+APPENTRY=indexcompute.html
+
+
+# Use the APPENTRY below to try out restaf
+# APPENTRY=indexrestaf.html
+
+# USETOKEN is useful if your CORS is set * and running from localhost
+# 
+USETOKEN=YES

@@ -27,8 +27,8 @@
 		<!-- http package to make calls to Viya -->
     <head>
       <meta charset="UTF-8" />
-      <script src="https://unpkg.com/@sassoftware/restaf@next"></script>
-      <script src="https://unpkg.com/@sassoftware/restaflib@next"></script>
+      <script src="https://unpkg.com/@sassoftware/restaf@test"></script>
+      <script src="https://unpkg.com/@sassoftware/restaflib@test"></script>
       <script src="https://unpkg.com/@sassoftware/restafedit@test"></script>
 
       <!-- editor.js has relevant javascript files-->
@@ -87,7 +87,9 @@
         function displayValues() {
           currentRow = appEnv.state.data[0];
           for (let k in currentRow) {
-            document.getElementById(k).value = currentRow[k];
+            if (k !== '_rowIndex') {
+               document.getElementById(k).value = currentRow[k];
+            }
           }
           document.getElementById('status').innerHTML = 'Ready';
           

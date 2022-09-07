@@ -5,6 +5,7 @@
 
 //
 // handlers for init, main, term and selected columns
+// Note that this is the same for both cas and compute.
 //
 async function init (data,rowIndex,appEnv,type) {
     let status = {code: 0, msg: `${type} processing completed`};
@@ -40,21 +41,7 @@ async function initialize() {
   return r;
 
 }
-/*
-function text2Float (value, name) {
-  console.log(appEnv.state.columns);
-  let f = appEnv.state.columns[name];
-  let svalue = value;
-  let t = f.type.toLowerCase();
-  if (typeof svalue === 'string' && (t === 'decimal' || t === 'number' || t === 'double'|| t ==='float')) {
-    svalue = parseFloat(value * 1.0);
-    if (isNaN(value) === true) {
-      value = 0;
-    }
-  }
-  return svalue;
-}
-*/
+
 
 // Run proc print and get the ODS output
 async function showODS() {
@@ -66,7 +53,6 @@ async function showODS() {
   run;
   `;
   let computeSummary = null;
-  
   computeSummary = await restaflib.computeRun(
     appEnv.store,
     appEnv.session,
