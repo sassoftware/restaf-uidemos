@@ -1,42 +1,47 @@
-FROM node:12.4.0-alpine
+FROM node:12.16.1-alpine
 LABEL maintainer="deva.kumar@sas.com"
-RUN apk add --no-cache --upgrade bash
-RUN apk add --no-cache --upgrade curl
-
 WORKDIR /usr/src/app
-COPY package.json .
-RUN npm install @sassoftware/viya-appserverjs@next
-COPY ./build ./public
-# COPY ./start.sh ./start.sh
-COPY ./appenv.js ./appenv.js
-COPY ./server.js ./server.js
-
-ENV APPHOST=0.0.0.0
-
+COPY package*.json ./
+RUN npm install
+COPY . .
 EXPOSE 8080
 
+#####################################################################
+# You can override these(but in container leave APPHOST as shown below)
+# 
 
-#############################################################################
-# You can override these in .env file| docker--co,mpose fle| k8s config files
-#############################################################################
+# set this the same as EXPOSE here and override in env or as -p option in dockerrun
+ENV APPPORT=8080
 
-ENV APPNAME=viyaapp
+# will change to localhost in non-docker environments
+ENV APPHOST=0.0.0.0
+
+# ENV APPENV=appenv.js
+
 ENV AUTHFLOW=code
-ENV USETOKEN=YES
-# The following are defaults 
-# ENV APPLOC=./public
-# ENV APPENTRY=index.html -- since we are overriding this thru cross-env
-# if your app takes advantage of appenv.js to pass configuration to the web application 
-# ENV APPENV=appenv.js 
-# Better to use the customize function in app.js
 
+##########################
+# TLS Setup
+##########################
 
-ENV SAMESITE=None,secure
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
+ENV SAMESITE=None,secure
+# values below are samples - substititue your own.
+# ENV HTTPS=false
+# Option 1
+ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Company,OU:dep,CN:localhost"
 
-# This is the default if other ssl information is not provided.
-ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:Myco,OU:STO,CN:localhost"
+# Option 2
+# ENV TLS_KEY=../secrets/tls.key
+# ENV TLS_CERT=../secrets/tls.crt
 
+# Option 3
+# TLS_PFX=../certs/sascert/sascert2.pfx
+# TLS_PW=rafdemo
 
+# Optional
+# TLS_CABUNDLE=../certs/pems/roots.pem
+
+# ENV USETOKEN=YES
 #####################################################################
 CMD ["npm", "run", "indocker"]

@@ -1,20 +1,22 @@
-/*
- * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { setupViya } from './providers';
-import App from './App';
-//import * as serviceWorker from 'serviceWorker';
-setupViya(true)
-	.then((r) => {
-		ReactDOM.render(<App {...r} />, document.querySelector('#root'));
-	})
-	.catch((err) => console.log(JSON.stringify(err, null, 4)));
+import './index.css';
+// import App from './App';
+import ViyaDataEditor from './components/ViyaDataEditor';
+// import reportWebVitals from './reportWebVitals';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-// serviceWorker.unregister();
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+console.log('===', window.appOptions);
+let viyaConnection = window.appOptions.logonPayload;
+debugger;
+console.log(viyaConnection);
+console.log(ReactDOM);
+ReactDOM.render(
+    <ViyaDataEditor  viyaConnection={viyaConnection} 
+          appControl ={ window.appOptions.appControl }
+          editType={"table"} />, document.querySelector('#root'));
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// reportWebVitals();
