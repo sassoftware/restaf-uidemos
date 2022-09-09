@@ -101,6 +101,7 @@ function TableEditor (props) {
       }
       const V = controls[v];
       const cellObj = <V
+          align={align}
           value={currentRow[k]}
           details={columns[k]}
           onEnter={_onEdit}

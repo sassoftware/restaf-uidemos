@@ -7,7 +7,9 @@ import ViyaDataEditor from './components/ViyaDataEditor';
 // see the index.html in /dist directory on how this is set
 
 const {appEnv, logonPayload, appControl} = window.appOptions;
-appControl.appData.viewType = appEnv.viewType;
+if (appEnv.viewType != null) {
+  appControl.appData.viewType = appEnv.viewType;
+}
 
 ReactDOM.render(
     <ViyaDataEditor  viyaConnection={logonPayload} 

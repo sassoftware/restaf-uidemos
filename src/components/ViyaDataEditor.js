@@ -15,7 +15,7 @@ function ViyaDataEditor (props) {
   const _selectViewer = () => {
     return (props.appControl.appData.viewType === 'table') ? TableEditor : DataForm;
   };
-  
+  //For demo purpose
   const show = (
     <Fragment>
     <div key={Date()}>

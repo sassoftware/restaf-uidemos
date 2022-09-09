@@ -1,6 +1,6 @@
 # A Data Editor example using @sassoftware/restafedit and React components
 
-- [Install](#install)
+- [Installation](#install)
 - [Configuration](#config)
 - [Usage](#usage)
 - [Modifiying the application](#modify)
@@ -14,7 +14,7 @@ This particular example used [Version 4 material-ui](https://v4.mui.com/) as the
 
 Please see [this](https://sassoftware.github.io/restaf) for information on **@sassoftware/restaf, @sassoftware/restaflib and @sassoftware/restafedit**. These libraries are used in this example.
 
-## Install<a name="install"></a>
+## Installation<a name="install"></a>
 
 ```sh
 git clone https://github.com/sassoftware/restaf-uidemos -b editorappreact editorappreact
@@ -22,12 +22,15 @@ cd editorappreact
 npm install
 ```
 
-## Configuration<a name="#config"></a>
+## Configuration<a name="config"></a>
 
 1. The default setting to logon to Viya is defined in the .env file.
-2. See below for configuring CAS server for REST API calls.
-3. The appControl is specified in the public/lib/appControl. The sample csv file testdata.csv is included.
-4. You can switch between a table view and a form view by setting the VIEWTYPE in the .env file to either table or form. You will have to restart the application.
+2. Make sure to set VIYA_SERVER to the SAS Viya URL
+    - An option is to set this as an environment variable and leave the definition as is.
+3. See below for configuring CAS server for REST API calls.
+4. The appControl is specified in the public/lib/appControl.
+5. The sample csv file testdata.csv is included.
+6. For demo purposes: Switch between a table view and a form view by setting the VIEWTYPE in the .env file to either *table* or *form* and restart the application
 
 ## Usage<a name="#usage"></a>
 
@@ -45,11 +48,10 @@ npm run app
 
 ## Modifiying the application<a name="modify"></a>
 
-You can use Hot Module Replacement(HMR) to debug any changes you make to the application with the following restriction
+You can use Hot Module Replacement(HMR) to debug any changes.
+The restrictions are:
 
-The requirements are:
-
-The "Allowed Origins" in the CORS setting has to *
+The "Allowed Origins" in the CORS setting has to be *
 
 Use the following command to run in development mode
 
