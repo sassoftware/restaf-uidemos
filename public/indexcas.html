@@ -25,7 +25,6 @@
 		<!-- This helps avoid hard codung the Viya host url in the html -->
 
 		<!-- http package to make calls to Viya -->
-    <head>
       <meta charset="UTF-8" />
       <script src="https://unpkg.com/@sassoftware/restaf@test"></script>
       <script src="https://unpkg.com/@sassoftware/restaflib@test"></script>
@@ -79,36 +78,19 @@
           color: black;
         }
       </style>
+    </head>
+
       <script>
         let appEnv = {};
         let currentRow = {};
-      
-        // Set values in the field from appEnv.state
-        function displayValues() {
-          currentRow = appEnv.state.data[0];
-          for (let k in currentRow) {
-            if (k !== '_rowIndex') {
-               document.getElementById(k).value = currentRow[k];
-            }
-          }
-          document.getElementById('status').innerHTML = 'Ready';
-          
-          showODS()
-            .then (r => {
-              document.getElementById('ODS').innerHTML = r;
-            } )
-            .catch(err => console.log(err));
-
-        }
-
-        
-        // setup viya connection and read in the first set of records
+     
+        //
+        // setup using the initialize function in the editor.js
+        //
         function setup() {
           initialize() 
             .then (r => {
               appEnv = r;
-              
-             
               displayValues();
             })
             .catch (err => {
@@ -116,18 +98,10 @@
             })
 
         }
-        // handle scrolling
-        function scrollTable(direction) {
-          document.getElementById('status').innerHTML = 'Reading data...';
-          restafedit.scrollTable(direction, appEnv)
-            .then ( r => {
-              displayValues();
-            })
-            .catch( err => alert(JSON.stringify(err, null,4)))
-        }
 
-        // handle keyboard events
-        // My funky way of handling calculations on enter or on field exit
+        //
+        // On user edit, run celledit
+        //
         function handleEnter(name) {
           let value = document.getElementById(name).value;
           // let value = text2Float(valuec, name);
@@ -138,7 +112,23 @@
           })
           .catch(err => alert(err));
         }
-        //handle edit and save 
+
+        //
+        // handle scrolling (see butttons in display)
+        //
+        function scrollTable(direction) {
+          document.getElementById('status').innerHTML = 'Reading data...';
+          restafedit.scrollTable(direction, appEnv)
+            .then ( r => {
+              displayValues();
+            })
+            .catch( err => alert(JSON.stringify(err, null,4)))
+        }
+
+        
+  //
+  // Below is the "UI" part
+  //
         function onblurx(name) {
           let v = document.getElementById(name).value;
           handleEnter(name);
@@ -148,6 +138,17 @@
             handleEnter(name);
           }
           
+        }
+         
+        // Set values in the field from appEnv.state
+        function displayValues() {
+          currentRow = appEnv.state.data[0];
+          for (let k in currentRow) {
+            if (k !== '_rowIndex') {
+               document.getElementById(k).value = currentRow[k];
+            }
+          }
+          document.getElementById('status').innerHTML = 'Ready';
         }
 
 			</script>
