@@ -35,8 +35,7 @@ async function x1 (data, name, rowIndex, appEnv) {
 async function initialize() {
   let appControl = getAppControl();
   // initialize a session
-  let preamble = appControl.preamble;
-  let r = await restafedit.setup(LOGONPAYLOAD, appControl, preamble);
+  let r = await restafedit.setup(LOGONPAYLOAD, appControl);
   let r2 = await restafedit.scrollTable('first', r);
   return r;
 
