@@ -8,7 +8,9 @@
   "bugs": {
     "url": "https://github.com/sassoftware/restaf-uidemos/issues"
   },
-  "private": true,
+  "unpkg": "/lib/lib.umd.js",
+  "main": "./lib/lib.umd.js",
+  "module": "/lib/lib.module.js",
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-react": "^7.16.7",
@@ -89,6 +91,7 @@
     "@babel/preset-env": "^7.16.11",
     "eslint": "^8.16.0",
     "eslint-plugin-react": "^7.30.0",
+    "microbundle": "^0.15.1",
     "prettier": "^2.1.2",
     "prettier-eslint": "^11.0.0",
     "prettier-eslint-cli": "^5.0.0"

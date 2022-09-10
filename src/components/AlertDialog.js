@@ -10,12 +10,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { TrendingUpTwoTone } from '@material-ui/icons';
 
 // From material-ui online doc
 function AlertDialog (props) {
   const { title, msg } = props;
-  const [open, setOpen] = React.useState(TrendingUpTwoTone);
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
