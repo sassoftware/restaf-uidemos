@@ -12,9 +12,10 @@ import Paper from '@material-ui/core/Paper';
 import ButtonMenuBar from './ButtonMenuBar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import QuickDialog from './QuickDialog';
 
 function DataForm (props) {
-  const { onEdit, onScroll, onSave, status, appEnv } = props;
+  const { onEdit, onScroll, onSave, appEnv } = props;
 
   const [modified, setModified] = useState(0);
   const appData = appEnv.appControl.appData;
@@ -29,8 +30,12 @@ function DataForm (props) {
     save: { text: 'Save', action: 'save', disabled: false, state: false }
   };
   let menus = (appEnv.appControl.appData.menus == null) ? defaultMenus : appEnv.appControl.appData.menus;
-  
+  let status = {...props.status};
   /* Tack on scrolling */
+
+  const _closeSnack = () => {
+    status = null;
+  };
 
   const _onEdit = (e) => {
     data[e.target.name] = e.target.value;
@@ -129,7 +134,7 @@ function DataForm (props) {
     <Paper>
       <div key="sdf" className={classes.divborder}>
         <h1> {form.title}</h1>
-        {status !== null ? <h3> {status.msg}</h3> : null}
+        {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
         {menus != null ? <ButtonMenuBar menus={menus} onSelect={_onSelect} /> : null}
         <Grid container key={'finaList'} direction="row">
           {finalList}

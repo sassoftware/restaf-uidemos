@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
-import ViyaDataEditor from './components/ViyaDataEditor';
+import App from './App';
 
 // see the index.html in /dist directory on how this is set
 
@@ -12,7 +11,7 @@ if (appEnv.viewType != null) {
 }
 
 ReactDOM.render(
-    <ViyaDataEditor  viyaConnection={logonPayload} 
+    <App  viyaConnection={logonPayload} 
           appControl ={ appControl }
-          editType={"table"} />, document.querySelector('#root'));
+         />, document.querySelector('#root'));
 

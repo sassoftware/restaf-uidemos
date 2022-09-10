@@ -14,12 +14,14 @@ import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ButtonMenuBar from './ButtonMenuBar';
+import QuickDialog from './QuickDialog';
 // import SubmitDialog from './SubmitDialog';
 import controls from './controls';
 
 function TableEditor (props) {
-  const { onEdit, onScroll, onSave, status, appEnv } = props;
+  const { onEdit, onScroll, onSave, appEnv } = props;
   const [modified, setModified] = useState(0);
+  // const [_snackMessage, setSnackMessage] = useState(props.status);
   const appData = appEnv.appControl.appData;
   const form = appData.form;
   let { defaultComponent, classes, visuals } = form;
@@ -32,13 +34,17 @@ function TableEditor (props) {
     save: { text: 'Save', action: 'save', disabled: false, state: false }
   };
   let menus = (appEnv.appControl.appData.menus == null) ? defaultMenus : appEnv.appControl.appData.menus;
-  
+  let status = {...props.status};
 
   let order = (form.show.length > 0) ? form.show : Object.keys(columns);
   order = order.map(o => o.toLowerCase());
   if (classes == null) {
     classes = {};
   }
+
+  const _closeSnack = () => {
+    status = null;
+  };
 
   const _onEdit = (e) => {
     data[e.rowIndex][e.target.name] = e.target.value;
@@ -143,10 +149,16 @@ function TableEditor (props) {
   });
 
   // return table
+  /*
+  if (status !== null) {
+    setSnackMessage(status.msg);
+  }*/
+ 
   const showTable =
       <div key="sdf" className={classes.divborder}>
           <h1>{form.title}</h1>
-          {status !== null ? <h3> {status.msg}</h3> : null}
+          {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
+          
           {menus != null ? <ButtonMenuBar menus={menus} onSelect={_onSelect} /> : null}
           <Grid container key="tableEditorMui" direction="column">
               <Grid container key={'tableList'} direction="column">

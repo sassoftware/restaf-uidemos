@@ -10,11 +10,17 @@ import TableEditor from './TableEditor';
 import DataForm from './DataForm';
 import Grid from '@material-ui/core/Grid';
 
+/*
+* Added this to keep DataEditor component to be react framework agnostic 
+*/
+
 function ViyaDataEditor (props) {
   
   const _selectViewer = () => {
     return (props.appControl.appData.viewType === 'table') ? TableEditor : DataForm;
   };
+  
+  
   //For demo purpose
   const show = (
     <Fragment>

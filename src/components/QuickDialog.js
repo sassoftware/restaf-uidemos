@@ -8,12 +8,11 @@ import { PropTypes } from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 import Info from '@material-ui/icons/Info';
 import Button from '@material-ui/core/Button';
-import { useAppContext } from '../../providers';
+// import { useAppContext } from '../../providers';
 
 function QuickDialog (props) {
   const [open, setOpen] = useState(true);
-
-  const { classes } = useAppContext();
+  const classes = {};
 
   const handleClick = () => {
     setOpen(false);

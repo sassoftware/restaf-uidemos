@@ -27,14 +27,17 @@
     <script src="%PUBLIC_URL%/lib/appControl.js"></script>
     <script type="text/javascript" src="%REACT_APP_APPNAME%/appenv"></script>
       <script>
-        console.log(APPENV);
-          window.appOptions = {appEnv: APPENV, logonPayload: LOGONPAYLOAD, appControl: getAppControl()};
-          console.log(window.appOptions);
+        let appControl = getAppControl();
+        if (APPENV.viewType != null) {
+          appControl.appData.viewType = APPENV.viewtype;
+        }
+        window.appOptions = {appEnv: APPENV, logonPayload: LOGONPAYLOAD, appControl: getAppControl()};
+        console.log(window.appOptions);
       </script>
       <div id="root">
       </div>
     </script>
-    <title>React App</title>
+    <title>Viya Data Editor</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
