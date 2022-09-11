@@ -24,8 +24,10 @@ async function term (data, rowIndex,appEnv, type) {
 
 async function x1 (data, name, rowIndex, appEnv) {
   let msg = {code: 1, msg: `${name} handler executed.`};
+  debugger;
   if (data.x1 > 10) {
       data.x1 = 10;
+      debugger;
       msg = {code: 0, msg: "Exceeded Max. Value reset to max"};
   }
 

@@ -144,6 +144,7 @@
         function displayValues() {
           currentRow = appEnv.state.data[0];
           for (let k in currentRow) {
+            console.log(k);
             if (k !== '_rowIndex') {
                document.getElementById(k).value = currentRow[k];
             }
@@ -159,7 +160,7 @@
       <br/>
       <p id="status"> Initializing Compute Session and Sample Data </p>
       <form action="">
-        <label class="elabel"> _index_: </label>
+        <label class="elabel"> _index: </label>
           <input class="edisabled" type="input"  disabled id="_index_" size="50" />
           <br />
           <br/>

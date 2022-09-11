@@ -31,7 +31,7 @@ function getAppControl() {
           }
       },
     editControl: {
-      handlers: {init: init, main: main, term: term},/*note reuse of init*/ 
+      handlers: {init: init, main: main, term: term, x1: x1},/*note reuse of init*/ 
       autoSave: true
   
     },

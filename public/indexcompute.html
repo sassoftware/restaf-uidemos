@@ -94,6 +94,7 @@
           }
           document.getElementById('status').innerHTML = 'Ready';
           
+          // get ODS output
           showODS()
             .then (r => {
               document.getElementById('ODS').innerHTML = r;
