@@ -18,7 +18,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@sassoftware/restaf": "^4.5.0",
-    "@sassoftware/restafedit": "^1.6.2",
+    "@sassoftware/restafedit": "^1.6.5",
     "@sassoftware/restaflib": "^4.5.0",
     "@sassoftware/viya-appserverjs": "^2.0.2",
     "concurrently": "^6.0.2",
