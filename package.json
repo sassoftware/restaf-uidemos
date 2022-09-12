@@ -45,6 +45,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "buildapp": "env-cmd --file ./.env react-scripts build",
+    "buildddc": "env-cmd --file ./.env_ddc react-scripts build",
     "dev": "cross-env APPENTRY=/develop APPLOC=./public node server --env=.env --docker=Dockerfile",
     "app": "cross-env  APPLOC=./build APPENTRY=index.html node server --env=.env --docker=Dockerfile",
     "lint": "eslint . --ext .js --fix"
