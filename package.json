@@ -1,6 +1,6 @@
 {
 	"name": "editorapp",
-	"version": "1.3.0",
+	"version": "1.3.1",
 	"main": "server.js",
 	"description": "Data Entry Example for SAS Viya using basic HTML and JS",
 	"author": "Deva Kumaraswamy <deva.kumar@sas.com>",
