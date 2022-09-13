@@ -6,12 +6,12 @@
 // TBD: change incoming data from array to object to avoid all the transformations
 
 import React, { useState } from 'react';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import controls from './controls';
-import Paper from '@material-ui/core/Paper';
+import Paper from '@mui/material/Paper';
 import ButtonMenuBar from './ButtonMenuBar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import QuickDialog from './QuickDialog';
 
 function DataForm (props) {

@@ -3,6 +3,7 @@
 // when the body is initialized
 //
 
+ 
 async function init (data, rowIndex, appEnv, type) {
   data.total = data.x1 + data.x2 + data.x3 ;
   return [data, { code: 0, msg: `${type} processing completed` }];
@@ -30,13 +31,26 @@ function getAppControl () {
     description: 'Simple Example',
 
     source: 'cas',
-    table : { caslib: 'public', name: 'TESTDATA' },
+    table : { caslib: 'casuser', name: 'testdatatemp' },
     byvars: ['id'],
+
+    preamble: `
+    action datastep.runcode /
+    code= "
+       data casuser.testdatatemp;
+       keep x1 x2 x3 id;
+       length id $ 5;
+       do i = 1 to 1000;
+       x1=i; x2=3; x3=i*10; id=compress(TRIMN('key'||i));
+       output;
+       end;
+       ";
+       `,
 
     initialFetch: {
       qs: {
         start : 0,
-        limit : 10,
+        limit : 20,
         format: false,
         where : ''
       }

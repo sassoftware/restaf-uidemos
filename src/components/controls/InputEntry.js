@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
+import InputLabel from '@mui/material/InputLabel';
+import Input from '@mui/material/Input';
 
 function InputEntry (props) {
   const { details, onEnter, controlProps, showLabel, rowIndex, classes } = props;

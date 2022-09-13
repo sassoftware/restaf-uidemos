@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 
-import { Slider as MuiSlider } from '@material-ui/core';
+import { Slider as MuiSlider } from '@mui/material';
 
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 // import { useAppContext } from '../../providers';
 
 function Slider (props) {

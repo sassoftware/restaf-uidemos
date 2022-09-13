@@ -5,9 +5,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
-import Snackbar from '@material-ui/core/Snackbar';
-import Info from '@material-ui/icons/Info';
-import Button from '@material-ui/core/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Info from '@mui/icons-material/Info';
+import Button from '@mui/material/Button';
 // import { useAppContext } from '../../providers';
 
 function QuickDialog (props) {

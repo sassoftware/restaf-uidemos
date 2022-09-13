@@ -3,13 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { Fragment } from 'react';
-import Button from '@material-ui/core/Button';
-import Switch from '@material-ui/core/Switch';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
+import React from 'react';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
 
 function ButtonMenuBar (props) {
   const { menus, onSelect } = props;
@@ -23,52 +20,25 @@ function ButtonMenuBar (props) {
   const menu = [];
   for (const m in menus) {
     const c = menus[m];
-    let t;
-    
-    if (c.component === 'Switch') { /* here as a sample */
-      t = (
-        <Grid item key={c.text}>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={m.state}
-                  color="primary"
-                  onChange={() => _select(m, false)}
-                />
-              }
-              label={c.text}
-            />
-          </FormGroup>
-        </Grid>
-      );
-    } else {
-      t = (
+    let t =
         <Grid item key={c.text}>
           <Button
             onClick={() => _select(m, false)}
             key={c.action}
             disabled={c.disabled}
-            variant="contained"
+            variant="text"
             color="primary"
             size="small"
+        
           >
             {c.text}{' '}
           </Button>
           <Divider orientation="vertical" flexItem />
         </Grid>
-      );
-    }
     menu.push(t);
   }
 
-  return (
-    <Fragment>
-      <Grid container key={'buttonMenu'} spacing={2} direction="row">
-        {menu}
-      </Grid>
-    </Fragment>
-  );
+  return menu;
 }
 
 export default ButtonMenuBar;
