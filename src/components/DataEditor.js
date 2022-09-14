@@ -18,7 +18,10 @@ function DataEditor (props) {
     // Keeping it simple - convert to suspense, lazy etc at some point
     //
     const initialize = async () => {
-        
+        debugger;
+        console.log('--dataEditor');
+        console.log(viyaConnection);
+        debugger;
         let r = await setup(viyaConnection, appControl);
         await scrollTable('first', r);
         return r;
