@@ -8,7 +8,6 @@ import React, { useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {setup, scrollTable} from '@sassoftware/restafedit';
 import DataViewer from './DataViewer';
-import {initStore} from '@sassoftware/restaf';
 
 function DataEditor (props) {
     
@@ -19,19 +18,6 @@ function DataEditor (props) {
     // Keeping it simple - convert to suspense, lazy etc at some point
     //
     const initialize = async () => {
-        console.log(initStore);
-        let store = initStore();
-        console.log(store);
-        console.log(store.logon);
-
-        debugger;
-        console.log('--dataEditor');
-        console.log(viyaConnection);
-        console.log(appControl);
-        debugger;
-        let msg = store.logon(viyaConnection);
-        console.log(msg);
-        debugger;
         let r = await setup(viyaConnection, appControl);
         await scrollTable('first', r);
         return r;
@@ -43,7 +29,9 @@ function DataEditor (props) {
                 setState(r);
             })
             .catch((err) => {
-                throw new Error (JSON.stringify(err));
+                debugger;
+                console.log(err);
+                throw new Error (err);
             });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

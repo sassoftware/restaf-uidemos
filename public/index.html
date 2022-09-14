@@ -25,13 +25,9 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <script src="%PUBLIC_URL%/lib/appControl.js"></script>
-    <!-- script type="text/javascript" src="%REACT_APP_APPNAME%/appenv"></script> -->
+    <script type="text/javascript" src="%REACT_APP_APPNAME%/appenv"></script>
       <script>
         let appControl = getAppControl();
-        let LOGONPAYLOAD = {
-            host: "%REACT_APP_VIYA_SERVER%", /*window.location.ancestorOrigins[0]*/
-            authType: 'code'
-        };
         window.appOptions = {logonPayload: LOGONPAYLOAD, appControl: appControl};
         console.log(window.appOptions);
       </script>

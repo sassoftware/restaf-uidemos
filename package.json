@@ -20,7 +20,7 @@
     "@mui/material": "^5.10.5",
     "@mui/x-data-grid": "^5.17.2",
     "@sassoftware/restaf": "^4.5.0",
-    "@sassoftware/restafedit": "^1.6.5",
+    "@sassoftware/restafedit": "^1.7.0",
     "@sassoftware/restaflib": "^4.5.0",
     "@sassoftware/viya-appserverjs": "^2.0.2",
     "concurrently": "^6.0.2",

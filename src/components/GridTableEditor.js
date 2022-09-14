@@ -109,7 +109,6 @@ function GridTableEditor (props) {
       const k = order[i];
       r[k] = d[k];
     }
-    console.log(r);
     return r;
     
   });
@@ -136,8 +135,6 @@ function GridTableEditor (props) {
       }
     headRow.push(t);
   }
-
-  console.log(headRow);
 
   let rowcount = rows.length;
   const showTable =
