@@ -5,11 +5,8 @@ import App from './App';
 
 // see the index.html in /dist directory on how this is set
 
-const {appEnv, logonPayload, appControl} = window.appOptions;
-if (appEnv.viewType != null) {
-  appControl.appData.viewType = appEnv.viewType;
-}
-
+const {logonPayload, appControl} = window.appOptions;
+console.log(logonPayload);
 ReactDOM.render(
     <App  viyaConnection={logonPayload} 
           appControl ={ appControl }

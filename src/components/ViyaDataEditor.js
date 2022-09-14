@@ -17,7 +17,7 @@ import DataForm from './DataForm';
 function ViyaDataEditor (props) {
   
   const _selectViewer = () => {
-    return (props.appControl.appData.viewType === 'table') ? GridTableEditor : DataForm;
+    return (props.appControl.appData.viewType === 'form') ? DataForm: GridTableEditor;
   };
   
   
