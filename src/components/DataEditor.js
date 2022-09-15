@@ -10,7 +10,7 @@ import {setup, scrollTable} from '@sassoftware/restafedit';
 import DataViewer from './DataViewer';
 
 function DataEditor (props) {
-    debugger;
+    
     const { viyaConnection, appControl, editor} = props;
     const [state, setState] = useState({});
 
@@ -18,7 +18,6 @@ function DataEditor (props) {
     // Keeping it simple - convert to suspense, lazy etc at some point
     //
     const initialize = async () => {
-        debugger;
         let r = await setup(viyaConnection, appControl);
         await scrollTable('first', r);
         return r;
@@ -30,7 +29,9 @@ function DataEditor (props) {
                 setState(r);
             })
             .catch((err) => {
-                throw new Error (JSON.stringify(err));
+                debugger;
+                console.log(err);
+                throw new Error (err);
             });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

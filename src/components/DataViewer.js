@@ -4,7 +4,7 @@
  */
 
 import React, {useState, Fragment} from 'react';
-import {cellEdit, updateTableRows, scrollTable} from '@sassoftware/restafedit';
+import {cellEdit, scrollTable, saveTable} from '@sassoftware/restafedit';
 import PropTypes from 'prop-types';
 
 function DataViewer (props) {
@@ -41,19 +41,21 @@ function DataViewer (props) {
          
     };
 
-    // Save only modified rows
-    // TBD: propagate messages to UI app
-    const _onSave = (data,result) => {
-        updateTableRows(data, appEnv)
+    // Save the current table to disk
+    // Useful only if autoSave is turned on, but will do it anyway
+    // will replace the current version
+    const _onSave = () => {
+        
+        saveTable(appEnv)
             .then((r) => {
-                setStatus({status: 0, msg: r});
+                setStatus(r);
             })
             .catch((err) => setStatus({status: 2, msg: err}));
         
     };
-    debugger;
+    
     const V = editor();
-    debugger;
+    
     return (
         <Fragment>
             <V 

@@ -1,300 +1,211 @@
-# Jump Start Data Editing in SAS Viya
+# A Data Editor example using @sassoftware/restafedit and React components
 
-This small react component library serves multiple purposes:
+- [Installation](#install)
+- [Configuration](#config)
+- [Usage](#usage)
+- [Modifiying the application](#modify)
+- [Configuring CAS](#casconfig)
 
-- Help build Data Entry Applications quickly with minimal effort
-- Uses [@sassoftware/restafedit](https://github.com/sassoftware/restaf/blob/restafedit/README.md) to access CAS tables and support custom calculations.
+This is an example of editing SAS Tables in a react application. A companion example is [editorapp](https://github.com/sassoftware/restaf-uidemos/tree/editorapp) using HTML and plain old javascript.
 
-    SAS Tables will be supported in the next version
+This particular example used [Version 4 material-ui](https://v4.mui.com/) as the component library. Feel free to use your prefered component library.  
 
-<blockquote> React version
+## Links
 
-Designed to work with any  React version >= 16.
+Please see [this](https://sassoftware.github.io/restaf) for information on **@sassoftware/restaf, @sassoftware/restaflib and @sassoftware/restafedit**. These libraries are used in this example.
 
-</blockquote>
-
----
-
-## Install
-
----
+## Installation<a name="install"></a>
 
 ```sh
-
-npm install @sassoftware/viyaedit
-
+git clone https://github.com/sassoftware/restaf-uidemos -b editorappreact editorappreact
+cd editorappreact
+npm install
 ```
 
-### PeerDependencies
+## Configuration<a name="config"></a>
 
-If your package manager does not install peer dependencies then install these manually.
+1. The default setting to logon to Viya is defined in the .env file.
+2. Make sure to set VIYA_SERVER to the SAS Viya URL
+    - An option is to set this as an environment variable and leave the definition as is.
+3. See below for configuring CAS server for REST API calls.
+4. The appControl is specified in the public/lib/appControl.
+5. The sample csv file testdata.csv is included.
+6. For demo purposes: Switch between a table view and a form view by setting the VIEWTYPE in the .env file to either *table* or *form* and restart the application
+
+## Usage<a name="#usage"></a>
+
+### Building the application
+
+```sh
+npm run buildapp
+```
+
+### Running the application
+
+```sh
+npm run app
+```
+
+## Modifiying the application<a name="modify"></a>
+
+You can use Hot Module Replacement(HMR) to debug any changes.
+The restrictions are:
+
+The "Allowed Origins" in the CORS setting has to be *
+
+Use the following command to run in development mode
+
+```sh
+npm run dev
+```
+
+## Configuring CAS for REST API<a name="casconfig"></a>
+
+### Notes on CAS env settings
+
+To access the CAS APIs your administraor has to set the TKHTTP_CORS_ALLOWED_ORIGINS for CAS as follows
+
+1. Set your KUBECONFIG
+2. Get a copy of the casdeployment custom resource file yaml:
+kubectl get casdeployment default -o json > cas.json  
+
+This command assumes your casdeployment name is ‘default’. If not default, use your casdeployment name from  the ‘kubectl get casdeployment’ command.
+
+Instead of directly editing the cas.json file without having a backup copy, you might want to make a copy of the file. This way, if a mistake is made when editing, and CAS won’t re-deploy, you will have a copy of the original you can apply and not have to redo your whole Viya deployment.
+
+3.If the environment variable TKHTTP_CORS_ALLOWED_ORIGINS does not exist in the json file, add it. If it does, modify it to for your purpose. Here is an example.
+
+Find the place in the file where the environment variables for containers are specified. For example, find “name”: “SAS_LICENSE”. Here is a snippet.
 
 ```js
-{
-    "@sassoftware/restaf": ">= 4.4.8",
-    "@sassoftware/restaflib": ">= 4.4.8",
-    "@sassoftware/restafedit": ">= 0.11.0"
-}
-
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "SAS_LICENSE",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "SAS_LICENSE",
+                                        "name": "sas-cas-license"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "CONSUL_HTTP_ADDR",
+                                "value": https://localhost:8500
+                            },
 ```
+
+4.Add the TKHTTP_CORS_ALLOWED_ORIGINS env var below one of the env variables like so. If you add the new one as the last one, you won’t need the trailing comma of course.
+
+```js
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "SAS_LICENSE",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "SAS_LICENSE",
+                                        "name": "sas-cas-license"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "CONSUL_HTTP_ADDR",
+                                "value": https://localhost:8500
+                            },
+                            {
+                                "name": "TKHTTP_CORS_ALLOWED_ORIGINS",
+                                "value": https://localhost:5002,https://controller.sas-cas-server-default.cpq.svc.cluster.local:443,https://controller.sas-cas-server-default.cpq.svc.cluster.local:8777
+                            },
+```
+
+5.After saving your changes to cas.json, delete the casdeployment.
+Kubectl delete casdeployment default    (Use your casdeployment name if it is not ‘default’.)
+
+6.Wait for your casdeployment to go away such that
+‘kubectl get casdeployment’ no longer shows your deployment.
+
+7.Redeploy your casdeployment:
+Kubectl create -f cas.json
+
+8.Wait for your casdeployment to come up:
+Kubectl get casdeployment shows your deployment again.
 
 ---
 
-## Usage
+## Standard readme from create-react-app
 
 ---
 
-DataEditor is the entry component
-
-### Sample React Component
-
-```jsx
-
-<DataEditor viyaConnection={viyaConnection} appControl={appControl} editor={editorfunction}/>
-
-```
-
-Here is a link to a working [sample](https://github.com/sassoftware/restaf-uidemos/blob/editorappreact/src/components/viewers/Sample.js) that uses this. For convenience the code is included here.
-
-```jsx
-
-import React from 'react';
-import helpers from '../helpers';
-import {DataEditor} from '@sassoftware/viyaedit';
-
-import Grid from "@material-ui/core/Grid";
-
-function Sample (props) {
-
-  // See below - moved it to a function for code readability
-  let appControl = getAppControl();
-  
-  let viyaConnection = {
-    host: 'https://myViyaServer.com',
-    authType: 'code'
-  }
-  
-  // Used as editor function
-  const _editor = () => {
-    return helpers['SampleForm']; 
-  };
-
- // main call
-  return (
-    <div key={Date()}>
-      <Grid container spacing={3} direction="row">
-          <Grid item>
-            <DataEditor key={Date()}
-                  appControl={appControl} 
-                  viyaConnection={viyaConnection}   
-                  editor={_editor}  
-                  />
-          </Grid>
-        </Grid>
-    </div>
-    
-  );
-
-
-//
-// handlers for init, main, term and selected columns
-//
-async function init (data,row,appEnv,type) {
-  let status = {code: 0, msg: `${type} processing completed`};
-  data.total = data.x1 + data.x2 + data.x3 ;
-  let newData = data; /* you can modify the incoming data and return it */
-  return [newData, status];
-};
-
-async function term (data, type) {
-  let status = {code: 0, msg: `${type} processing completed`};
-  return [data, status];
-};
-
-async function x1 (data, value, name) {
-let msg = {code: 0, msg: `${name} handler executed.`};
-if (data.x1 > 10) {
-    data.x1 = 10;
-    msg = {code: 0, msg: "Exceeded Max. Value reset to max"};
-}
-
-return [data, msg];
-};
+## Getting Started with Create React App
 
-// Application control for restafedit to use.
-
-function getAppControl () {
-  return {
-      description: 'Simple Example',
-      dataControl: {
-        source: 'cas',
-        table : {caslib: 'casuser', name: 'testdata'},
-        access: {},
-        byvars: ['id'],
-        where : {},
-
-        cachePolicy: true,
-
-        initialFetch: {
-          count : 1,
-          from  : 1,
-          format: false
-        },
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-        customColumns: {
-          total: {
-            Column         : "Total",
-            Label          : "Grand Total",
-            FormattedLength: 12,
-            Type           : "double"
-            }
-        },
-        customRows: []
-      },
-      editControl: {
-        handlers: {init: init, main: init, term: term, x1: x1}, 
-        save    : true,  
-        autoSave: true, 
-    
-      },
-      appData: {}    /* put here whatever you want to pass to your editor component */
-      
-   };
-  }
+## Available Scripts
 
-}
-export default Sample;
+In the project directory, you can run:
 
-```
+### `npm start`
 
-## Props to DataEditor
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `viyaConnection`
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-Usually your app is running with authorization_code flow. So use this:
+### `npm test`
 
-```js
-{
-    host: <your Viya server url>,
-    authType: 'code'
-}
-```
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Sometime, even with authorization_code you might want to use tokens. Then use this:
+### `npm run build`
 
-```js
-{
-    host: <your Viya server url>,
-    authType: 'code',
-    token: <your token>
-    tokenType: 'bearer
-}
-```
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### `AppControl`
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-This is the same appControl used with @sassoftware/restafedit (see [here](https://github.com/sassoftware/restaf/blob/restafedit/README.md))
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `editor`
+### `npm run eject`
 
-This is a function that returns your editor component.
-For example if your editor component(written with any react component library) MyEditor. See below for its props.
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-See these links for examples.
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-- [Sample Form Editor](https://github.com/sassoftware/restaf-uidemos/blob/editorappreact/src/components/helpers/SampleForm.js)
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-- [Form Editor](https://github.com/sassoftware/restaf-uidemos/blob/editorappreact/src/components/helpers/DataFormMulti.js)
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-- [Table Editor](https://github.com/sassoftware/restaf-uidemos/blob/editorappreact/src/components/helpers/TableEditorMui.js)
+## Learn More
 
-```js
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-const V = editorFunc();
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-```
+### Code Splitting
 
-The viyaedit component will use this prop as follows:
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-```js
+### Analyzing the Bundle Size
 
-const V = props.editor();
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-return (
-      <Fragment>
-            <V 
-             onEdit={_onEdit}
-             onScroll={_onScroll}
-             onSave={_onSave}
-             status={status}
-             appEnv={appEnv}
-             />
-        </Fragment>
+### Making a Progressive Web App
 
-)
-```
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
----  
+### Advanced Configuration
 
-## Details on the editor prop
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
----
+### Deployment
 
-The editor component needs to handle the following props
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### onEdit
+### `npm run build` fails to minify
 
-This callback will run your custom calculations and save the record to the server. The autosave is controlled by the option in appControl.
-Typically you will call this after the user enters a value and presses enter or changes cursor focus.
-
-To call it use this sample code:
-
-```js
-props.onEdit(
-    name, /* name of the column */
-    value, /* new value to be saved */
-    rowIndex, /*index of the row. Between 0 and the number of records retrieve on last fetch */
-    data, /* the data for the row */
-    appEnv /* control object that was passed into your component */ 
-```
-
-#### onScroll
-
-To scroll to previous or next record call this. This callback will retrieve new records from the server.
-
-```js
-
-props.onScroll(direction)
-
-```
-
-Direction can be 'first', 'prev', 'next'
-
-#### onSave
-
-Use this if you are not doing a autoSave on each edit
-
----
-
-props.onSave(data, appEnv);
-
----
-
-data is the current row
-
-#### status
-
-The status is returned by DataEditor. it is of the form
-
-{
-    status: 0|1|2,
-    msg: <some string>
-}
-
-Could be null to indicate that there is no status to report
-
-##### appEnv
-
-This is the control object for the edit session. For details on this see @sassoftware/restafedit.  
-
-This object is useful in more advanced use cases. See the documentation for @sassoftware/restafedit.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

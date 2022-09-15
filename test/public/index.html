@@ -1,0 +1,56 @@
+<html>
+<header>
+    
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script>
+    console.log(ReactDOM);
+</script>
+<script src="/editorapp/appenv"></script>
+<script src="./lib/appControl.js"></script>
+<script src="./dist/viyaeditmui.js"></script>
+
+<script>
+    debugger;
+    console.log(ViyaEditMui);
+    console.log(ViyaEditMui.ViyaDataEditor);
+    console.log(LOGONPAYLOAD);
+    console.log(ReactDOM);
+    let appControlCurrent = getAppControl('cas');
+    console.log('---------------------------------');
+    console.log(JSON.stringify(appControlCurrent, null,4));
+    console.log('---------------------------------');
+</script>
+
+<script type="text/javascript">
+    function show() {
+        let props = {
+            viyaConnection: LOGONPAYLOAD,
+            appControl    : appControlCurrent
+        }
+        debugger;
+        ViyaEditMui.display(props, 'container1');
+        
+    }
+</script>
+<script>
+    function _setup() {
+       show();
+    }
+</script>
+
+</script>
+<body onload="_setup()">
+    <h1> Hi</h1>
+    <div id="container1">
+    </div>
+</body>
+
+</header>
+
+
+
+
+
+</html>
