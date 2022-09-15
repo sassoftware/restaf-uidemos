@@ -1,0 +1,48 @@
+<html>
+<header>
+<!-- script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@sassoftware/viyaeditmui@0.2.1"></script>
+
+<!-- All your input is in the appControl folder -->
+<!-- For demo purposes added a switch for cas or compute tables-->
+
+<script src="/lib/appControl.js"></script>
+
+<!-- The code below show the table editor -->
+<!-- Standard HTML programming applies    -->
+<script type="text/javascript">
+    function display() {
+        let appControlCurrent = getAppControl('compute');
+        let LOGONPAYLOAD = {
+            host: window.location.ancestorOrigins[0],
+            authType: 'code',
+            appName: 'editorapp'
+        }
+        console.log(LOGONPAYLOAD);
+        console.log('---------------------------------');
+        console.log(JSON.stringify(appControlCurrent, null,4));
+        console.log('---------------------------------');
+        let props = {
+            viyaConnection: LOGONPAYLOAD,
+            appControl    : appControlCurrent
+        }
+        debugger;
+        ViyaEditMui.display(props, 'container1');
+    }
+</script>
+
+<body onload="display()">
+    <div id="container1">
+        <h1> Loading...</h1>
+    </div>
+</body>
+
+</header>
+
+
+
+
+
+</html>
