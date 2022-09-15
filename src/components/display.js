@@ -7,7 +7,7 @@ function display(props, domElement, _component) {
     const createRoot = ReactDOM.createRoot;
     const container = document.getElementById(domElement);
     const root = createRoot(container);
-    debugger;
+    
     root.render(
         <ViyaDataEditor viyaConnection={props.viyaConnection} 
             appControl ={props.appControl}

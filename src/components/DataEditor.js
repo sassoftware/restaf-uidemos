@@ -29,7 +29,7 @@ function DataEditor (props) {
                 setState(r);
             })
             .catch((err) => {
-                debugger;
+                
                 console.log(err);
                 throw new Error (err);
             });

@@ -45,7 +45,7 @@ function GridTableEditor (props) {
   if (classes == null) {
     classes = {};
   }
-  debugger;
+  
   const _closeSnack = () => {
     status = null;
   };
@@ -63,7 +63,7 @@ function GridTableEditor (props) {
     )
   };
   const _onEdit = (value, params) => {
-    debugger;
+    
     let {field, row }  = params;
     let rowIndex = row._rowIndex;
     data[rowIndex][field] = value;
