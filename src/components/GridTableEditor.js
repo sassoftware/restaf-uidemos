@@ -7,11 +7,11 @@ import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid'
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 import ButtonMenuBar from './ButtonMenuBar';
 import QuickDialog from './QuickDialog';
 // import SubmitDialog from './SubmitDialog';
-import GridToolbarCustom from './GridToolBarCustom';
+// import GridToolbarCustom from './GridToolBarCustom';
 import {
   GridToolbarContainer,
   GridToolbarColumnsButton,
@@ -20,7 +20,7 @@ import {
   /*GridToolbarDensitySelector,*/
 } from '@mui/x-data-grid';
 
-import controls from './controls';
+// import controls from './controls';
 
 function GridTableEditor (props) {
   const { onEdit, onScroll, onSave, appEnv } = props;
