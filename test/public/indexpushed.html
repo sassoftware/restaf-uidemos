@@ -6,36 +6,39 @@
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 <script type="text/javascript" src="https://unpkg.com/@sassoftware/viyaeditmui@test"></script>
 
-<!-- script src="/restaf/appenv"></script> -->
+<script src="/restaf/appenv"></script>
 <script src="/restaf/lib/appControl.js"></script>
-<script src="/restaf/dist/viyaeditmui.js"></script>
+<!--script src="/restaf/dist/viyaeditmui.js"></script> -->
+
+<script>
+    debugger;
+    console.log(ViyaEditMui);
+    console.log(ViyaEditMui.ViyaDataEditor);
+    console.log(LOGONPAYLOAD);
+    console.log(ReactDOM);
+    let appControlCurrent = getAppControl('compute');
+    console.log('---------------------------------');
+    console.log(JSON.stringify(appControlCurrent, null,4));
+    console.log('---------------------------------');
+</script>
 
 <script type="text/javascript">
-    function _display() {
-        let appControlCurrent = getAppControl('compute');
-        let LOGONPAYLOAD = {
-            host: window.location.ancestorOrigins[0],
-            authType: 'code',
-            appName: 'editorapp'
-        }
-        console.log(LOGONPAYLOAD);
-        console.log('---------------------------------');
-        console.log(JSON.stringify(appControlCurrent, null,4));
-        console.log('---------------------------------');
+    function show() {
         let props = {
             viyaConnection: LOGONPAYLOAD,
             appControl    : appControlCurrent
         }
         debugger;
         ViyaEditMui.display(props, 'container1');
+        
+    }
+</script>
+<script>
+    function _setup() {
+       show();
     }
 </script>
 
-<script>
-    function _setup() {
-        _display();
-    }
-</script>
 </script>
 <body onload="_setup()">
     <h1> Hi</h1>

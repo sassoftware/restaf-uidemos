@@ -4,11 +4,6 @@
 //
 
 
-function getAppControl (source) {
-  return (source === 'cas') ? appControlCas : appControlCompute;
-}
-
- 
 async function init (data, rowIndex, appEnv, type) {
   data.total = data.x1 + data.x2 + data.x3 ;
   return [data, { code: 0, msg: `${type} processing completed` }];
@@ -158,3 +153,10 @@ let appControlCompute = {
     }
   };
 
+
+  function getAppControl (source) {
+    console.log('-----------------------------------source is', source);
+    return (source === 'cas') ? appControlCas : appControlCompute;
+    
+
+  }

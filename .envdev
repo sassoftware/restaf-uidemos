@@ -3,7 +3,7 @@
 ####################################################
 
 VIYA_SERVER=
-CLIENTID=clientapp2
+CLIENTID=clientapp
 CLIENTSECRET=secret
 # The valid redirect is https://{APPHOST}:{APPPORT}/{APPNAME}
 # As configured here: https://localhost:5002/viyaapp
@@ -11,7 +11,7 @@ CLIENTSECRET=secret
 ####################################################
 # App configuration
 ####################################################
-APPNAME=restaf
+APPNAME=reactapp
 APPHOST=localhost
 APPPORT=5002
 ## This controls whether a table or form viewer is used.
@@ -21,8 +21,6 @@ VIEWTYPE=
 REACT_APP_TARGET=$APPHOST:$APPPORT
 REACT_APP_APPNAME=$APPNAME
 REACT_APP_VIYA_SERVER=$VIYA_SERVER
-PUBLIC_URL=$APPNAME
-
 
 # USETOKEN is useful if your CORS is set * and running from localhost
 # You can comment this out if you are not.
