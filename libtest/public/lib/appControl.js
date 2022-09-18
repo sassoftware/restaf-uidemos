@@ -4,10 +4,6 @@
 //
 
 
-function getAppControl (source) {
-  return (source === 'cas') ? appControlCas : appControlCompute;
-}
-
  
 async function init (data, rowIndex, appEnv, type) {
   data.total = data.x1 + data.x2 + data.x3 ;
@@ -158,3 +154,9 @@ let appControlCompute = {
     }
   };
 
+
+  // eslint-disable-next-line no-unused-vars
+  function getAppControl (source) {
+    return (source === 'cas') ? appControlCas : appControlCompute;
+  }
+  

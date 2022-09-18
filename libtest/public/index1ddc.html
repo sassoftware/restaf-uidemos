@@ -4,10 +4,12 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script>
+    console.log(ReactDOM);
+</script>
 
-<!-- script src="/restaf/appenv"></script> -->
-<script src="/restaf/lib/appControl.js"></script>
-<script src="/restaf/dist/viyaeditmui.js"></script>
+<script src="./lib/appControl.js"></script>
+<script src="./dist/viyaeditmui"></script>
 
 <script>
     let LOGONPAYLOAD = {
@@ -19,6 +21,7 @@
         }
     };
 </script>
+
 <script>
     debugger;
     console.log(ViyaEditMui);
@@ -31,15 +34,17 @@
     console.log('---------------------------------');
 </script>
 
-<script type="text/javascript">
+<script type="text/babel">
     function show() {
-        let props = {
-            viyaConnection: LOGONPAYLOAD,
-            appControl    : appControlCurrent
-        }
+        const createRoot = ReactDOM.createRoot;
+        const ViyaDataEditor = ViyaEditMui.ViyaDataEditor;
+        const container = document.getElementById('container1');
+        const root = createRoot(container);
         debugger;
-        ViyaEditMui.display(props, 'container1');
-        
+        root.render(
+        <ViyaDataEditor viyaConnection={LOGONPAYLOAD} 
+            appControl ={ appControlCurrent }
+            />, document.querySelector('#container1'));
     }
 </script>
 <script>

@@ -1,0 +1,56 @@
+<html>
+<header>
+    
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<script src="restaf/appenv"></script>
+<script src="restaf/lib/appControl.js"></script>
+<script src="restaf/dist/viyaeditmui.js"></script>
+
+<script>
+    debugger;
+    console.log(ViyaEditMui);
+    console.log(ViyaEditMui.ViyaDataEditor);
+    console.log(LOGONPAYLOAD);
+    console.log(ReactDOM);
+    let appControlCurrent = getAppControl('cas');
+    console.log('---------------------------------');
+    console.log(JSON.stringify(appControlCurrent, null,4));
+    console.log('---------------------------------');
+</script>
+
+<script type="text/babel">
+    function show() {
+        const createRoot = ReactDOM.createRoot;
+        const ViyaDataEditor = ViyaEditMui.ViyaDataEditor;
+        const container = document.getElementById('container1');
+        const root = createRoot(container);
+        debugger;
+        root.render(
+        <ViyaDataEditor viyaConnection={LOGONPAYLOAD} 
+            appControl ={ appControlCurrent }
+            />);
+    }
+</script>
+<script>
+    function _setup() {
+       show();
+    }
+</script>
+
+</script>
+<body onload="_setup()">
+    <h1> Using babel to call the component(local component)-cas</h1>
+    <div id="container1">
+    </div>
+</body>
+
+</header>
+
+
+
+
+
+</html>

@@ -4,26 +4,33 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-<script>
-    console.log(ReactDOM);
-</script>
-<script src="/editorapp/appenv"></script>
-<script src="./lib/appControl.js"></script>
-<script src="./dist/viyaeditmui"></script>
+<script type="text/javascript" src="https://unpkg.com/@sassoftware/viyaeditmui"></script>
+
+<!-- script src="/restaf/appenv"></script> -->
+
+<script src="/restaf/lib/appControl.js"></script>
+<!-- script src="/restaf/dist/viyaeditmui.js"></script> -->
 
 <script>
     debugger;
-    console.log(ViyaEditMui);
-    console.log(ViyaEditMui.ViyaDataEditor);
+    let LOGONPAYLOAD = {
+        host: window.location.ancestorOrigins[0],
+        authType: 'code',
+        appName: 'react'
+    }
+    console.log('--------------------------------');
     console.log(LOGONPAYLOAD);
-    console.log(ReactDOM);
+    console.log('--------------------------------');
     let appControlCurrent = getAppControl('cas');
     console.log('---------------------------------');
     console.log(JSON.stringify(appControlCurrent, null,4));
     console.log('---------------------------------');
+    console.log(ViyaEditMui);
+    console.log(ViyaEditMui.ViyaDataEditor);
+    
 </script>
 
-<script type="text/babel">
+<script type="text/javascript">
     function show() {
         const createRoot = ReactDOM.createRoot;
         const ViyaDataEditor = ViyaEditMui.ViyaDataEditor;
@@ -33,7 +40,7 @@
         root.render(
         <ViyaDataEditor viyaConnection={LOGONPAYLOAD} 
             appControl ={ appControlCurrent }
-            />, document.querySelector('#container1'));
+            />);
     }
 </script>
 <script>
@@ -44,7 +51,7 @@
 
 </script>
 <body onload="_setup()">
-    <h1> Hi</h1>
+    <h1>  <h1> Using babel to call the component(published component)-cas</h1> </h1>
     <div id="container1">
     </div>
 </body>

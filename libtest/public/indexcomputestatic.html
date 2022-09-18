@@ -1,0 +1,64 @@
+<html>
+<header>
+    
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<!-- script src="/restaf/appenv"></script> -->
+
+<script src="/restaf/lib/appControl.js"></script>
+<script src="/restaf/dist/viyaeditmui.js"></script>
+
+<script>
+    debugger;
+    let LOGONPAYLOAD = {
+        host: window.location.ancestorOrigins[0],
+        authType: 'code',
+        appName: 'react'
+    }
+    console.log('--------------------------------');
+    console.log(LOGONPAYLOAD);
+    console.log('--------------------------------');
+    let appControlCurrent = getAppControl('compute');
+    console.log('---------------------------------');
+    console.log(JSON.stringify(appControlCurrent, null,4));
+    console.log('---------------------------------');
+    console.log(ViyaEditMui);
+    console.log(ViyaEditMui.ViyaDataEditor);
+    
+</script>
+
+<script type="text/javascript">
+    function show() {
+        const createRoot = ReactDOM.createRoot;
+        const ViyaDataEditor = ViyaEditMui.ViyaDataEditor;
+        const container = document.getElementById('container1');
+        const root = createRoot(container);
+        debugger;
+        root.render(
+        <ViyaDataEditor viyaConnection={LOGONPAYLOAD} 
+            appControl ={ appControlCurrent }
+            />);
+    }
+</script>
+<script>
+    function _setup() {
+       show();
+    }
+</script>
+
+</script>
+<body onload="_setup()">
+    <h1>  <h1> Using babel to call the component(local component) - compute</h1> </h1>
+    <div id="container1">
+    </div>
+</body>
+
+</header>
+
+
+
+
+
+</html>
