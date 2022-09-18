@@ -21,7 +21,6 @@
     "@sassoftware/viya-appserverjs": "^2.0.2",
     "concurrently": "^6.0.2",
     "deepcopy": "^2.1.0",
-    "env-cmd": "^10.1.0",
     "http-proxy-middleware": "^1.0.5",
     "pretty-format": "^26.2.0",
     "react": "^18.2.0",
@@ -42,8 +41,8 @@
     "app:test": "cross-env  APPLOC=./build  node server --env=.env --docker=Dockerfile",
     "app:run": "npm run app:test",
     "lint": "eslint . --ext .js --fix",
-    "lib:build": "rimraf dist && webpack --config=webpack.config.js && rimraf ./libtest/public/dist && cp -r dist ./libtest/public/dist",
-    "lib:test": "cd viyaeditTest && cross-env  APPLOC=./public  node server --env=.env --docker=Dockerfile",
+    "lib:build": "rimraf dist && webpack --config=webpack.config.js && rimraf ./viyaedit/public/dist && cp -r dist ./viyaedit/public/dist",
+    "lib:test": "cd viyaedit && cross-env  APPLOC=./public  node server --env=.env --docker=Dockerfile",
     "lib:pub": "npm publish --tag dev --access public"
   },
   "eslintConfig": {
@@ -87,6 +86,7 @@
     "@babel/plugin-transform-strict-mode": "^7.16.7",
     "@babel/preset-env": "^7.16.11",
     "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0",
     "eslint": "^8.16.0",
     "eslint-plugin-react": "^7.30.0",
     "prettier": "^2.1.2",
