@@ -21,6 +21,7 @@
     "@sassoftware/restafedit": "^1.8.0",
     "@sassoftware/restaflib": "^4.5.0",
     "@sassoftware/viya-appserverjs": "^2.0.2",
+    "@sassoftware/viyaedit": "^0.11.4",
     "concurrently": "^6.0.2",
     "deepcopy": "^2.1.0",
     "env-cmd": "^10.1.0",
@@ -45,7 +46,7 @@
     "app:run": "npm run app:test",
     "lint": "eslint . --ext .js --fix",
     "lib:build": "rimraf dist && webpack --config=webpack.config.js && rimraf ./libtest/public/dist && cp -r dist ./libtest/public/dist",
-    "lib:test": "cd libtest && cross-env  APPLOC=./public  node server --env=.env --docker=Dockerfile",
+    "lib:test": "cd viyaeditTest && cross-env  APPLOC=./public  node server --env=.env --docker=Dockerfile",
     "lib:pub": "npm publish --tag test --access public"
   },
   "eslintConfig": {
