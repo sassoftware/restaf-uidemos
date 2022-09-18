@@ -17,11 +17,8 @@
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
     "@mui/x-data-grid": "^5.17.2",
-    "@sassoftware/restaf": "^4.5.0",
-    "@sassoftware/restafedit": "^1.8.0",
-    "@sassoftware/restaflib": "^4.5.0",
+    "@sassoftware/restafedit": "^1.8.1",
     "@sassoftware/viya-appserverjs": "^2.0.2",
-    "@sassoftware/viyaedit": "^0.11.4",
     "concurrently": "^6.0.2",
     "deepcopy": "^2.1.0",
     "env-cmd": "^10.1.0",
@@ -47,7 +44,7 @@
     "lint": "eslint . --ext .js --fix",
     "lib:build": "rimraf dist && webpack --config=webpack.config.js && rimraf ./libtest/public/dist && cp -r dist ./libtest/public/dist",
     "lib:test": "cd viyaeditTest && cross-env  APPLOC=./public  node server --env=.env --docker=Dockerfile",
-    "lib:pub": "npm publish --tag test --access public"
+    "lib:pub": "npm publish --tag dev --access public"
   },
   "eslintConfig": {
     "extends": "react-app"
