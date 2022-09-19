@@ -19,7 +19,6 @@ restafServer.icli(null/*customRoutes */, true, customize);
 
 
 function customize (key) {
-	console.log(process.env.APPLOC, ' ', process.env.APPENTRY);
 	let info = {
 		APPENV: {
 			viewType: (process.env.VIEWTYPE == null) ? 'table' : process.env.VIEWTYPE

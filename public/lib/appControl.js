@@ -39,9 +39,9 @@ let appControlCas = {
     code= "
        data casuser.testdatatemp;
        keep x1 x2 x3 id;
-       length id $ 5;
+       /*length id $;*/
        do i = 1 to 1000;
-       x1=i; x2=3; x3=i*10; id=compress(TRIMN('key'||i));
+       x1=i; x2=3; x3=i*10; id='longstring'||compress(TRIMN('key'||i));
        output;
        end;
        ";
