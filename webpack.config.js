@@ -40,7 +40,9 @@ module.exports = {
     /*
     plugins: plugins,
     */
-
+    optimization: {
+        usedExports: true,
+    },
     module: {
         rules: [
             { test: /\.(js|jsx)$/, use: "babel-loader" },

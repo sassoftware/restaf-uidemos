@@ -1,14 +1,14 @@
 {
-  "name": "@sassoftware/viyaeditmui",
+  "name": "@sassoftware/viyaeditTestmui",
   "version": "0.3.3",
   "license": "Apache-2.0",
   "description": "Data Entry Example for SAS Viya using React",
   "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
-  "repository": "https://github.com/sassoftware/restaf-uidemos/tree/viyaeditmui",
+  "repository": "https://github.com/sassoftware/restaf-uidemos/tree/viyaeditTestmui",
   "bugs": {
     "url": "https://github.com/sassoftware/restaf/issues"
   },
-  "unpkg": "dist/viyaeditmui",
+  "unpkg": "dist/viyaeditTestmui",
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-react": "^7.16.7",
@@ -17,7 +17,7 @@
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
     "@mui/x-data-grid": "^5.17.2",
-    "@sassoftware/restafedit": "^1.8.1",
+    "@sassoftware/restafedit": "^1.8.2",
     "@sassoftware/viya-appserverjs": "^2.0.2",
     "concurrently": "^6.0.2",
     "deepcopy": "^2.1.0",
@@ -41,8 +41,8 @@
     "app:test": "cross-env  APPLOC=./build  node server --env=.env --docker=Dockerfile",
     "app:run": "npm run app:test",
     "lint": "eslint . --ext .js --fix",
-    "lib:build": "rimraf dist && webpack --config=webpack.config.js && rimraf ./viyaedit/public/dist && cp -r dist ./viyaedit/public/dist",
-    "lib:test": "cd viyaedit && cross-env  APPLOC=./public  node server --env=.env --docker=Dockerfile",
+    "lib:build": "rimraf dist && webpack --config=webpack.config.js && rimraf ./viyaeditTest/public/dist && cp -r dist ./viyaeditTest/public/dist",
+    "lib:test": "cd viyaeditTest && cross-env  APPLOC=./public  node server --env=.env --docker=Dockerfile",
     "lib:pub": "npm publish --tag dev --access public"
   },
   "eslintConfig": {
