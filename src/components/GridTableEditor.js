@@ -123,7 +123,6 @@ function GridTableEditor (props) {
   });
    // create table Header
    let headRow = []; 
-   console.log(flexInfo);
    for (let i = 0; i < order.length; i++) {
      const kh = order[i];
      const c  = columns[kh];
@@ -131,7 +130,6 @@ function GridTableEditor (props) {
      let editable = true;
      if (visuals[kh] != null) {
        const lprops = visuals[kh].props;
-       console.log(lprops);
        editable = (lprops.disabled === true) ? false : true;
      }
      let t = {
@@ -139,7 +137,6 @@ function GridTableEditor (props) {
        headerName:c.Label, 
        editable: editable,
        sortable: true,
-       resizable: true,
        type: (type === 'double' || type === 'int' || type ==='float') ? 'number' : 'string',
        flex: flexInfo[kh]
      };
@@ -149,10 +146,6 @@ function GridTableEditor (props) {
      headRow.push(t);
    }
   
-  
-
- 
-
   let rowcount = rows.length;
   const showTable =
       <div key="sdf" className={classes.divborder}>
