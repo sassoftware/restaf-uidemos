@@ -148,8 +148,7 @@ let appControlCompute = {
           },
           id: {
             props: {
-              disabled: true,
-              flex: 5
+              disabled: true
             }
           }
         }
