@@ -7,9 +7,10 @@
 
 import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import controls from './controls';
 import Paper from '@mui/material/Paper';
-import ButtonMenuBar from './ButtonMenuBar';
+import ButtonMenuGroup from './ButtonMenuGroup';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import QuickDialog from './QuickDialog';
@@ -135,10 +136,13 @@ function DataForm (props) {
       <div key="sdf" className={classes.divborder}>
         <h1> {form.title}</h1>
         {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
-        {menus != null ? <ButtonMenuBar menus={menus} onSelect={_onSelect} /> : null}
-        <Grid container key={'finaList'} direction="row">
+        {menus != null ? <ButtonMenuGroup menus={menus} onSelect={_onSelect} /> : null}
+        <Box>
+        <Grid container key={'finaList'}   alignItems="center"
+              justifyContent="center" direction="row">
           {finalList}
         </Grid>
+        </Box>
       </div>
     </Paper>
   );
