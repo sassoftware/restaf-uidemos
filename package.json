@@ -9,6 +9,9 @@
     "url": "https://github.com/sassoftware/restaf/issues"
   },
   "unpkg": "dist/viyaeditmui.js",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-react": "^7.16.7",
