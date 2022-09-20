@@ -32,22 +32,20 @@ let appControlCas = {
     description: 'Simple Example',
 
     source: 'cas',
-    table : { caslib: 'casuser', name: 'testdatatemp' },
+    table : { caslib: 'casuser', name: 'newdeal' },
     byvars: ['id'],
 
     preamble: `
     action datastep.runcode /
-  
     code= "
-       data casuser.testdatatemp;
+       data casuser.newdeal;
        keep x1 x2 x3 id;
-       length id varchar(30);
+       length id varchar(50);
        do i = 1 to 1000;
-       x1=i; x2=3; x3=i*10; id='this is a long string' ||compress(TRIMN('key'||i));
+       x1=i; x2=3; x3=i*10; id='loooooooooooooooooooong'||compress(TRIMN('key'||i));
        output;
        end;
        ";
-    
        `,
 
     initialFetch: {
@@ -106,7 +104,7 @@ let appControlCompute = {
     data public.testdata;
     keep x1 x2 x3 id;
     length id $ 5;
-    do i = 1 to 100; x1=i; x2=3; x3=i*10; id=ompress(TRIMN('key'||i));
+    do i = 1 to 100; x1=i; x2=3; x3=i*10; id=compress(TRIMN('key'||i));
     output;
     end;
     run;
@@ -148,7 +146,7 @@ let appControlCompute = {
           },
           id: {
             props: {
-              disabled: true
+              disabled: true,
             }
           }
         }

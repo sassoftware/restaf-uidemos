@@ -1,0 +1,63 @@
+<html>
+<header>
+    
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<!--script src="https://unpkg.com/@sassoftware/restafedit@dev"></script> -->
+<script src="https://unpkg.com/@sassoftware/restaf@dev"></script>
+<script src="https://unpkg.com/@sassoftware/restaflib@dev"></script>
+
+<script src="./lib/appControl.js"></script>
+<script src="/restaf/appenv"></script>
+
+<script>
+    
+    let LOGONPAYLOADz = {
+        /* host: window.location.ancestorOrigins[0],*/
+        host: window.location.ancestorOrigins[0],
+        authType: 'server',
+        appName: 'restaf'
+    };
+
+</script>
+
+<script>
+    debugger;
+    
+</script>
+
+<script>
+    async function show() {
+       let store = restaf.initStore({casProxy: true});
+       debugger;
+       console.log(store);
+       let r = await restaflib.casSetup(store,LOGONPAYLOAD);
+       // let r = await restaflib.casSetup(store, LOGONPAYLOAD);
+       console.log(JSON.stringify(r, null,4));
+       document.getElementById('stuff').innerHTML = JSON.stringify(r, null ,4);
+    }
+</script>
+<script>
+    function _setup() {
+       show()
+       .then (r => console.log(r))
+       .catch(err => console.log(err));
+    }
+</script>
+
+</script>
+<body onload="_setup()">
+    <h1> Hi</h1>
+    <div id="container1">
+        <pre id="stuff"> soon </pre>
+    </div>
+</body>
+
+</header>
+
+
+
+
+
+</html>

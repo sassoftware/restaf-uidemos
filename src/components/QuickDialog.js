@@ -47,8 +47,8 @@ function QuickDialog (props) {
 }
 
 QuickDialog.propTypes = {
-  /** messsage to be displayed in a snackk bar for 3 seconds */
-  msg    : PropTypes.string.isRequired,
+  /** messsage to be displayed in a snacck bar for 3 seconds */
+  msg    : PropTypes.any.isRequired,
   /** userClose */
   closecb: PropTypes.func
 };

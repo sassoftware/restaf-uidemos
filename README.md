@@ -1,4 +1,4 @@
-# A Data Editor example using @sassoftware/restafedit and React components
+# A component for Editing Data in SAS Viya 
 
 - [Installation](#install)
 - [Configuration](#config)
@@ -17,8 +17,8 @@ Please see [this](https://sassoftware.github.io/restaf) for information on **@sa
 ## Installation<a name="install"></a>
 
 ```sh
-git clone https://github.com/sassoftware/restaf-uidemos -b editorappreact editorappreact
-cd editorappreact
+git clone https://github.com/sassoftware/restaf-uidemos -b viyaeditmui viyaeditmui
+cd viyaeditmui
 npm install
 ```
 

@@ -1,0 +1,45 @@
+<html>
+<header>
+    
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@sassoftware/viyaeditmui@0.3.11"></script>
+
+<script src="./lib/appControl.js"></script>
+
+<script>
+    let LOGONPAYLOAD = {
+        host: window.location.ancestorOrigins[0],
+        // this should resolve to something like this: "https://viya.kdk-fsedit-azure.unx.sas.com",
+        authType: 'server',
+        appName: 'restaf'
+    };
+</script>
+
+<script type="text/javascript">
+    function _display() {
+        let appControlCurrent = getAppControl('cas');
+        const props = {
+            viyaConnection: LOGONPAYLOAD,
+            appControl    : appControlCurrent
+        }
+        ViyaEditMui.display(props, 'container1');
+        return 'done'
+    }
+</script>
+
+</script>
+<body onload="_display()">
+    <div id="container1">
+        
+    </div>
+</body>
+
+</header>
+
+
+
+
+
+</html>

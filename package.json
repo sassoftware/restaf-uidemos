@@ -34,15 +34,15 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "testx": "react-scripts test",
     "eject": "react-scripts eject",
     "app:build": "env-cmd --file ./.env react-scripts build",
     "dev": "cross-env APPENTRY=/develop APPLOC=./public node server --env=.env --docker=Dockerfile",
     "app:test": "cross-env  APPLOC=./build  node server --env=.env --docker=Dockerfile",
     "app:run": "npm run app:test",
     "lint": "eslint . --ext .js --fix",
-    "lib:build": "rimraf dist && webpack --config=webpack.config.js && rimraf ./viyaeditTest/public/dist && cp -r dist ./viyaeditTest/public/dist",
-    "lib:test": "cd viyaeditTest && cross-env  APPLOC=./public  node server --env=.env --docker=Dockerfile",
+    "lib:build": "rimraf dist && webpack --config=webpack.config.js && rimraf ./viyaEditTest/dist && cp -r dist ./viyaEditTest/dist",
+    "test": "cross-env  APPLOC=./viyaEditTest  node server --env=./.test.env --docker=Dockerfile",
     "lib:pub": "npm publish --tag dev --access public"
   },
   "eslintConfig": {
