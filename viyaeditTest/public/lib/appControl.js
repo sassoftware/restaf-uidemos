@@ -105,7 +105,7 @@ let appControlCompute = {
     libname public '/tmp';run; 
     data public.testdata;
     keep x1 x2 x3 id;
-    length id $ 5;
+    length id varchar(20);
     do i = 1 to 100; x1=i; x2=3; x3=i*10; id='this is a long string" ||compress(TRIMN('key'||i));
     output;
     end;

@@ -17,7 +17,7 @@
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
     "@mui/x-data-grid": "^5.17.2",
-    "@sassoftware/restafedit": "^1.8.2",
+    "@sassoftware/restafedit": "^1.8.3",
     "@sassoftware/viya-appserverjs": "^2.0.2",
     "concurrently": "^6.0.2",
     "deepcopy": "^2.1.0",
