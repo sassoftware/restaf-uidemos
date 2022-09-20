@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/viyaeditmui",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "license": "Apache-2.0",
   "description": "Data Entry Example for SAS Viya using React",
   "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
