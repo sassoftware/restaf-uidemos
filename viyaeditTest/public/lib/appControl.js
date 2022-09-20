@@ -32,7 +32,7 @@ let appControlCas = {
     description: 'Simple Example',
 
     source: 'cas',
-    table : { caslib: 'casuser', name: 'testdata' },
+    table : { caslib: 'casuser', name: 'testdatatemp' },
     byvars: ['id'],
 
     preamble: `
@@ -41,9 +41,9 @@ let appControlCas = {
     code= "
        data casuser.testdatatemp;
        keep x1 x2 x3 id;
-       length id $ 50;
+       length id varchar(30);
        do i = 1 to 1000;
-       x1=i; x2=3; x3=i*10; id=compress(TRIMN('key'||i));
+       x1=i; x2=3; x3=i*10; id='this is a long string' ||compress(TRIMN('key'||i));
        output;
        end;
        ";
@@ -105,8 +105,8 @@ let appControlCompute = {
     libname public '/tmp';run; 
     data public.testdata;
     keep x1 x2 x3 id;
-    length id varchar(20);
-    do i = 1 to 100; x1=i; x2=3; x3=i*10; id='this is a long string" ||compress(TRIMN('key'||i));
+    length id $ 5;
+    do i = 1 to 100; x1=i; x2=3; x3=i*10; id=ompress(TRIMN('key'||i));
     output;
     end;
     run;
