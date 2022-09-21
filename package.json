@@ -10,7 +10,8 @@
   },
   "unpkg": "dist/viyaeditmui.js",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",

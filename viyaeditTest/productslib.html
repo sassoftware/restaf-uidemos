@@ -6,10 +6,11 @@
 <script src="https://unpkg.com/@sassoftware/viyaeditmui@0.3.13"></script>
 
 <script src="./lib/products.js"></script>
+<script src="restaf/appenv"></script>
 
 <script>
     // Using the authentication from VA
-    let LOGONPAYLOAD = {
+    let LOGONPAYLOADz = {
         host: window.location.ancestorOrigins[0],
         authType: 'server',
         appName: 'restaf'
@@ -19,14 +20,20 @@
 <script type="text/javascript">
     // setup and display application
     function _display() {
-        let appControlCurrent = getAppControl('form');
+        let appControlCurrent = getAppControl('table');
         const props = {
             viyaConnection: LOGONPAYLOAD,
             appControl    : appControlCurrent
         }
         // Display application
         console.log(props);
-        ViyaEditMui.display(props, 'container1');
+        try {
+            ViyaEditMui.display(props, 'container1');
+        } 
+        catch(err) {
+            console.log(err);
+            alert(err);
+        }
         return 'done'
     }
 </script>
