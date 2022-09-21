@@ -6,13 +6,12 @@
 // TBD: change incoming data from array to object to avoid all the transformations
 
 import React, { useState } from 'react';
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import controls from './controls';
 import Paper from '@mui/material/Paper';
-import ButtonMenuBar from './ButtonMenuBar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ButtonMenuGroup from './ButtonMenuGroup';
 import QuickDialog from './QuickDialog';
+import { FormControl } from '@mui/material';
 
 function DataForm (props) {
   const { onEdit, onScroll, onSave, appEnv } = props;
@@ -47,10 +46,8 @@ function DataForm (props) {
     }
   };
 
-  let listNo = 0;
-  const showlist = [[]];
-  // const showlist = [[]];
   const order = (form.show.length > 0) ? form.show : Object.keys(columns);
+  let allFields = [];
   for (let i = 0; i < order.length; i++) {
     const name = order[i];
 
@@ -66,7 +63,7 @@ function DataForm (props) {
     }
 
     const t = (
-      <Grid item key={`${name}_grid`} zeroMinWidth xs={8}>
+      <FormControl fullWidth sx ={{m:1}}>
         <V
           value={data[name]}
           details={dt}
@@ -77,15 +74,10 @@ function DataForm (props) {
           showLabel={true}
           classes={classes}
         />
-      </Grid>
+      </FormControl>
+
     );
-    const listrow = (
-      <ListItem key={dt.fieldkey} role="listitem">
-        {t}
-      </ListItem>
-    );
-    showlist[listNo].push(listrow);
-    listNo = (listNo + 1 === showlist.length ) ? 0 : listNo + 1;
+    allFields.push(t);
   }
 
   const _onSelect = (action, flag) => {
@@ -117,28 +109,16 @@ function DataForm (props) {
       }
     }
   };
-  const finalList = showlist.map((show1, i) => {
-    const s = (
-
-      <Grid key={`listbox${i}`}>
-
-        <List key={`${i}list`} className={classes.list} dense component="div" role="list">
-          {showlist[i]}
-        </List>
-      </Grid>
-    );
-    return s;
-  });
 
   const show = (
     <Paper>
-      <div key="sdf" className={classes.divborder}>
+      <div key="sdf">
         <h1> {form.title}</h1>
         {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
-        {menus != null ? <ButtonMenuBar menus={menus} onSelect={_onSelect} /> : null}
-        <Grid container key={'finaList'} direction="row">
-          {finalList}
-        </Grid>
+        {menus != null ? <ButtonMenuGroup menus={menus} onSelect={_onSelect} /> : null}
+        <Box sx={{width: "50%", borderRadius: "16px"}} justifyContent="center" alignItems="center">
+              {allFields}
+        </Box>
       </div>
     </Paper>
   );

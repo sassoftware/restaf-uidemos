@@ -32,7 +32,7 @@ function QuickDialog (props) {
   const t = (typeof props.msg === 'object') ? JSON.stringify(props.msg, null, 4) : props.msg;
   const icon = <Info/>;
   const show = <Snackbar
-            anchorOrigin={{ vertical: 'middle', horizontal: 'center' }}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={open}
             autoHideDuration={3000}
             onClose={handleClose}
@@ -47,8 +47,8 @@ function QuickDialog (props) {
 }
 
 QuickDialog.propTypes = {
-  /** messsage to be displayed in a snackk bar for 3 seconds */
-  msg    : PropTypes.string.isRequired,
+  /** messsage to be displayed in a snacck bar for 3 seconds */
+  msg    : PropTypes.any.isRequired,
   /** userClose */
   closecb: PropTypes.func
 };

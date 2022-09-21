@@ -24,16 +24,9 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <script type="text/javascript">
-      let LOGONPAYLOAD_PARENT = {
-            host: window.location.ancestorOrigins[0],
-            authType: 'code',
-            appName: 'restaf'
-      };
-      window.addEventListener('error', function(e) {
-          console.log('Not found: ', e.target);
-      }, true);
-      </script>
+    <script src="%PUBLIC_URL%/lib/appControl.js"></script>
+    <script type="text/javascript" src="%PUBLIC_URL%/appenv"></script>
+
     <script type="text/javascript" src="%PUBLIC_URL%/lib/appControl.js"></script>
     <script type="text/javascript" src="%PUBLIC_URL%/appenv"></script>
     <script>

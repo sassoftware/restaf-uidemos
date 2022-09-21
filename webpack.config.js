@@ -30,8 +30,6 @@ module.exports = {
     },
     /*
      * indicating whether react us loaded externally or not
-     * Due to issues with touchtap in material-ui include react in bundle
-     * might be fixed in 20.0.0 - need to check
      */
     
     externals: {
@@ -42,7 +40,9 @@ module.exports = {
     /*
     plugins: plugins,
     */
-
+    optimization: {
+        usedExports: true,
+    },
     module: {
         rules: [
             { test: /\.(js|jsx)$/, use: "babel-loader" },

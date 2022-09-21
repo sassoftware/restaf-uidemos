@@ -73,6 +73,9 @@ function GridTableEditor (props) {
   };
 
   const _onSelect = (action, flag) => {
+    debugger;
+    console.log(action);
+    debugger;
     menus[action].state = flag;
     
     switch (action) {
@@ -103,39 +106,46 @@ function GridTableEditor (props) {
   };
 
   // create data for grid
+  const flexInfo = {};
   let rows = currentData.map( d => {
     let r = {_rowIndex: d._rowIndex};
     for (let i = 0; i < order.length; i++) {
       const k = order[i];
       r[k] = d[k];
+      if (typeof d[k] === 'string') {
+        flexInfo[k] = (flexInfo[k] == null) ? d[k].length : Math.max(d[k].length,flexInfo[k]);
+      } else {
+        flexInfo[k] = 12;
+      }
     }
     return r;
     
   });
-
-  // create table Header
-  let headRow = []; 
-  for (let i = 0; i < order.length; i++) {
-    const kh = order[i];
-    const c  = columns[kh];
-    const type = columns[kh].Type;
-    let editable = true;
-    if (visuals[kh] != null) {
-      editable = (visuals[kh].props.disabled === true) ? false : true;
-    }
-    let t = {
-      field: kh,
-      headerName:c.Label, 
-      editable: editable,
-      sortable: true,
-      type: (type === 'double' || type === 'int' || type ==='float') ? 'number' : 'string'
-    };
-    if (t.editable === true) {
-      t.valueParser = (value, params) => _onEdit(value,params)
-      }
-    headRow.push(t);
-  }
-
+   // create table Header
+   let headRow = []; 
+   for (let i = 0; i < order.length; i++) {
+     const kh = order[i];
+     const c  = columns[kh];
+     const type = columns[kh].Type;
+     let editable = true;
+     if (visuals[kh] != null) {
+       const lprops = visuals[kh].props;
+       editable = (lprops.disabled === true) ? false : true;
+     }
+     let t = {
+       field: kh,
+       headerName:c.Label, 
+       editable: editable,
+       sortable: true,
+       type: (type === 'double' || type === 'int' || type ==='float') ? 'number' : 'string',
+       flex: flexInfo[kh]
+     };
+     if (t.editable === true) {
+       t.valueParser = (value, params) => _onEdit(value,params)
+       }
+     headRow.push(t);
+   }
+  
   let rowcount = rows.length;
   const showTable =
       <div key="sdf" className={classes.divborder}>
@@ -155,6 +165,7 @@ function GridTableEditor (props) {
                 columns={headRow}
                 autoPageSize={true}
                 density="compact"
+  
                />
 
           </Box>
