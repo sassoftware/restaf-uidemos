@@ -11,6 +11,11 @@ The exported global is **ViyaEditMui**
 > Why Mui? This sample component uses [MUI V5](https://mui.com/) to demonstrate how to use [@sassoftware/restafedit](https://github.com/sassoftware/restaf/blob/restafedit/README.md) to build data entry applictions. Adding MUI to the name is a way of giving them credit.
 > You should use the component library of your choice. Also feel free to clone and improve this component library.
 
+
+## Examples
+
+Please see the [repo](https://github.com/sassoftware/restaf-uidemos/tree/viyaeditmui) for examples. If you are interested in writing applications to run in SAS VA (DDC and/or web content)  the ViyaEditorDDC folder in the repository would be of interest.
+
 ## Exported Entries
 
 Two entries are exported.
@@ -53,4 +58,5 @@ const props = {
     ViyaConnection,
     appControl
 };
-ViyaEditMui.display( props, 'name of a div');
+ViyaEditMui.display( props, 'name of a div'
+
