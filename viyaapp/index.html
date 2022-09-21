@@ -1,0 +1,49 @@
+<html>
+<header>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@sassoftware/viyaeditmui@0.3.13"></script>
+
+<script src="./lib/products.js"></script>
+
+<script>
+    // Using the authentication from VA
+    let host = 'some viya url';
+    let LOGONPAYLOAD = {
+        host: host,
+        authType: 'implicit',
+        clientID: 'clientimpl',
+        redirect: 'viyaapp'
+    };
+</script>
+
+<script type="text/javascript">
+    // setup and display application
+    function _display() {
+        let appControlCurrent = getAppControl('table');
+        const props = {
+            viyaConnection: LOGONPAYLOAD,
+            appControl    : appControlCurrent
+        }
+        // Display application
+        console.log(props);
+        try {
+            ViyaEditMui.display(props, 'container1');
+        } 
+        catch(err) {
+            console.log(err);
+            alert(err);
+        }
+        return 'done'
+    }
+</script>
+
+</header>
+
+<body onload="_display()">
+    <div id="container1">
+    </div>
+</body>
+
+</html>

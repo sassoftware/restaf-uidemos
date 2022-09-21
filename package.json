@@ -4,6 +4,7 @@
   "license": "Apache-2.0",
   "description": "Data Entry Example for SAS Viya using React",
   "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
+  "keywords": [ "Viya", "SAS", "DataEntry", "restafedit", "restaf", "restaflib", "REST API"],
   "repository": "https://github.com/sassoftware/restaf-uidemos/tree/viyaeditmui",
   "bugs": {
     "url": "https://github.com/sassoftware/restaf/issues"
