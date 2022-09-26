@@ -31,7 +31,6 @@
     "@mui/material": "^5.10.6",
     "@mui/x-data-grid": "^5.17.4",
     "@sassoftware/restafedit": "^1.8.3",
-    "@sassoftware/viya-appserverjs": "^2.0.2",
     "concurrently": "^7.4.0",
     "deepcopy": "^2.1.0",
     "http-proxy-middleware": "^2.0.6",
@@ -39,7 +38,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
-    "react-scripts": "^5.0.1",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.5",
     "uuid": "^9.0.0"
@@ -98,6 +96,7 @@
     "@babel/plugin-transform-spread": "^7.19.0",
     "@babel/plugin-transform-strict-mode": "^7.18.6",
     "@babel/preset-env": "^7.19.1",
+    "@sassoftware/viya-appserverjs": "^2.0.2",
     "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0",
     "eslint": "^8.24.0",
@@ -105,6 +104,7 @@
     "prettier": "^2.7.1",
     "prettier-eslint": "^15.0.1",
     "prettier-eslint-cli": "^7.1.0",
+    "react-scripts": "^5.0.1",
     "webpack-cli": "^4.10.0"
   },
   "resolutios": {
