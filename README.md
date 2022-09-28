@@ -57,4 +57,4 @@ const props = {
     ViyaConnection,
     appControl
 };
-ViyaEditMui.display( props, 'name of a div'
+ViyaEditMui.display( props, 'name of a div');

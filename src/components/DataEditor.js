@@ -13,12 +13,12 @@ function DataEditor (props) {
     
     const { viyaConnection, appControl, editor} = props;
     const [state, setState] = useState({});
+    const [failed, setFailed] = useState(null);
 
     //
     // Keeping it simple - convert to suspense, lazy etc at some point
     //
     const initialize = async () => {
-        debugger;
         let r = await setup(viyaConnection, appControl);
         await scrollTable('first', r);
         return r;
@@ -30,21 +30,26 @@ function DataEditor (props) {
                 setState(r);
             })
             .catch((err) => {
-                
                 console.log(err);
-                throw new Error (err);
+                setFailed(err);
+                // throw new Error (err);
             });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     let show = null;
+    if (failed !== null) {
+        show = <div id="page-wrap" key={Date()}>
+            <pre> {failed} </pre>
+        </div>;
+    }
     if (state.session != null) {
         show =
             <div id="page-wrap" key={Date()}>
                 <DataViewer appEnv={state} 
                  editor={editor} />
             </div>;
-    }
+    } 
     return show;
 }
 DataEditor.propTypes = {

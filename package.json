@@ -32,9 +32,11 @@
     "app:test": "cross-env  APPLOC=./build  node server --env=.env --docker=Dockerfile",
     "app:run": "npm run app:test",
     "lint": "eslint . --ext .js --fix",
-    "lib:build": "rimraf dist && webpack --config=webpack.config.js && rimraf ./viyaEditTest/dist && cp -r dist ./viyaEditTest/dist",
-    "test": "cross-env  APPLOC=./viyaEditTest  node server --env=./.test.env --docker=Dockerfile",
-    "lib:pub": "npm publish --tag dev --access public"
+    "lib:wpack": "webpack --env p=n --config=webpack.config.js && webpack --env p=y --config=webpack.config.js",
+    "lib:build": "rimraf dist && npm run lib:wpack && rimraf ./viyaEditTest/dist && cp -r dist ./viyaEditTest/dist",
+    "test": "cross-env  APPLOC=./viyaEditTest node server --env=./.test.env --docker=Dockerfile",
+    "lib:pub": "npm publish --tag dev --access public",
+    "buildall": "npm run app:build && npm run lib:build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -59,7 +61,7 @@
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.6",
     "@mui/x-data-grid": "^5.17.4",
-    "@sassoftware/restafedit": "^1.8.3",
+    "@sassoftware/restafedit": "^1.9.0",
     "concurrently": "^7.4.0",
     "deepcopy": "^2.1.0",
     "react": "^18.2.0",

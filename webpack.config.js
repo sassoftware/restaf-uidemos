@@ -18,39 +18,43 @@
 
 let path = require( 'path' );
 
-module.exports = {
+module.exports = (env) => {
 
-    entry: [ "./src/components/index.js" ],
-    mode: "development",
-    output: {
-        path         : path.resolve( __dirname, "dist" ),
-        filename     : "viyaeditmui.js",
-        library      : "ViyaEditMui",
-        libraryTarget: "umd"
-    },
-    /*
-     * indicating whether react us loaded externally or not
-     */
-    
-    externals: {
-       'react'    : "React",
-       'react-dom': "ReactDOM"
-    },
-    
-    /*
-    plugins: plugins,
-    */
-    optimization: {
-        usedExports: true,
-    },
-    module: {
-        rules: [
-            { test: /\.(js|jsx)$/, use: "babel-loader" },
-            { test: /\.svg$/, use: "raw-loader" },
-            { test: /\.css$/, use: [ "style-loader", "css-loader" ] }
-        ]
+    const config = {
+        entry: [ "./src/components/index.js" ],
+        mode: (env.p === 'y') ? 'production' : 'development',
+        output: {
+            path         : path.resolve( __dirname, "dist" ),
+            filename     : (env.p === 'y') ? "viyaeditmui.js" : "viyaeditmui.dev.js",
+            library      : "ViyaEditMui",
+            libraryTarget: "umd"
+        },
+        /*
+        * indicating whether react us loaded externally or not
+        */
+        
+        externals: {
+        'react'    : "React",
+        'react-dom': "ReactDOM",
+        'restafedit': 'restafedit'
+        },
+        
+        /*
+        plugins: plugins,
+        */
+        optimization: {
+            usedExports: true,
+        },
+        module: {
+            rules: [
+                { test: /\.(js|jsx)$/, use: "babel-loader" },
+                { test: /\.svg$/, use: "raw-loader" },
+                { test: /\.css$/, use: [ "style-loader", "css-loader" ] }
+            ]
 
+        }
     }
+    return config;
 };
 
 

@@ -31,7 +31,10 @@ function TableEditor (props) {
   const defaultMenus = {
     prev: { text: 'Previous', action: 'prev', disabled: false, state: false },
     next: { text: 'Next', action: 'next', disabled: false, state: false },
-    save: { text: 'Save', action: 'save', disabled: false, state: false }
+    where: { text: 'Where', action: 'where', disabled: false, state: false},
+    save: { text: 'Save', action: 'save', disabled: false, state: false },
+    saveAs: { text: 'Save As', action: 'saveas', disabled: false, state: false }
+
   };
   let menus = (appEnv.appControl.appData.menus == null) ? defaultMenus : appEnv.appControl.appData.menus;
   let status = {...props.status};
@@ -69,6 +72,11 @@ function TableEditor (props) {
         if (onSave !== null) {
           onSave();
         }
+        break;
+      }
+      case 'where' : 
+      case 'saveas':
+      case 'append': {
         break;
       }
       default: {
