@@ -61,7 +61,7 @@
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.6",
     "@mui/x-data-grid": "^5.17.4",
-    "@sassoftware/restafedit": "^1.9.0",
+    "@sassoftware/restafedit": "^1.9.3",
     "concurrently": "^7.4.0",
     "deepcopy": "^2.1.0",
     "react": "^18.2.0",
