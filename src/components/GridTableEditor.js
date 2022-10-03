@@ -3,15 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, { useState } from 'react';
-// import { useAppContext } from "../../providers";
 
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid'
-// import Paper from '@mui/material/Paper';
+import Portal from '@mui/material/Portal';
 import ButtonMenuBar from './ButtonMenuBar';
 import QuickDialog from './QuickDialog';
-// import SubmitDialog from './SubmitDialog';
-// import GridToolbarCustom from './GridToolBarCustom';
 import {
   GridToolbarContainer,
   GridToolbarColumnsButton,
@@ -19,24 +16,31 @@ import {
   GridToolbarExport
   /*GridToolbarDensitySelector,*/
 } from '@mui/x-data-grid';
-
+// import WherePrompt from './controls/WherePrompt.js';
+import WherePrompt from './controls/WherePrompt.js';
+import SaveAsDialog from './SaveAsDialog.js';
 // import controls from './controls';
 
 function GridTableEditor (props) {
   const { onEdit, onScroll, onSave, appEnv } = props;
   const [modified, setModified] = useState(0);
-  // const [_snackMessage, setSnackMessage] = useState(props.status);
+  const [saveAsOpen, setSaveAsOpen] = useState(false);
   const appData = appEnv.appControl.appData;
   const form = appData.form;
   let { classes, visuals} = form;
   const { columns } = appEnv.state;
   const data = [].concat(appEnv.state.data);
   const currentData = data;/* to allow for local subsetting */
+
   const defaultMenus = {
-    prev: { text: 'Previous', action: 'prev', disabled: false, state: false },
-    next: { text: 'Next', action: 'next', disabled: false, state: false },
-    save: { text: 'Save', action: 'save', disabled: false, state: false }
+    prev  : { text: 'Previous', action: 'prev', disabled: false, state: false },
+    next  : { text: 'Next', action: 'next', disabled: false, state: false },
+    save  : { text: 'Save', action: 'save', disabled: false, state: false },
+   // where : { text: 'Where', action: 'where', disabled: false,dialog: 'Where', state: false },
+    saveas: { text: 'Save As', action: 'saveas', disabled: false, dialog: 'SaveAs', state: false },
+    append: { text: 'Append', action: 'append', disabled: true, dialog: 'Append', state: false }
   };
+
   let menus = (appEnv.appControl.appData.menus == null) ? defaultMenus : appEnv.appControl.appData.menus;
   let status = {...props.status};
 
@@ -50,6 +54,14 @@ function GridTableEditor (props) {
     status = null;
   };
   
+  const _closeSaveAs = () => {
+    setSaveAsOpen(false);
+  }
+  
+  const _onWhere = (e) => {
+    onScroll('first', null, e.target.value);
+    return true;
+  }
   const CustomBar = () => {
     let extender = <ButtonMenuBar menus={menus} onSelect={_onSelect} />
     return (
@@ -73,9 +85,6 @@ function GridTableEditor (props) {
   };
 
   const _onSelect = (action, flag) => {
-    debugger;
-    console.log(action);
-    debugger;
     menus[action].state = flag;
     
     switch (action) {
@@ -90,6 +99,18 @@ function GridTableEditor (props) {
         }
         break;
       }
+      case 'where' : {
+        break;
+      }
+
+      case 'saveas': {
+        setSaveAsOpen(true);
+        break;
+      }
+      case 'append': {
+        break;
+      }
+      //future...
       default: {
         const actionHandler = menus[action].handler;
         if (actionHandler != null) {
@@ -137,6 +158,7 @@ function GridTableEditor (props) {
        headerName:c.Label, 
        editable: editable,
        sortable: true,
+       headerClassName: 'super-app-theme--header',
        type: (type === 'double' || type === 'int' || type ==='float') ? 'number' : 'string',
        flex: flexInfo[kh]
      };
@@ -151,7 +173,11 @@ function GridTableEditor (props) {
       <div key="sdf" className={classes.divborder}>
           <h1>{form.title}</h1>
           {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
-          <Box sx={{ height: 520, width: '100%' }}>
+          <Box sx={{ height: 520, 
+                     width: '100%',
+                     '& .super-app-theme--header': {
+                      backgroundColor: 'lightblue',
+                    } }}>
               <DataGrid 
               components={{
                 Toolbar: CustomBar
@@ -169,6 +195,14 @@ function GridTableEditor (props) {
                />
 
           </Box>
+          <Portal>
+            <Box key="wherebox" sx={{width: 1}}>
+            <div>
+               <WherePrompt value={appEnv.activeWhere} onEnter={_onWhere}></WherePrompt>
+            </div>
+            </Box>
+          </Portal>
+          {saveAsOpen === true ? <SaveAsDialog appEnv={appEnv} cb={_closeSaveAs}></SaveAsDialog> : null}
       </div>;
   return showTable;
 }

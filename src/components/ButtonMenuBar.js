@@ -13,7 +13,7 @@ function ButtonMenuBar (props) {
 
   const _select = (m) => {
     const flag = !menus[m].state;
-    
+    debugger;
     onSelect(m, flag);
   };
 

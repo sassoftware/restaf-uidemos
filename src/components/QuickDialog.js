@@ -2,7 +2,6 @@
  * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-
 import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import Snackbar from '@mui/material/Snackbar';
@@ -32,10 +31,11 @@ function QuickDialog (props) {
   const t = (typeof props.msg === 'object') ? JSON.stringify(props.msg, null, 4) : props.msg;
   const icon = <Info/>;
   const show = <Snackbar
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             open={open}
-            autoHideDuration={3000}
+            autoHideDuration={6000}
             onClose={handleClose}
+           
             message={t}>
             <Button size="small" variant="outlined" color="primary" className={classes.button}
                     onClick={handleClick} startIcon={icon}>

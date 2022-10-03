@@ -4,7 +4,7 @@
  */
 
 import React, {useState, Fragment} from 'react';
-import {cellEdit, scrollTable, saveTable} from '@sassoftware/restafedit';
+import {cellEdit, scrollTable, saveTable, setWhere} from '@sassoftware/restafedit';
 import PropTypes from 'prop-types';
 
 function DataViewer (props) {
@@ -17,8 +17,11 @@ function DataViewer (props) {
     };
 
     // scroll based on pagination data from previous fetch
-    const _onScroll = (direction) => {
-        scrollTable (direction, appEnv) 
+    const _onScroll = (direction, payload, where) => {
+        if (where !=  null) {
+            setWhere(where, appEnv);
+        }
+        scrollTable (direction, appEnv, payload) 
             .then (r => {
                 setModFlag(!modFlag); 
                 setStatus({status: 0, msg: null});

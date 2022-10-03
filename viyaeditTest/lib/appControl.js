@@ -42,7 +42,7 @@ let appControlCas = {
        keep x1 x2 x3 id;
        length id varchar(50);
        do i = 1 to 1000;
-       x1=i; x2=3; x3=i*10; id='loooooooooooooooooooong'||compress(TRIMN('key'||i));
+       x1=i; x2=3; x3=i*10; id=compress(TRIMN('key'||i));
        output;
        end;
        ";
@@ -75,7 +75,7 @@ let appControlCas = {
         defaultComponent: 'InputEntry',
         show            : ['id', 'x1', 'x2', 'x3', 'total'],
         classes         : {},
-        title           : 'Editing Data with React Components',
+        title           : 'Editing CAS Table with @sassoftware/restafedit',
         visuals         : {
           total: {
             props: {
@@ -137,7 +137,7 @@ let appControlCompute = {
         defaultComponent: 'InputEntry',
         show            : ['id', 'x1', 'x2', 'x3', 'total'],
         classes         : {},
-        title           : 'Editing Data with React Components',
+        title           : 'Editing SAS Table with @sassoftware/restafedit',
         visuals         : {
           total: {
             props: {

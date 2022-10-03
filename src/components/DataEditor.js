@@ -1,4 +1,3 @@
-/* eslhttps://github.com/sassoftware/restaf-uidemos/blob/editorappreact/src/components/helpers/DataFormMulti.jsint-disable no-throw-literal */
 /*
  * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
