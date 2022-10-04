@@ -4,8 +4,9 @@
  */
 
 import React, {useState, Fragment} from 'react';
-import {uploadData, getTableList} from '@sassoftware/restafedit';
+import {uploadData } from '@sassoftware/restafedit';
 import { PropTypes } from 'prop-types';
+import Divider from '@mui/material/Divider';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -15,6 +16,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import SelectLibrary from './controls/SelectLibrary.js';
+import SelectTable from './controls/SelectTable.js';
 import QuickDialog from './QuickDialog';
 
 
@@ -24,7 +26,8 @@ function SaveAsDialog (props) {
 
     const [lib, setLib] = useState(appEnv.source === 'cas' ? appEnv.table.caslib : appEnv.table.libref);
     const [name, setName] = useState('');
-    const [snackStatus, setSnackStatus] = useState({open:false, status:null})
+    const [snackStatus, setSnackStatus] = useState({open:false, status:null});
+    const [refreshTable, setRefreshTable] = useState(0);
 
     const _closeSnack = () => {
       setSnackStatus( {open:false, status: null});
@@ -37,7 +40,7 @@ function SaveAsDialog (props) {
     };
     const _libSelected = (libName)=> {
       setLib(libName);
-      
+      console.log(libName);
     };
 
     const _onName = (e) => {
@@ -56,6 +59,7 @@ function SaveAsDialog (props) {
         uploadData(table, null, [],{},appEnv) 
           .then ( r => {
             console.log(r);
+            setRefreshTable(refreshTable+1);
             setSnackStatus({open: true, status: {msg: tname, statusCode: 0}});
           })
           .catch(err => {
@@ -67,6 +71,7 @@ function SaveAsDialog (props) {
 
     };
   debugger;
+  console.log("==============", lib);
   let show =
   <Fragment>
     <Paper>
@@ -75,9 +80,10 @@ function SaveAsDialog (props) {
         <DialogTitle id="dialog-title">Save As </DialogTitle>
         <DialogContent>
            <DialogContentText>
-            Save client data as a new table
+            Save client data as a new table. 
             </DialogContentText>
-           <SelectLibrary appEnv={appEnv} showTables={"disabled"}cb={_libSelected}></SelectLibrary>
+           <SelectLibrary appEnv={appEnv} lib={lib} cb={_libSelected}></SelectLibrary>
+          
            <TextField 
               id="name" 
               key="name"
@@ -101,6 +107,9 @@ function SaveAsDialog (props) {
             Return
           </Button>
         </DialogActions>
+        <Divider textAlign="left">Current Tables</Divider>
+        <SelectTable key="selectTable" lib={lib} appEnv={appEnv} refresh={refreshTable} browse={true} cb={null}></SelectTable>
+
       </Dialog>
       </Paper>
     </Fragment>;

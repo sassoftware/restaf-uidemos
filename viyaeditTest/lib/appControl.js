@@ -157,6 +157,8 @@ let appControlCompute = {
 
   // eslint-disable-next-line no-unused-vars
   function getAppControl (source) {
+    console.log('Source: ', source);
     return (source === 'cas') ? appControlCas : appControlCompute;
   }
+  
   

@@ -49,7 +49,7 @@ function GridTableEditor (props) {
   if (classes == null) {
     classes = {};
   }
-  
+ 
   const _closeSnack = () => {
     status = null;
   };
@@ -147,7 +147,7 @@ function GridTableEditor (props) {
    for (let i = 0; i < order.length; i++) {
      const kh = order[i];
      const c  = columns[kh];
-     const type = columns[kh].Type;
+     const type = columns[kh].Type.toLowerCase();
      let editable = true;
      if (visuals[kh] != null) {
        const lprops = visuals[kh].props;
@@ -173,7 +173,7 @@ function GridTableEditor (props) {
       <div key="sdf" className={classes.divborder}>
           <h1>{form.title}</h1>
           {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
-          <Box sx={{ height: 520, 
+          <Box key="mainbox" sx={{ height: 520, 
                      width: '100%',
                      '& .super-app-theme--header': {
                       backgroundColor: 'lightblue',
@@ -191,6 +191,7 @@ function GridTableEditor (props) {
                 columns={headRow}
                 autoPageSize={true}
                 density="compact"
+                key="gridtoolbar"
   
                />
 
@@ -198,11 +199,11 @@ function GridTableEditor (props) {
           <Portal>
             <Box key="wherebox" sx={{width: 1}}>
             <div>
-               <WherePrompt value={appEnv.activeWhere} onEnter={_onWhere}></WherePrompt>
+               <WherePrompt key="whereprompt" value={appEnv.activeWhere} onEnter={_onWhere}></WherePrompt>
             </div>
             </Box>
           </Portal>
-          {saveAsOpen === true ? <SaveAsDialog appEnv={appEnv} cb={_closeSaveAs}></SaveAsDialog> : null}
+          {saveAsOpen === true ? <SaveAsDialog key="saveasdialog" appEnv={appEnv} cb={_closeSaveAs}></SaveAsDialog> : null}
       </div>;
   return showTable;
 }

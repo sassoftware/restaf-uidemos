@@ -8,11 +8,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import {getLibraryList} from '@sassoftware/restafedit';
 
 function SelectLibrary(props) {
-  const {appEnv, cb} = props;
-  const {store, session, servers, source} = appEnv;
-  const [value, setValue] = React.useState(source === 'cas' ? appEnv.table.caslib : appEnv.table.libref);
+  const {appEnv, lib, cb} = props;
+  const { source } = appEnv;
+  const [value, setValue] = React.useState(props.lib);
   const [liblist, setLiblist]   = React.useState([]);
 
   const handleChange = (event) => {
@@ -21,47 +22,35 @@ function SelectLibrary(props) {
   };
 
   useEffect(() => {
-    
-    const getLibrefs = async () => {
-      const p = {
-        qs: {
-          start: 0,
-          limit: 1000
-        }
-      }
-      const r = await store.apiCall(session.links('librefs'), p);
-      return r;
-    }
-    const getCaslibs = async () => {
-      const p = {
-        qs: {
-          start: 0,
-          limit: 1000
-        }
-      }
-      
-      const rafLink = servers.itemsCmd(servers.itemsList(0),'caslibs');
-      const r = await store.apiCall(rafLink, p);
-      return r;
-    }
-
-    const getFunc =  (appEnv.source === 'cas') ? getCaslibs : getLibrefs;
-    getFunc()
+  
+    getLibraryList(appEnv)
       .then ( r => {
-        const libs = r.itemsList().toJS();
-        console.log(libs)
-        setLiblist(libs);
+        let t = lib;
+        if (lib.toUpperCase() === 'CASUSER' && appEnv.source === 'cas') {
+          const ind = r.find (e => e.indexOf('CASUSER') >= 0 );
+          if (ind >= 0) {
+            t = r[ind];
+          }
+          setValue(t);
+        }
+        setValue(t);
+        setLiblist(r);
+        
+        debugger;
+        console.log(t)
+        console.log(r);
       })
       .catch(err => {
         console.log(err);
         setLiblist(['Failed to get list']);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [] );
+    }, [lib] );
  
   const menuList = liblist.map( l => {
-    return <MenuItem value={l}>{l}</MenuItem>;
-  })
+    return <MenuItem value={l.trim()}>{l}</MenuItem>;
+  });
+  debugger;
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
