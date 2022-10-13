@@ -19,26 +19,34 @@ import {
 // import WherePrompt from './controls/WherePrompt.js';
 import WherePrompt from './controls/WherePrompt.js';
 import SaveAsDialog from './SaveAsDialog.js';
+import AppendDialog from './AppendDialog.js';
 // import controls from './controls';
 
 function GridTableEditor (props) {
   const { onEdit, onScroll, onSave, appEnv } = props;
   const [modified, setModified] = useState(0);
   const [saveAsOpen, setSaveAsOpen] = useState(false);
+  const [appendOpen, setAppendOpen] = useState(false);
   const appData = appEnv.appControl.appData;
   const form = appData.form;
   let { classes, visuals} = form;
   const { columns } = appEnv.state;
   const data = [].concat(appEnv.state.data);
   const currentData = data;/* to allow for local subsetting */
+  const scrollOptions = appEnv.state.scrollOptions;
+ 
 
+  const _scrollCheck = (item, options) => {
+    if ( options === null) return false;
+    return (scrollOptions.indexOf(item) === -1) ? true : false;
+  };
   const defaultMenus = {
-    prev  : { text: 'Previous', action: 'prev', disabled: false, state: false },
-    next  : { text: 'Next', action: 'next', disabled: false, state: false },
+    first  : { text: 'First', action: 'first', disabled: _scrollCheck('first', scrollOptions), state: false },
+    prev  : { text: 'Previous', action: 'prev', disabled: _scrollCheck('prev', scrollOptions), state: false },
+    next  : { text: 'Next', action: 'next', disabled: _scrollCheck('next', scrollOptions), state: false },
     save  : { text: 'Save', action: 'save', disabled: false, state: false },
-   // where : { text: 'Where', action: 'where', disabled: false,dialog: 'Where', state: false },
     saveas: { text: 'Save As', action: 'saveas', disabled: false, dialog: 'SaveAs', state: false },
-    append: { text: 'Append', action: 'append', disabled: true, dialog: 'Append', state: false }
+    append: { text: 'Append', action: 'append', disabled: false, dialog: 'Append', state: false }
   };
 
   let menus = (appEnv.appControl.appData.menus == null) ? defaultMenus : appEnv.appControl.appData.menus;
@@ -50,10 +58,14 @@ function GridTableEditor (props) {
     classes = {};
   }
  
+  
   const _closeSnack = () => {
     status = null;
   };
   
+  const _closeAppend = () => {
+    setAppendOpen (false);
+  }
   const _closeSaveAs = () => {
     setSaveAsOpen(false);
   }
@@ -63,7 +75,7 @@ function GridTableEditor (props) {
     return true;
   }
   const CustomBar = () => {
-    let extender = <ButtonMenuBar menus={menus} onSelect={_onSelect} />
+    let extender = <ButtonMenuBar menus={menus} scrollOptions={appEnv.state.scrollOptions} onSelect={_onSelect} />
     return (
     <GridToolbarContainer>
        {extender}
@@ -88,8 +100,9 @@ function GridTableEditor (props) {
     menus[action].state = flag;
     
     switch (action) {
-      case 'next':
-      case 'prev': {
+      case 'first': 
+      case 'next' :
+      case 'prev' : {
         onScroll(action);
         break;
       }
@@ -99,15 +112,13 @@ function GridTableEditor (props) {
         }
         break;
       }
-      case 'where' : {
-        break;
-      }
 
       case 'saveas': {
         setSaveAsOpen(true);
         break;
       }
       case 'append': {
+        setAppendOpen(true);
         break;
       }
       //future...
@@ -204,6 +215,7 @@ function GridTableEditor (props) {
             </Box>
           </Portal>
           {saveAsOpen === true ? <SaveAsDialog key="saveasdialog" appEnv={appEnv} cb={_closeSaveAs}></SaveAsDialog> : null}
+          {appendOpen === true ? <AppendDialog key="appendDialog" appEnv={appEnv} cb={_closeAppend}></AppendDialog> : null}
       </div>;
   return showTable;
 }

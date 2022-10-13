@@ -35,18 +35,15 @@ function SelectLibrary(props) {
         }
         setValue(t);
         setLiblist(r);
-        
-        debugger;
-        console.log(t)
-        console.log(r);
       })
       .catch(err => {
         console.log(err);
-        setLiblist(['Failed to get list']);
+        setLiblist([]);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lib] );
  
+  liblist.sort();
   const menuList = liblist.map( l => {
     return <MenuItem value={l.trim()}>{l}</MenuItem>;
   });

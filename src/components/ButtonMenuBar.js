@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 
 function ButtonMenuBar (props) {
   const { menus, onSelect } = props;
-
+  
   const _select = (m) => {
     const flag = !menus[m].state;
     debugger;
@@ -20,6 +20,7 @@ function ButtonMenuBar (props) {
   const menu = [];
   for (const m in menus) {
     const c = menus[m];
+
     let t =
         <Grid item key={c.text}>
           <Button

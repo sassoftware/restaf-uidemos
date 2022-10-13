@@ -13,11 +13,6 @@ function SelectTable(props) {
   const {lib, refresh, browse, appEnv, cb} = props;
   const [tableList, setTableList]   = React.useState([]);
   const [value, setValue] = React.useState('');
-
-  debugger;
-  console.log(getTableList);
-  console.log(lib);
-  console.log(refresh);
   const _handleChange = (event) => {
     setValue(browse === true ? ' ' : event.target.value);
     if (cb != null) {
@@ -32,7 +27,6 @@ function SelectTable(props) {
       getTableList (lib, appEnv) 
         .then (r => {
           setTableList(r);
-          console.log(r);
         })
         .catch (err => {
           setTableList(['No data was returned']);
@@ -41,14 +35,13 @@ function SelectTable(props) {
     
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lib, refresh] );
- 
-    console.log(tableList);
+
+  tableList.sort();
   const menuList = tableList.map( l => {
     return <MenuItem disabled={browse} value={l}>{l}</MenuItem>;
   })
   return (
     <div>
-  
       <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="tablelist">Tables</InputLabel>
         <Select

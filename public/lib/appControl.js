@@ -41,7 +41,7 @@ let appControlCas = {
        keep x1 x2 x3 id;
        /*length id $;*/
        length id varchar(20);
-       do i = 1 to 1000;
+       do i = 1 to 25;
        x1=i; x2=3; x3=i*10; id='longstring'||compress(TRIMN('key'||i));
        output;
        end;

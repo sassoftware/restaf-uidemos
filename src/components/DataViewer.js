@@ -24,7 +24,8 @@ function DataViewer (props) {
         scrollTable (direction, appEnv, payload) 
             .then (r => {
                 setModFlag(!modFlag); 
-                setStatus({status: 0, msg: null});
+                const msg =(appEnv.fetchCount === 0) ? 'Note: Server returned 0 records': null;
+                setStatus({status: 1, msg: msg});
             })
             .catch(err => {
                 _handleErrors(err);

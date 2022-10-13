@@ -4,33 +4,31 @@
  */
 
 import React, {useState, Fragment} from 'react';
-import {uploadData } from '@sassoftware/restafedit';
 import { PropTypes } from 'prop-types';
-import Divider from '@mui/material/Divider';
 import Dialog from '@mui/material/Dialog';
-import FormGroup  from '@mui/material/FormGroup';
-import FormControlLabel  from '@mui/material/FormControlLabel';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import Checkbox from '@mui/material/Checkbox';
 import DialogContentText from '@mui/material/DialogContentText';
+import Checkbox from '@mui/material/Checkbox';
 import DialogTitle from '@mui/material/DialogTitle';
-import TextField from '@mui/material/TextField';
+import FormGroup  from '@mui/material/FormGroup';
+import FormControlLabel  from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import SelectLibrary from './controls/SelectLibrary.js';
 import SelectTable from './controls/SelectTable.js';
 import QuickDialog from './QuickDialog';
+import {appendRows} from '@sassoftware/restafedit';
 
 
-function SaveAsDialog (props) {
+function AppendDialog (props) {
     const {appEnv, cb} = props;
-    const {columns} = appEnv.state;
     const [open, setOpen] = useState(true);
 
     const [lib, setLib] = useState(appEnv.source === 'cas' ? appEnv.table.caslib : appEnv.table.libref);
     const [name, setName] = useState('');
     const [snackStatus, setSnackStatus] = useState({open:false, status:null});
+    // eslint-disable-next-line no-unused-vars
     const [refreshTable, setRefreshTable] = useState(0);
     const [computeFlag, setComputeFlag] = useState(true);
 
@@ -39,11 +37,8 @@ function SaveAsDialog (props) {
     };
 
     const _onCompute = (e) => {
-      debugger;
-      console.log(e.target.checked);
       setComputeFlag(e.target.checked);
     }
-
     const _handleClose = () => {
       setSnackStatus({open:false, status:null});
       setOpen(false);
@@ -51,74 +46,57 @@ function SaveAsDialog (props) {
     };
     const _libSelected = (libName)=> {
       setLib(libName);
-      console.log(libName);
     };
 
-    const _onName = (e) => {
-      setName(e.target.value);
+
+    const _onName = (n) => {
+      debugger;
+      setName(n);
     }
     
     const _onSubmit = () => {
       if (lib.length > 0 && name.length > 0) {
-        let tname = `${lib}.${name}`;
+        let libt = (lib.toUpperCase().indexOf('CASUSER') >= 0 && appEnv.source === 'cas') ? 'casuser' : lib;
         let table = {name: name};
         if (appEnv.source === 'cas') {
-          table.caslib = lib;
+          table.caslib = libt;
         } else {
-          table.libref = lib;
+          table.libref = libt;
         }
+        debugger;
         let drop = [];
         if (computeFlag === false) {
-          drop = columns.filter(c => c.custom === true);
+          drop = appEnv.state.columns.filter(c => c.custom === true);
         }
-        console.log(drop);
-        uploadData(table, null, drop,{},appEnv) 
+        appendRows(table, drop, appEnv) 
           .then ( r => {
-            console.log(r);
-            setRefreshTable(refreshTable+1);
-            setSnackStatus({open: true, status: {msg: tname, statusCode: 0}});
+            // setRefreshTable(refreshTable+1);
+            setSnackStatus({open: true, status: r});
           })
           .catch(err => {
             console.log(err);
-            setSnackStatus({open: true, status: {msg: 'failed', statusCode: 2}});
+            setSnackStatus({open: true, status: {msg: 'Append Failed. See console', statusCode: 2}});
           })
+          
         
       }
 
     };
-  debugger;
-  console.log("==============", lib);
   let show =
   <Fragment>
     <Paper>
       {snackStatus.open === true ? <QuickDialog msg={snackStatus.status} closecb={_closeSnack}></QuickDialog> : null}
       <Dialog open={open} fullScreen={false} maxWidth="lg" onClose={_handleClose}>
-        <DialogTitle id="dialog-title">Save As </DialogTitle>
+        <DialogTitle id="dialog-title">Append </DialogTitle>
         <DialogContent>
            <DialogContentText>
-            Save client data as a new table. 
+            Append current table to selected table
             </DialogContentText>
-           <SelectLibrary appEnv={appEnv} lib={lib} cb={_libSelected}></SelectLibrary>
-          
-           <TextField 
-              id="name" 
-              key="name"
-              type="text" 
-              onChange={_onName} 
-              size="small"
-              sx={{width: '100%'}}
-              name="name"
-              label="Name"
-              helperText="Enter name of new table"
-              variant="outlined"
-              value={name}
-              >
-
-            </TextField>
+            <SelectLibrary appEnv={appEnv} lib={lib} cb={_libSelected}></SelectLibrary>
+            <SelectTable key="selectTable" lib={lib} appEnv={appEnv} refresh={refreshTable} browse={false} cb={_onName}></SelectTable>
             <FormGroup>
               <FormControlLabel control={<Checkbox checked={computeFlag} onChange={_onCompute} ></Checkbox>}  label="Retain computed columns"></FormControlLabel>
             </FormGroup>
-            
            </DialogContent>
 
         <DialogActions>
@@ -129,9 +107,6 @@ function SaveAsDialog (props) {
             Return
           </Button>
         </DialogActions>
-        <Divider textAlign="left">Current Tables</Divider>
-        <SelectTable key="selectTable" lib={lib} appEnv={appEnv} refresh={refreshTable} browse={true} cb={null}></SelectTable>
-
       </Dialog>
       </Paper>
     </Fragment>;
@@ -140,10 +115,10 @@ function SaveAsDialog (props) {
     return show;
 }
 
-SaveAsDialog.propTypes = {
+AppendDialog.propTypes = {
   /** appEnv */
   appEnv : PropTypes.object.isRequired,
   /** close function */
   closecb: PropTypes.func.isRequired
 };
-export default SaveAsDialog;
+export default AppendDialog;

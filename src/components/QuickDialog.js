@@ -5,17 +5,13 @@
 import React, { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import Snackbar from '@mui/material/Snackbar';
-import Info from '@mui/icons-material/Info';
-import Button from '@mui/material/Button';
+import { Alert } from '@mui/material';
 // import { useAppContext } from '../../providers';
 
 function QuickDialog (props) {
   const [open, setOpen] = useState(true);
-  const classes = {};
+  let sevA = ['success', 'warning' , 'error'];
 
-  const handleClick = () => {
-    setOpen(false);
-  };
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -28,20 +24,28 @@ function QuickDialog (props) {
   useEffect(() => {
     setOpen(true);
   }, [props.msg]);
-  const t = (typeof props.msg === 'object') ? JSON.stringify(props.msg, null, 4) : props.msg;
-  const icon = <Info/>;
+  let  t;
+  let sev;
+  if (typeof props.msg === 'object') {
+    t = JSON.stringify(props.msg, null, 4);
+    sev = sevA[props.msg.status];
+  } else {
+    t = props.msg;
+    sev = sevA[0];
+  }
+
   const show = <Snackbar
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-            open={open}
-            autoHideDuration={6000}
-            onClose={handleClose}
-           
-            message={t}>
-            <Button size="small" variant="outlined" color="primary" className={classes.button}
-                    onClick={handleClick} startIcon={icon}>
-                    {t}
-            </Button>
-        </Snackbar>;
+    anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+    open={open}
+    autoHideDuration={6000}
+    onClose={handleClose}
+    key="snack"
+    >
+    <Alert key="alert" onClose={handleClose} severity={sev} sx={{ width: '100%' }}>
+      {t}
+    </Alert>
+  </Snackbar>;
+
 
   return show;
 }

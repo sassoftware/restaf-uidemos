@@ -34,14 +34,16 @@ let appControlCas = {
     source: 'cas',
     table : { caslib: 'casuser', name: 'newdeal' },
     byvars: ['id'],
+    onNoData: 'update',
 
     preamble: `
     action datastep.runcode /
+    single="YES"
     code= "
        data casuser.newdeal;
        keep x1 x2 x3 id;
        length id varchar(50);
-       do i = 1 to 1000;
+       do i = 1 to 50;
        x1=i; x2=3; x3=i*10; id=compress(TRIMN('key'||i));
        output;
        end;
@@ -98,6 +100,7 @@ let appControlCompute = {
     source: 'compute',
     table : { libref: 'public', name: 'testdata' },
     byvars: ['id'],
+    onNoData: 'update',
 
     preamble: `
     libname public '/tmp';run; 
