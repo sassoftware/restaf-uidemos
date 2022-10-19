@@ -31,11 +31,15 @@ function AppendDialog (props) {
     // eslint-disable-next-line no-unused-vars
     const [refreshTable, setRefreshTable] = useState(0);
     const [computeFlag, setComputeFlag] = useState(true);
+    const [tableFlag, setTableFlag] = useState(false);
 
     const _closeSnack = () => {
       setSnackStatus( {open:false, status: null});
     };
 
+    const _onTable = (e) => {
+      setTableFlag(e.target.checked);
+    }
     const _onCompute = (e) => {
       setComputeFlag(e.target.checked);
     }
@@ -82,6 +86,7 @@ function AppendDialog (props) {
       }
 
     };
+
   let show =
   <Fragment>
     <Paper>
@@ -90,18 +95,20 @@ function AppendDialog (props) {
         <DialogTitle id="dialog-title">Append </DialogTitle>
         <DialogContent>
            <DialogContentText>
-            Append current table to selected table
+            Append current client data to selected table
             </DialogContentText>
             <SelectLibrary appEnv={appEnv} lib={lib} cb={_libSelected}></SelectLibrary>
             <SelectTable key="selectTable" lib={lib} appEnv={appEnv} refresh={refreshTable} browse={false} cb={_onName}></SelectTable>
             <FormGroup>
               <FormControlLabel control={<Checkbox checked={computeFlag} onChange={_onCompute} ></Checkbox>}  label="Retain computed columns"></FormControlLabel>
+              <FormControlLabel control={<Checkbox checked={tableFlag} disabled={true} onChange={_onTable} ></Checkbox>}  label="Merge working table"></FormControlLabel>
+            
             </FormGroup>
            </DialogContent>
 
         <DialogActions>
           <Button onClick={_onSubmit} color="primary">
-            Save
+            Append
           </Button>
           <Button onClick={_handleClose} color="primary">
             Return
