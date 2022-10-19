@@ -9,7 +9,7 @@ import TextField from '@mui/material/Textfield';
 
 function WherePrompt (props) {
   const { onEnter } = props;
-  const [where, setWhere] = React.useState('');
+  const [where, setWhere] = React.useState(props.value);
 
   const _onChange = (e) => {
     const synthE = {

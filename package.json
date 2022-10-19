@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/viyaeditmui",
-  "version": "0.6.1",
+  "version": "0.8.0",
   "license": "Apache-2.0",
   "description": "Data Entry Example for SAS Viya using React",
   "author": "Deva Kumaraswamy <deva.kumar@sas.com>",
@@ -67,6 +67,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
+    "react-uuid": "^1.0.3",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

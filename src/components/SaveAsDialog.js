@@ -39,8 +39,6 @@ function SaveAsDialog (props) {
     };
 
     const _onCompute = (e) => {
-      debugger;
-      console.log(e.target.checked);
       setComputeFlag(e.target.checked);
     }
 
@@ -51,7 +49,6 @@ function SaveAsDialog (props) {
     };
     const _libSelected = (libName)=> {
       setLib(libName);
-      console.log(libName);
     };
 
     const _onName = (e) => {
@@ -86,7 +83,7 @@ function SaveAsDialog (props) {
       }
 
     };
-  debugger;
+  
   console.log("==============", lib);
   let show =
   <Fragment>

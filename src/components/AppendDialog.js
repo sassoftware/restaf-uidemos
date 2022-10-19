@@ -50,7 +50,7 @@ function AppendDialog (props) {
 
 
     const _onName = (n) => {
-      debugger;
+      
       setName(n);
     }
     
@@ -63,7 +63,7 @@ function AppendDialog (props) {
         } else {
           table.libref = libt;
         }
-        debugger;
+        
         let drop = [];
         if (computeFlag === false) {
           drop = appEnv.state.columns.filter(c => c.custom === true);

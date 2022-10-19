@@ -2,21 +2,20 @@
  * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import Input from '@mui/material/Input';
-import {Typography} from '@mui/material';
-import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import uuid from 'react-uuid';
 
-function InputEntry (props) {
-  const { details, onEnter, controlProps, rowIndex, classes } = props;
+function TextEntry (props) {
+  const { details, onEnter, controlProps, rowIndex } = props;
   let value = props.value;
   const disabled = (controlProps.disabled != null) ? controlProps.disabled : false;
-  const key = details.name;
-
+  const key = details.name + uuid();
+  
   const _onChange = (e) => {
     const synthE = {
-      key   : e.key,
+      key   : 'Enter',/* forcing enter- e.key */
       rowIndex,
       target: {
         value: e.target.value,
@@ -25,7 +24,7 @@ function InputEntry (props) {
     };
     onEnter(synthE);
   };
-
+/*
   const _onKeyPress = (e) => {
     if (e.key === 'Enter') {
       const synthE = {
@@ -36,6 +35,7 @@ function InputEntry (props) {
           name : details.name
         }
       };
+      
       onEnter(synthE);
     }
     return true;
@@ -51,49 +51,33 @@ function InputEntry (props) {
     };
     onEnter(synthE);
   };
+  */
+  
   const inputProps = {
     inputMode : 'text',
-    onKeyPress: _onKeyPress,
-    onBlur    : _onBlur,
+   // onKeyPress: _onKeyPress,
+   // onBlur    : _onBlur,
     style     : { textAlign: props.align }
 
   };
-    // let className = (disabled === true) ? classes.inputDisabled : classes.input;
- // let ws = { width: details.Type === 'double'  ? "12ch" : "80%"};
-  const width = details.FormattedLength.toString().trim() + 'ch';
-  
+
   const t =
-        <Grid container item>
-          <Grid item xs={4} alignContent="left">
-            <Typography>{details.name}</Typography>
-          </Grid>
-        <Grid item xs={8}>
-        <Input 
-            key={`${key}_input`}
+    <Fragment>
+        <TextField
+            key={key}
             id={key}
             value={value}
-
-            style={{width: width}}
             type="text"
-            className={classes.input}
             inputProps={inputProps}
-     
             onChange={_onChange}
             disabled={disabled}
             size="small"
-            placeholder={details.Label}
-            name={details.name}
             label={details.Label}
+            name={details.name}
         />
-        </Grid>
-        </Grid>;
+
+        </Fragment>;
 
   return t;
 }
-export default InputEntry;
-/*
- {showLabel === true
-          ? <InputLabel key={details.name}
-            htmlFor={key}>{details.Label}</InputLabel>
-          : null}
-          */
+export default TextEntry;

@@ -37,7 +37,6 @@ function SelectLibrary(props) {
         setLiblist(r);
       })
       .catch(err => {
-        console.log(err);
         setLiblist([]);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,7 +46,7 @@ function SelectLibrary(props) {
   const menuList = liblist.map( l => {
     return <MenuItem value={l.trim()}>{l}</MenuItem>;
   });
-  debugger;
+  
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>

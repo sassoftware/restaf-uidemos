@@ -2,13 +2,19 @@
  * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import Input from '@mui/material/Input';
-import {Typography} from '@mui/material';
+import OutlinedInput from '@mui/material/OutLinedInput';
 import Grid from '@mui/material/Grid';
 
-function InputEntry (props) {
+// import InputLabel from '@mui/material/InputLabel';
+
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+
+
+
+function TextEntry (props) {
   const { details, onEnter, controlProps, rowIndex, classes } = props;
   let value = props.value;
   const disabled = (controlProps.disabled != null) ? controlProps.disabled : false;
@@ -20,80 +26,72 @@ function InputEntry (props) {
       rowIndex,
       target: {
         value: e.target.value,
-        name : details.name
+        name : key
       }
     };
     onEnter(synthE);
   };
 
+  /*
   const _onKeyPress = (e) => {
-    if (e.key === 'Enter') {
       const synthE = {
         key   : 'Enter',
         rowIndex,
         target: {
           value: e.target.value,
-          name : details.name
+          name : key
         }
       };
       onEnter(synthE);
-    }
-    return true;
-  };
+    };
+  
   const _onBlur = (e) => {
     const synthE = {
       key   : 'Enter',
       rowIndex,
       target: {
         value: e.target.value,
-        name : details.name
+        name : key
       }
     };
     onEnter(synthE);
   };
+  */
   const inputProps = {
     inputMode : 'text',
-    onKeyPress: _onKeyPress,
-    onBlur    : _onBlur,
+   // onKeyPress: _onKeyPress,
+  // onBlur    : _onBlur,
     style     : { textAlign: props.align }
 
   };
     // let className = (disabled === true) ? classes.inputDisabled : classes.input;
- // let ws = { width: details.Type === 'double'  ? "12ch" : "80%"};
-  const width = details.FormattedLength.toString().trim() + 'ch';
+ 
   
+
   const t =
-        <Grid container item>
-          <Grid item xs={4} alignContent="left">
-            <Typography>{details.name}</Typography>
-          </Grid>
-        <Grid item xs={8}>
-        <Input 
+    <Fragment>
+      <Grid item xs={6} >
+      <FormGroup>
+         <FormControlLabel 
+          control={
+            <OutlinedInput
             key={`${key}_input`}
             id={key}
             value={value}
-
-            style={{width: width}}
             type="text"
             className={classes.input}
             inputProps={inputProps}
-     
             onChange={_onChange}
             disabled={disabled}
             size="small"
-            placeholder={details.Label}
-            name={details.name}
-            label={details.Label}
-        />
-        </Grid>
-        </Grid>;
+            name={details.name} />}
+            label={details.Label}>
+          </FormControlLabel>
+
+      </FormGroup>  
+      </Grid>   
+    </Fragment>;
 
   return t;
 }
-export default InputEntry;
-/*
- {showLabel === true
-          ? <InputLabel key={details.name}
-            htmlFor={key}>{details.Label}</InputLabel>
-          : null}
-          */
+export default TextEntry;

@@ -8,6 +8,8 @@ import DataEditor from './DataEditor';
 // import TableEditor from './TableEditor';
 import GridTableEditor from './GridTableEditor';
 import DataForm from './DataForm';
+import Paper from '@mui/material/Paper';
+import uuid from 'react-uuid';
 
 
 /*
@@ -24,12 +26,12 @@ function ViyaDataEditor (props) {
   //For demo purpose
   const show = (
     <Fragment>
-    <div key={Date()}>
-            <DataEditor key={Date()}
-                  appControl={props.appControl}
-                  viyaConnection={props.viyaConnection}
-                  editor={_selectViewer}
-                  />
+    <div key={uuid()}>
+          <DataEditor key={uuid()}
+                appControl={props.appControl}
+                viyaConnection={props.viyaConnection}
+                editor={_selectViewer}
+                />
     </div>
     </Fragment>
   );

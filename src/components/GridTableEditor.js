@@ -9,6 +9,8 @@ import { DataGrid } from '@mui/x-data-grid'
 import Portal from '@mui/material/Portal';
 import ButtonMenuBar from './ButtonMenuBar';
 import QuickDialog from './QuickDialog';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import {
   GridToolbarContainer,
   GridToolbarColumnsButton,
@@ -20,6 +22,7 @@ import {
 import WherePrompt from './controls/WherePrompt.js';
 import SaveAsDialog from './SaveAsDialog.js';
 import AppendDialog from './AppendDialog.js';
+import uuid from 'react-uuid';
 // import controls from './controls';
 
 function GridTableEditor (props) {
@@ -145,9 +148,10 @@ function GridTableEditor (props) {
       const k = order[i];
       r[k] = d[k];
       if (typeof d[k] === 'string') {
-        flexInfo[k] = (flexInfo[k] == null) ? d[k].length : Math.max(d[k].length,flexInfo[k]);
+        let t = (flexInfo[k] == null) ? d[k].length : Math.max(d[k].length,flexInfo[k]);
+        flexInfo[k] = Math.ceil(t/12);
       } else {
-        flexInfo[k] = 12;
+        flexInfo[k] = 1;
       }
     }
     return r;
@@ -171,53 +175,84 @@ function GridTableEditor (props) {
        sortable: true,
        headerClassName: 'super-app-theme--header',
        type: (type === 'double' || type === 'int' || type ==='float') ? 'number' : 'string',
-       flex: flexInfo[kh]
+       width: flexInfo[kh]*100
      };
      if (t.editable === true) {
        t.valueParser = (value, params) => _onEdit(value,params)
        }
      headRow.push(t);
    }
-  
-  let rowcount = rows.length;
+  /*
+   function CustomGridCell(params) {
+    return <input type="text" value={params.value} onValueChange={_onEdit}></input>
+  }
+  */
+
+  let rowCount = rows.length;
   const showTable =
-      <div key="sdf" className={classes.divborder}>
-          <h1>{form.title}</h1>
+      <Box display="flex" alignItems="center" justifyContent="center">
+      <Paper  style={{padding:8}}>
+      <div>
           {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
+
           <Box key="mainbox" sx={{ height: 520, 
                      width: '100%',
                      '& .super-app-theme--header': {
                       backgroundColor: 'lightblue',
                     } }}>
               <DataGrid 
-              components={{
-                Toolbar: CustomBar
-              }}
-              GridToolbar
+                components={{
+                  Toolbar: CustomBar
+                }}
+                GridToolbar
                 editMode="cell"
                 experimentalFeatures={{ newEditingApi: true }}
                 getRowId={(row) => row._rowIndex}
                 rows={rows}
-                rowsPerPageOptions={[rowcount]}
+                maxColumns={4}
                 columns={headRow}
                 autoPageSize={true}
                 density="compact"
                 key="gridtoolbar"
-  
+                rowLength={rowCount}
+                columnBuffer={2} columnThreshold={2}
+    
                />
 
           </Box>
           <Portal>
-            <Box key="wherebox" sx={{width: 1}}>
-            <div>
-               <WherePrompt key="whereprompt" value={appEnv.activeWhere} onEnter={_onWhere}></WherePrompt>
-            </div>
-            </Box>
-          </Portal>
+            <Grid key={"w1"} container spacing={2} direction={"row"}>
+              <Grid key={"w2"} item xs={2}> </Grid>
+              <Grid key={"w3"} item xs={8}  justifyContent="left"> 
+                <div key={"w4"}>
+                  <WherePrompt key="whereprompt" value={appEnv.activeWhere} onEnter={_onWhere}></WherePrompt>
+                </div>
+              </Grid>
+              <Grid key={"w5"} item xs={2}> </Grid>
+            </Grid>
+        </Portal>
+
           {saveAsOpen === true ? <SaveAsDialog key="saveasdialog" appEnv={appEnv} cb={_closeSaveAs}></SaveAsDialog> : null}
           {appendOpen === true ? <AppendDialog key="appendDialog" appEnv={appEnv} cb={_closeAppend}></AppendDialog> : null}
-      </div>;
+  
+      </div>
+      </Paper>
+      </Box>
   return showTable;
 }
 
 export default GridTableEditor;
+
+/*
+<Box key="mainbox" sx={{  
+                     width: 0.8,
+                     '& .super-app-theme--header': {
+                      backgroundColor: 'lightblue',
+                    } }}>
+                     rowsPerPageOptions={[rowcount]
+
+<Box key="mainbox" sx={{ height: 520, width: "100%",
+'& .super-app-theme--header': {
+ backgroundColor: 'lightblue',
+} }}>
+*/

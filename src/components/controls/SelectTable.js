@@ -23,7 +23,7 @@ function SelectTable(props) {
   useEffect(() => {
      
     if (lib != null && lib.length > 0) {
-      debugger;
+      
       getTableList (lib, appEnv) 
         .then (r => {
           setTableList(r);
