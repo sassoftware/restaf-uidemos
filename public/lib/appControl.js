@@ -132,7 +132,7 @@ let appControlCompute = {
       autoSave: true
     },
     appData: {
-      viewType: 'table', /* table|form */
+      viewType: 'form', /* table|form */
       form: {
         defaultComponent: 'InputEntry',
         show            : ['id', 'x1', 'x2', 'x3', 'total'],

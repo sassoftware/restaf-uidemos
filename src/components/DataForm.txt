@@ -5,14 +5,15 @@
 
 // TBD: change incoming data from array to object to avoid all the transformations
 
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import controls from './controls';
 import Portal from '@mui/material/Portal';
+import Stack from '@mui/material/Stack';
 
 import Paper from '@mui/material/Paper';
-import ButtonMenuBar from './ButtonMenuBar';
+import ButtonMenuGroup from './ButtonMenuGroup';
 import QuickDialog from './QuickDialog';
 import WherePrompt from './controls/WherePrompt.js';
 import SaveAsDialog from './SaveAsDialog.js';
@@ -74,7 +75,7 @@ function DataForm (props) {
   };
 
   const commonLayout = (Visual, direction, direction2) => {
-    return <Grid container spacing={2} direction={direction}>
+    return <Grid container spacing={2} xs  direction={direction}>
         <Grid item xs={2}>
         </Grid>
         <Grid container spacing={2} xs={8} direction={direction2} justifyContent="left">   
@@ -135,9 +136,9 @@ function DataForm (props) {
     if (visuals[name] != null && visuals[name].component != null) {
       v = visuals[name].component;
     }
-    console.log(v);
+
     const V = controls[v];
-    debugger;
+    
     
     let attr = (visuals[name] == null) ? {} : visuals[name].props;
     if (attr == null) {
@@ -159,37 +160,53 @@ function DataForm (props) {
     allFields.push(t);
   }
 
-  const show = (
+  const Banner = (_props) => {
+    return <div>
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <ButtonMenuGroup menus={menus} scrollOptions={appEnv.state.scrollOptions} onSelect={_onSelect}></ButtonMenuGroup>
+      </Box>
+    </div>;
+  };
+
+  const MainArea = (_props) => {
+  return <div>
     <Box display="flex" alignItems="center" justifyContent="center">
-    <Paper>
-      <div key="sdf">
-        <h1> {form.title}</h1>
-        {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
-        {menus != null ? 
-        <Grid container direction="row">
-           <ButtonMenuBar menus={menus} scrollOptions={appEnv.state.scrollOptions} onSelect={_onSelect}></ButtonMenuBar>
-        </Grid> : null}
-        <Paper elevation={12} style={{margin: "8px 8px 8px 8px"}}>
-           {commonLayout(allFields, 'row', 'column')}
-        </Paper>
-        <Portal>
-            <Grid container spacing={2} direction={"row"}>
-              <Grid item xs={2}> </Grid>
-              <Grid item xs={8}  justifyContent="left"> 
-                <div>
-                  <WherePrompt key="whereprompt" value={appEnv.activeWhere} onEnter={_onWhere}></WherePrompt>
-                </div>
-              </Grid>
-              <Grid item xs={2}> </Grid>
-            </Grid>
-        </Portal>
-        
-          {saveAsOpen === true ? <SaveAsDialog key="saveasdialog" appEnv={appEnv} cb={_closeSaveAs}></SaveAsDialog> : null}
-          {appendOpen === true ? <AppendDialog key="appendDialog" appEnv={appEnv} cb={_closeAppend}></AppendDialog> : null}
+        {commonLayout(allFields, 'row', 'column')}
+      </Box>
       </div>
+  };
+  
+  const WhereArea = (_props) => {
+    const t = 
+      <Portal style={{padding: 8}}>
+        <Grid container spacing={4} direction={"row"}>
+          <Grid item xs={2}> </Grid>
+          <Grid item xs={8}  justifyContent="left"> 
+            <div>
+              <WherePrompt key="whereprompt" value={appEnv.activeWhere} onEnter={_onWhere}></WherePrompt>
+            </div>
+          </Grid>
+          <Grid item xs={2}> </Grid>
+        </Grid>
+      </Portal>;
+  return t;
+  };
+
+  const show = 
+  <Fragment>
+     <Paper elevation={12} style={{padding: 12}}>
+    <Stack spacing={4}>
+    <Banner />
+    <MainArea />
+    <WhereArea/>
+    </Stack>
     </Paper>
-    </Box>
-  );
+     
+  {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
+  {saveAsOpen === true ? <SaveAsDialog key="saveasdialog" appEnv={appEnv} cb={_closeSaveAs}></SaveAsDialog> : null}
+  {appendOpen === true ? <AppendDialog key="appendDialog" appEnv={appEnv} cb={_closeAppend}></AppendDialog> : null}
+  </Fragment>;
+
 
   return show;
 }
