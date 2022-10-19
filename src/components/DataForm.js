@@ -161,7 +161,7 @@ function DataForm (props) {
 
   const show = (
     <Box display="flex" alignItems="center" justifyContent="center">
-    <Paper>
+    <Paper elevation={12} style={{padding:8, width: "100%"}}>
       <div key="sdf">
         <h1> {form.title}</h1>
         {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
@@ -169,9 +169,10 @@ function DataForm (props) {
         <Grid container direction="row">
            <ButtonMenuBar menus={menus} scrollOptions={appEnv.state.scrollOptions} onSelect={_onSelect}></ButtonMenuBar>
         </Grid> : null}
-        <Paper elevation={12} style={{margin: "8px 8px 8px 8px"}}>
+            <br></br>
+            <br></br>
            {commonLayout(allFields, 'row', 'column')}
-        </Paper>
+        
         <Portal>
             <Grid container spacing={2} direction={"row"}>
               <Grid item xs={2}> </Grid>
