@@ -8,8 +8,6 @@ import DataEditor from './DataEditor';
 // import TableEditor from './TableEditor';
 import GridTableEditor from './GridTableEditor';
 import DataForm from './DataForm';
-import Paper from '@mui/material/Paper';
-import uuid from 'react-uuid';
 
 
 /*

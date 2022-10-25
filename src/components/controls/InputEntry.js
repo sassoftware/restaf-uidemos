@@ -2,15 +2,14 @@
  * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import Input from '@mui/material/Input';
-import { InputAdornment } from '@mui/material';
 import {Typography} from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 function InputEntry (props) {
-  const { details, onEnter, controlProps, showLabel, rowIndex, classes } = props;
+  const { details, onEnter, controlProps, rowIndex, classes } = props;
   let value = props.value;
   const disabled = (controlProps.disabled != null) ? controlProps.disabled : false;
   const key = details.name;
@@ -59,12 +58,9 @@ function InputEntry (props) {
     style     : { textAlign: props.align }
 
   };
-    // let className = (disabled === true) ? classes.inputDisabled : classes.input;
-  console.log('input entry');
- // let ws = { width: details.Type === 'double'  ? "12ch" : "80%"};
-  debugger;
+   
   const width = details.FormattedLength.toString().trim() + 'ch';
-  debugger;
+ 
   const t =
         <Grid key={key+'1'} container item>
           <Grid key={key+'2'} item xs={4} alignContent="left">
@@ -94,9 +90,3 @@ function InputEntry (props) {
   return t;
 }
 export default InputEntry;
-/*
- {showLabel === true
-          ? <InputLabel key={details.name}
-            htmlFor={key}>{details.Label}</InputLabel>
-          : null}
-          */
