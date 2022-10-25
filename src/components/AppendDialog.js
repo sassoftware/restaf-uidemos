@@ -72,7 +72,7 @@ function AppendDialog (props) {
         if (computeFlag === false) {
           drop = appEnv.state.columns.filter(c => c.custom === true);
         }
-        appendRows(table, drop, appEnv) 
+        appendRows(null, table, drop, appEnv) 
           .then ( r => {
             // setRefreshTable(refreshTable+1);
             setSnackStatus({open: true, status: r});

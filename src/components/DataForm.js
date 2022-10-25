@@ -13,6 +13,7 @@ import Portal from '@mui/material/Portal';
 
 import Paper from '@mui/material/Paper';
 import ButtonMenuBar from './ButtonMenuBar';
+import ButtonMenuGroup from './ButtonMenuGroup';
 import QuickDialog from './QuickDialog';
 import WherePrompt from './controls/WherePrompt.js';
 import SaveAsDialog from './SaveAsDialog.js';
@@ -169,8 +170,12 @@ function DataForm (props) {
         <h1> {form.title}</h1>
         {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
         {menus != null ? 
-        <Grid key="sdfg1" container direction="row">
-           <ButtonMenuBar key="sdfb1" menus={menus} scrollOptions={appEnv.state.scrollOptions} onSelect={_onSelect}></ButtonMenuBar>
+        <Grid key="but1" container  direction="column">
+          <Grid item key="but2" xs={2}></Grid>
+          <Grid item key="but3" justifyContent="center" xs={8} >
+           <ButtonMenuGroup key="sdfb1" menus={menus} scrollOptions={appEnv.state.scrollOptions} onSelect={_onSelect}></ButtonMenuGroup>
+          </Grid>
+          <Grid item key="but4" xs={2}></Grid>
         </Grid> : null}
             <br></br>
             <br></br>
