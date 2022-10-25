@@ -12,7 +12,6 @@ import controls from './controls';
 import Portal from '@mui/material/Portal';
 
 import Paper from '@mui/material/Paper';
-import ButtonMenuBar from './ButtonMenuBar';
 import ButtonMenuGroup from './ButtonMenuGroup';
 import QuickDialog from './QuickDialog';
 import WherePrompt from './controls/WherePrompt.js';
