@@ -26,8 +26,8 @@ function ViyaDataEditor (props) {
   //For demo purpose
   const show = (
     <Fragment>
-    <div key={uuid()}>
-          <DataEditor key={uuid()}
+    <div key={Date()}>
+          <DataEditor key="DataEditor"
                 appControl={props.appControl}
                 viyaConnection={props.viyaConnection}
                 editor={_selectViewer}

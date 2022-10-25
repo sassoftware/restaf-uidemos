@@ -76,13 +76,13 @@ function DataForm (props) {
   };
 
   const commonLayout = (Visual, direction, direction2) => {
-    return <Grid container spacing={2} direction={direction}>
-        <Grid item xs={2}>
+    return <Grid key="cl1" container spacing={2} direction={direction}>
+        <Grid key="cl2" item xs={2}>
         </Grid>
-        <Grid container spacing={2} xs={8} direction={direction2} justifyContent="left">   
+        <Grid key="cl3" container spacing={2} xs={8} direction={direction2} justifyContent="left">   
           {Visual}
         </Grid>
-        <Grid item xs={2}>
+        <Grid key="cl4" item xs={2}>
         </Grid>
       </Grid>;
   }
@@ -148,6 +148,7 @@ function DataForm (props) {
 // https://stackoverflow.com/questions/54493795/which-is-the-best-way-to-specify-justify-for-grid-item-in-material-ui
     const t =   
         <V
+          key={i}
           value={data[name]}
           details={dt}
           onEnter={_onEdit}
@@ -168,22 +169,22 @@ function DataForm (props) {
         <h1> {form.title}</h1>
         {(status != null && status.msg != null)? <QuickDialog msg={status} closecb={_closeSnack}/> : null}
         {menus != null ? 
-        <Grid container direction="row">
-           <ButtonMenuBar menus={menus} scrollOptions={appEnv.state.scrollOptions} onSelect={_onSelect}></ButtonMenuBar>
+        <Grid key="sdfg1" container direction="row">
+           <ButtonMenuBar key="sdfb1" menus={menus} scrollOptions={appEnv.state.scrollOptions} onSelect={_onSelect}></ButtonMenuBar>
         </Grid> : null}
             <br></br>
             <br></br>
            {commonLayout(allFields, 'row', 'column')}
         
         <Portal>
-            <Grid container spacing={2} direction={"row"}>
-              <Grid item xs={2}> </Grid>
-              <Grid item xs={8}  justifyContent="left"> 
-                <div>
+            <Grid key="w1" container spacing={2} direction={"row"}>
+              <Grid key="w2" item xs={2}> </Grid>
+              <Grid key="w3" item xs={8}  justifyContent="left"> 
+                <div key="w4">
                   <WherePrompt key="whereprompt" value={appEnv.activeWhere} onEnter={_onWhere}></WherePrompt>
                 </div>
               </Grid>
-              <Grid item xs={2}> </Grid>
+              <Grid key="w5" item xs={2}> </Grid>
             </Grid>
         </Portal>
         

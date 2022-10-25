@@ -35,11 +35,11 @@ function Slider (props) {
   };
 
   const t = <Fragment>
-        <Typography key={`${key}_label`} id={`${details.label}`} gutterBottom>
+        <Typography key={key+"label"} id={`${details.label}`} gutterBottom>
             {details.label}
         </Typography>
         <MuiSlider className={classes.slider}
-        key={`${key}_slider`}
+        key={key+"slider"}
         value={props.value}
         aria-label={details.Label}
         aria-labelledby={details.Label}

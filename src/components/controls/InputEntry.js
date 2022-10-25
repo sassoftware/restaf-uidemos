@@ -66,13 +66,13 @@ function InputEntry (props) {
   const width = details.FormattedLength.toString().trim() + 'ch';
   debugger;
   const t =
-        <Grid container item>
-          <Grid item xs={4} alignContent="left">
+        <Grid key={key+'1'} container item>
+          <Grid key={key+'2'} item xs={4} alignContent="left">
             <Typography>{details.name}</Typography>
           </Grid>
-        <Grid item xs={8}>
+        <Grid key={key+'3'}item xs={8}>
         <Input 
-            key={`${key}_input`}
+            key={key+ '4'}
             id={key}
             value={value}
 
