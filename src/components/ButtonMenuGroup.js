@@ -33,7 +33,7 @@ function ButtonMenuGroup (props) {
           </Button>;
     menu.push(t);
   }
-  let show = <ButtonGroup size="small">
+  let show = <ButtonGroup size="small" sx={{border: 2}}>
               {menu}
              </ButtonGroup>
   return show;

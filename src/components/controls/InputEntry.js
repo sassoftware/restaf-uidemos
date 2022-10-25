@@ -62,6 +62,7 @@ function InputEntry (props) {
     // let className = (disabled === true) ? classes.inputDisabled : classes.input;
   console.log('input entry');
  // let ws = { width: details.Type === 'double'  ? "12ch" : "80%"};
+  debugger;
   const width = details.FormattedLength.toString().trim() + 'ch';
   debugger;
   const t =

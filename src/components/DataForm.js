@@ -66,9 +66,11 @@ function DataForm (props) {
   const _onEdit = (e) => {
     data[e.target.name] = e.target.value;
     appEnv.state.data[e.rowIndex][e.target.name] = e.target.value;
+    debugger;
     if (e.key !== 'Enter') {
       setModified(modified + 1);
     } else {
+      debugger;
       onEdit(e.target.name, e.target.value, e.rowIndex, data, appEnv);
     }
   };

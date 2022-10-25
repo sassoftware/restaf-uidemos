@@ -4,17 +4,12 @@
 //
 
 
- 
 async function init (data, rowIndex, appEnv, type) {
   data.total = data.x1 + data.x2 + data.x3 ;
-  data.t1 = data.x1;
-  data.t2 = 'A long string';
-  debugger;
   return [data, { code: 0, msg: `${type} processing completed` }];
 };
 async function main (data, rowIndex, appEnv, type) {
   data.total = data.x1 + data.x2 + data.x3 ;
-  debugger;
   return [data, { code: 0, msg: `${type} processing completed` }];;
 };
 async function term (data, rowIndex, appEnv, type) {
@@ -23,8 +18,6 @@ async function term (data, rowIndex, appEnv, type) {
 
 async function x1 (data, name, rowIndex, appEnv) {
   let status = { code: 1, msg: `${name} handler executed.` };
-  data.t1=data.x1;
-  debugger;
   if (data.x1 > 10) {
     data.x1 = 10;
     status = { code: 0, msg: 'Exceeded Max. Value reset to max' };
@@ -38,19 +31,18 @@ let appControlCas = {
     description: 'Simple Example',
 
     source: 'cas',
-    table : { caslib: 'casuser', name: 'newdeal' },
+    table : { caslib: 'casuser', name: 'testdatatemp' },
     byvars: ['id'],
-    onNoData: 'update',
 
     preamble: `
     action datastep.runcode /
-    single="YES"
     code= "
-       data casuser.newdeal;
-       keep x1 x2 x3 x4 x5 x6 x7 x8 id;
-       length id varchar(50);
-       do i = 1 to 50;
-       x1=i; x2=3; x3=i*10; x4=1;x5=1;x6=1;x7=1;x8=1; id=compress(TRIMN('key'||i));
+       data casuser.testdatatemp;
+       keep x1 x2 x3 id;
+       /*length id $;*/
+       length id varchar(20);
+       do i = 1 to 25;
+       x1=i; x2=3; x3=i*10; id='longstring'||compress(TRIMN('key'||i));
        output;
        end;
        ";
@@ -70,18 +62,6 @@ let appControlCas = {
         Label          : 'Grand Total',
         FormattedLength: 12,
         Type           : 'double'
-      },
-      t1: {
-        Column         : 'T1',
-        Label          : 'Grand Total T1',
-        FormattedLength: 12,
-        Type           : 'double'
-      },
-      t2: {
-        Column         : 'T2',
-        Label          : 'some string',
-        FormattedLength: 25,
-        Type           : 'char'
       }
     },
     editControl: {
@@ -90,19 +70,14 @@ let appControlCas = {
       autoSave: true
     },
     appData: {
-      viewType: 'table', /* table|form */
+      viewType: 'form', /* table|form */
       form: {
         defaultComponent: 'InputEntry',
-        show            : [],
+        show            : ['id', 'x1', 'x2', 'x3', 'total'],
         classes         : {},
-        title           : '',
+        title           : 'Editing Data with React Components',
         visuals         : {
           total: {
-            props: {
-              disabled: true
-            }
-          },
-          t1: {
             props: {
               disabled: true
             }
@@ -123,7 +98,6 @@ let appControlCompute = {
     source: 'compute',
     table : { libref: 'public', name: 'testdata' },
     byvars: ['id'],
-    onNoData: 'update',
 
     preamble: `
     libname public '/tmp';run; 
@@ -158,12 +132,12 @@ let appControlCompute = {
       autoSave: true
     },
     appData: {
-      viewType: 'table', /* table|form */
+      viewType: 'form', /* table|form */
       form: {
         defaultComponent: 'InputEntry',
         show            : ['id', 'x1', 'x2', 'x3', 'total'],
         classes         : {},
-        title           : 'Editing SAS Table with @sassoftware/restafedit',
+        title           : 'Editing Data with React Components',
         visuals         : {
           total: {
             props: {
@@ -180,15 +154,14 @@ let appControlCompute = {
     }
   };
 
-
   // eslint-disable-next-line no-unused-vars
   function getAppControl (source, viewType) {
     console.log('Source: ', source);
     console.log('viewType', viewType )
     let t = (source === 'cas') ? appControlCas : appControlCompute;
+    t.appData.viewType = viewType;
     if (viewType === 'form') {
-      t.appData.viewType = 'form';
-      t.initialFetch.limit = 1;
+      t.initialFetch.qs.limit = 1;
     }
     return t;
   }
