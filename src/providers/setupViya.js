@@ -16,6 +16,7 @@ async function setupViya() {
 	let r = await store.request(p);
 	let appOptions = { ...window.appOptions };
 	appOptions.README = r.data;
+	console.log(r);
 	let progressb = progress.bind(null, store);
 	let onCompletionb = onCompletion.bind(null, store);
 	appOptions.jobStatus = { progress: progressb, onCompletion: onCompletionb };

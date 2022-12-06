@@ -25,6 +25,9 @@ function OptApp(props) {
 			{ name: 'Initial_Stock', value: 1.0, label: 'Initial_Stock', type: 'number' },
 		],
 	});
+	debugger;
+	let location = useLocation();
+  console.log(location);
 
 	let currentSession = useRef(null);
 

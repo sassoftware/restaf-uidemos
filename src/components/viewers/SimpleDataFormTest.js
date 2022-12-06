@@ -11,6 +11,8 @@ function SimpleDataFormTest (props) {
 
   
   let {classes} = useAppContext();
+  let location = useLocation();
+  console.log(location);
 
   let data = [
     { name: 'Income', label: 'Income(x1000)', value: 10, type: 'slider', min: 0, max:860, scale: (x) => Math.log10(x)},

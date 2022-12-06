@@ -9,6 +9,7 @@ import ReadMe from '../helpers/ReadMe';
 
 function Home (props) {
 	let { classes } = props;
+	debugger;
 	let show = (
 		<Grid container spacing={4}>
 			<Grid item>
