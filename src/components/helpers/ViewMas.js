@@ -4,17 +4,17 @@
  */
 import React, { useEffect, useState, Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-// import Paper from '@material-ui/core/Paper';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+// import Paper from '@mui/material/Paper';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import ItemsMenu from '../helpers/ItemsMenu';
 import ItemsCmdMenu from '../helpers/ItemsCmdMenu';
 import SummaryViewer from '../helpers/SummaryViewer';
 import ChampionModelContent from '../helpers/ChampionModelContent';
 import championModelNotes from '../lib/championModelNotes';
-import { Paper } from '@material-ui/core';
+import { Paper } from '@mui/material';
 // import restaflib from '@sassoftware/restaflib/dist/restaflib';
 import ScoreForm from '../helpers/ScoreForm';
 import SimpleDataForm from './SimpleDataForm';

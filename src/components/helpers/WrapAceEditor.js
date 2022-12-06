@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import Container from '@material-ui/core/Container';
+import Container from '@mui/material/Container';
 
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-text';

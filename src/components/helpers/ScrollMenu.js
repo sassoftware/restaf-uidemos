@@ -5,13 +5,13 @@
 
 import React, { Fragment } from 'react';
 import {PropTypes} from 'prop-types';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 
-import FirstPage from '@material-ui/icons/FirstPage';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import LastPage from '@material-ui/icons/LastPage';
-import Refresh from '@material-ui/icons/Refresh';
+import FirstPage from '@mui/icons-material/FirstPage';
+import ChevronRight from '@mui/icons-material/ChevronRight';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import LastPage from '@mui/icons-material/LastPage';
+import Refresh from '@mui/icons-material/Refresh';
 
 function ScrollMenu (props) {
     let { folder, onSelect, refresh } = props;

@@ -6,7 +6,7 @@ import React, { useContext, useState, useRef, useEffect, Fragment } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useAppContext } from '../../providers';
 import SimpleDataForm from '../helpers/SimpleDataForm';
-import { ComputerOutlined } from '@material-ui/icons';
+import { ComputerOutlined } from '@mui/icons-material';
 
 function OptApp(props) {
 	let { classes, store, restaflib } = props;

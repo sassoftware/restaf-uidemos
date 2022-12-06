@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, { Fragment } from 'react'
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 export default function ScoreForm(props) {
     let { inputs, classes, onSelect } = props

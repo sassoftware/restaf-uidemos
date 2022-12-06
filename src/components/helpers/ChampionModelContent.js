@@ -4,7 +4,7 @@
  */
 
 import React, {Fragment} from 'react';
-import Paper from '@material-ui/core/Paper';
+import Paper from '@mui/material/Paper';
 
 function ChampionModelContent (props) {
    let {content} = props;

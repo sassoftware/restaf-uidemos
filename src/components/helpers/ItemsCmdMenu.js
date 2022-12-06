@@ -5,9 +5,9 @@
 
 import React, { Fragment } from 'react';
 import { PropTypes } from 'prop-types';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 function ItemsCmdMenu (props) {
     let { result, selected, onSelect, classes } = props;

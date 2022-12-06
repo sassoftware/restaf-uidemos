@@ -19,6 +19,7 @@ async function setupViya() {
 	let progressb = progress.bind(null, store);
 	let onCompletionb = onCompletion.bind(null, store);
 	appOptions.jobStatus = { progress: progressb, onCompletion: onCompletionb };
+	debugger;
 	return { store: store, restaflib: lib, appOptions: appOptions };
 }
 

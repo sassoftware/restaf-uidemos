@@ -4,13 +4,14 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { setupViya } from './providers';
 import App from './App';
 //import * as serviceWorker from 'serviceWorker';
+const root = ReactDOM.createRoot(document.getElementById('root'));
 setupViya(true)
 	.then((r) => {
-		ReactDOM.render(<App {...r} />, document.querySelector('#root'));
+		root.render(<App {...r} />);
 	})
 	.catch((err) => console.log(JSON.stringify(err, null, 4)));
 

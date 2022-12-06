@@ -5,9 +5,9 @@
 import React, { useState, Fragment, } from 'react';
 // import { PropTypes } from 'prop-types';
 
-import Grid from '@material-ui/core/Grid';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Grid from '@mui/material/Grid';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 import { useLocation } from 'react-router-dom';
 import helpers from '../helpers';

@@ -5,7 +5,7 @@
 
 import React from 'react';
 
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import viewers from './components/viewers';
 import appMenus from './appMenus';
@@ -24,20 +24,21 @@ function AppRouter(props) {
 			title = m.props.title;
 			m.props.appMenus = appMenus;
 			homeState = m.props;
+
 			return (
-				<Route path={path} key={key} render={(match) => <Comp appProps={m.props} {...props} match={match} />} />
+				<Route path={path} key={key} element={<Comp appProps={m.props} {...props} />} />
 			);
 		} else {
-			return <Route path={path} key={key} render={(match) => <Comp {...props} match={match} />} />;
+			return <Route path={path} key={key} element={<Comp {...props} />} />;
 		}
 	});
-	switches.push(<Redirect key="redirect" to={{ pathname: '/Home', state: homeState }} />);
+	switches.push(<Route key="redirect" to={{ pathname: '/Home', state: homeState }} />);
 
 	return (
 		<Router>
 			<div id="App" className="sm-navy w-100 h-100">
 				<Header title={title} menu={appMenus} {...props}></Header>
-				<Switch>{switches}</Switch>
+				<Routes>{switches}</Routes>
 			</div>
 		</Router>
 	);

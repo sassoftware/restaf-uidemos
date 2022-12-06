@@ -3,21 +3,21 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, { useEffect, useState, Fragment, useRef } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Paper from '@material-ui/core/Paper';
+import AppBar from '@mui/material/AppBar';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Paper from '@mui/material/Paper';
 
-import Button from '@material-ui/core/Button';
-import Warning from '@material-ui/icons/Warning';
-import Error from '@material-ui/icons/Error';
-import Info from '@material-ui/icons/Info';
+import Button from '@mui/material/Button';
+import Warning from '@mui/icons-material/Warning';
+import Error from '@mui/icons-material/Error';
+import Info from '@mui/icons-material/Info';
 
 import { casSetup, caslRun } from '@sassoftware/restaflib/dist/restaflib.js';
 import helpers from '../helpers';
 import { useLocation } from 'react-router-dom';
 import FileSelectorButton from '../helpers/FileSelectorButton';
-import { StoreMallDirectory } from '@material-ui/icons';
+import { StoreMallDirectory } from '@mui/icons-material';
 import ItemsListMenu from '../helpers/ItemsListMenu';
 
 

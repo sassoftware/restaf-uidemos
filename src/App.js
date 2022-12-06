@@ -7,7 +7,7 @@ import React from 'react';
 
 // import PropTypes from 'prop-types';
 import AppRouter from './AppRouter';
-import defaultStyles from './defaultStyles';
+//import defaultStyles from './defaultStyles';
 import { AppContext } from './providers';
 
 //
@@ -18,7 +18,8 @@ function App(props) {
 	let { host } = appOptions.logonPayload;
 	let appName = appOptions.logonPayload.appName;
 
-	let classes = defaultStyles()();
+	// let classes = defaultStyles()();
+	let classes = {};
 	let contextValue = { classes: classes, ...props };
 	// to keep the session active for longer than the default
 	if (appOptions.logonPayload.keepAlive != null) {

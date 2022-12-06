@@ -4,7 +4,7 @@
  */
 import React, { useState, useEffect, Fragment } from 'react';
 import { PropTypes } from 'prop-types';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import SimpleDataForm from '../helpers/SimpleDataForm';
 import QuickDialog from '../helpers/QuickDialog';
 import {useAppContext} from '../../providers';

@@ -5,8 +5,8 @@
 import React, { createRef, Fragment } from 'react';
 import { PropTypes } from 'prop-types';
 
-import FolderOpen from '@material-ui/icons/FolderOpen';
-import Button from '@material-ui/core/Button';
+import FolderOpen from '@mui/icons-material/FolderOpen';
+import Button from '@mui/material/Button';
 import {useAppContext} from '../../providers';
 
 /**

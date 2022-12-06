@@ -6,16 +6,16 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { PropTypes } from 'prop-types';
 
-import Button from '@material-ui/core/button';
-import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@mui/material/button';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import FileSelectorButton from './FileSelectorButton';
-import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
+import Slider from '@mui/material/Slider';
+import Typography from '@mui/material/Typography';
 import {useAppContext} from '../../providers';
 
 function SimpleDataForm(props) {
@@ -24,7 +24,7 @@ function SimpleDataForm(props) {
     const { onSubmit, title, disabled } = props;
     const {classes} = useAppContext();
 
-
+    debugger;
     /*-----------------------------------------
     props = [
        {

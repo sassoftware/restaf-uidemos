@@ -5,10 +5,10 @@
 
 import React, {useEffect, useState, useRef} from 'react';
 import { PropTypes } from 'prop-types';
-import Snackbar from '@material-ui/core/Snackbar';
-import Info from '@material-ui/icons/Info';
-import Button from '@material-ui/core/Button';
-import { CheckCircle } from '@material-ui/icons';
+import Snackbar from '@mui/material/Snackbar';
+import Info from '@mui/icons-material/Info';
+import Button from '@mui/material/Button';
+import { CheckCircle } from '@mui/icons-material';
 import {useAppContext} from '../../providers';
 
 function QuickNotes (props) {
