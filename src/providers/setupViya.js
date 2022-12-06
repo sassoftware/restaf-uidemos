@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { initStore } from '@sassoftware/restaf/dist/restaf.js';
-import { lib } from '@sassoftware/restaflib/dist/restaflib.js';
+import { initStore } from '@sassoftware/restaf';
+import { lib } from '@sassoftware/restaflib';
 async function setupViya() {
 	let store = initStore();
 	await store.logon(window.appOptions.logonPayload);
