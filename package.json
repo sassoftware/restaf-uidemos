@@ -1,6 +1,6 @@
 {
   "name": "reactapp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
@@ -66,6 +66,5 @@
       "last 1 safari version"
     ]
   },
-  
   "proxy": "https://localhost:5002"
 }
