@@ -10,8 +10,9 @@ let appMenus =  [
 		text     : 'Introduction',
 		hide     : true,
 		props    : {
-			text : 'Introduction',
-			title: 'Default Applications',
+			text     : 'Introduction',
+			title    : 'Default Applications',
+			homePage : 'https://localhost:5002/viyaapp/README.md'
 		},
 	},
 	{
@@ -70,7 +71,7 @@ let appMenus =  [
     },
 	{
 		component: 'Casl',
-		// hide: true,
+		hide: true,
 		props    : {
 			text      : 'Import and Run Casl Code',
 			initialTab: 0,
@@ -79,7 +80,7 @@ let appMenus =  [
 	},
 	{
 		component: 'ComputeService',
-		//hide: true,
+		hide: true,
 		props    : {
 			text      : 'Import and Run SAS Program',
 			initialTab: 0,
@@ -107,9 +108,9 @@ let appMenus =  [
 	{
 		component: 'JobManager',
 		hide     : true,
-        props    : {
-            text: 'Job Manager'
-        }
+		props    : {
+				text: 'Job Manager'
+		}
     }
 ];
 export default appMenus;

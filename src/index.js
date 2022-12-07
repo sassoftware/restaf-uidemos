@@ -5,13 +5,17 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { setupViya } from './providers';
+import setupViya  from './providers/setupViya';
 import App from './App';
 //import * as serviceWorker from 'serviceWorker';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-setupViya(true)
-	.then((r) => {
-		root.render(<App {...r} />);
+debugger;
+let {logonPayload, appEnv} = window.appOptions;
+console.log(appEnv);
+debugger;
+setupViya(appEnv, logonPayload)
+	.then((appOptions) => {
+		root.render(<App appOptions={appOptions} />);
 	})
 	.catch((err) => console.log(JSON.stringify(err, null, 4)));
 

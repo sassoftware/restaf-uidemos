@@ -2,7 +2,7 @@
  * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React, { useEffect, useState, Fragment, useRef } from 'react';
+import React, { useEffect, useState, Fragment,useContext, useRef } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -14,9 +14,9 @@ import Error from '@mui/icons-material/Error';
 import Info from '@mui/icons-material/Info';
 
 import helpers from '../helpers';
-import { useLocation } from 'react-router-dom';
+import {AppContext} from '../../providers';
 import FileSelectorButton from '../helpers/FileSelectorButton';
-
+import {casSetup, caslRun} from '@sassoftware/restaflib';
 /**
  *
  * @param {
@@ -24,9 +24,10 @@ import FileSelectorButton from '../helpers/FileSelectorButton';
  * } props
  */
 function Casl (props) {
-    let { store, classes, restaflib } = props;
-    let {casSetup, caslRun} = restaflib;
+    let {text, initialTab, tabs} = props;
+    const {store, classes} = useContext(AppContext);
 
+    debugger;
     let [ currentTab, setCurrentTab ] = useState(0);
     let [ computeInfo, setComputeInfo ] = useState({
         session: null,
@@ -36,12 +37,7 @@ function Casl (props) {
         msgIcon: null,
     });
 
-    let location = useLocation();
-    let { initialTab, tabs } = location.state;
-
     let currentInfo = useRef(null);
-      
-
     let tabsBar = tabs.map((t, i) => {
         return <Tab label={t.label} value={i} key={i} className={classes.tab} />;
     });

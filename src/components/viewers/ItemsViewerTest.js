@@ -2,8 +2,8 @@
  * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React, { useEffect, useState, Fragment} from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState, useContext,Fragment} from 'react';
+import {AppContext} from '../../providers';
 import ItemsMenu from '../helpers/ItemsMenu';
 
 /**
@@ -13,9 +13,8 @@ import ItemsMenu from '../helpers/ItemsMenu';
  * } props
  */
 function ItemsViewerTest(props) {
-    let { store } = props;
-    let location = useLocation();
-    let {service, initialRel} = location.state;
+    let {service, initialRel} = props;
+    let {store} = useContext(AppContext);
     let [appInfo, setAppInfo] = useState({
         result : null,
         msgText: null,
@@ -24,7 +23,6 @@ function ItemsViewerTest(props) {
     // setting up this way to allow more setup calls as needed
     const _setup = async () => {
         let r  = await store.addServices(service);
-        
         let result = await store.apiCall(r[service].links(initialRel));
         return result;
     }

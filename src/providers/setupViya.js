@@ -4,24 +4,32 @@
  */
 
 import { initStore } from '@sassoftware/restaf';
-import { lib } from '@sassoftware/restaflib';
-async function setupViya() {
-	let store = initStore();
-	await store.logon(window.appOptions.logonPayload);
-
-	let p = {
-		url: window.appOptions.appEnv.homeNotes,
-		withCredentials: true
-	};
-	let r = await store.request(p);
-	let appOptions = { ...window.appOptions };
-	appOptions.README = r.data;
-	console.log(r);
+async function setupViya(appEnv, logonPayload) {
+	let store    = initStore({casProxy: true});
+	await store.logon(logonPayload);
+	let services = await store.addServices('casManagement', 'compute');
+	
+	let appOptions = {
+		logonPayload: logonPayload,
+		appEnv      : appEnv,
+		store       : store
+	}
+	// for default home page
+	if (appEnv.homeNotes != null) {
+		let p = {
+			url: appEnv.homeNotes,
+			withCredentials: true
+		};
+		let r = await store.request(p);
+		appOptions.homeNotesText = r.data;
+		console.log(appOptions.homeNotesText);
+	}
 	let progressb = progress.bind(null, store);
 	let onCompletionb = onCompletion.bind(null, store);
+	appOptions.classes = {};
 	appOptions.jobStatus = { progress: progressb, onCompletion: onCompletionb };
 	debugger;
-	return { store: store, restaflib: lib, appOptions: appOptions };
+	return appOptions; 
 }
 
 function progress(store, data, JobId) {

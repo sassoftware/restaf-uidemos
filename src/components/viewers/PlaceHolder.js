@@ -3,15 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React , {useContext} from 'react';
-import { useLocation } from 'react-router-dom';
-import {useAppContext} from '../../providers';
+import {AppContext} from '../../providers';
 function PlaceHolder (props) {
-
-  
-  let r = useAppContext();
+  let r = useContext(AppContext);
+  console.log(r);
   let show =
     <div id="page-wrap">
-      <pre> {JSON.stringify(useLocation().state, null, 4)} </pre>
+      <pre> {JSON.stringify(r, null, 4)} </pre>
       <pre> {JSON.stringify(props, null,4)}</pre>
 
     </div>;

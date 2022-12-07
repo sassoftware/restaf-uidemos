@@ -2,7 +2,7 @@
  * Copyright Â© 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React, { useEffect, useState, Fragment, useRef } from 'react';
+import React, { useEffect, useState, useContext, Fragment, useRef } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -15,8 +15,8 @@ import Info from '@mui/icons-material/Info';
 
 import { computeSetup, computeRun } from '@sassoftware/restaflib/dist/restaflib.js';
 import helpers from '../helpers';
-import { useLocation } from 'react-router-dom';
 import FileSelectorButton from '../helpers/FileSelectorButton';
+import {AppContext} from '../../providers';
 
 /**
  *
@@ -25,7 +25,9 @@ import FileSelectorButton from '../helpers/FileSelectorButton';
  * } props
  */
 function ComputeService(props) {
-	let { store, classes } = props;
+	let { initialTab, tabs } = props;
+	let { store, classes } = useContext(AppContext);
+	console.log(classes);
 	let [currentTab, setCurrentTab] = useState(0);
 	let [computeInfo, setComputeInfo] = useState({
 		session: null,
@@ -36,14 +38,12 @@ function ComputeService(props) {
 		err: null,
 	});
 	let [runStatus, setRunStatus] = useState(null);
-
-	let location = useLocation();
-	let { initialTab, tabs } = location.state;
+	
 
 	let currentInfo = useRef(null);
 
 	let tabsBar = tabs.map((t, i) => {
-		return <Tab label={t.label} value={i} key={i} className={classes.tab} />;
+		return <Tab label={t.label} value={i} key={i}  />;
 	});
 
 	const _tabView = () => {
@@ -65,7 +65,7 @@ function ComputeService(props) {
 							? 'primary'
 							: 'default'
 					}
-					className={classes.button}
+
 					startIcon={MsgIcon}>
 					{msgText}
 				</Button>

@@ -14,13 +14,11 @@ import { AppContext } from './providers';
 // To start at a different component change the code below
 //
 function App(props) {
-	let { store, appOptions } = props;
+	let { appOptions } = props;
 	let { host } = appOptions.logonPayload;
-	let appName = appOptions.logonPayload.appName;
 
 	// let classes = defaultStyles()();
-	let classes = {};
-	let contextValue = { classes: classes, ...props };
+	
 	// to keep the session active for longer than the default
 	if (appOptions.logonPayload.keepAlive != null) {
 		let interval = 120;
@@ -40,8 +38,8 @@ function App(props) {
 	}
 
 	let show = (
-		<AppContext.Provider value={contextValue}>
-			<AppRouter host={host} appName={appName} classes={classes} {...props}></AppRouter>
+		<AppContext.Provider value={appOptions}>
+			<AppRouter></AppRouter>
 		</AppContext.Provider>
 	);
 

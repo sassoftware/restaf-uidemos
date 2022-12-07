@@ -4,15 +4,16 @@
  */
 import React , {useContext, Fragment} from 'react';
 import { useLocation } from 'react-router-dom';
-import {useAppContext} from '../../providers';
+import {AppContext} from '../../providers';
 import SimpleDataForm from '../helpers/SimpleDataForm';
 import { Grid } from '@mui/material';
 function SimpleDataFormTest (props) {
 
-  
-  let {classes} = useAppContext();
-  let location = useLocation();
-  console.log(location);
+  debugger;
+  let context = useContext(AppContext);
+  console.log(context);
+  console.log(props);
+  let classes = context.classes;
 
   let data = [
     { name: 'Income', label: 'Income(x1000)', value: 10, type: 'slider', min: 0, max:860, scale: (x) => Math.log10(x)},

@@ -23,10 +23,11 @@ import { useAppContext } from '../../providers';
 
 
 function Header(props) {
-  const { title, menu } = props;
+  const { title, appMenus } = props;
   let [menuIsOpen, setMenuIsOpen] = useState(false);
+ 
 
-  let { store, classes, appOptions } = useAppContext();
+  let { store, classes, appEnv } = useAppContext();
   let navigate = useNavigate();
   let [admin, setUserAdmin] = useState(null);
 
@@ -44,6 +45,8 @@ function Header(props) {
       .catch((err) => console.error(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+ 
 
   const _logout = () => {
     let url = `${window.location.protocol}//${window.location.host}/${props.appName}/logout`;
@@ -66,7 +69,7 @@ function Header(props) {
     navigate(`/${m.component}`, m.props);
   };
 
-  let jobTracker = appOptions.appEnv.jobTracker;
+  let jobTracker = appEnv.jobTracker;
 
   return (
     <div>
@@ -109,7 +112,6 @@ function Header(props) {
           </div>
         </Toolbar>
       </AppBar>
-
       <Drawer
         className={classes.drawer}
         anchor="left"
@@ -126,7 +128,7 @@ function Header(props) {
         <Divider />
         <ClickAwayListener onClickAway={() => _handleClickAway(false)}>
           <Fragment>
-            <ListMenu menus={menu} onSelect={_routeTo} classes={classes} />
+            <ListMenu menus={appMenus} onSelect={_routeTo} classes={classes} />
           </Fragment>
         </ClickAwayListener>
       </Drawer>

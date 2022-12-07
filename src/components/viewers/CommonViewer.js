@@ -5,22 +5,21 @@
 
 
 
-import React, { useState, Fragment,  } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 // import { PropTypes } from 'prop-types';
 
 import Grid from '@mui/material/Grid';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-
-import { useLocation } from 'react-router-dom';
+import {AppContext} from '../../providers';
 import helpers from '../helpers';
 // import QuickNotes from '../helpers/QuickNotes';
 
 
 function CommonViewer (props) {
-	let { classes } = props;
+	let { initialTab, tabs}  = props;
 	let [ currentTab, setCurrentTab ] = useState(0);
-	let { initialTab, tabs } = useLocation().state;
+	let {classes} = useContext(AppContext);
 
 	// Tab handling -- a good candidate as an helper component- wait for more usage examples
 	const _createTabBar = () => {

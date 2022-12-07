@@ -2,15 +2,14 @@
  * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React, { useContext, useState, useRef, useEffect, Fragment } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useAppContext } from '../../providers';
+import React, { useContext, useState, useRef,  useEffect, Fragment } from 'react';
+
+import { AppContext } from '../../providers';
 import SimpleDataForm from '../helpers/SimpleDataForm';
-import { ComputerOutlined } from '@mui/icons-material';
+import {computeSetup, computeRun, computeResults} from '@sassoftware/restaflib';
 
 function OptApp(props) {
-	let { classes, store, restaflib } = props;
-	let { computeSetup, computeRun, computeResults } = restaflib;
+	let { classes, store } = useContext(AppContext);
 	let [message, setMessage] = useState('');
 	let [jobInfo, setJobInfo] = useState({
 		session: null,
@@ -26,8 +25,7 @@ function OptApp(props) {
 		],
 	});
 	debugger;
-	let location = useLocation();
-  console.log(location);
+
 
 	let currentSession = useRef(null);
 
@@ -68,7 +66,7 @@ ods html close;
 
 	useEffect(() => {
 		return () => {
-			let session = (currentSession.current = null);
+			let session = currentSession.current;
 			currentSession.current = null;
 			if (session != null) {
 				session.links('delete');
@@ -94,12 +92,16 @@ ods html close;
 
 		setMessage('...running');
 		let session = jobInfo.session;
-		if (session === null) {
-			session = await computeSetup(store, null, null);
+		debugger;
+		console.log(session);
+		if (session == null) {
+			session = await computeSetup(store);
 			currentSession.current = session;
 		}
+		console.log(session);
 
-		let computeInfo = await computeRun(store, session, sascode, macros, 'wait', 2);
+		let computeInfo = await computeRun(store, session, sascode, macros);
+		debugger;
 		
 		console.log(computeInfo.SASJobStatus);
 		let ods = await computeResults(store, computeInfo, 'ods');
@@ -115,6 +117,7 @@ ods html close;
 
 	let show = (
 		<div className={classes.divmargin}>
+			<h1> {props.text} </h1>
 			<Fragment>
 				{/* <pre>{JSON.stringify(state.desc, null, 4)}</pre> */}
 				<SimpleDataForm

@@ -3,41 +3,37 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import viewers from './components/viewers';
 import appMenus from './appMenus';
 import Header from './components/helpers/Header';
+
 function AppRouter(props) {
-	// const [setRef, dimensions] = useParentSize();
-	let title;
-
 	let homeState = {};
-	console.log(viewers);
+	let HomeComp = null;
 
+	// create menu for hamburger in Header (exclding Home)
 	let switches = appMenus.map((m, key) => {
 		let Comp = viewers[m.component];
 		let path = `/${m.component}`;
 		if (m.component === 'Home') {
-			title = m.props.title;
+			HomeComp = 
+			Comp;
+			path = '*';
 			m.props.appMenus = appMenus;
 			homeState = m.props;
-
-			return (
-				<Route path={path} key={key} element={<Comp appProps={m.props} {...props} />} />
-			);
-		} else {
-			return <Route path={path} key={key} element={<Comp {...props} />} />;
-		}
-	});
-	switches.push(<Route key="redirect" to={{ pathname: '/Home', state: homeState }} />);
-
+		 } 
+		return <Route path={path} key={key} element={<Comp {...m.props} />} />;
+		});
+	// switches.push(<Route key="redirect" to={{ pathname: '/Home', state: homeState }} />);
+	switches.push(<Route key="redirect" element={<HomeComp {...homeState} />} />);
+  debugger;
 	return (
 		<Router>
 			<div id="App" className="sm-navy w-100 h-100">
-				<Header title={title} menu={appMenus} {...props}></Header>
+				<Header {...homeState} ></Header>
 				<Routes>{switches}</Routes>
 			</div>
 		</Router>
