@@ -4,7 +4,7 @@
 
 This Quick Start new SAS Viya applications with minimal setup. Once you have setup your local development enviroment you can add new applications. The following key libraries are installed by default:
 
-<img src="./quickstart.png">
+<img src="quickstart.png">
 
 ---
 

@@ -75,10 +75,12 @@ function Header(props) {
     <div>
       <AppBar position="static" className={classes.appBar1}>
         <Toolbar>
-          <IconButton size="small"
-            className={classes.menuButton}
+          <IconButton
+            size="large"
+            edge="start"
             color="inherit"
-            aria-label="open drawer"
+            aria-label="menu"
+               sx={{ mr: 2 }}
             onClick={() => _toggleMenu(true)}>
             <Menu />
           </IconButton>
@@ -91,11 +93,11 @@ function Header(props) {
             <Home />
           </IconButton>
 
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography variant="h6" color="inherit" sx={{ flexGrow: 1 }}>
             {title}
           </Typography>
           <div>
-            <Typography variant="caption" color="inherit" className={classes.grow}>
+            <Typography variant="caption" color="inherit">
               {admin}
             </Typography>
 
