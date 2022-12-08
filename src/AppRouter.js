@@ -10,10 +10,10 @@ import viewers from './components/viewers';
 import appMenus from './appMenus';
 import Header from './components/helpers/Header';
 
-function AppRouter(props) {
+function AppRouter(_props) {
 	let homeState = {};
 	let HomeComp = null;
-
+	debugger;
 	// create menu for hamburger in Header (exclding Home)
 	let switches = appMenus.map((m, key) => {
 		let Comp = viewers[m.component];

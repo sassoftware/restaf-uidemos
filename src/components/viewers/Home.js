@@ -19,7 +19,6 @@ function Home (props) {
 						<ReadMe
 							text={homeNotesText}
 						/>
-							
 					</main>
 				</Paper>
 			</Grid>

@@ -10,9 +10,10 @@ async function setupViya(appEnv, logonPayload) {
 	let services = await store.addServices('casManagement', 'compute');
 	
 	let appOptions = {
-		logonPayload: logonPayload,
-		appEnv      : appEnv,
-		store       : store
+		logonPayload : logonPayload,
+		appEnv       : appEnv,
+		store        : store,
+		homeNotesText: '# Welcome'
 	}
 	// for default home page
 	if (appEnv.homeNotes != null) {
@@ -22,7 +23,6 @@ async function setupViya(appEnv, logonPayload) {
 		};
 		let r = await store.request(p);
 		appOptions.homeNotesText = r.data;
-		console.log(appOptions.homeNotesText);
 	}
 	let progressb = progress.bind(null, store);
 	let onCompletionb = onCompletion.bind(null, store);
