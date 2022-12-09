@@ -6,6 +6,8 @@
 import { initStore } from '@sassoftware/restaf';
 async function setupViya(appEnv, logonPayload) {
 	let store    = initStore({casProxy: true});
+	debugger;
+	console.log(logonPayload);
 	await store.logon(logonPayload);
 	let services = await store.addServices('casManagement', 'compute');
 	
@@ -13,7 +15,7 @@ async function setupViya(appEnv, logonPayload) {
 		logonPayload : logonPayload,
 		appEnv       : appEnv,
 		store        : store,
-		homeNotesText: '# Welcome'
+		homeNotesText: '# Welcome. Replace Home.js with your own landing page'
 	}
 	// for default home page
 	if (appEnv.homeNotes != null) {

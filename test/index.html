@@ -1,0 +1,50 @@
+<html>
+<header>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="./dist/viyaapp.dev.js"></script>
+<script type="text/javascript" src="viyaapp/appenv"></script>
+<!--  Use the three files below to customize your application -->
+<script>
+// set your viya host herr */
+   const host = LOGONPAYLOAD.host;
+   console.log(APPENV);
+</script>
+<link rel="stylesheet" href="./App.css">
+
+<script type="text/javascript">
+    // setup and display application
+    function _display() {
+        debugger;
+        const props = {
+            logonPayload: LOGONPAYLOAD,
+            appEnv      : APPENV;
+        }
+        // Display application
+        console.log(props);
+        try {
+            Viyaapp.display(props, 'container1');
+        } 
+        catch(err) {
+            console.log(err);
+            alert(err);
+        }
+        return 'done'
+    }
+</script>
+
+</header>
+
+<body onload="_display()">
+    <div id="container1" class="main"> </div>
+</div>
+
+</body>
+
+
+
+
+
+
+</html>

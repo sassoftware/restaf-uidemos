@@ -9,7 +9,9 @@ function PlaceHolder (props) {
   console.log(r);
   let show =
     <div id="page-wrap">
+      <h2> Context</h2>
       <pre> {JSON.stringify(r, null, 4)} </pre>
+      <h2> Props from appMenus</h2>
       <pre> {JSON.stringify(props, null,4)}</pre>
 
     </div>;

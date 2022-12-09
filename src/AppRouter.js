@@ -15,6 +15,7 @@ function AppRouter(_props) {
 	let HomeComp = null;
 	debugger;
 	// create menu for hamburger in Header (exclding Home)
+	console.log(appMenus);
 	let switches = appMenus.map((m, key) => {
 		let Comp = viewers[m.component];
 		let path = `/${m.component}`;
