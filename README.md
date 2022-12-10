@@ -47,7 +47,7 @@ The default implicit clientID information are:
   client_id: 'clientappi',
   resource_ids: [ 'none' ],
   authorized_grant_types: [ 'implicit' ],
-  redirect_uri: [ 'https://localhost:5002/index.html' ],
+  redirect_uri: [ 'https://localhost:5000/index.html' ],
   autoapprove: [ 'true' ],
   access_token_validity: 86400,
   authorities: [ 'uaa.none' ],
@@ -67,7 +67,7 @@ The default authorization_flow clientid
   resource_ids: [ 'none' ],
   authorized_grant_types: [ 'authorization_code', 'refresh_token' ],
   redirect_uri: [
-    'https://localhost:5002/viyaapp',
+    'https://localhost:5000/viyaapp',
   ],
   autoapprove: [ 'true' ],
   access_token_validity: 86400,
