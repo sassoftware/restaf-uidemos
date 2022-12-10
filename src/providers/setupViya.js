@@ -6,7 +6,7 @@
 import { initStore } from '@sassoftware/restaf';
 async function setupViya(appEnv, logonPayload) {
 	let store    = initStore({casProxy: true});
-	debugger;
+	
 	console.log(logonPayload);
 	await store.logon(logonPayload);
 	let services = await store.addServices('casManagement', 'compute');
@@ -30,7 +30,7 @@ async function setupViya(appEnv, logonPayload) {
 	let onCompletionb = onCompletion.bind(null, store);
 	appOptions.classes = {};
 	appOptions.jobStatus = { progress: progressb, onCompletion: onCompletionb };
-	debugger;
+	
 	return appOptions; 
 }
 

@@ -17,10 +17,9 @@ function App(props) {
 	let { logonPayload, appEnv } = props;
 
 	// let classes = defaultStyles()();
-	console.log(logonPayload);
-	debugger;
+	
 	// to keep the session active for longer than the default
-	    debugger;
+	    
 	if (logonPayload.keepAlive != null) {
 		let interval = 120;
 		let timeout = 14400;
@@ -37,7 +36,7 @@ function App(props) {
 			return true;
 		});
 	}
-	debugger;
+	
 
 	return <AppRouter></AppRouter>;
 		

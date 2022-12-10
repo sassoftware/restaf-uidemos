@@ -20,6 +20,7 @@ let appMenus =  [
 		component: 'OptApp',
 		props: {
 			text: 'Promotion optimization App',
+			
 			three: 3,
 		}
 	},

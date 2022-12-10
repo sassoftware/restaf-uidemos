@@ -24,7 +24,7 @@ function SimpleDataForm(props) {
     const { onSubmit, title, disabled } = props;
     const {classes} = useAppContext();
 
-    debugger;
+    
     /*-----------------------------------------
     props = [
        {

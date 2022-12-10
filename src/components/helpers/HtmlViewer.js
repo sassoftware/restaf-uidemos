@@ -27,14 +27,6 @@ function HtmlViewer(props) {
                         'searchreplace visualblocks code fullscreen',
                         'insertdatetime media table paste code help wordcount'
                     ]
-                    /*
-                    setup: function (editor) {
-                        editor.on('AfterSetSelectionRange', (e) => {
-                            let bookmark = editor.selection.getBookMark();
-                            console.log(bookmark);
-                        });
-                    },
-                    */
                 }}
             />
         </div>

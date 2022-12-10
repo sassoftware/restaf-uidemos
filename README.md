@@ -6,7 +6,10 @@
 
 ---
 
-This is a react-based application built with create-react-app
+This is a react-based application built with create-react-app. You can build applications for SAS Viya 
+without worrying about wiring of routes, code for authentication etc. Use the [restaf, restaflib and restafedit libraries](https://sassoftware.github.io/restaf) for easy access to SAS Viya.
+
+Use your extra free time doing other interesting stuff.
 
 ## Installation
 
@@ -16,61 +19,99 @@ cd reactapp
 npm install
 ```
 
+---
+
 ## Configuration
 
-1. Configure your Viya server as described in this [link](https://github.com/sassoftware/restaf/wiki/usefulTips).
+---
 
-2. Edit the .env file and set the appropiate values.
+### Server Configuration
 
-The default clientId information are:
+Configure your Viya server as described in this [link](https://github.com/sassoftware/restaf/wiki/usefulTips).
 
-- Oauth flow: authorization_code
-- clientid: appcom
-- secret: secret
-- redirect_uri: <http://localhost:8000/viyaapp>
+### .env files
 
-3.Set the VIYA_SERVER to your Viya URL (ex: https://....)
+1. .env.development - for development
+2. .env.production - for production (i.e run with optimized code)
 
-- Set an environment variable as follows
+### ClientID
 
-```sh
-set VIYA_SERVER=<your viya server: ex: <http://myviyaserver.com>
+1. Development: An implicit flow clientid. This allows the use of Hot Module Replacement(HMR)
+2. Production : An authorization_flow clientid
+
+The default implicit clientID information are:
+
+```js
+{
+  scope: [ 'openid', '*' ],
+  client_id: 'clientappi',
+  resource_ids: [ 'none' ],
+  authorized_grant_types: [ 'implicit' ],
+  redirect_uri: [ 'https://localhost:5002/index.html' ],
+  autoapprove: [ 'true' ],
+  access_token_validity: 86400,
+  authorities: [ 'uaa.none' ],
+  'use-session': true,
+  lastModified: 1670622655179,
+  required_user_groups: []
+}
 ```
 
-Alternatively you can edit the .env file and add this information to it.
+The default authorization_flow clientid
 
-The last step is to build the default application.
+```js
+{
+  scope: [ 'openid', '*' ],
+  client_id: 'clientapp',
+  // clientSecret: 'secret'
+  resource_ids: [ 'none' ],
+  authorized_grant_types: [ 'authorization_code', 'refresh_token' ],
+  redirect_uri: [
+    'https://localhost:5002/viyaapp',
+  ],
+  autoapprove: [ 'true' ],
+  access_token_validity: 86400,
+  authorities: [ 'uaa.none' ],
+  'use-session': true,
+  lastModified: 1670513824451,
+  required_user_groups: []
+}
 
-```sh
-npm run  buildapp
 ```
 
-> The buildapp script does some necessary housekeeping before running the standard start script of create-react-app. So use buildapp to build the application
+### Viya URL (VIYA_SERVER)
 
-## Run the application
+Option 1:   Set(export) the value as a environment variable. This prevents accidental push of the url to github
 
-Now you are ready to run the default application.
+Option 2: Set it directly in the .env files
 
-Enter the following commands
+### Building and Running app
+
+Use create-react-app standard start and build commands
+
+### Testing the final build
+
 
 ```sh
-npm run  app
-```
-
-At this point you should visit <http://localhost:8080/viyaapp>
-
-```text
-http://localhost:8080/viyaapp
-
+npm run app
 ```
 
 ---
 
-## Adding your own applications
+## Adding your own React component(Application)
 
 ---
 
-It is a simple process to get your application appearing in the application menu. This menu is acccessed via the hamburger menu in the application's banner. The default app takes care of all the routing and passing the correct props to your application's main component.
+The src directory has 3 key sbu directories
+
+1. viewers -- this directory has the main entry of the applications selectable in the menu
+
+2. helpers  -- this directory is designed to hold react components used by the viewers
+
+3. lib      -- this directory is for code that is not UI related: Example: code to access Viya, data manipulations etc...
+
+>
+It is a simple process to get your application appearing in the application menu. Every entry exported from src/viewers/index.js will appear as a selection in the hanburger menu in the application's banner. The default app takes care of all the routing and passing the correct props to your application's main component.
 
 ![Quick start](https://github.com/sassoftware/restaf/blob/2.0.0/images/viya-app.png)
 
@@ -125,7 +166,8 @@ import {AppContext} from '../../providers';
 let {classes, store, appEnv, logonPayload} = useAppContext();
 ```
 
-See providers/setupViya and App.js on how appContext is setup. 
+See providers/setupViya and index.js on how appContext is setup and used.
+
 ---
 
 ### Step 2
@@ -133,6 +175,7 @@ See providers/setupViya and App.js on how appContext is setup.
 ---
 
 Develop your main app component in the viewers directory. You can use any react library. By default this project installs @mui5.
+Export the entry thru src/viewers/index.js
 
 ```js
 import React, {useContext} from 'react';
@@ -141,33 +184,35 @@ import {AppContext} from '../../provders';
 
 function MyDemo(props) {
     const {store, classes} = useContext(AppContext);
-    const {... your props from appMenu.js} = props;
+    const {text, n1,n2} = props;
 
     let total = n1 + n2;
-    return <div className={classes.div}>
-     <h1> {label} <h1>
+    return <div>
+     <h1> {text} <h1>
      <p> {total} </p>
      </div>;
 }
 default export MyApp;
 ```
 
----
+### Step 3 Supporting components
 
-## Project Organization
+If you create additional components(helper) add them to src/helpers directory. Do not forget to update the index.js file in that folder. Not a rigid requirement, but see the next section for some advantages.
 
----
+### Auto building the index.s in viewers and helpers folder
 
-The src directory has 3 key sbu directories
+Run the command below to add automatically build the index.js files in /src/viewers and /src/helpers folders.
 
-1. viewers -- this directory has the main entry of the applications selectable in the menu
-
-2. helpers  -- this directory is designed to hold react components used by the viewers
-
-3. lib      -- this directory is for code that is not UI related: Example: code to access Viya, data manipulations etc...
-
-npm run buildapp will scan the viewers and helpers directory and create the index.js in each of these directories.
+This will scan the viewers and helpers directory and create the index.js in each of these directories.
 For every entry in viewers directory the application will create a route that can be referenced in the appMenu.js
+
+```sh
+npm run buildapp
+```
+
+ You have to run this command only when you add something new to the viewers or helpers folders.If you want to extend this to other folders modify createRoutes.js
+
+---
 
 ## **Conclusion**
 

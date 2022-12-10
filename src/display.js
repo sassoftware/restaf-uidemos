@@ -5,8 +5,6 @@ import App from './App';
 function display(appOptions, component){
   const root = ReactDOM.createRoot(document.getElementById(component));
   let {logonPayload, appEnv} = appOptions;
-  console.log(appEnv);
-  debugger;
   root.render(<App logonPayload={logonPayload} appEnv={appEnv} />);
 }
 export default display;

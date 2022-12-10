@@ -10,7 +10,7 @@ import {AppContext} from '../../providers';
 
 function Home (props) {
 	let {classes, homeNotesText}  = useContext(AppContext);
-	debugger;
+	
 	let show = (
 		<Grid container spacing={4}>
 			<Grid item>

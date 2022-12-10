@@ -1,1 +1,2 @@
-add clientapp -t authorization_code -s secret -r https://localhost:5000/viyaapp,https://localhost:5002/viyaapp,https://localhost:5002/viyaeditor,https://localhost:5002/viyaeditor
+add clientapp -t authorization_code -s secret -r https://localhost:5002/viyaapp
+add clientappi -t implicit -r https://localhost:5002/index.html

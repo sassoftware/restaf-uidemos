@@ -63,7 +63,7 @@ function Header(props) {
 
   const _routeTo = (_index, m) => {
     setMenuIsOpen(false);
-    debugger;
+    
     console.log(`/${m.component}`);
     console.log(m.props);
     navigate(`/${m.component}`, m.props);
