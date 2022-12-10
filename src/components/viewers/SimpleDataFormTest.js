@@ -9,7 +9,7 @@ import SimpleDataForm from '../helpers/SimpleDataForm';
 import { Grid } from '@mui/material';
 function SimpleDataFormTest (props) {
 
-  debugger;
+  
   let context = useContext(AppContext);
   console.log(context);
   console.log(props);

@@ -18,7 +18,7 @@ function MasRun(props) {
     })
     let errInfo = null;
     let {restaflib, store} = useAppContext();
-    console.log(masControl);
+    
     const _getDesc = async () => {
         let name = result.itemsList(index);
         

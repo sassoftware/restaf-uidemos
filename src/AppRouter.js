@@ -10,17 +10,17 @@ import viewers from './components/viewers';
 import appMenus from './appMenus';
 import Header from './components/helpers/Header';
 
-function AppRouter(props) {
+function AppRouter(_props) {
 	let homeState = {};
 	let HomeComp = null;
-
-	// create menu for hamburger in Header (exclding Home)
+	
+	// create menu for hamburger in Header (excluding Home)
+	console.log(appMenus);
 	let switches = appMenus.map((m, key) => {
 		let Comp = viewers[m.component];
 		let path = `/${m.component}`;
 		if (m.component === 'Home') {
-			HomeComp = 
-			Comp;
+			HomeComp = Comp;
 			path = '*';
 			m.props.appMenus = appMenus;
 			homeState = m.props;
@@ -29,7 +29,7 @@ function AppRouter(props) {
 		});
 	// switches.push(<Route key="redirect" to={{ pathname: '/Home', state: homeState }} />);
 	switches.push(<Route key="redirect" element={<HomeComp {...homeState} />} />);
-  debugger;
+  
 	return (
 		<Router>
 			<div id="App" className="sm-navy w-100 h-100">

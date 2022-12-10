@@ -114,8 +114,6 @@ function ViewMas(props) {
             component: null
         };
 
-        console.log(jobContext);
-
         if (rel === 'championModel') {
             store.apiCall(rafLink)
                 .then(r => console.log(JSON.stringify(r.items(), null, 4)))

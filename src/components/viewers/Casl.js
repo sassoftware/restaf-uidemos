@@ -27,7 +27,7 @@ function Casl (props) {
     let {text, initialTab, tabs} = props;
     const {store, classes} = useContext(AppContext);
 
-    debugger;
+    
     let [ currentTab, setCurrentTab ] = useState(0);
     let [ computeInfo, setComputeInfo ] = useState({
         session: null,

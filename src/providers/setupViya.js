@@ -6,13 +6,16 @@
 import { initStore } from '@sassoftware/restaf';
 async function setupViya(appEnv, logonPayload) {
 	let store    = initStore({casProxy: true});
+	
+	console.log(logonPayload);
 	await store.logon(logonPayload);
 	let services = await store.addServices('casManagement', 'compute');
 	
 	let appOptions = {
-		logonPayload: logonPayload,
-		appEnv      : appEnv,
-		store       : store
+		logonPayload : logonPayload,
+		appEnv       : appEnv,
+		store        : store,
+		homeNotesText: '# Welcome. Replace Home.js with your own landing page'
 	}
 	// for default home page
 	if (appEnv.homeNotes != null) {
@@ -22,13 +25,12 @@ async function setupViya(appEnv, logonPayload) {
 		};
 		let r = await store.request(p);
 		appOptions.homeNotesText = r.data;
-		console.log(appOptions.homeNotesText);
 	}
 	let progressb = progress.bind(null, store);
 	let onCompletionb = onCompletion.bind(null, store);
 	appOptions.classes = {};
 	appOptions.jobStatus = { progress: progressb, onCompletion: onCompletionb };
-	debugger;
+	
 	return appOptions; 
 }
 

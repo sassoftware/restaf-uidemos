@@ -63,7 +63,7 @@ function Header(props) {
 
   const _routeTo = (_index, m) => {
     setMenuIsOpen(false);
-    debugger;
+    
     console.log(`/${m.component}`);
     console.log(m.props);
     navigate(`/${m.component}`, m.props);
@@ -141,19 +141,6 @@ function Header(props) {
   );
 
 }
-
-Header.propTypes = {
-  /**
-   * 
-   * Displays an Header at the top of the page 
-   * 
-   */
-  menu: PropTypes.array.isRequired,
-
-  /** Text to display in the Header */
-  title: PropTypes.string.isRequired
-
-};
 
 
 export default Header;

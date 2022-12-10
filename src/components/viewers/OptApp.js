@@ -24,7 +24,7 @@ function OptApp(props) {
 			{ name: 'Initial_Stock', value: 1.0, label: 'Initial_Stock', type: 'number' },
 		],
 	});
-	debugger;
+	
 
 
 	let currentSession = useRef(null);
@@ -92,7 +92,7 @@ ods html close;
 
 		setMessage('...running');
 		let session = jobInfo.session;
-		debugger;
+		
 		console.log(session);
 		if (session == null) {
 			session = await computeSetup(store);
@@ -101,7 +101,7 @@ ods html close;
 		console.log(session);
 
 		let computeInfo = await computeRun(store, session, sascode, macros);
-		debugger;
+		
 		
 		console.log(computeInfo.SASJobStatus);
 		let ods = await computeResults(store, computeInfo, 'ods');

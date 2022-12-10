@@ -4,28 +4,22 @@
 */
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
+
+const appEnvRoute = (req, res) => {
+
+  let t = `
+      let LOGONPAYLOAD = {
+        host: "${process.env.REACT_APP_VIYA_SERVER}",
+        authType: 'implicit',
+        clientID: '${process.env.REACT_APP_CLIENTID}',
+        redirect: '/index.html'
+    };
+      let APPENV={};
+  `;
+    console.log('--- Logon information');
+    console.log(t);
+    res.send(t);
+  }
 module.exports = function (app) {
-  const proxyViya = {
-      target: 'https://viya.kumar-2210-azure-nginx-3334cf3e.unx.sas.com',
-      changedOrigin: true,
-      router: {
-        'dec.localhost:3000': 'https://localhost:5002'
-      },
-      secure: false
-  }
-  const proxyLocal = {
-      target:'https://localhost:5002',
-      changedOrigin: true,
-      secure: false
-  }
-  console.log(proxyViya);
-  console.log(proxyLocal);
-
-  app.use( "/viyaapp", createProxyMiddleware(proxyLocal));
-  app.use( '/favicon.ico',  createProxyMiddleware(proxyLocal));
-  app.use(`/${process.REACT_APP_VIYA_SERVER}`, createProxyMiddleware(proxyViya));
-  app.use(`/preferences`, createProxyMiddleware(proxyViya));
-  app.use(`/ui`, createProxyMiddleware(proxyViya));
-
-
+  app.use('/' + process.env.REACT_APP_APPNAME + '/appenv', appEnvRoute)
 };
