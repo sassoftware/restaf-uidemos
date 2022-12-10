@@ -6,7 +6,7 @@
 
 ---
 
-This is a react-based application built with create-react-app. You can build applications for SAS Viya 
+This is a react-based application built with create-react-app. You can build applications for SAS Viya
 without worrying about wiring of routes, code for authentication etc. Use the [restaf, restaflib and restafedit libraries](https://sassoftware.github.io/restaf) for easy access to SAS Viya.
 
 Use your extra free time doing other interesting stuff.
@@ -90,7 +90,6 @@ Option 2: Set it directly in the .env files
 Use create-react-app standard start and build commands
 
 ### Testing the final build
-
 
 ```sh
 npm run app
