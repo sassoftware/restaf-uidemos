@@ -228,7 +228,10 @@ Issue this command to build the application
 npm run build4va
 ```
 
-The
+### Deployment
+
+Deploy the component folder to SAS Visual Analytics.
+
 ## **Conclusion**
 
 That is all there is to adding new application - no wiring of routes, servers, code for authentication etc...

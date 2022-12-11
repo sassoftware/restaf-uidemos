@@ -29,6 +29,7 @@ function SimpleDataFormTest (props) {
   const _userInputs = (d) => {
     console.log(d);
   }
+  
   let show =
     <div className={classes.divmargin}>
       <Grid container alignItems="center" direction="row">
