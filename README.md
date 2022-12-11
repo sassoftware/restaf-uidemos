@@ -1,5 +1,6 @@
 # A Viya Web Application using react and restaf
 
+
 ---
 
 ## Introduction
@@ -8,6 +9,8 @@
 
 This is a react-based application built with create-react-app. You can build applications for SAS Viya
 without worrying about wiring of routes, code for authentication etc. Use the [restaf, restaflib and restafedit libraries](https://sassoftware.github.io/restaf) for easy access to SAS Viya.
+
+As an added bonus, build a library that can be readily deployed in SAS Visual Analytics as a web content.
 
 Use your extra free time doing other interesting stuff.
 
@@ -213,6 +216,19 @@ npm run buildapp
 
 ---
 
+---
+
+## VA ready application
+
+### Build
+
+Issue this command to build the application
+
+```sh
+npm run build4va
+```
+
+The
 ## **Conclusion**
 
 That is all there is to adding new application - no wiring of routes, servers, code for authentication etc...

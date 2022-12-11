@@ -15,8 +15,6 @@
     "@sassoftware/viya-appserverjs": "^2.1.2",
     "@tinymce/tinymce-react": "^4.2.0",
     "ace-builds": "^1.13.1",
-    "ag-grid-community": "^28.2.1",
-    "ag-grid-react": "^28.2.1",
     "react": "^18.2.0",
     "react-ace": "^10.1.0",
     "react-dom": "^18.2.0",
@@ -28,15 +26,14 @@
     "build": "react-scripts build",
     "testx": "react-scripts test",
     "eject": "react-scripts eject",
-    "buildapp": "node createRoutes && env-cmd --file ./.env react-scripts build",
-    "dev": "cross-env APPENTRY=/develop APPLOC=./public node server --env=.env --docker=Dockerfile",
-    "newdev": "npx concurrently \"npm run app\" \"webpack-dev-server -d --open --content-base dist\"",
+    "buildapp": "node createRoutes && env-cmd --file ./.env.production react-scripts build",
     "app": "cross-env  APPLOC=./build APPENTRY=index.html node server --env=.env.production --docker=Dockerfile",
+    "test": "cross-env  APPLOC=./component APPENTRY=index.html node server --env=.env.production --docker=Dockerfile",
     "format": "prettier-eslint --eslint-config-path ./.eslintrc.json --write '**/*.js'",
     "lint": "eslint . --ext .js --fix",
-    "wpack": "webpack --env p=n --config=webpack.config.js && webpack --env p=y --config=webpack.config.js",
-    "build:lib": "rimraf dist && npm run wpack && rimraf ./test/dist && cp -r dist ./test/dist",
-    "test": "node server --env=./.test.env --docker=Dockerfile",
+    "wpack": "webpack --env p=n library=ViyaApp --config=webpack.config.js && webpack --env p=y library=ViyaApp --config=webpack.config.js",
+    "build4va": "rimraf dist && npm run wpack && rimraf ./component/dist && cp -r dist ./component/dist",
+    "lib": "node server --env=.env.production --docker=Dockerfile",
     "indocker": "node server.js"
   },
   "devDependencies": {
@@ -68,6 +65,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://viya.kumar-2210-azure-nginx-3334cf3e.unx.sas.com"
+  }
 }

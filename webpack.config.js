@@ -21,12 +21,12 @@ let path = require( 'path' );
 module.exports = (env) => {
 
     const config = {
-        entry: [ "./src/viyaapp.js" ],
+        entry: [ "./src/main.js" ],
         mode: (env.p === 'y') ? 'production' : 'development',
         output: {
             path         : path.resolve( __dirname, "dist" ),
-            filename     : (env.p === 'y') ? "viyaapp.js" : "viyaapp.dev.js",
-            library      : "Viyaapp",
+            filename     : (env.p === 'y') ? "index.js" : "index.dev.js",
+            library      : env.library,
             libraryTarget: "umd"
         },
         /*
