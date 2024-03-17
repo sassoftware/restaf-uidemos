@@ -8,16 +8,17 @@ let appMenus =  [
 	{
 		component: 'Home',
 		text     : 'Introduction',
-		hide     : true,
+		hide     : false,
 		props    : {
 			text     : 'Introduction',
-			title    : 'Default Applications',
-			homePage : 'https://localhost:5002/viyaapp/README.md'
+			title    : 'Assistant that talks to SAS Viya',
+			homePage : 'https://localhost:8080/assistantapi/README.md'
 		},
 	},
 	{
 	
 		component: 'OptApp',
+		hide: true,
 		props: {
 			text: 'Promotion optimization App',
 			
@@ -27,6 +28,7 @@ let appMenus =  [
 	
 	{
 		component: 'MasModel',
+		hide: true,
 		props    : {
 			text : 'Car Auction',
 			models: [
@@ -51,6 +53,7 @@ let appMenus =  [
 	
 	{
 		component: 'CommonViewer',
+		hide: true,
 		props    : {
 			text      : 'Browse MAS models and Score',
 			initialTab: 0,
@@ -59,6 +62,7 @@ let appMenus =  [
 	},
 	{
         component: 'CommonViewer',
+				hide: true,
         props: {
             text: 'Pipeline Management',
             service: 'mlPipelineAutomation',
@@ -93,14 +97,49 @@ let appMenus =  [
 	},
 	{
 		component: 'PlaceHolder',
-		// hide: true,
+		hide: true,
 		props    : {
 			text : 'Describe Viewer Props',
 			three: 3,
 		},
 	},
 	{
+		component: 'SASAssistant',
+			// hide: true,
+			props    : {
+				text : 'SASAssistant(openai)(cas)',
+				provider: 'openai',
+				source: 'cas'
+			},
+		},
+		{component: 'SASAssistant',
+		// hide: true,
+		props    : {
+			text : 'SAS Assistant(azure)(cas)',
+			provider: 'azureai',
+			source: 'cas'
+		},
+	},
+	{
+		component: 'SASAssistant',
+			// hide: true,
+			props    : {
+				text : 'SASAssistant(openai)(compute)',
+				provider: 'openai',
+				source: 'compute'
+			},
+		},
+		{component: 'SASAssistant',
+		// hide: true,
+		props    : {
+			text : 'SAS Assistant(azure)(compute)',
+			provider: 'azureai',
+			source: 'compute'
+		},
+	},
+	{
 		component: 'SimpleDataFormTest',
+		hide: true,
 		props    : {
 			text : 'Test Data form',
 			three: 3,

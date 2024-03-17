@@ -1,0 +1,86 @@
+/*
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+import React , {useContext, useState, useEffect} from 'react';
+import {setupAssistant, runAssistant} from '@sassoftware/viya-assistantjs';
+import setupViyaSession from '../lib/setupViyaSession';
+import {functionSpecs, instructions} from '../../tools/sasAssistant'
+import {AppContext} from '../../providers';
+import TextField from '@mui/material/TextField';
+import HtmlViewer from '../helpers/HtmlViewer';
+import Button from '@mui/material/Button';
+
+function Assistant(props) {
+  const [prompt, setPrompt] = useState('');
+  const [instruct, setInstruct] = useState('');
+  const [response, setResponse] = useState('');
+  const [gptControl, setGptControl] = useState(null);
+  const [appEnv, setAppEnv] = useState(null);
+  let r = useContext(AppContext);;
+
+  debugger;
+  
+  const setupEnv = async() => {
+    let config = r.appEnv.config;
+    // get info on tools
+    config.domainTools = functionSpecs();
+    config.instructions = instructions();
+    debugger;
+    let gptControl = await setupAssistant(config);
+    setGptControl(gptControl);
+    let appEnv = await setupViyaSession(config.source, r.logonPayload);
+    setAppEnv(appEnv);
+    console.log(appEnv);
+    return 'done';
+  }
+  useEffect(() => {
+    setupEnv()
+    .then(m => {
+      console.log(m)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  },[]);
+
+  const _onChange = (e, type) => {
+    debugger;
+    let value = e.target.value;
+    if (type === 'prompt') {
+      setPrompt(value);
+    } else {
+      setInstruct(value);
+    } 
+  }
+  const _onClick = () => {
+    runAssistant(gptControl, prompt, instruct, appEnv)
+    .then (r => {
+      //TBD: handling types other than text
+      let msg = '';
+      for (let i = 0; i < r.length; i++) {
+        msg = msg + r[i].content + '<br/>'
+      }
+
+      setResponse(`<strong>${prompt}</strong>` + '<br/><br/>' + msg + '<br/><br/>' + response);
+    })
+    .catch(err => {
+      setResponse(`<strong>${prompt}</strong>` + '<br/><br/>' + err + '<br/>' +  response);
+    })  
+  }
+  let show =
+    <div id="page-wrap">
+      <TextField id="prompt" type="text" label="prompt" multiline={true} minRows={2} 
+      style= {{width: '80ch', alignment: 'left'}} value={prompt} placeholder="Ask me anything"
+       onChange={(e) => _onChange(e, 'prompt')}/>
+      <br/>
+      <TextField id="instruct" type="text" label="instructions" multiline={true} minRows={2}
+       style= {{width: '80ch', alignment: 'left'}} value={instruct} placeholder="Additional instructions(optional)" 
+       onChange={(e) => _onChange(e, 'instruct')}/>
+      <br/>
+      <Button variant="contained" color="primary" onClick={() => _onClick()}>Run</Button>
+      <HtmlViewer html={response} selections={null} />
+    </div>;
+  return show;
+  }
+export default Assistant;

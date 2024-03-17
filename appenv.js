@@ -1,9 +1,8 @@
 
 let info = {
-       jobTrackerx: {
-              delay   : 5,
-              viewTime: 3
-       }
+  homeNotes: 'https://localhost:8080/assistantapi/README.md',
 }
+console.log(info);
 return info;
+;
        

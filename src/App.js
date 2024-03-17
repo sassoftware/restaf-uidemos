@@ -19,7 +19,7 @@ function App(props) {
 	// let classes = defaultStyles()();
 	
 	// to keep the session active for longer than the default
-	    
+	debugger;
 	if (logonPayload.keepAlive != null) {
 		let interval = 120;
 		let timeout = 14400;

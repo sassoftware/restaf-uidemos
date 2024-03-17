@@ -25,7 +25,6 @@ import { useAppContext } from '../../providers';
 function Header(props) {
   const { title, appMenus } = props;
   let [menuIsOpen, setMenuIsOpen] = useState(false);
- 
 
   let { store, classes, appEnv } = useAppContext();
   let navigate = useNavigate();
@@ -41,6 +40,7 @@ function Header(props) {
     return true;
   }
   useEffect(() => {
+
     isUserAdmin(store)
       .catch((err) => console.error(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,11 +62,13 @@ function Header(props) {
   };
 
   const _routeTo = (_index, m) => {
+    console.log(_index ,m);
+    debugger;
     setMenuIsOpen(false);
-    
+    debugger;
     console.log(`/${m.component}`);
-    console.log(m.props);
-    navigate(`/${m.component}`, m.props);
+    debugger;
+    navigate(`/${m.component}`, {state: {...m.props, user: admin}});
   };
 
   let jobTracker = appEnv.jobTracker;

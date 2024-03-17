@@ -1,6 +1,6 @@
 {
-  "name": "reactapp",
-  "version": "0.4.1",
+  "name": "openai-assistant",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
@@ -10,23 +10,26 @@
     "@monaco-editor/react": "^4.4.6",
     "@mui/icons-material": "^5.10.16",
     "@mui/material": "^5.10.16",
-    "@sassoftware/restaf": "^4.8.4",
-    "@sassoftware/restaflib": "^4.8.4",
-    "@sassoftware/viya-appserverjs": "^2.1.2",
+    "@sassoftware/restaf": "^5.2.4",
+    "@sassoftware/restafedit": "^2.4.7",
+    "@sassoftware/restaflib": "^5.2.4",
+    "@sassoftware/viya-assistantjs": "^0.5.1",
     "@tinymce/tinymce-react": "^4.2.0",
     "ace-builds": "^1.13.1",
+    "html-react-parser": "^5.1.8",
     "react": "^18.2.0",
     "react-ace": "^10.1.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.4",
-    "react-router-dom": "^6.4.4"
+    "react-router-dom": "^6.4.4",
+    "rehype-raw": "^7.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "testx": "react-scripts test",
     "eject": "react-scripts eject",
-    "buildapp": "node createRoutes && env-cmd --file ./.env.production react-scripts build",
+    "buildapp": "rimraf build && node createRoutes && cross-env REACT_APP_APPNAME=assistant react-scripts build",
     "app": "cross-env  APPLOC=./build APPENTRY=index.html node server --env=.env.production --docker=Dockerfile",
     "test": "cross-env  APPLOC=./component APPENTRY=index.html node server --env=.env.production --docker=Dockerfile",
     "format": "prettier-eslint --eslint-config-path ./.eslintrc.json --write '**/*.js'",
@@ -38,6 +41,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
+    "@sassoftware/viya-appserverjs": "^2.16.2",
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0",

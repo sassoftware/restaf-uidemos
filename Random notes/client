@@ -1,0 +1,27 @@
+
+  {
+    client_id: 'openaiassistant',
+  scope: [ 'openid', '*' ],
+  resource_ids: [ 'none' ],
+  autoapprove: true,
+  authorized_grant_types: [ 'authorization_code' ],
+  'use-session': true,
+  client_secret: 'secret',
+  redirect_uri: [
+    'https://localhost:8080/assistantopenai',
+    'https://viyaurl/assistantopenai'
+  ]
+}
+{
+  client_id: 'viyaapp',
+  scope: [ 'openid', '*' ],
+  resource_ids: [ 'none' ],
+  autoapprove: true,
+  authorized_grant_types: [ 'authorization_code' ],
+  'use-session': true,
+  client_secret: 'secret',
+  redirect_uri: [
+    'https://localhost:8080/viyaapp',
+    'https://viyaurl/viyaapp'
+  ]
+}

@@ -10,6 +10,7 @@ import MasViewerTest from './MasViewerTest';
 import MLPA from './MLPA'; 
 import OptApp from './OptApp'; 
 import PlaceHolder from './PlaceHolder'; 
+import SASAssistant from './SASAssistant'; 
 import ScoreContainer from './ScoreContainer'; 
 import SimpleDataFormTest from './SimpleDataFormTest'; 
 export default {
@@ -24,6 +25,7 @@ MasViewerTest,
 MLPA,
 OptApp,
 PlaceHolder,
+SASAssistant,
 ScoreContainer,
 SimpleDataFormTest,
 };

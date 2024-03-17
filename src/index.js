@@ -11,6 +11,7 @@ import {setupViya, AppContext} from './providers'
 //import * as serviceWorker from 'serviceWorker';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let {logonPayload, appEnv} = window.appOptions;
+debugger;
 setupViya(appEnv, logonPayload)
 	.then((appOptions) => {
 
