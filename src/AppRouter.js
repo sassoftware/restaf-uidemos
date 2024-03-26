@@ -26,7 +26,7 @@ function AppRouter(_props) {
 			homeState = m.props;
 		 } 
 		 console.log(m.props);
-		return <Route path={path} key={key} element={<Comp {...m.props} />} />;
+		return <Route path={path} key={key} element={<Comp key={key+100} {...m.props} />} />;
 		});
 	// switches.push(<Route key="redirect" to={{ pathname: '/Home', state: homeState }} />);
 	switches.push(<Route key="redirect" element={<HomeComp {...homeState} />} />);

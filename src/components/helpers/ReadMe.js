@@ -10,6 +10,7 @@ import rehypeRaw from 'rehype-raw';
 function ReadMe (props) {
   let { text } = props;
  // let html = parse(text);
+  console.log(text);
   return <Fragment>
 
     <ReactMarkdown children={text} rehypePlugins={[rehypeRaw]}  />;

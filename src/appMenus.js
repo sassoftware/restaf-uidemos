@@ -11,7 +11,7 @@ let appMenus =  [
 		hide     : false,
 		props    : {
 			text     : 'Introduction',
-			title    : 'Assistant that talks to SAS Viya',
+			title    : 'AI Assistant for SAS Viya	using Openai and Azureai Assistant API',
 			homePage : 'https://localhost:8080/assistantapi/README.md'
 		},
 	},
@@ -107,7 +107,7 @@ let appMenus =  [
 		component: 'SASAssistant',
 			// hide: true,
 			props    : {
-				text : 'SASAssistant(openai)(cas)',
+				text : 'SASAssistant(openai)',
 				provider: 'openai',
 				source: 'cas'
 			},
@@ -115,9 +115,10 @@ let appMenus =  [
 		{component: 'SASAssistant',
 		// hide: true,
 		props    : {
-			text : 'SAS Assistant(azure)(cas)',
+			text : 'SAS Assistant(azure)',
 			provider: 'azureai',
-			source: 'cas'
+			source: 'cas',
+			addrunsas: true
 		},
 	},
 	{

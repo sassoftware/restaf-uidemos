@@ -16,6 +16,7 @@ import Paper from "@mui/material/Paper";
 import HtmlViewer from "../helpers/HtmlViewer";
 import Button from "@mui/material/Button";
 import FileSelectorButton from "../helpers/FileSelectorButton";
+import formatInstructions from "../lib/formatInstructions.js";
 
 function SASAssistant(_props) {
   const [prompt, setPrompt] = useState("");
@@ -31,40 +32,42 @@ function SASAssistant(_props) {
   let location = useLocation();
   let state = location.state; //the real props passed from the router
   const setupEnv = async () => {
-    debugger;
-    console.log(state);
     let configl = appContext.config[state.provider];
     let config = Object.assign({}, configl);
     config.provider = state.provider;
     config.source = state.source;
     config.viyaConfig.source = state.source;
-    debugger;
     let user = state.user.split('@')[0].replace('.', '_');
     config.assistantName = config.assistantName + '_' + user;
   
-    console.log(config);
+    console.log('------------------' , config);
     // get info on tools
     
     debugger;
-    let gptControl = await setupAssistant(config);
-    setGptControl(gptControl);
+    let gptControli = await setupAssistant(config);
     let initialMsg = `
     <h3>Assistant is ready to use. </h3>
     <p> Provider: ${state.provider} </p>
+    <p> Model: ${gptControli.model} </p>
     <p> Source: ${state.source} </p>
-    <p> Assistant Name: ${gptControl.assistant.name} </p>
-    <p> Assistant Id: ${gptControl.assistant.id} </p>
-    <p> Asssistant Threadid: ${gptControl.thread.id} </p>
+    <p> Assistant Name: ${gptControli.assistant.name} </p>
+    <p> Assistant Id: ${gptControli.assistant.id} </p>
+    <p> Asssistant Threadid: ${gptControli.thread.id} </p>
     `;
+    
+    setGptControl(gptControli);
     setResponse(initialMsg);
     return "gptControl is ready to use.";
   };
   useEffect(() => {
+    setSnackOpen(true);
     setupEnv()
       .then((m) => {
+        setSnackOpen(false);
         console.log(m);
       })
       .catch((err) => {
+        setSnackOpen(false);
         console.log(err);
       });
   }, []);
@@ -76,14 +79,17 @@ function SASAssistant(_props) {
     console.log(target);
     console.log(file);
     debugger;
+    setSnackOpen(true);
     uploadFile(target, file, content, "assistants",gptControl)
       .then((r) => {
         console.log(r);
+        setSnackOpen(false);
         setResponse(
-          `<strong>${file.name}</strong>` + "<br/><br/>" + r + "<br/>" + response
+          `<strong>${JSON.stringify(r)}</strong><br/>` + response
         );
       })
       .catch((err) => {
+        setSnackOpen(false);
         setResponse(
           `<strong>${file.name}</strong>` + "<br/><br/>" + err + "<br/>" + response
         );
@@ -99,11 +105,33 @@ function SASAssistant(_props) {
       setInstruct(value);
     }
   };
+  const _localRun = (action) => {
+    if (action === "tools") {
+      
+      let msg = '```html' + '<ul>';
+      debugger;
+      gptControl.assistant.tools.forEach((item) => {
+        if (item.type !== 'function') {
+          let m = '<li>' + item.type + ':' + 'System Tool</li>';
+          msg = msg + m;
+        } else {
+          let t = item.function;
+          let m = '<li>' + t.name + ' : ' + t.description + '</li>';
+          msg = msg + m;
+        }
+      });
+      msg + '</ul> ```'
+      setResponse(msg + '<br></br>' + response);
+    } else if (action === "clear") {
+      setResponse("");
+    }
+  }
   const _onClick = () => {
     setSnackOpen(true);
     debugger;
-    console.log(instruct);
-    runAssistant(gptControl, prompt, instruct)
+    let instructions = formatInstructions(instruct);
+    let userPrompt =  prompt.replace(/,/g, ' ');
+    runAssistant(gptControl, userPrompt, instructions)
       .then((r) => {
         //TBD: handling types other than text
         setSnackOpen(false);
@@ -127,12 +155,32 @@ function SASAssistant(_props) {
         );
       });
   };
-  let show = (
-    <Grid container spacing={5} direction="row" alignContent="space-around">
-         <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'center'}} 
-            open={snackOpen} onClose={_closeSnack}>
-              <CircularProgress color="secondary" />
-        </Snackbar>
+  let menubar = 
+  <Grid item direction="column" xs={4}>
+    <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'center'}} 
+      open={snackOpen} onClose={_closeSnack}>
+        <CircularProgress color="secondary" />
+    </Snackbar>
+    <Button variant="outlined" style = {{border: 2}} color="primary" onClick={() => _onClick()}>
+      Run
+    </Button>
+    <Button variant="outlined" style = {{border: 2}} color="primary" onClick={() => _localRun("tools")}>
+    tools
+    </Button>
+    <Button variant="outlined" style = {{border: 2}} color="primary" onClick={() => _localRun("clear")}>
+    Clear
+    </Button>
+  <Fragment>
+    <FileSelectorButton
+      label="Select file to upload."
+      onSelect={_onFileSelect}
+    ></FileSelectorButton>
+  </Fragment>
+ </Grid>;
+
+  let main = (
+    <Grid container spacing={2} direction="row" alignContent="space-around">
+      
       <Grid item xs={4}>
         <Paper elevation={12} style={{padding: "10px" }}>
         <TextField
@@ -165,16 +213,6 @@ function SASAssistant(_props) {
 
       </Grid>
       <Grid item xs={8}>
-        <Button variant="contained" color="primary" onClick={() => _onClick()}>
-          Run
-        </Button>
-        <Fragment>
-          <FileSelectorButton
-            label="Select file to upload."
-            onSelect={_onFileSelect}
-          ></FileSelectorButton>
-        </Fragment>
-        
         <div id="page-wrap" style={{overflowY: 'scroll', height: '80vh' }}>
         <Paper elevation={12}>
         <HtmlViewer html={response} selections={null} />
@@ -185,23 +223,10 @@ function SASAssistant(_props) {
       </Grid>
     </Grid>
   );
-  /*
-  let show =
-    <div id="page-wrap">
-      <Fragment>
-        <FileSelectorButton label="Select file to upload." onSelect={_onFileSelect} ></FileSelectorButton>
-      </Fragment>
-      <TextField id="prompt" type="text" label="prompt" multiline={true} minRows={2} 
-      style= {{width: '80ch', alignment: 'left'}} value={prompt} placeholder="Ask me anything"
-       onChange={(e) => _onChange(e, 'prompt')}/>
-      <br/>
-      <TextField id="instruct" type="text" label="instructions" multiline={true} minRows={2}
-       style= {{width: '80ch', alignment: 'left'}} value={instruct} placeholder="Additional instructions(optional)" 
-       onChange={(e) => _onChange(e, 'instruct')}/>
-      <br/>
-      <Button variant="contained" color="primary" onClick={() => _onClick()}>Run</Button>
-      <HtmlViewer html={response} selections={null} />
-    </div>*/
+  let show = <Grid container spacing={1} direction="column" alignContent="space-around">
+    {menubar}
+    {main}
+    </Grid>
   return show;
 }
 export default SASAssistant;

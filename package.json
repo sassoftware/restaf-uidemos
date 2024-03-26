@@ -13,7 +13,7 @@
     "@sassoftware/restaf": "^5.2.4",
     "@sassoftware/restafedit": "^2.4.7",
     "@sassoftware/restaflib": "^5.2.4",
-    "@sassoftware/viya-assistantjs": "^0.5.1",
+    "@sassoftware/viya-assistantjs": "^0.10.4",
     "@tinymce/tinymce-react": "^4.2.0",
     "ace-builds": "^1.13.1",
     "html-react-parser": "^5.1.8",

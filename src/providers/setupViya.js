@@ -40,7 +40,8 @@ async function setupViya(appEnv, logonPayload) {
         logonPayload: logonPayload,
         source: appEnv.SOURCE
       },
-      retrieval: true
+      retrieval: true,
+      code: true
     },
     azureai: {
       source: appEnv.SOURCE,
@@ -63,7 +64,8 @@ async function setupViya(appEnv, logonPayload) {
         logonPayload: logonPayload,
         source: appEnv.SOURCE
       },
-      retrieval: false
+      retrieval: false,
+      code: true
     }
   };
 
@@ -118,98 +120,160 @@ function onCompletion(store, err, status, JobId) {
 
 function hometext () {
   return `
-  # Examples of Assistant for Viya
+  <h1> AI Assistant for Viya based on Assistant API from openai and azureai</h1>
 
-  The intent here is to demonstrate how to use the @sassoftware/viya-assistantjs library to build custom assistants for SAS Viya.
-  <a href="https://sassoftware.github.io/restaf">restaf</a>
-
-  The technology used are:
-  - SAS Viya REST APIs to create custom tools
-    - Visit <a href="https://sassoftware.github.io/restaf/">@sassoftware/restaf, @sassoftware/restaflib and @sassofware/restafeditor</a> for more information
-
-  This  <a href="https://sassoftware.github.io/restaf-demos/tutorial-gettingStarted.html">starter app </a> is a good place to start to see how you can start using this library in a few minutes.
-  Also see <a href="https://sassoftware.github.io/restaf-demos/tutorial-customTools.html">this example on how to extend this with your own actions/toolsd</a>
-
-  Visit this site  for <a href="https://sassoftware.github.io/restaf-demos/">full documentation</a>
-
- The demo application one assistant with 4 configurations
-
-  1. OpenAI Assistant+cas - this uses the openai Assistant API. It supports retrieval, code interpreter and custom tools to make calls to Viya.
-  2. AzureAI Assistan+cas - this uses the azureai Assistant API. It supports code interpreter and custom tools to make calls to Viya. Retrieval is not avaialable yet
-
-  3. OpenAI Assistant+compute - this uses the openai Assistant API. It supports retrieval, code interpreter and custom tools to make calls to Viya.
-  4. AzureAI Assistant+compute - this uses the azureai Assistant API. It supports code interpreter and custom tools to make calls to Viya. Retrieval is not avaialable yet
+  <h1>
+  With <a href="https://sassoftware.github.io/restaf-demos"> @sassoftware/viya-assistantjs </a> 
+    build your first AI Assistant for SAS Viya in 30 minutes
+  </h1>
   
-  These assistants are designed to work with Viya. They can be used to
+  <h2> Examples of AI Assistant for Viya</h2>
   
-  - retrieve data from a table
-  - list reports
-  - Attach file to the assistant and use it as a retrieval tool
-  - Run SAS code
-
-## @sassoftware/viya-assistantjs
-
-@sassoftware/viya-assistantjs is a JavaScript library(esm) with the following
-key features
-
-1. Write your first assistant in a few minutes.
-2. Supports both openai Assistant and azureai Assistant.
-3. Uses the azureai API pattern to support openai Assistant.
-This allows switching between the two with simple configuration changes.
-4. It comes with a builtin tools for integration with Viya
-    - listing reports, librefs
-    - listing tables in a specified library
-    - retrieving data from a specified table
-5. Append to/or replace the builtin tools with your own tools
-6. Run the library in nodejs or browser enviroment - usually a react application
-7. Comes with documentation to make the journey less painful
-
-## What is the ASSISTANT?
-
-The explanation is from
-<a href="https://platform.openai.com/docs/assistants/overview?context=with-streaming">openai</a>
-
-The Assistants API allows you to build AI assistants within your own
-applications.
-
-An Assistant has instructions and can leverage models, tools,
-and knowledge to respond to user queries. The Assistants API currently supports
-three types of tools: Code Interpreter, Retrieval, and Function calling.
-
-You can explore the capabilities of the Assistants API using the
-Assistants playground or by building a step-by-step integration application
-
-*Overview*
-A typical integration of the Assistants API has the following flow:
-
-Create an Assistant by defining its custom instructions and picking a model.
-If helpful, add files and enable tools like Code Interpreter, Retrieval, and
-Function calling.
-
-1. Create a Thread when a user starts a conversation.
-2. Add Messages to the Thread as the user asks questions.
-3. Run the Assistant on the Thread to generate a response by calling the model
- and the tools.
-
-## Why use Assistant API?
-
-1. The conversation thread is maintained by the system.
-2. The code interpreter tool can generate and run python code
-3. The retrieval tool works with files that have been uploaded
-   and attached to an instance of the assistant.
-   I think of it as an easy way to create a RAG.
-
-  a. Note: Unfortunately I have not been able to find a version on azureai
-  that supports retrieval. Hopefully this will be resolved soon
-  <a href="https://github.com/Azure/azure-sdk-for-js/issues/28550">issue</a>
-
-
-
-## Usage Notes
-
-Please refer to the documentation and tutorials
-for details on using this library
-See the gettingStarted tutorial to begin programming.
-`
+  Select Assistant from the menu
+    <ul>
+      <li> OpenAI Assistant+cas</li>
+      <li> AzureAI Assistant+cas</li>
+      <li> OpenAI Assistant+compute</li>
+      <li> AzureAI Assistant+compute</li>
+    </ul>
+  
+  
+  <h2>Key features of the assistant</h2>
+  <ul> 
+    <li> Supports both openai Assistant and azureai Assistant.</li>
+    <li> Upload files to use with the  retrieval tool(azureai does not support retrieval yet)</li>
+    <li> Use the code interpreter tool to run python code</li>
+    <li> Integration with Viya
+      <ul>
+        <li> Custom tools to access data from SAS Viya (libs, tables and data)</li>
+      </ul>
+    </li>
+  </ul>
+  </div>  
+   
+  
+  <h2> Sample Code </h2></g2>
+  
+  <pre>
+    import * as readline from 'node:readline/promises';
+    import { stdin as input, stdout as output } from 'node:process';
+    import { setupAssistant, runAssistant } from '@sassoftware/viya-assistantjs';
+    
+    import getToken from './getToken.js';
+    let { host, token } = getToken();
+    
+    let config = {
+      provider: 'azureai', // Depending on who your account is with
+      model: process.env.AZUREAI_MODEL, // model name
+      credentials: {
+        key: process.env.AZUREAI_KEY, // obtain from provider
+        endPoint: process.env.AZUREAI_ENDPOINT, // obtain from provider
+      },
+      // leave the next 4 items as is - explained in the document
+      assistantid: 'NEW', //always create a new assistant
+      assistantName: 'SAS_ASSISTANT_DEMO',
+      threadid: 'NEW', // always create a new thread
+      domainTools: {
+        tools: [],
+        functionList: {},
+        instructions: '',
+        replace: false,
+      },
+    
+      // fill in the host and token to authenticate to Viya
+      // set the source to cas or compute.
+      // if you want to run the AI assistant without Viya set source to none
+      viyaConfig: {
+        logonPayload: {
+          authType: 'server',
+          host: host, // viya url - https://myviyaserver.acme.com
+          token: token, // viya token  - obtained from sas-viya auth login|loginCode
+          tokenType: 'bearer',
+        },
+        source: 'cas',
+      },
+      code: true,
+      retrieval: false,
+    };
+    
+    // Add custom tool to the assistant
+    // This is ultimately the way you want to use
+    // the assistant to run your custom code
+    
+    let tools = [
+      {
+        type: 'function',
+        function: {
+          name: 'myuniversity',
+          description: 'verify the specified course is available',
+          parameters: {
+            properties: {
+              course: {
+                  type: 'string',
+                  description: 'the name of the course',
+                },
+              },
+              type: 'object',
+              required: ['course'],
+            },
+          },
+      },
+    ];
+    
+    // handler for the custom tool
+    async function myuniversity(params, appEnv) {
+      let { course } = params;
+      const courseList = ['math', 'science', 'english', 'history', 'art'];
+      if (courseList.includes(course)) {
+        return course + ' is available';
+      } else {
+        return course + 'is not available';
+      }
+    }
+    // instructions for the custom tool
+    let instructions = 'check and see if requested course is available';
+    
+    // add the definitions to te config
+    config.domainTools = {
+      tools: tools,
+      functionList: { myuniversity: myuniversity },
+      instructions: instructions,
+      replace: false,
+    };
+    
+    chat(config)
+      .then((r) => console.log('done'))
+      .catch((err) => console.log(err));
+    
+    async function chat(config) {
+      //Setup assistant
+      let gptControl = await setupAssistant(config);
+    
+      // create readline interface and chat with user
+      const rl = readline.createInterface({ input, output });
+    
+      // process user input in a loop
+      while (true) {
+        let prompt = await rl.question('>');
+        // exit session
+        if (prompt.toLowerCase() === 'exit' || prompt.toLowerCase() === 'quit') {
+          rl.close();
+          break;
+        }
+        // let assistant process the prompt
+        let promptInstructions = ' ';
+        try {
+          // run prompt
+          let response = await runAssistant(gptControl, prompt, promptInstructions);
+          console.log(response);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
+  
+  </pre>
+  
+`;
 }
 export default setupViya;
