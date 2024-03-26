@@ -2,6 +2,13 @@
   "name": "openai-assistant",
   "version": "0.0.1",
   "private": true,
+  "keywords": [
+    "openai",
+    "azureai",
+    "SAS Viya",
+    "Assistant API",
+    "@sassoftware/viya-assistantjs"
+  ],
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-react": "^7.18.6",
