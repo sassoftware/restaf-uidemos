@@ -4,17 +4,16 @@
 */
 import React, {Fragment} from 'react';
 import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
+// import rehypeRaw from 'rehype-raw';
 
-function ReadMe (props) {
+function ReadMeMd(props) {
   let { text } = props;
  // let html = parse(text);
- debugger;
- console.log('in readme:', text);
- console.log(ReactMarkdown)
   return <Fragment>
 
-    <ReactMarkdown children={text} rehypePlugins={[rehypeRaw]}></ReactMarkdown>
+    <ReactMarkdown children={text}  />;
   </Fragment>
 }
-export default  ReadMe;
+
+// disallowedtypes={[ "inlinecode" ]}
+export default  ReadMeMd;

@@ -118,7 +118,7 @@ let appMenus =  [
 			text : 'SAS Assistant(azure)',
 			provider: 'azureai',
 			source: 'cas',
-			addrunsas: true
+			useResultFile: false,
 		},
 	},
 	{
@@ -136,6 +136,26 @@ let appMenus =  [
 			text : 'SAS Assistant(azure)(compute)',
 			provider: 'azureai',
 			source: 'compute'
+		},
+	},
+	{component: 'SASAssistant',
+		// hide: true,
+		props    : {
+			text : 'IC Assistant(openai)(compute)',
+			provider: 'openai',
+			source: 'cas',
+			toolSet: 'sasic',
+			useResultFile: false,
+		},
+	},
+	{component: 'SASAssistant',
+		// hide: true,
+		props    : {
+			text : 'IC Assistant(azure)(compute)',
+			provider: 'azureai',
+			source: 'compute',
+			toolSet: 'sasic',
+			useResultFile: false,
 		},
 	},
 	{

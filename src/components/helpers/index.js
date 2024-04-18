@@ -23,6 +23,7 @@ import QuickDialog from './QuickDialog';
 import QuickNotes from './QuickNotes'; 
 import RawText from './RawText'; 
 import ReadMe from './ReadMe'; 
+import ReadMeMd from './ReadMeMd'; 
 import RunMasModel from './RunMasModel'; 
 import ScoreForm from './ScoreForm'; 
 import ScrollMenu from './ScrollMenu'; 
@@ -58,6 +59,7 @@ QuickDialog,
 QuickNotes,
 RawText,
 ReadMe,
+ReadMeMd,
 RunMasModel,
 ScoreForm,
 ScrollMenu,

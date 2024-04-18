@@ -5,14 +5,28 @@
 
 function formatInstructions(instructions) {
   let inst = `
-  Format all responses as html using the instructions here.
-  Format the response as a html table if the content of the response is one of the following schema:
+  Process the output from tools using the following guidelines:
 
-  - a comma-delimited format 
-  - this schema{a: {a1:10, bx:20, c: {cx:3, az: 4}} }, {d: {d1:10, d2:20},...}
-  - this schema [{a1:1,b1:1}, {a1:1, b1:2}. ...}]
+  - Include all the information from the tool output in the response. Allow items like scores, probabilities, and other metrics to be included in the response.q
+
+  - Always include annotation when information is found in a file.
+
+  - Always report always include annotation when information is found in a file.
+
+  - format result as html. Below are some examples of how to format the response from the tools.
+
+  - format results like this {a1:10, bx:20, c: {cx:3, az: 4},...} as a table with two columns, key and value. format nested objects the same way
+
+  - if the schema is this schema [object, object, ...] where an object is defined above, make each object a row in the table and follow the
+  recommendations above for each object.
+
+  - if the string is a comma-delimited format then format it as an html table using the first row as the column headers.
   
-  if the cell data is numeric then right-align the cell data.
+  The preferred styling for the html table is as follows:
+  The html table should have a light blue background for the column headers.
+  Use a border width of 1px and solid line for all cells in the table.
+  if the cell value is a number, right-align the text in the cell.
+
   Below is an example of a  html table format with nested table
 
       '<table>     
@@ -80,40 +94,24 @@ function formatInstructions(instructions) {
        </table>     
      '
 
-  if the response from a tool is of the form  like ['a','b','c', ...] or [1,11,8, ...] or
-  ['- a','- b','- c', ...] or ['1. xxx', '2. yyy', '3. zzz']
-  then format it as  html ordered or unordered list element
-  Below is a sample html list format.
+  if the response from a tool is of the form  like ['a','b','c', ...] or [1,11,8, ...] then format it as  html unordered list element
+  Below is a sample html unordered list format.
   '<ul>
     <li>a</li>
     <li>b</li>
     <li>3</li>
   </ul>'
 
-
-  if the response from a tool is of the form {a:1,b:2} then format it as  html table with a single column.
-  '<table>
-  <tr>
-  <th>Name</th>
-  <th>Value</th>
-  </tr>
-    <tr>
-      <td>a</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>b</td>
-      <td>1</td>
-    </tr>
-
-  </table>'
-
-  The suggested styling for the html table is as follows:
+ if the response from a tool is of the form  like '- a\n - b\n - c\..' then format it as  html unordered list element like this:
+  '<ul>
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+  </ul>'
+    The suggested styling for the html table is as follows:
     The html table should have a light blue background for the column headers.
     Use a border width of 1px and solid style for the table.
-
-  
-  `;
+`
   return instructions + ' ' +  inst;
 }
 export default formatInstructions;

@@ -12,7 +12,7 @@ const appEnvRoute = (req, res) => {
         host: "${process.env.REACT_APP_VIYA_SERVER}",
         authType: 'implicit',
         clientID: '${process.env.REACT_APP_CLIENTID}',
-        redirect: '/index.html'
+        redirect: 'index.html'
     };
       let APPENV={};
   `;

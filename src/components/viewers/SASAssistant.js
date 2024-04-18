@@ -14,6 +14,7 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import HtmlViewer from "../helpers/HtmlViewer";
+//import ReadMe from "../helpers/ReadMe.js";
 import Button from "@mui/material/Button";
 import FileSelectorButton from "../helpers/FileSelectorButton";
 import formatInstructions from "../lib/formatInstructions.js";
@@ -21,7 +22,7 @@ import formatInstructions from "../lib/formatInstructions.js";
 function SASAssistant(_props) {
   const [prompt, setPrompt] = useState("");
   const [instruct, setInstruct] = useState("");
-  const [response, setResponse] = useState("");
+  const [response, setResponse] = useState("Welcome to SAS Assistant. Please enter a prompt to get started. \n");
   const [gptControl, setGptControl] = useState(null);
  // const [appEnv, setAppEnv] = useState(null);
   const [snackOpen, setSnackOpen] = useState(false)
@@ -37,6 +38,8 @@ function SASAssistant(_props) {
     config.provider = state.provider;
     config.source = state.source;
     config.viyaConfig.source = state.source;
+    config.toolSet = (state.toolSet === undefined) ? 'viya' : state.toolSet;
+    config.useResultFile = (state.useResultFile === undefined) ? false: state.useResultFile;
     let user = state.user.split('@')[0].replace('.', '_');
     config.assistantName = config.assistantName + '_' + user;
   
@@ -46,14 +49,20 @@ function SASAssistant(_props) {
     debugger;
     let gptControli = await setupAssistant(config);
     let initialMsg = `
-    <h3>Assistant is ready to use. </h3>
-    <p> Provider: ${state.provider} </p>
-    <p> Model: ${gptControli.model} </p>
-    <p> Source: ${state.source} </p>
-    <p> Assistant Name: ${gptControli.assistant.name} </p>
-    <p> Assistant Id: ${gptControli.assistant.id} </p>
-    <p> Asssistant Threadid: ${gptControli.thread.id} </p>
+
+    <h2> Assistant is ready to use</h2>
+
+    <ul>
+    <li>Provider: ${state.provider}</li>
+    <li>Model: ${gptControli.model}</li>
+    <li>Source: ${state.source}</li>
+    <li>Assistant Name: ${gptControli.assistant.name}</li>
+    <li>Assistant Id: ${gptControli.assistant.id}</li>
+    <li>Asssistant Threadid: ${gptControli.thread.id}</li>
+    </ul>
+
     `;
+
     
     setGptControl(gptControli);
     setResponse(initialMsg);
@@ -130,8 +139,11 @@ function SASAssistant(_props) {
     setSnackOpen(true);
     debugger;
     let instructions = formatInstructions(instruct);
-    let userPrompt =  prompt.replace(/,/g, ' ');
-    runAssistant(gptControl, userPrompt, instructions)
+    debugger;
+    console.log(prompt);
+    // let userPrompt =  prompt.replace(/,/g, ' ');
+    let elaspedTime = new Date();
+    runAssistant(gptControl, prompt, instructions)
       .then((r) => {
         //TBD: handling types other than text
         setSnackOpen(false);
@@ -139,7 +151,8 @@ function SASAssistant(_props) {
         for (let i = 0; i < r.length; i++) {
           msg = msg + r[i].content + "<br/>";
         }
-
+        elaspedTime = Math.round((new Date() - elaspedTime) / 1000);
+        msg = msg + "<br/>" + "Total Time " + elaspedTime + " seconds";
         setResponse(
           `<strong>${prompt}</strong>` +
             "<br/><br/>" +
@@ -177,7 +190,8 @@ function SASAssistant(_props) {
     ></FileSelectorButton>
   </Fragment>
  </Grid>;
-
+  debugger;
+  console.log(response);
   let main = (
     <Grid container spacing={2} direction="row" alignContent="space-around">
       
@@ -230,3 +244,4 @@ function SASAssistant(_props) {
   return show;
 }
 export default SASAssistant;
+// <HtmlViewer html={response} selections={null} />
