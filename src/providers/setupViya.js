@@ -10,7 +10,6 @@ async function setupViya(appEnv, logonPayload) {
 
   console.log(logonPayload);
   await store.logon(logonPayload);
-  let services = await store.addServices("casManagement", "compute");
 
   let appOptions = {
     logonPayload: logonPayload,
@@ -21,8 +20,9 @@ async function setupViya(appEnv, logonPayload) {
   debugger;
   let config = {
     openai: {
-      source: appEnv.SOURCE,
-      provider: appEnv.OPENAI_PROVIDER,
+      viya: APPENV_VIYA,
+      devMode: APPENV_DEVMODE,
+      provider: 'openai',
       model: appEnv.OPENAI_MODEL,
       credentials: {
         key: appEnv.OPENAI_KEY,
@@ -30,22 +30,22 @@ async function setupViya(appEnv, logonPayload) {
       assistantid: appEnv.OPENAI_ASSISTANTID,
       assistantName: appEnv.OPENAI_ASSISTANTNAME,
       threadid: appEnv.OPENAI_THREADID,
+      vectorStoreid: appEnv.OPENAI_VECTORSTOREID,
       domainTools: { 
         tools: [],
         functionList: {},
-        instructions: "",
-        replace: false,
+        instructions: ""
       },
       viyaConfig: {
         logonPayload: logonPayload,
-        source: appEnv.SOURCE
       },
       retrieval: true,
       code: true
     },
     azureai: {
-      source: appEnv.SOURCE,
-      provider: appEnv.AZUREAI_PROVIDER,
+      viya: true,
+      devMode: appEnv.DEVMODE,
+      provider: 'azureai',
       model: appEnv.AZUREAI_MODEL,
       credentials: {
         key: appEnv.AZUREAI_KEY,
@@ -54,6 +54,7 @@ async function setupViya(appEnv, logonPayload) {
       assistantid: appEnv.AZUREAI_ASSISTANTID,
       assistantName: appEnv.AZUREAI_ASSISTANTNAME,
       threadid: appEnv.AZUREAI_THREADID,
+      vectorStoreid: appEnv.AZUREAI_VECTORSTOREID,
       domainTools: { 
         tools: [],
         functionList: {},
@@ -62,7 +63,6 @@ async function setupViya(appEnv, logonPayload) {
       },
       viyaConfig: {
         logonPayload: logonPayload,
-        source: appEnv.SOURCE
       },
       retrieval: false,
       code: true

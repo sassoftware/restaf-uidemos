@@ -6,7 +6,7 @@ import React, { useContext, useState, useEffect, Fragment } from "react";
 import { useLocation } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import CircularProgress from '@mui/material/CircularProgress';
-import { setupAssistant, runAssistant, uploadFile } from "@sassoftware/viya-assistantjs";
+import { setupAssistant, runAssistant} from "@sassoftware/viya-assistantjs";
 // import { functionSpecs, instructions } from "../../tools/sasAssistant";
 import { AppContext } from "../../providers";
 import Grid from "@mui/material/Grid";
@@ -36,10 +36,8 @@ function SASAssistant(_props) {
     let configl = appContext.config[state.provider];
     let config = Object.assign({}, configl);
     config.provider = state.provider;
-    config.source = state.source;
-    config.viyaConfig.source = state.source;
     config.toolSet = (state.toolSet === undefined) ? 'viya' : state.toolSet;
-    config.useResultFile = (state.useResultFile === undefined) ? false: state.useResultFile;
+
     let user = state.user.split('@')[0].replace('.', '_');
     config.assistantName = config.assistantName + '_' + user;
   
@@ -53,17 +51,17 @@ function SASAssistant(_props) {
     <h2> Assistant is ready to use</h2>
 
     <ul>
+    <li>devMode: ${gptControli.devMode}</li>
     <li>Provider: ${state.provider}</li>
     <li>Model: ${gptControli.model}</li>
-    <li>Source: ${state.source}</li>
     <li>Assistant Name: ${gptControli.assistant.name}</li>
     <li>Assistant Id: ${gptControli.assistant.id}</li>
     <li>Asssistant Threadid: ${gptControli.thread.id}</li>
+    <li>Vector Store Id: ${gptControli.vectorStoreid}</li>
     </ul>
 
     `;
 
-    
     setGptControl(gptControli);
     setResponse(initialMsg);
     return "gptControl is ready to use.";
@@ -89,7 +87,7 @@ function SASAssistant(_props) {
     console.log(file);
     debugger;
     setSnackOpen(true);
-    uploadFile(target, file, content, "assistants",gptControl)
+    gptControl.uploadFile(target, content,'text/plain', "assistants")
       .then((r) => {
         console.log(r);
         setSnackOpen(false);

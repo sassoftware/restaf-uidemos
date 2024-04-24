@@ -109,69 +109,32 @@ let appMenus =  [
 			props    : {
 				text : 'SASAssistant(openai)',
 				provider: 'openai',
-				source: 'cas'
+				toolSet: 'sasic'
 			},
 		},
-		{component: 'SASAssistant',
+		{
+			component: 'SASAssistant',
 		// hide: true,
-		props    : {
-			text : 'SAS Assistant(azure)',
-			provider: 'azureai',
-			source: 'cas',
-			useResultFile: false,
-		},
-	},
-	{
-		component: 'SASAssistant',
-			// hide: true,
 			props    : {
-				text : 'SASAssistant(openai)(compute)',
-				provider: 'openai',
-				source: 'compute'
+				text : 'SAS Assistant(azure)',
+				provider: 'azureai',
+				toolSet: 'sasic'
+			},
+	  },
+		{
+			component: 'SimpleDataFormTest',
+			hide: true,
+			props    : {
+				text : 'Test Data form',
+				three: 3,
 			},
 		},
-		{component: 'SASAssistant',
-		// hide: true,
-		props    : {
-			text : 'SAS Assistant(azure)(compute)',
-			provider: 'azureai',
-			source: 'compute'
-		},
-	},
-	{component: 'SASAssistant',
-		// hide: true,
-		props    : {
-			text : 'IC Assistant(openai)(compute)',
-			provider: 'openai',
-			source: 'cas',
-			toolSet: 'sasic',
-			useResultFile: false,
-		},
-	},
-	{component: 'SASAssistant',
-		// hide: true,
-		props    : {
-			text : 'IC Assistant(azure)(compute)',
-			provider: 'azureai',
-			source: 'compute',
-			toolSet: 'sasic',
-			useResultFile: false,
-		},
-	},
-	{
-		component: 'SimpleDataFormTest',
-		hide: true,
-		props    : {
-			text : 'Test Data form',
-			three: 3,
-		},
-	},
-	{
-		component: 'JobManager',
-		hide     : true,
-		props    : {
-				text: 'Job Manager'
+		{
+			component: 'JobManager',
+			hide     : true,
+			props    : {
+					text: 'Job Manager'
+			}
 		}
-    }
 ];
 export default appMenus;
