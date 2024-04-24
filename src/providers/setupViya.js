@@ -18,10 +18,11 @@ async function setupViya(appEnv, logonPayload) {
     homeNotesText: hometext()
   };
   debugger;
+
   let config = {
     openai: {
-      viya: APPENV_VIYA,
-      devMode: APPENV_DEVMODE,
+      viya: true,
+      devMode: (appEnv.DEVMODE === 'TRUE'),
       provider: 'openai',
       model: appEnv.OPENAI_MODEL,
       credentials: {
@@ -44,7 +45,7 @@ async function setupViya(appEnv, logonPayload) {
     },
     azureai: {
       viya: true,
-      devMode: appEnv.DEVMODE,
+      devMode: (appEnv.DEVMODE === 'TRUE'),
       provider: 'azureai',
       model: appEnv.AZUREAI_MODEL,
       credentials: {
