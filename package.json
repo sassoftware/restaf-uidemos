@@ -1,11 +1,11 @@
 {
-  "name": "@sassoftware/smart-controls-mui",
+  "name": "@sassoftware/smart-controls-chakra",
   "version": "0.0.1",
-  "description": "Mui Frame Controls for use with @sassoftware/FrameBuilder",
+  "description": "chakra Frame Controls for use with @sassoftware/FrameBuilder",
   "source": "./index.js",
-  "main": "/dist/smart-controls-mui.js",
-  "unpkg": "/dist/smart-controls-mui.js",
-  "browser": "/dist/smart-controls-mui.js",
+  "main": "/dist/smart-controls-chakra.js",
+  "unpkg": "/dist/smart-controls-chakra.js",
+  "browser": "/dist/smart-controls-chakra.js",
   "files": [
     "./dist"
   ],
@@ -16,14 +16,12 @@
   "author": "K. Deva Kumaraswamy",
   "license": "Apache-2.0",
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@monaco-editor/react": "^4.6.0",
-    "@mui/icons-material": "^5.15.16",
-    "@mui/joy": "^5.0.0-beta.36",
-    "@mui/material": "^5.15.16",
     "@react-hook/size": "^2.1.2",
-    "btoa": "^1.2.1"
+    "btoa": "^1.2.1",
+    "framer-motion": "^11.2.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.5",

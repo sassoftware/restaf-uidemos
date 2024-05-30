@@ -24,9 +24,9 @@ module.exports = (env) =>  {
     optimization: optimize,
     output: {
       path: usePath,
-      filename: (env.p === 'y') ? 'smart-controls-mui.js' : 'smart-controls-mui.dev.js',
+      filename: (env.p === 'y') ? 'smart-controls-chakra.js' : 'smart-controls-chakra.dev.js',
       libraryTarget: 'umd',
-      library: "smartControlsMui", 
+      library: "smartControlsChakra", 
       umdNamedDefine: true,
       globalObject: 'this'
     },
