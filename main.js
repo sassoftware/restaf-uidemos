@@ -24,7 +24,7 @@ let controls ={
   Input: VisualTemplate(frameControl.Input, 'Input Text', 'char',' ', small, props, 'h'),
   Checkbox: VisualTemplate(frameControl.Checkbox, 'Checkbox', 'double', 0, small, props, 'h'),
   Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props, 'both'),
-  InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number', 0, small, props, 'h'),
+  NumberInput: VisualTemplate(frameControl.NumberInput, 'Input Number', 'number', 0, small, props, 'h'),
   };
 return controls;
 function VisualTemplate(component, label, type, value, initialSize, props, resize) {

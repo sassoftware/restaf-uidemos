@@ -21,9 +21,12 @@
    
     let Button = f['Button'].component
     let Input= f['Input'].component
+    console.log(f.NumberInput); 
+    let NumberInput = f['NumberInput'].component;
     
     let Checkbox = f['Checkbox'].component
     console.log(Checkbox)
+    console.log(NumberInput)
    
     </script>
     <script type="text/babel">
@@ -43,7 +46,9 @@
               <br></br>
               <Input label="Enter your name" value="xxx" onChange={onEnter}></Input>
               <br></br>
-              <Checkbox label="Check me" value={1} onChange={onEnter}></Checkbox>
+              <NumberInput label="Enter your name" style={{length:10, width:200}} value={1} onChange={onEnter}></NumberInput>
+              <br></br>
+              <Checkbox label="Check me"  value={1} onChange={onEnter}></Checkbox>
             </div>
           );
         };
