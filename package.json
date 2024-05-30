@@ -1,69 +1,63 @@
 {
-  "name": "reactapp",
-  "version": "0.4.1",
-  "private": true,
-  "dependencies": {
-    "@babel/eslint-parser": "^7.17.0",
-    "@babel/preset-react": "^7.18.6",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@monaco-editor/react": "^4.4.6",
-    "@mui/icons-material": "^5.10.16",
-    "@mui/material": "^5.10.16",
-    "@sassoftware/restaf": "^4.8.4",
-    "@sassoftware/restaflib": "^4.8.4",
-    "@sassoftware/viya-appserverjs": "^2.1.2",
-    "@tinymce/tinymce-react": "^4.2.0",
-    "ace-builds": "^1.13.1",
-    "react": "^18.2.0",
-    "react-ace": "^10.1.0",
-    "react-dom": "^18.2.0",
-    "react-markdown": "^8.0.4",
-    "react-router-dom": "^6.4.4"
-  },
+  "name": "@sassoftware/smart-controls-mui",
+  "version": "0.0.1",
+  "description": "Mui Frame Controls for use with @sassoftware/FrameBuilder",
+  "source": "./index.js",
+  "main": "/dist/smart-controls-mui.js",
+  "unpkg": "/dist/smart-controls-mui.js",
+  "browser": "/dist/smart-controls-mui.js",
+  "files": [
+    "./dist"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "testx": "react-scripts test",
-    "eject": "react-scripts eject",
-    "buildapp": "node createRoutes && env-cmd --file ./.env.production react-scripts build",
-    "app": "cross-env  APPLOC=./build APPENTRY=index.html node server --env=.env.production --docker=Dockerfile",
-    "test": "cross-env  APPLOC=./component APPENTRY=index.html node server --env=.env.production --docker=Dockerfile",
-    "format": "prettier-eslint --eslint-config-path ./.eslintrc.json --write '**/*.js'",
-    "lint": "eslint . --ext .js --fix",
-    "wpack": "webpack --env p=n library=ViyaApp --config=webpack.config.js && webpack --env p=y library=ViyaApp --config=webpack.config.js",
-    "build4va": "rimraf dist && npm run wpack && rimraf ./component/dist && cp -r dist ./component/dist",
-    "lib": "node server --env=.env.production --docker=Dockerfile",
-    "indocker": "node server.js"
+    "stats": "webpack --env target=node p=a --config webpack.config.js",
+    "build": "rimraf dist && webpack --env target=umd p=n --config webpack.config.js && webpack --env target=umd p=y --config webpack.config.js"
+  },
+  "author": "K. Deva Kumaraswamy",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@monaco-editor/react": "^4.6.0",
+    "@mui/icons-material": "^5.15.16",
+    "@mui/joy": "^5.0.0-beta.36",
+    "@mui/material": "^5.15.16",
+    "@react-hook/size": "^2.1.2",
+    "btoa": "^1.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.5",
-    "concurrently": "^7.6.0",
-    "cross-env": "^7.0.3",
-    "env-cmd": "^10.1.0",
-    "http-proxy-middleware": "^2.0.6",
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.24.5",
+    "@babel/eslint-parser": "7.19.1",
+    "@babel/plugin-transform-private-property-in-object": "^7.24.5",
+    "@babel/plugin-transform-runtime": "^7.24.3",
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
+    "@svgr/webpack": "^6.5.1",
+    "babel-loader": "^9.1.3",
+    "eslint": "^8.28.0",
+    "eslint-plugin-react": "^7.31.11",
     "prettier": "^2.8.0",
     "prettier-eslint": "^15.0.1",
     "prettier-eslint-cli": "^7.1.0",
-    "pretty-format": "^29.3.1",
-    "react-scripts": "^5.0.1",
-    "rimraf": "^3.0.2",
-    "shelljs": "^0.8.5",
-    "webpack-cli": "^5.0.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rimraf": "^5.0.7",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.91.0",
+    "webpack-bundle-analyzer": "^4.10.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "peerDependencies": {
+    "@sassoftware/restaf": "^5.2.4",
+    "@sassoftware/restafedit": "^2.4.8",
+    "@sassoftware/restaflib": "^5.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "overrides": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

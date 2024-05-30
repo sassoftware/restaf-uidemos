@@ -1,66 +1,65 @@
-/*
- *  ------------------------------------------------------------------------------------
- *  Copyright (c) SAS Institute Inc.
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  You may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- * limitations under the License.
- * ----------------------------------------------------------------------------------------
- *
- */
+const path = require("path");
+const TerserPlugin = require('terser-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-let path = require( 'path' );
-
-module.exports = (env) => {
-
-    const config = {
-        entry: [ "./src/main.js" ],
-        mode: (env.p === 'y') ? 'production' : 'development',
-        output: {
-            path         : path.resolve( __dirname, "dist" ),
-            filename     : (env.p === 'y') ? "index.js" : "index.dev.js",
-            library      : env.library,
-            libraryTarget: "umd"
+module.exports = (env) =>  {
+  let usePath = path.resolve(__dirname,'dist');
+    let optimize= {
+      minimize: false
+  };
+  if (env.p === 'y') {
+      optimize = { 
+              minimize: true,
+              minimizer: [new TerserPlugin()]
+      }
+  };
+  let plugins = [];
+  if (env.p === 'a') {
+    plugins.push(new BundleAnalyzerPlugin());
+  }
+  let config = {
+    entry: './index.js',
+    mode: (env.p === 'y') ? "production" : "development",
+    plugins: plugins, 
+    optimization: optimize,
+    output: {
+      path: usePath,
+      filename: (env.p === 'y') ? 'smart-controls-mui.js' : 'smart-controls-mui.dev.js',
+      libraryTarget: 'umd',
+      library: "smartControlsMui", 
+      umdNamedDefine: true,
+      globalObject: 'this'
+    },
+    module: {
+      rules: [
+        {
+          test: /\.txt$/i,
+          type: "asset/source",
         },
-        /*
-        * indicating whether react us loaded externally or not
-        */
-        
-        externals: {
-        'react'    : "React",
-        'react-dom': "ReactDOM"
+        {
+          test: /\.html$/i,
+          type: "asset/source",
         },
-        
-        /*
-        plugins: plugins,
-        */
-        optimization: {
-            usedExports: true,
+        {
+          test: /\.svg$/i,
+          type: "asset/inline",
         },
-        module: {
-            rules: [
-                { test: /\.(js|jsx)$/, use: "babel-loader" },
-                { test: /\.svg$/, use: "raw-loader" },
-                { test: /\.css$/, use: [ "style-loader", "css-loader" ] }
-            ]
+        {
+          test: /\.png$/i,
+          type: "asset/inline",
+        },
+        { test: /\.(js|jsx)$/, exclude: /node_modules/, use: "babel-loader" },
+        { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      ],
+    },
+    
+    externals: {
+      react: 'React',
+     'react-dom': 'ReactDOM'
+     }
+    
 
-        }
-    }
-    return config;
-};
-
-
-
-
-
-
-
-
-
+  };
+  console.log(config);
+return config;
+}
