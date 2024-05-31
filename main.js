@@ -9,7 +9,7 @@ console.log('frameControl', frameControl);
 let small = {height: 30, width: 200};
 let medium ={height: 120, width: 400};
 let large = {height: 120, width: 400};
-let props = {};  // if you want to pass in some default props - helpful to users in property sheet
+let props = {size: 'md', variant: 'outline', isDisabled: false, style: {height: 'inherit', width: 'inherit'}};  // if you want to pass in some default props - helpful to users in property sheet
 // notes:
 // The component is the actual react component that will be rendered
 // The resize property is used to determine if the user can resize the control and in what direction
@@ -22,10 +22,12 @@ let props = {};  // if you want to pass in some default props - helpful to users
 
 let controls ={
   Input: VisualTemplate(frameControl.Input, 'Input Text', 'char',' ', small, props, 'h'),
-  Checkbox: VisualTemplate(frameControl.Checkbox, 'Checkbox', 'double', 0, small, props, 'h'),
+  Checkbox: VisualTemplate(frameControl.Checkbox, 'Checkbox', 'double', 0, small,
+  props, 'h'),
   Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props, 'both'),
-  NumberInput: VisualTemplate(frameControl.NumberInput, 'Input Number', 'number', 0, small, props, 'h'),
-  };
+  NumberInput: VisualTemplate(frameControl.NumberInput, 'Input Number', 'number', 0, small, 
+  props,'h')
+}
 return controls;
 function VisualTemplate(component, label, type, value, initialSize, props, resize) {
   return {
