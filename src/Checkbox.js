@@ -5,7 +5,7 @@ function Checkbox(props) {
   const {onChange, value, label, style, ...rest} = props;
   const _onChange = (e) => {
     console.log(e);
-    onChange(e.target.checked === true ? 1 : 0);
+    onChange(e.checked === true ? 1 : 0);
   }   
   let isChecked = value !== 0 ;
   let iStyle = {border: '1', ...style};
