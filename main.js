@@ -22,15 +22,15 @@ let props = {size: 'md', variant: 'outline', isDisabled: false, style: {height: 
 
 
 let controls ={
-  Input: VisualTemplate(frameControl.Input, 'Input Text', 'char',' ', small, props, 'h'),
+  Input: VisualTemplate(frameControl.Input, 'Input Text', 'char',' ', small, props, {}, 'h'),
   Checkbox: VisualTemplate(frameControl.Checkbox, 'Checkbox', 'double', 0, small,
-  props, 'h'),
-  Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props, 'both'),
+  props,{}, 'h'),
+  Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props,{}, 'both'),
   NumberInput: VisualTemplate(frameControl.NumberInput, 'Input Number', 'number', 0, small, 
-  props,'h')
+  props,{},'h')
 }
 return controls;
-function VisualTemplate(component, label, type, value, initialSize, props, grow) {
+function VisualTemplate(component, label, type, value, initialSize, props,dataProps, grow) {
   return {
     component: component,
     label: label,
@@ -39,7 +39,8 @@ function VisualTemplate(component, label, type, value, initialSize, props, grow)
     grow: grow,
     width: initialSize.width,
     height: initialSize.height,
-    props: props  
+    props: props, 
+    dataProps: dataProps
     }
 };
 }
