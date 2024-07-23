@@ -26,7 +26,7 @@ module.exports = (env) =>  {
       path: usePath,
       filename: (env.p === 'y') ? 'smart-controls-chakra.js' : 'smart-controls-chakra.dev.js',
       libraryTarget: 'umd',
-      library: "smartControlsChakra", 
+      library: "smartControls", 
       umdNamedDefine: true,
       globalObject: 'this'
     },
