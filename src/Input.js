@@ -7,7 +7,7 @@ function Input(props) {
     console.log(e);
     props.onChange(e.target.value);
   }
-  let irest = {variant: 'outline', ...rest};
-  return <C {...irest} onChange={_onChange} />;
+  console.log('Input', rest);
+  return <C {...rest} onChange={_onChange} />;
 } 
 export default Input;

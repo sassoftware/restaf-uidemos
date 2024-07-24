@@ -5,6 +5,7 @@ function Button(props) {
   const _onChange = (e) => {
     onChange(value);
   }
+  console.log('Button', rest);
   return <C key={name} {...rest} onClick={_onChange}>
     {value} 
     </C> 
