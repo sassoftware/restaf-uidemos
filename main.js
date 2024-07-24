@@ -10,7 +10,7 @@ console.log('frameControl', frameControl);
 let small = {height: 30, width: 200};
 // let medium ={height: 120, width: 400};
 // let large = {height: 120, width: 400};
-let props = {size: 'md', variant: 'outline', isDisabled: false};  // if you want to pass in some default props - helpful to users in property sheet
+let props = {size: 'md', variant: 'outline', style: {height: 'inherit', width: 'inherit'}};  // if you want to pass in some default props - helpful to users in property sheet
 // notes:
 // The component is the actual react component that will be rendered
 // The grow property is used to determine if the user can grow the control and in what direction
