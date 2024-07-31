@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelector (props) {
-  let {name, value, items, eProps, onChange, designMode,label, style} = props;
+  let {name, value, items, onChange, designMode,label, style} = props;
   const _handleChange = (e, val) => {
     if (e == null) {
       onChange(null);
@@ -14,6 +14,7 @@ function BaseSelector (props) {
     onChange(v);
     return;
   }
+  
 
   let sx = {height: 'inherit', width: '100%', ...style};
   let currentSelection = null;
@@ -27,32 +28,33 @@ function BaseSelector (props) {
   } else {
     currentSelection = (options.includes(value)) ? value : null;
   }
-  
+ 
   let ePropsL = { 
     id: name, 
     value: currentSelection,
-    label: label, 
+    label: (label == null) ? name : label, 
     size: "sm",
     variant: 'outlined',
     selectOnFocus: true,
-    readOnly: designMode, 
-    sx: sx,
-     ...eProps
+    readOnly: (designMode === true) ? true : false,
+    sx: sx
     };
     //for debugging purposes
     
     const check = (option, value) => {
+      
       if (option === value) {
         return true;
       } else
         return false;
      }
-    
+  
+     
     let show = 
     <FormControl>
       {label !== null ? <FormLabel>{label}</FormLabel> : null}
       <Autocomplete
-      {...ePropsL}
+      {...ePropsL }
       options={options != null ? options : []}
       isOptionEqualToValue={check}
       onChange={_handleChange}

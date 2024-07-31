@@ -1,0 +1,10 @@
+import checkCode from './checkCode';
+function configTemplate(source, table) {
+  return `
+
+
+  `
+
+  return appControl;
+}
+export default configTemplate;

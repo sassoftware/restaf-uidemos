@@ -1,5 +1,5 @@
 /*
-* Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+* Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
 * SPDX-License-Identifier: Apache-2.0
 */
 
@@ -8,7 +8,7 @@ import { distinctValues } from '@sassoftware/restafedit';
 import BaseSelector from './BaseSelector';
 
 function DistinctValues(props) {
-  let { name, column, value, label, lib, table, where, style, eProps, onChange, designMode, sharedProps } = props;
+  let { name, column, value, label, lib, table, where, style, onChange, designMode, sharedProps,...eProps } = props;
   let { appEnv } = sharedProps;
 
   const [list, setList] = useState([]);

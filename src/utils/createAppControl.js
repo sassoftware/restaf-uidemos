@@ -25,12 +25,13 @@ async function createAppControl(setupState, setupConfig, altState, viewType){
   if (lib != null && name != null) {
     config = null;
   } 
+  //  alternate state is used for cloning
   if (altState  != null) {
     appControl = altState.appControl;
+    appControl.logonPayload = setupState.logonPayload;
     sessionID = altState.sessionID;
   } 
   else {
-    
     if (config == null) { // no config, so create one
       if (setupConfig !== true) {
         if (lib == null || name == null) {
@@ -46,18 +47,25 @@ async function createAppControl(setupState, setupConfig, altState, viewType){
         }
       }
       appControl = configTemplate(source, table, setupConfig);
+      if (setupState.workBench === 'AFC') {
+        appControl.source='none';
+        appControl.logonPayload = null;
+      } else {
+        appControl.logonPayload = setupState.logonPayload;
+      }
+      debugger;
       appControl.formControl.width = setupState.width;
       appControl.formControl.height = setupState.height;
       // appControl.formControl.style = {height: setupState.height, width: setupState.width};
       appControl.computeContext = setupState.computeContext;
       appControl.casServerName = setupState.casServerName;
-      appControl.serverContext = (setupState.source ==='cas') ? setupState.casServer : setupState.computeContext;
+      appControl.serverContext = (setupState.source ==='cas') ? setupState.casServer 
+                                 :(setupState.source === 'compute')?  setupState.computeContext :'none';
       appControl.byvars = (setupState.byvars != null) ? setupState.byvars: []
     //  appControl.initialFetch.qs.limit = 10;
       
       // start with a config
     } else  {
-      
       appControl = await getConfigContent(store, configFolder, config, setupConfig,setupState.destination);
       
       if (appControl == null) {
@@ -76,13 +84,16 @@ async function createAppControl(setupState, setupConfig, altState, viewType){
   
     let appEnv;
     try {
-       appEnv = await setup(setupState.logonPayload, appControl, sessionID, setupState.builtins, setupState.user, setupState.userFunctions, setupState.storeConfig);  
+      
+       appEnv = await setup(appControl.logonPayload, appControl, sessionID, setupState.builtins, setupState.user, setupState.userFunctions, setupState.storeConfig);  
     } catch (err) {
       console.log(err);
       throw err;
     }
     
-       debugger;
+       
+    // extend restafedit appEnv with appData 
+
     appEnv.storeConfig = setupState.storeConfig;
     appEnv.frameName = setupState.frameName;
     appEnv.destination = setupState.destination;
@@ -91,12 +102,7 @@ async function createAppControl(setupState, setupConfig, altState, viewType){
     appEnv.gitConfig = setupState.gitConfig;
     appEnv.configFolder = setupState.configFolder;
     appEnv.gitDomain = setupState.gitDomain;
-    appEnv.builtins = setupState.builtins; 
-    appEnv.userFunctions = setupState.userFunctions; 
-    appEnv.user = setupState.user;
-    appEnv.logonPayload = setupState.logonPayload;
-    appEnv.viyaConnection = setupState.logonPayload;
-    appEnv.casServerName = setupState.casServerName;
+
     appEnv.computeContext = appControl.computeContext; // (setupConfig === true) ? appControl.computeContext: setupState.computeContext;
     appEnv.serverContext =   (appEnv.appControl.source ==='cas') ? appEnv.casServerName : appEnv.computeContext;
     
@@ -106,7 +112,7 @@ async function createAppControl(setupState, setupConfig, altState, viewType){
     appEnv.workBench = setupState.workBench;
     if (setupState.workBench === 'YES') {
       await appEnv.store.addServices('compute');
-    }else {
+    } else if (setupState.workBench !== 'AFC'){
       await appEnv.store.addServices('folders', 'files', 'compute', 'reports', 'casManagement');
     }
     
@@ -120,7 +126,7 @@ async function createAppControl(setupState, setupConfig, altState, viewType){
         }
       }
     }
-    debugger;
+    
      
     if (appEnv.workBench === 'YES') {
       appEnv.source= 'compute';
@@ -128,7 +134,7 @@ async function createAppControl(setupState, setupConfig, altState, viewType){
     };
 
     if (setupConfig !== true && appEnv.table != null){
-      debugger;
+      
       await scrollTable('first', appEnv);
       _matchColumns();
     }  else {

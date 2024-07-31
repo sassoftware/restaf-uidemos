@@ -1,15 +1,15 @@
 /*
-* Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+* Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
 * SPDX-License-Identifier: Apache-2.0
 */
 
 import React, { useEffect, useState, } from 'react';
 
-import getItemsList from './utils/getItemsList';
+import getItemsList from './utils/getItemsList.js';
 import BaseSelector from './BaseSelector';
 
 function SASItemsDropDown(props) {
-  let { name, service, value, count, label, filter, onChange, style, eProps,sharedProps } = props;
+  let { name, service, value, count, label, filter, onChange, style, sharedProps } = props;
   let { appEnv, designMode} = sharedProps;
 
   const [menuList, setMenuList] = useState([]);
@@ -50,7 +50,7 @@ function SASItemsDropDown(props) {
     items={menuList}
     designMode={designMode}
     style={style}
-    eProps={eProps}>
+    >
     </BaseSelector>
 };
 

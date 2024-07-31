@@ -1,19 +1,19 @@
 /*
- * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input as JoyInput } from '@mui/joy';
 import { FormLabel } from '@mui/joy';
 
 function Input(props) {
-  const { name, label, type, style, designMode, onChange } = props;
+  const { name, label, type, style, designMode, onChange} = props;
   const [value, setValue] = useState(() => (props.value == null) ? ' ' : props.value);
+
   let eProps = (props.eProps == null) ? {} : props.eProps;
   let disabled = (eProps.disabled == null) ? false : eProps.disabled;
   disabled = (designMode === true) ? true : disabled;
   let extendedProps = (eProps == null) ? {} : eProps;
-
 
   useEffect(() => {
     setValue(props.value);
@@ -21,6 +21,7 @@ function Input(props) {
 
   const handleChange = (synthE) => {
     setValue(synthE.target.value);
+   
     if (synthE.key === 'Enter') {
       onChange(synthE.target.value, synthE)
     }
@@ -53,7 +54,7 @@ function Input(props) {
   };
 
   let istyle = { ...style };
-  istyle.textAlign = (type === 'char' || type === 'text') ? 'left' : 'right';
+  istyle.textAlign = (props.align == null) ? 'right' : props.align;
 
   const _onBlur = (e) => {
     const synthE = {
@@ -79,6 +80,8 @@ function Input(props) {
     setValue(e.target.value);
     return true;
   };
+
+
   let inputProps = {
     inputMode: 'text',
     step: 'any',
@@ -88,11 +91,9 @@ function Input(props) {
     onFocus: _onFocus
   };
  
-  let isx = {...istyle, 'height': 'inherit', 'width': 'inherit'};
-  debugger;
+  let isx = { width: 'inherit', height: 'inherit', ...istyle };
   isx = {
-    width: 'inherit', 
-    height: 'inherit',
+    width: 'inherit', height: 'inherit',
     borderStyle: 'solid',
     borderWidth: '1px',
     borderRadius: 8,
@@ -100,14 +101,13 @@ function Input(props) {
   }
 
   let ePropsL = {
-    key: name,
+    //key: name,
     name: name,
     size: 'sm',
     readOnly: disabled,
     'aria-label': label,
     variant: "outlined",
     color: 'neutral',
-    label: label,
     sx: { isx },
 
     slotProps: {
@@ -119,15 +119,14 @@ function Input(props) {
   };
   delete ePropsL.disabled;
 
-//let divStyle = { width: 'inherit', height: 'inherit', border: (designMode === true) ? '1px solid black' : 'none' };
-  let t = <>
-  <FormLabel>{label}</FormLabel>
+  const t = <>
+    <FormLabel key={name}>{label}</FormLabel>
     <JoyInput
       {...ePropsL}
       value={value}
       onChange={_onChange}
     ></JoyInput>
-    </>;
+  </>;
   return t;
 }
 export default Input;

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Checkbox as JoyCheckbox } from "@mui/joy";
-//
 
 function Checkbox(props) {
-  let { name, value, eProps, designMode, onChange, label, style } = props;
+  let { name, value, designMode, onChange, label, style, ...eProps } = props;
   const divref = React.useRef(null);
-  
+  //const [width, height] = useSize(divref);
   let [val, setVal] = useState(() =>
     value == null ? false : value === 0 ? false : true
   );
@@ -34,7 +33,7 @@ function Checkbox(props) {
   delete ePropsL.disabled;
   
   let V = <JoyCheckbox {...ePropsL} overlay checked={val} onChange={_onChange} />;
-  let divStyle = { width: "inherit", height: "inherit", border: (designMode === true) ? "1px solid black": 'none'};
+  let divStyle = { width: 'inherit', height: 'inherit', border: (designMode === true) ? "1px solid black": 'none'};
   return (
     <div ref={divref} style={divStyle}>
       {V}

@@ -1,16 +1,16 @@
 /*
- * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, {useState} from 'react';
 import Editor from "@monaco-editor/react";
-import useSize from '@react-hook/size';
+//import useSize from '@react-hook/size';
 
 function VScode(props) {
-  const {value,name, style, onChange, designMode, dataProps} = props;
+  const {value,name, style, onChange, language, designMode} = props;
   const [code, setCode] = useState(value);
   const divref = React.useRef(null);
-  const [width, height] = useSize(divref);
+ // const [width, height] = useSize(divref);
   
   const _setCode = (value) => {
     setCode(value);
@@ -25,11 +25,15 @@ function VScode(props) {
       onChange(synthE.target.value, synthE);
     }
   }
-  let editor = <Editor
-    height={height - 5}
+  /*
+  height={height - 5}
     width= {width -5}
+  */
+  let editor = <Editor
+    height="inherit"
+    width= "Inherit"
     value={code}
-    defaultLanguage={dataProps.lang}
+    defaultLanguage={language}
     defaultValue={code}
     options={editorOptions()}
     onChange={_setCode}
@@ -38,7 +42,7 @@ function VScode(props) {
   let sx ={height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8px', ...style};
 
   return (
-    <div style={sx} ref={divref}>
+    <div name={name} style={sx} ref={divref}>
       {editor}
     </div>);
 }

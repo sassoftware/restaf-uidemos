@@ -17,7 +17,7 @@ async function getLocalFile(valueType, options, mode, accept) {
       multiple: false,
       mode: 'readwrite'
   };
-  debugger;
+  
   if (options !== null && options.name  != null){
     // pickerOpts.startIn = options.folder;
     pickerOpts.suggestedName = options.name;  

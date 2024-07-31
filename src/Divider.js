@@ -2,7 +2,7 @@ import React from 'react';
 import {Divider as JoyDivider} from '@mui/joy';
 
 function Divider(props) {
-  let {name, value, eProps, style} = props;
+  let {name, value, style, ...eProps} = props;
   let sx = { ...style};
   let ePropL = {
     //label: label,
@@ -10,9 +10,9 @@ function Divider(props) {
    // disabled: designMode,
     sx: sx,
     orientation: "horizontal",
+    ...eProps
   };
-  ePropL = {...ePropL, ...eProps};
-  let show = <JoyDivider {...eProps} {...ePropL}> {value}</JoyDivider> ;
+  let show = <JoyDivider  {...ePropL}> {value}</JoyDivider> ;
    
   return show;
 

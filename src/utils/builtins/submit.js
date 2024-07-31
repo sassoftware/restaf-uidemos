@@ -33,7 +33,7 @@ async function submit(src, macros, output, appEnv) {
       macros
     );
     let jobStatus = computeSummary.SASJobStatus;
-    debugger;
+    
     let result = {};
     if (jobStatus === 'failed' || jobStatus === 'error' || jobStatus === 'running') {
       let msg = `Job  ended with status of ${jobStatus}. Please check the log for errors.`; 

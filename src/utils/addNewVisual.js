@@ -1,15 +1,15 @@
 /*
- * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 import initialLayout from '../components/formControls/initialLayout';
 import updateHandlers from './updateHandlers';
 import {scrollTable, prepFormData} from '@sassoftware/restafedit';
 
-async function addNewVisual(newVisual, appEnv) {
+async function addNewVisual(newVisual, userControls, appEnv) {
   let formControl = appEnv.appControl.formControl;
   let name = newVisual.name.toLowerCase();
-  let itemLayout = {...initialLayout()[newVisual.component]};
+  let itemLayout = {...initialLayout(userControls)[newVisual.component]};
   itemLayout.id = newVisual.id;
   itemLayout.name = newVisual.props.name;
   itemLayout.y = 10;

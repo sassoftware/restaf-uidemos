@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelectorMultiple (props) {
-  let {name, value, items, separator, eProps, onChange, designMode,label, style} = props;
+  let {name, value, items, separator, onChange, designMode,label, style} = props;
   const _handleChange = (e, val) => {
     if (e == null) {
       return;
@@ -30,8 +30,7 @@ function BaseSelectorMultiple (props) {
     selectOnFocus: true,
     multiple: true,
     readOnly: designMode, 
-    sx: sx,
-     ...eProps
+    sx: sx
     };
  
 // isOptionEqualToValue={check}

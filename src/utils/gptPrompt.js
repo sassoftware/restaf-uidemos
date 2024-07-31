@@ -7,9 +7,9 @@ import  OpenAI from 'openai';
 
 async function gptPrompt(apiKey, userRequest, appEnv) {
   const configuration = { apiKey: apiKey, dangerouslyAllowBrowser: true };
-  debugger;
+  
   const openai = new OpenAI(configuration);
-  debugger;
+  
   const configFunctionSpec = {
     name: "getConfig",
     description:
@@ -79,10 +79,10 @@ async function gptPrompt(apiKey, userRequest, appEnv) {
     console.log(createArgs);
     let funcObject = {getConfig: getConfig, getData: getData};
     let completion = await openai.chat.completions.create(createArgs);
-    debugger;
+    
     console.log(completion);
     const completionResponse = completion.choices[0].message;
-    debugger;
+    
     if (completionResponse.content) {
       console.log(completionResponse.content);
       return completionResponse.content;
@@ -93,7 +93,7 @@ async function gptPrompt(apiKey, userRequest, appEnv) {
       return funcObject[fname](params.source, params.table, params.keys);
     }
   } catch (error) {
-    debugger;
+    
     return error;
   }
 }

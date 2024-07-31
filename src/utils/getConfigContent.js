@@ -23,8 +23,10 @@ async function getConfigContent(
   else if (destination === "local") {
     src = await config.text() ;
   } else {
+    debugger;
     src = await getConfigRaw(store, configFolder, config);
   }
+  debugger;
   if (src.substr(0, 22) !== 'function getAppControl' ) {
     // eslint-disable-next-line no-throw-literal
     let n = destination === "local" ? config.name : config;
@@ -37,7 +39,7 @@ async function getConfigContent(
 }
 
 function readSample(sample) {
-  debugger;
+  
   let form  = samples[sample].form;
   //form = form.replace(/\r\n|\n|\r/gm, ' ');
   return form;

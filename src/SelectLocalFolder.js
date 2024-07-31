@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, {useState} from 'react';
@@ -7,7 +7,8 @@ import getLocalFolder from './utils/getLocalFolder';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 function SelectLocalFolder(props) {
-  let {value, label, style,dataProps,  onChange} = props;
+  let {value, label, style,dataProps,  onChange, ...eProps} = props;
+  
   let [newFolder, setNewFolder] = useState(value != null && value.name != null ? value.name : '');
   const _onImport = () => {
     getLocalFolder(value)
@@ -22,7 +23,7 @@ function SelectLocalFolder(props) {
       console.log(e);
     })
   }
-  debugger;
+  
   let show = (
           <div style={style}>
             <Input value={newFolder} label={label}

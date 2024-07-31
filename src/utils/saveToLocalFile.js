@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 async function saveToLocalFile(name, type, content) {
-  debugger;
+  
   let base = name.split('.');
-  debugger;
+  
   console.log(base);
   console.log(type);
   let fileHandle = await window.showSaveFilePicker({suggestname: name});

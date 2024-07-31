@@ -1,12 +1,12 @@
 /*
- * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 import tosource from "tosource";
 import saveToFolder from "./saveToFolder";
 
 async function saveConfig(appEnv, src) {
-  debugger;
+  
   //final cleanup
   let name = (appEnv.destination === "local") ? appEnv.config.name :  appEnv.config;
   let base = name.split('.');
@@ -26,14 +26,18 @@ async function saveConfig(appEnv, src) {
   }
   //appEnv.config = name;
   //
-  debugger;
+  
+  let tAppControl = Object.assign({},appEnv.appControl);
+  
+  delete tAppControl.logonPayload;
+  delete tAppControl.user;
   let code2Upload =
     src != null
       ? src
       : "function getAppControl() {\n return " +
-        tosource(appEnv.appControl) +
+        tosource(tAppControl) +
         "};";
-  debugger;
+  
   if (appEnv.destination === "local") {
     let srcBlob = new Blob([code2Upload], { type: "text/javascript" });
     const writable = await appEnv.config.createWritable();

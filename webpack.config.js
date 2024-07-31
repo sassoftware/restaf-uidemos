@@ -26,7 +26,7 @@ module.exports = (env) =>  {
       path: usePath,
       filename: (env.p === 'y') ? 'smart-controls-mui.js' : 'smart-controls-mui.dev.js',
       libraryTarget: 'umd',
-      library: "smartControlsMui", 
+      library: "smartControls", 
       umdNamedDefine: true,
       globalObject: 'this'
     },

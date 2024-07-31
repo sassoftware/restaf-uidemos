@@ -1,0 +1,90 @@
+/*
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import React, { useEffect, useState} from 'react';
+
+import createAppControl from './utils/createAppControl';
+import AgGridTableEditor from '../helpers/AgGridTableEditor';
+import AgGridTableEditorSSRM from '../helpers/AgGridTableEditorSSRM';
+import PlaceHolder from './PlaceHolder';
+import useSize from '@react-hook/size';
+
+// https://www.react-spring.dev/docs/utilities/use-resize
+
+function TableViewer(props) {
+  const {name, style, value, designMode, refresh, dataProps, sharedProps} = props;
+  const iappEnv = sharedProps.appEnv;
+  const {lib, table, folder, form,menu,limit, show, drop} = dataProps;
+  const [appEnv, setAppEnv] = useState(null);
+  const divref = React.useRef(null);
+  const [width, height] = useSize(divref);
+
+  useEffect(() => {
+    const createInfo = async () => {
+      let setupState = Object.assign({}, iappEnv);
+      delete setupState.appControl;
+      setupState.config = (form!= null && form.trim().length > 0) ? form : null;
+      setupState.configFolder = (folder != null && folder.trim().length > 0) ? folder : null;
+      setupState.lib = (lib != null) ? lib.trim() : null;
+      setupState.name = (table != null) ? table.trim() : null;
+      setupState.qs = {
+        limit: (dataProps.limit == null) ? 10 : limit,
+        format: (dataProps.format == null) ? true : dataProps.format,
+      }
+      
+      
+      if(value != null && value.trim().length > 0) {
+        let [l,n]= value.split('.');
+        setupState.lib = l.trim();
+        setupState.name = n.trim();
+      };
+      
+      let tcase = (setupState.lib != null && setupState.lib.trim().length >0  && setupState.name != null && setupState.name.trim().length > 0);
+      let fcase = (setupState.folder != null && setupState.folder.trim().length > 0  && setupState.form != null && setupState.form.trim().length > 0);
+      
+      if (tcase || fcase) {
+        debugger
+         let appEnvl = await createAppControl(setupState, false, null,'viewTable');
+       //  delete appEnvl.appControl.viewerOptions.domLayout;
+         return appEnvl;
+      } else {
+          return null;
+      }
+    }
+    createInfo()
+       .then (appEnvl => {
+        if (appEnvl){
+          delete appEnvl.appControl.viewerOptions.domLayout;
+          let appControl = appEnvl.appControl;
+
+          appControl.initialFetch.qs.limit = (dataProps.limit == null) ? 10 : dataProps.limit;
+          appControl.initialFetch.qs.format = (dataProps.format == null) ? true : dataProps.format;
+          if (props.where != null && props.where.length > 0 ) {
+              appControl.initialFetch.qs.where = props.where;
+          }
+          appControl.viewerOptions.show = (show == null) ? [] : show;
+          appControl.viewerOptions.drop = (drop == null) ? [] : drop;
+        }
+        
+        setAppEnv(appEnvl);
+      })
+      .catch(err => {
+        console.log(JSON.stringify(err));
+      })
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, value, lib, table, folder, form, refresh])
+  let V = (appEnv === null) ? <PlaceHolder/> 
+          : (dataProps.ssrm === true) 
+          ? <AgGridTableEditorSSRM  appEnv={appEnv} key={appEnv.id + "SSRM"} mode="display" testMode={designMode} menuflag={menu} parentSize={{height, width}} parentRef={divref}/>
+          : <AgGridTableEditor appEnv={appEnv} key={appEnv.id + "CSRM"} mode="display" testMode={designMode} menuflag={menu} parentSize={{height, width}} parentRef={divref}/>
+  let sx ={height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8px', ...style};
+  
+  return (
+    <div style={sx} ref={divref}>
+     {V}
+    </div>);
+};
+export default TableViewer;

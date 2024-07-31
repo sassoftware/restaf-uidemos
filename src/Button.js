@@ -1,12 +1,12 @@
 /*
- * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 import React from 'react';
 import {Button as JoyButton} from '@mui/joy';
 
 function Button(props) {
-  const {value, style, label, eProps, designMode, onChange} = props;
+  const {value, style, label, designMode, onChange,...eProps} = props;
   
   const _handleClick = () => {
     onChange(value);

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * Copyright © 2021, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, { useState } from "react";
@@ -33,9 +33,9 @@ function SelectLocalFile(props) {
         onChange(null);
       });
   };
-  debugger;
+  
   let msg = (buttonLabel != null) ? buttonLabel : (mode === 'write') ? 'Select Folder' : 'Select Form'
-  debugger;
+  
   let show = (
     <div style={style}>
       <Input
