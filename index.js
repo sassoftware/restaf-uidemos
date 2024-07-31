@@ -1,4 +1,3 @@
 import main from './main.js';
-let controls = main();
-console.log('controls', controls);  
+let controls = main();  
 export default controls;
