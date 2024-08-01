@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18.3.1"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.3.1"></script>
+    <script async src="https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf"></script>
+    <!--script type="text/javascript" src="./dist/smart-controls-chakra.dev.js"></script>-->
+  
+    <script>
+      debugger;
+      let script = document.createElement("script");                                             
+      script.src = 'https://unpkg.com/@sassoftware/smart-controls-chakra';
+      //script.type = "module";
+      document.head.appendChild(script);
+      </script>
+
+    <script>
+      
+    console.log(smartControls);
+   let f = smartControls.default;
+   console.log(f);
+  
+
+   
+   
+    </script>
+    <script type="text/babel">
+      function show(){
+
+        const createRoot = ReactDOM.createRoot;
+        const container = document.getElementById('container1');
+        const root = createRoot(container);
+      
+        const App = () => {
+          const onEnter = (e) => {
+            console.log(e);
+          alert(e);
+        }
+          return (
+            <div>
+              <Button  label="click me" value="click" onChange={onEnter}></Button>
+              <br></br>
+              <Input label="Enter your name" value="xxx" onChange={onEnter}></Input>
+              <br></br>
+              <Checkbox label="Check me"  value={1} onChange={onEnter}></Checkbox>
+                
+              <br></br>
+              <NumberInput label="Enter your name" name="ni" value={1} onChange={onEnter}></NumberInput>
+<br></br>
+              </div>
+
+          );
+        };
+        root.render( <App />)
+    }
+  
+      </script>
+    </head>
+
+
+<body onload="show()">
+  <div id="container1"></div>
+  <p> hi</p>
+</body>
+</body>
+</html>
+
+<!-- 
+<Input label="Enter your name" value="xxx" onChange={onEnter}></Input>
+<br></br>
+<NumberInput label="Enter your name" style={{length:10, width:200}} value={1} onChange={onEnter}></NumberInput>
+<br></br>
+<Checkbox label="Check me"  value={1} onChange={onEnter}></Checkbox>
+-->
+
+
+
