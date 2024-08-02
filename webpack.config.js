@@ -1,5 +1,6 @@
 const path = require("path");
 const TerserPlugin = require('terser-webpack-plugin');
+const { EvalDevToolModulePlugin } = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env) =>  {
@@ -22,6 +23,7 @@ module.exports = (env) =>  {
     mode: (env.p === 'y') ? "production" : "development",
     plugins: plugins, 
     optimization: optimize,
+    devtool: 'source-map',
     output: {
       path: usePath,
       filename: (env.p === 'y') ? 'smart-controls-chakra.js' : 'smart-controls-chakra.dev.js',
