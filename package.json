@@ -6,6 +6,7 @@
   "main": "/dist/smart-controls-chakra.js",
   "unpkg": "/dist/smart-controls-chakra.js",
   "browser": "/dist/smart-controls-chakra.js",
+  "registry": "https://github.com/sassoftware/restaf-uidemos/tree/smart-controls-chakra",
   "files": [
     "./dist"
   ],
