@@ -33,11 +33,12 @@ function VisualTemplate(component, label, type, value, initialSize, props, resiz
     component: component,
     label: label,
     type: type,
+    grow: resize,
     value: value,
-    resize: resize,
     width: initialSize.width,
     height: initialSize.height,
-    props: props  
+    props: props,
+    dataPrps: ' '
     }
 };
 }
