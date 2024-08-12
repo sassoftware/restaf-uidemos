@@ -23,9 +23,9 @@ let props = {};  // if you want to pass in some default props - helpful to users
 let controls ={
   InputText: VisualTemplate(frameControl.InputText, 'Input Text', 'char',' ', small, props, 'h'),
   Checkbox: VisualTemplate(frameControl.Checkbox, 'Checkbox', 'double', 0, small, props, 'h'),
-  Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props, 'both'),
-  RadioGroup: VisualTemplate(frameControl.RadioGroup, 'Radio Group', 'char',' ', medium, props, 'both'),
-  HtmlText: VisualTemplate(frameControl.HtmlText, 'Html Text', 'char','<h1>text<h1>', large, props, 'both'),
+  Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props, 'b'),
+  RadioGroup: VisualTemplate(frameControl.RadioGroup, 'Radio Group', 'char',' ', medium, props, 'b'),
+  HtmlText: VisualTemplate(frameControl.HtmlText, 'Html Text', 'char','<h1>text<h1>', large, props, 'b'),
   };
 return controls;
 function VisualTemplate(component, label, type, value, initialSize, props, resize) {
