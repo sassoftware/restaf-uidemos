@@ -7,8 +7,8 @@ import React from 'react';
 import btoa from 'btoa';
 
 function Image(props) {
-  const {value, label, style, refresh, dataProps} = props;
-  let {srcType} = dataProps;
+  const {value, label, style, srcType, refresh} = props;
+
   // let ePropsL = {variant: 'outlined', disabled: designMode, color: 'primary', size:"md", ...eProps};
 
   // using value - to allow for changing the text of the button programmatically
