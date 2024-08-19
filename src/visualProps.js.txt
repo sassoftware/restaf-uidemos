@@ -31,7 +31,7 @@ function visualProps(userControls) {
       let ut = userControls[k];
       let m = {value: ut.value, type: ut.type, grow: ut.grow};
       m.style = JSON.stringify(ut.props);
-      m.dataProps= JSON.stringify(ut.dataProps);
+      m.dataProps= '';
       uitems[k] = _makeProps(m, k, ut.label);
     }
     return uitems;

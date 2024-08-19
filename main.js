@@ -58,7 +58,7 @@ let controls ={
   
 
   /* local files */
-  SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
+ // SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
 
   /* composites */
   //TableViewer: _visualTemplate(frameControl.TableViewer,'TableViewer','char',' ',medium,
@@ -89,7 +89,7 @@ function _visualTemplate(component, label, type, value, initialSize, props, resi
     width: initialSize.width,
     height: initialSize.height,
     props: props,
-    dataProps: ' '
+    dataProps: ''
     }
 };
 }
