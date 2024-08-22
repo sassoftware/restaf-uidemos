@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelector (props) {
-  let {name, value, items, onChange, designMode,label, style} = props;
+  let {name, value, items, onChange, designMode,label, sx} = props;
   const _handleChange = (e, val) => {
     if (e == null) {
       onChange(null);
@@ -16,7 +16,7 @@ function BaseSelector (props) {
   }
   
 
-  let sx = {height: 'inherit', width: '100%', ...style};
+  let isx = {height: 'inherit', width: '100%', ...sx};
   let currentSelection = null;
 
   let options = (items == null ? [] : Array.isArray(items) ? items : 
@@ -37,7 +37,7 @@ function BaseSelector (props) {
     variant: 'outlined',
     selectOnFocus: true,
     readOnly: (designMode === true) ? true : false,
-    sx: sx
+    sx: isx
     };
     //for debugging purposes
     

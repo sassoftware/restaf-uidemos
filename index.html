@@ -10,7 +10,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script async src="https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf"></script>
-    <script type="text/javascript" src="./dist/smart-controls-mui.dev.js"></script>-->
+    <script type="text/javascript" src="./dist/smart-controls-mui.dev.js"></script>
   
     <script>
     console.log(smartControls);
@@ -21,7 +21,12 @@
     console.log(store);
     let Button = f['Button'].component
     let InputText = f['InputText'].component
-    console.log(Button)
+    let Typography = f['Typography'].component
+    let Slider = f['Slider'].component;
+    let Checkbox = f['Checkbox'].component;
+    
+    
+    
    
     </script>
     <script type="text/babel">
@@ -35,11 +40,16 @@
           const onEnter = () => {
           alert('clicked');
         }
+        let sx = {height: '100px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
               <Button  label="click me" onChange={onEnter}></Button>
               <InputText label="Enter your name"value="xxx" onChange={onEnter}></InputText>
-            </div>
+              <Typography variant="h1" value="hello world"></Typography>
+              <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
+              <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
+              <Checkbox label="check me" name="xxx" value={true} sx={sx} onChange={onEnter}></Checkbox>
+              </div>
           );
         };
         root.render( <App />)

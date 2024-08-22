@@ -10,7 +10,7 @@ import useSize from '@react-hook/size';
 
 
 function Slider(props) {
-  const { name, value, style, label, designMode, onChange, eProps } = props;
+  const { name, value, designMode, onChange, sx,...eProps } = props;
   const [val, setVal] = useState(value);
   const divref = useRef(null);
   const [width, height] = useSize(divref);
@@ -23,8 +23,8 @@ function Slider(props) {
     onChange(value);
   }
   let wh = {width: 'inherit', height: 'inherit'};
-  let istyle = { ...style, ...wh};
-
+  let istyle = (sx != null) ? { ...sx, ...wh} : wh;
+  
   let slotProps = {
     root: wh
   }
@@ -34,14 +34,29 @@ function Slider(props) {
     variant: 'solid',
     marks: false,
     track: 'normal',
-    disabled: designMode,
+    disabled: false,
+    orientation: 'horizontal',
     valueLabelDisplay: 'on',
-   // step: step,
-    'aria-label': label,
     ...eProps
   };
+  if (ePropsL['aria-label'] == null) {
+    ePropsL['aria-label'] = name;
+  } 
+
+  const V = <JoySlider sx={istyle}
+    key={name + 'slider'}
+    value={val}
+    {...ePropsL}
+   
+    onChange={(event, value) => _onChange(event, value)}
+    onChangeCommitted={(event, value) => _onCommit(event, value)}
+    />;
+  return V;
+  /*
   let divStyle = { width: wh.width, height: wh.height, border: (designMode === true) ? "1px solid black": 'none'};
-  const V = <JoySlider style={istyle}
+nChangeCommitted={(event, value) => _onCommit(event, value)}
+    />
+  const V = <JoySlider sx={istyle}
       key={name + 'slider'}
       value={val}
       {...ePropsL}
@@ -52,19 +67,6 @@ function Slider(props) {
   return  (<div ref={divref} style={divStyle}>
            {V}
            </div>);
-
-  /*
-  const t = <Box sx= {{width: 'inherit', height: 'inherit'}} ref={divref}>
-    <Typography id={name + 'label'}>{label}</Typography>
-    <JoySlider style={istyle}
-      key={name + 'slider'}
-      value={val}
-      {...ePropsL}
-      slotProps={slotProps}
-      onChange={(event, value) => _onChange(event, value)}
-      onChangeCommitted={(event, value) => _onCommit(event, value)}
-    />
-  </Box>;
-  */
+           */
 }
 export default Slider;

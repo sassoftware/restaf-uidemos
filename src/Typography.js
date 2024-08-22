@@ -6,9 +6,11 @@ import React, {Fragment} from 'react';
 import { Typography as JoyTypography} from '@mui/joy';
 
 function Typography(props) {
-  const {value, style, eProps} = props;
-  let isx = {width: 'inherit', height: 'inherit', backgroundColor: 'inherit', ...style};
-  
+  const {value,designMode, name, sx, ...eProps} = props;
+  let isx = {width: 'inherit', height: 'inherit',border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8, ...sx}
+
+  console.log('Typography', isx);
+  console.log(eProps);
   return <Fragment>
           <JoyTypography sx={isx} {...eProps} >{value}</JoyTypography>
           </Fragment>
