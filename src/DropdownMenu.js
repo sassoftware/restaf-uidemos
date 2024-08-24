@@ -13,13 +13,15 @@ function DropDownMenu(props) {
   
   let menuList = [];
   let sxb ={textTransform: 'capitalize',justifyContent: 'flex-start' };
-  items.forEach((m, i) => {
-    menuList.push(
-      <MenuItem key={m} sx={sxb} onClick={() => onSelect(m, i)}>
-        {m}
-      </MenuItem>
-    );
-  });
+  if (items != null) {
+    items.forEach((m, i) => {
+      menuList.push(
+        <MenuItem key={m} sx={sxb} onClick={() => onSelect(m, i)}>
+          {m}
+        </MenuItem>
+      );
+    });
+  }
 
   let sx = {height: 'inherit',justifyContent: 'left', ...style};
   let ePropsL = {placement: 'bottom-start', ...eProps};

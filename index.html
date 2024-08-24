@@ -25,6 +25,7 @@
     let Slider = f['Slider'].component;
     let Checkbox = f['Checkbox'].component;
     let Dropdown = f['Dropdown'].component;
+    let DropdownMenu = f['DropdownMenu'].component;
     
     
     
@@ -44,7 +45,7 @@
         let sx = {height: '100px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <Dropdown label="Select a value" sx={sx} value="B" items={items} multiple={true} onChange={onEnter}></Dropdown>
+              <DropdownMenu label="Select a value" sx={sx} value="B" items={items} multiple={true} onChange={onEnter}></DropdownMenu>
             </div>
           );
         };
