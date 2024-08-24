@@ -24,6 +24,7 @@
     let Typography = f['Typography'].component
     let Slider = f['Slider'].component;
     let Checkbox = f['Checkbox'].component;
+    let Dropdown = f['Dropdown'].component;
     
     
     
@@ -35,21 +36,16 @@
         const createRoot = ReactDOM.createRoot;
         const container = document.getElementById('container1');
         const root = createRoot(container);
-      
+        let items = ['A', 'B', 'C', 'D', 'E'];
         const App = () => {
-          const onEnter = () => {
-          alert('clicked');
+          const onEnter = (e) => {
+          alert(e);
         }
         let sx = {height: '100px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <Button  label="click me" onChange={onEnter}></Button>
-              <InputText label="Enter your name"value="xxx" onChange={onEnter}></InputText>
-              <Typography variant="h1" value="hello world"></Typography>
-              <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
-              <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
-              <Checkbox label="check me" name="xxx" value={true} sx={sx} onChange={onEnter}></Checkbox>
-              </div>
+              <Dropdown label="Select a value" sx={sx} value="B" items={items} multiple={true} onChange={onEnter}></Dropdown>
+            </div>
           );
         };
         root.render( <App />)
@@ -58,7 +54,14 @@
       </script>
     </head>
 
-
+<!--
+  <Button  label="click me" onChange={onEnter}></Button>
+              <InputText label="Enter your name"value="xxx" onChange={onEnter}></InputText>
+              <Typography variant="h1" value="hello world"></Typography>
+              <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
+              <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
+              <Checkbox label="check me" name="xxx" value={true} sx={sx} onChange={onEnter}></Checkbox>
+  -->
 <body onload="show()">
   <div id="container1"></div>
   <p> hi</p>

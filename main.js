@@ -40,7 +40,9 @@ let controls ={
     {sx: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8}, variant: 'outlined', size: 'sm'},'h'),
   RadioGroup: _visualTemplate(frameControl.RadioGroup,'RadioGroup','char',' ',small,{items: ['item 1', 'Item 2'], valueType: 'label'},'b'),
   Dropdown: _visualTemplate(frameControl.Dropdown,'Dropdown','char',' ',small,{items: ['item 1', 'Item 2']},'h'),
+  Dropdown: _visualTemplate(frameControl.Dropdown,'Dropdown','char',' ',small,{items: ['item 1', 'Item 2'], multiple: false},'h'),
   DropdownMenu: _visualTemplate(frameControl.DropdownMenu,'DropdownMenu','char',' ',small,{items: ['item 1', 'Item 2'], valueType: 'label'},'h'),
+  ListBox: _visualTemplate(frameControl.ListBox,'ListBox','char',' ',small,{items: ['item 1', 'Item 2'], valueType: 'label'},'h'),
   Slider: _visualTemplate(frameControl.Slider,'Slider','double',0.5,small,
     {min: 0, max: 1, step: 0.1, marks: true,  color: 'primary', variant: 'solid', track: 'normal',size: 'sm'},'h'),
 

@@ -1,10 +1,12 @@
 import React from 'react';
 
 // import {Sheet} from '@mui/joy'
-import FormLabel from '@mui/joy/FormLabel';
-import Autocomplete from '@mui/joy/Autocomplete';
-import FormControl from '@mui/joy/FormControl';
-function BaseSelector (props) {
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListSubheader from '@mui/joy/ListSubheader';
+import ListItemButton from '@mui/joy/ListItemButton';
+import Sheet from '@mui/joy/Sheet';
+function Listbox (props) {
   let {name, value, items, onChange, designMode,label, sx} = props;
   const _handleChange = (e, val) => {
     if (e == null) {
@@ -52,17 +54,31 @@ function BaseSelector (props) {
     debugger;
     console.log('ePropsl:', ePropsL);
     let show = 
-    <FormControl>
-      {label != null ? <FormLabel>{label}</FormLabel> : null}
-      <Autocomplete
-      {...ePropsL }
-      options={options != null ? options : []}
-      isOptionEqualToValue={check}
-      onChange={_handleChange}
-      />
-     </FormControl>
+    <Sheet
+      variant="outlined"
+      sx={{
+        width: 320,
+        maxHeight: 300,
+        overflow: 'auto',
+        borderRadius: 'sm',
+      }}
+    >
+      <List>
+        <ListItem >
+            <List>
+              {[...Array(10)].map((__, index) => (
+                <ListItem key={index}>
+                  <ListItemButton>Subitem {index + 1}</ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </ListItem>
+        ))}
+      </List>
+    </Sheet>
+  );
     return show;
 }
 
-export default BaseSelector;
+export default Listbox;
 // isOptionEqualToValue={(option, value) => (value.trim().length === 0 || option === value) ? true : false}

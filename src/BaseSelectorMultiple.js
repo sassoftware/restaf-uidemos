@@ -15,7 +15,7 @@ function BaseSelectorMultiple (props) {
     }
   }
   let sep = (separator == null) ? ' ' : separator;
-  let isx = {height: 'inherit', width: '100%', ...style};
+  let isx = {height: 'inherit', width: '100%', ...sx};
   
   if (typeof value === 'string') {
     value = (value == null || value.trim().length === 0) ? [] : value.split(sep);
