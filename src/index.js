@@ -35,6 +35,7 @@ import RadioGroup from './RadioGroup';
 import SelectLocalFile from './SelectLocalFile';
 import SelectLocalFolder from './SelectLocalFolder';
 import VScode from './VScode';
+import Listbox from './Listbox';
 //import Markdown from './Markdown';
 
 // import TableViewer from './TableViewer';
@@ -65,6 +66,7 @@ export default {
   Divider,
   Image,
   DropdownMenu,
+  Listbox,
   ScrollMenu,
   //FormViewer,
   RadioGroup,

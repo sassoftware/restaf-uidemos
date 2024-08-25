@@ -26,6 +26,8 @@
     let Checkbox = f['Checkbox'].component;
     let Dropdown = f['Dropdown'].component;
     let DropdownMenu = f['DropdownMenu'].component;
+    let Listbox = f['Listbox'].component;
+    let RadioGroup = f['RadioGroup'].component;
     
     
     
@@ -42,10 +44,10 @@
           const onEnter = (e) => {
           alert(e);
         }
-        let sx = {height: '100px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
+        let sx = {height: '400px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <DropdownMenu label="Select a value" sx={sx} value="B" items={items} multiple={true} onChange={onEnter}></DropdownMenu>
+              <RadioGroup label="Select a value" sx={sx} value="B" items={items} onChange={onEnter}></RadioGroup>
             </div>
           );
         };

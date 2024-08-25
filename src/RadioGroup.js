@@ -8,7 +8,7 @@ import Radio from '@mui/joy/Radio';
 import {RadioGroup as JoyRadioGroup} from '@mui/joy';
 
 function RadioGroup (props) {
-  let {name, value, onChange,valueType, designMode,label, style} = props;
+  let {name, value, onChange,valueType, designMode,label, sx} = props;
   
   const _handleChange = (e) => {
     let val = e.target.value;
@@ -26,7 +26,7 @@ function RadioGroup (props) {
   }
 
 
-  let sx ={height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8px', ...style};
+  let isx ={height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8px', ...sx};
 
   let currentSelection = null;
 
@@ -71,14 +71,14 @@ function RadioGroup (props) {
     });
 
     let show = 
-    <div style={sx}>
+    <>
     <FormControl>
       <FormLabel>{label}</FormLabel>
-      <JoyRadioGroup defaultValue={currentSelection} onChange={_handleChange}>
+      <JoyRadioGroup defaultValue={currentSelection} sx={isx}onChange={_handleChange}>
         {buttons}
       </JoyRadioGroup>
      </FormControl>
-     </div>
+     </>
     return show;
 }
 
