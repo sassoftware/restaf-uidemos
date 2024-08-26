@@ -21,8 +21,8 @@ let props = {};  // if you want to pass in some default props - helpful to users
 
  let controls = {
   Input: _visualTemplate(frameControl.Input,'Input','double',0,small,{align: 'right'},'h'),
-  InputText: _visualTemplate(frameControl.InputText,'InputText','char','text',small,{align: 'left'},'h'),
-  Inputarea: _visualTemplate(frameControl.Inputarea,'InputArea','char', ' ', medium,{minRows: 2, maxRows: 5},'h'),
+  InputText: _visualTemplate(frameControl.InputText,'InputText','char','text',small,{align: 'left'},'b'),
+  Inputarea: _visualTemplate(frameControl.Inputarea,'InputArea','char', ' ', medium,{minRows: 2, maxRows: 5},'b'),
   Button: _visualTemplate(frameControl.Button,'Button','char','button',small,{},'b'),
   Checkbox: _visualTemplate(frameControl.Checkbox,'Checkbox','double',1,small,
     {sx: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8}, variant: 'outlined', size: 'sm'},'h'),
@@ -30,7 +30,8 @@ let props = {};  // if you want to pass in some default props - helpful to users
   Dropdown: _visualTemplate(frameControl.Dropdown,'Dropdown','char',' ',small,{items: ['item 1', 'Item 2']},'h'),
   Dropdown: _visualTemplate(frameControl.Dropdown,'Dropdown','char',' ',small,{items: ['item 1', 'Item 2'], multiple: false},'h'),
   DropdownMenu: _visualTemplate(frameControl.DropdownMenu,'DropdownMenu','char',' ',small,{items: ['item 1', 'Item 2'], valueType: 'label'},'n'),
-  Listbox: _visualTemplate(frameControl.Listbox,'Listbox','char',' ',small,{items: ['item 1', 'Item 2'], valueType: 'label'},'b'),
+  //Listbox: _visualTemplate(frameControl.Listbox,'Listbox','char',' ',small,
+  //  {sx: {borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'},items: ['item 1', 'Item 2'], valueType: 'label', labelProp: {sx: {backgroundColor: 'lightgrey'},level: 'h4'}},'b'),
   Slider: _visualTemplate(frameControl.Slider,'Slider','double',0.5,small,
     {min: 0, max: 1, step: 0.1, marks: true,  color: 'primary', variant: 'solid', track: 'normal',size: 'sm'},'h'),
 
@@ -72,7 +73,8 @@ let props = {};  // if you want to pass in some default props - helpful to users
 
 return controls;
 function _visualTemplate(component, label, type, value, initialSize, props, resize) {
-  return {
+  
+  let r =  {
     component: component,
     label: label,
     type: type,
@@ -83,6 +85,8 @@ function _visualTemplate(component, label, type, value, initialSize, props, resi
     props: props,
     dataProps: ''
     }
+  console.log('r', r);
+  return r;
 };
 }
 export default main;

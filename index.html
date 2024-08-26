@@ -21,6 +21,7 @@
     console.log(store);
     let Button = f['Button'].component
     let InputText = f['InputText'].component
+    let Inputarea = f['Inputarea'].component
     let Typography = f['Typography'].component
     let Slider = f['Slider'].component;
     let Checkbox = f['Checkbox'].component;
@@ -44,10 +45,10 @@
           const onEnter = (e) => {
           alert(e);
         }
-        let sx = {height: '400px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
+        let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <RadioGroup label="Select a value" sx={sx} value="B" items={items} onChange={onEnter}></RadioGroup>
+              <Listbox name="xxx" label="yyyyy" sx={sx} items={['a','b','c','d','e','f']}  onChange={onEnter}></Listbox>
             </div>
           );
         };
@@ -64,6 +65,8 @@
               <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
               <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
               <Checkbox label="check me" name="xxx" value={true} sx={sx} onChange={onEnter}></Checkbox>
+                            <Inputarea name="xxx" label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
+
   -->
 <body onload="show()">
   <div id="container1"></div>

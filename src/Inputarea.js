@@ -9,7 +9,7 @@ import { FormLabel } from '@mui/joy';
 import { FormControl } from '@mui/joy';
 
 function Inputarea(props) {
-  const { name, label, type, style, designMode, onChange, minRows, maxRows} = props;
+  const { name, label, sx, designMode, onChange, minRows, maxRows} = props;
 
   const [value, setValue] = useState(() => (props.value == null) ? ' ' : props.value);
   let disabled = (props.disabled == null) ? false : props.disabled;
@@ -66,7 +66,7 @@ function Inputarea(props) {
     return true;
   };
 
-  let istyle = { ...style };
+  let istyle = {sx };
   istyle.textAlign = 'left';
 
 
@@ -85,6 +85,7 @@ function Inputarea(props) {
 
   let inputProps = {
     inputMode: 'text',
+    label: label,
 
     step: 'any',
     style: istyle,
@@ -95,12 +96,11 @@ function Inputarea(props) {
   };
 
   let isx = { width: 'inherit', height: 'inherit', ...istyle };
-  isx = { width: 'inherit', height: 'inherit', ...istyle }
   let ePropsL = {
     name: name,
     size: 'md',
     readOnly: disabled,
-    label: label,
+
     variant: "outlined",
     minRows: (minRows == null) ? 2 : minRows,
     maxRows: (maxRows == null) ? 5 : maxRows,
@@ -114,18 +114,19 @@ function Inputarea(props) {
 
   };
   delete ePropsL.disabled;
-  let tx = <Textarea  key={name}
+  let t = <Textarea  key={name}
     {...ePropsL}
     value={value}
     onChange={_onChange}
   ></Textarea>;
-
-  const t = (label != null) ?
+  
+  t = (label != null && label.trim().length > 0) ?
     <FormControl>
       <FormLabel>{label}</FormLabel>
-      {tx}
+      {t}
     </FormControl>
-    : tx;
+    : <div>{t}</div>
+    
   return t;
 }
 export default Inputarea;

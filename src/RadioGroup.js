@@ -8,7 +8,7 @@ import Radio from '@mui/joy/Radio';
 import {RadioGroup as JoyRadioGroup} from '@mui/joy';
 
 function RadioGroup (props) {
-  let {name, value, onChange,valueType, designMode,label, sx} = props;
+  let {name, value, onChange,valueType, designMode,label, sx, ...eProps} = props;
   
   const _handleChange = (e) => {
     let val = e.target.value;
@@ -51,19 +51,18 @@ function RadioGroup (props) {
     if (valueType === 'index' && value != null)
     currentSelection = (options.includes(value)) ? value : null;
   }
-  /*
+  
   let ePropsL = { 
     id: name, 
     value: currentSelection,
     label: label, 
+    row: false,
     size: "sm",
     variant: 'outlined',
     selectOnFocus: true,
     readOnly: designMode, 
-    sx: sx,
      ...eProps
     };
-    */
 
     
     let buttons = options.map((m, i) => {
@@ -73,8 +72,8 @@ function RadioGroup (props) {
     let show = 
     <>
     <FormControl>
-      <FormLabel>{label}</FormLabel>
-      <JoyRadioGroup defaultValue={currentSelection} sx={isx}onChange={_handleChange}>
+      <FormLabel>{label }</FormLabel>
+      <JoyRadioGroup defaultValue={currentSelection} {...ePropsL} sx={isx}onChange={_handleChange}>
         {buttons}
       </JoyRadioGroup>
      </FormControl>

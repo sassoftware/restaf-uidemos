@@ -9,10 +9,11 @@ import List from '@mui/joy/List';
 import Sheet from '@mui/joy/Sheet';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
+import Typography from '@mui/joy/Typography';
 
 
-function ListMenu(props) {
-  let { name, value, label, items, variant, color, onChange, sx, valueType, ...eProps } = props;
+function Listbox(props) {
+  let { name, value, label, items, variant, color, onChange, sx, labelProp, valueType, ...eProps } = props;
   
   const _handleChange = (v,i) => {
     if (v == null) {
@@ -40,27 +41,41 @@ function ListMenu(props) {
         </ListItemButton>
     })
 
-  let isx = {maxHeight: '80%', margin: '2px', overflow: 'auto', borderRadius: 'sm'};
+  let isx = {  border: '1px',overflow: 'auto', borderRadius: '8px'};
   if (sx != null) {
     isx = {...isx, ...sx};
   }
-  let title = (label != null) ? label : (name != null) ? name : 'Select';
+  let title = (label != null && label.trim().length > 0) ? label : null;
   let isx2 = {height: 'inherit', width: 'inherit'}
+  let lprop = (labelProp != null) ? {level: 'h4', ...labelProp} : {level: 'h4'}
+  console.log('lprop', lprop);
   let show =
-    
       <Sheet
       variant="outlined"
       sx = {isx}
-      >
-        <ListSubheader>{title}</ListSubheader>
+      > 
       <List sx={isx2}>
+      <Typography {...lprop}>{title}</Typography>
         {newMenu}
       </List>
       </Sheet>
-   
+  let show3 =
+  <List sx={isx}>
+  <ListSubheader {...lprop}>{title}</ListSubheader>
+    
+    {newMenu}
+  </List>;
+
+   let show2 =
+  <div sx={isx2}>
+    <Typography {...lprop}>{title}</Typography>
+   <List sx={isx}>
+     {newMenu}
+   </List>
+   </div>
   
-  return show;
+  return show2;
 }
 
 
-export default ListMenu;
+export default Listbox;
