@@ -31,7 +31,7 @@ let props = {};  // if you want to pass in some default props - helpful to users
   Dropdown: _visualTemplate(frameControl.Dropdown,'Dropdown','char',' ',small,{items: ['item 1', 'Item 2'], multiple: false},'h'),
   DropdownMenu: _visualTemplate(frameControl.DropdownMenu,'DropdownMenu','char',' ',small,{items: ['item 1', 'Item 2'], valueType: 'label'},'n'),
   //Listbox: _visualTemplate(frameControl.Listbox,'Listbox','char',' ',small,
-  //  {sx: {borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'},items: ['item 1', 'Item 2'], valueType: 'label', labelProp: {sx: {backgroundColor: 'lightgrey'},level: 'h4'}},'b'),
+  //   {sx: {borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'},items: ['item 1', 'Item 2'], valueType: 'label', labelProp: {sx: {backgroundColor: 'lightgrey'},level: 'h4'}},'b'),
   Slider: _visualTemplate(frameControl.Slider,'Slider','double',0.5,small,
     {min: 0, max: 1, step: 0.1, marks: true,  color: 'primary', variant: 'solid', track: 'normal',size: 'sm'},'h'),
 
