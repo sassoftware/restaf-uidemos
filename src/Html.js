@@ -20,7 +20,7 @@ function Html(props) {
         
         setHtmlContent(data)
       } )
-      .catch((error) => setHtmlContent(`<h1> Home page ${props.url} was not found</h1>`));
+      .catch((error) => setHtmlContent(`<h1> Home page ${props.value}. ${error} was not found</h1>`));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
     

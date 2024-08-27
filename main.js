@@ -39,7 +39,8 @@ let props = {};  // if you want to pass in some default props - helpful to users
     {sx: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8},color: 'neutral',
      level: 'h2'}, 'h'),  
   HtmlText: _visualTemplate(frameControl.HtmlText,'HtmlText','char','<h1>Some html</h1>',medium,{},'b'),
-  Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'), 
+  Html: _visualTemplate(frameControl.Html,'Html','char','<h1>Some html</h1>',medium,{},'b'),
+  //Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'), 
   VSCode: _visualTemplate(frameControl.VScode,'VSCode','char',' ',medium,{language: 'text'},'b'),
 
 
