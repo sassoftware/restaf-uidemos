@@ -18,10 +18,9 @@ function BaseSelector (props) {
 
   let isx = {height: 'inherit', width: 'inherit', ...sx};
   let currentSelection = null;
-  console.log(items);
   let options = (items == null ? [] : Array.isArray(items) ? items : 
     (typeof items === 'string' ? items.split(',') : []));
-  console.log(options)
+ 
   value = (value != null) ? value.trim(): null;
   if (options.length === 0 ) {
     currentSelection =  'No items to display';
@@ -42,7 +41,6 @@ function BaseSelector (props) {
     //for debugging purposes
     
     const check = (option, value) => {
-      console.log('option:', option, 'value:', value);
       if (option === value) {
         return true;
       } else
@@ -50,7 +48,6 @@ function BaseSelector (props) {
      }
   
     debugger;
-    console.log('ePropsl:', ePropsL);
     let show = 
     <FormControl>
       {label != null ? <FormLabel>{label}</FormLabel> : null}

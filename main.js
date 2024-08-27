@@ -21,8 +21,8 @@ let props = {};  // if you want to pass in some default props - helpful to users
 
  let controls = {
   Input: _visualTemplate(frameControl.Input,'Input','double',0,small,{align: 'right'},'h'),
-  InputText: _visualTemplate(frameControl.InputText,'InputText','char','text',small,{align: 'left'},'b'),
-  Inputarea: _visualTemplate(frameControl.Inputarea,'InputArea','char', ' ', medium,{minRows: 2, maxRows: 5},'b'),
+  InputText: _visualTemplate(frameControl.InputText,'InputText','char','text',small,{align: 'left'},'h'),
+  Inputarea: _visualTemplate(frameControl.Inputarea,'InputArea','char', ' ', medium,{minRows: 2, maxRows: 5},'h'),
   Button: _visualTemplate(frameControl.Button,'Button','char','button',small,{},'b'),
   Checkbox: _visualTemplate(frameControl.Checkbox,'Checkbox','double',1,small,
     {sx: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8}, variant: 'outlined', size: 'sm'},'h'),

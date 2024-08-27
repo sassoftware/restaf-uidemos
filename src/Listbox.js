@@ -49,7 +49,6 @@ function Listbox(props) {
   let title = (label != null && label.trim().length > 0) ? label : null;
   let isx2 = {height: 'inherit', width: 'inherit'}
   let lprop = (labelProp != null) ? {level: 'h4', sticky: true, ...labelProp} : {level: 'h4'}
-  console.log('lprop', lprop);
   let show =
       <Sheet
       variant="outlined"
