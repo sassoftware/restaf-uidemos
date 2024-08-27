@@ -8,13 +8,13 @@ import Sheet from '@mui/joy/Sheet';
 //import parse  from 'html-react-parser';
 
 function HtmlText(props) {
-  let {value, name, style,refresh} = props;
+  let {value, name, sx,refresh} = props;
  
  let htmlContent = { __html: value };
  
-  let sx = { height: 'inherit', width: 'inherit', overflowY: 'scroll', textAlign: 'left', borderStyle: 'solid', borderWidth: '1px'}; 
-  if (style !== null) {
-    sx = { ...sx, ...style };
+  let isx = { height: 'inherit', width: 'inherit', overflowY: 'scroll', textAlign: 'left', borderStyle: 'solid', borderWidth: '1px'}; 
+  if (sx !== null) {
+    isx = { ...isx, ...sx };
   };
   
   let shkey = name + '_sheet';
@@ -23,8 +23,8 @@ function HtmlText(props) {
   }
 
   return (
-    <Sheet key={shkey} style={sx}>
-    <div key={name} style={sx} dangerouslySetInnerHTML={htmlContent}></div>
+    <Sheet key={shkey} style={isx}>
+    <div key={name} style={isx} dangerouslySetInnerHTML={htmlContent}></div>
     </Sheet>
   );
 }
