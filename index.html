@@ -43,12 +43,18 @@
         let items = ['A', 'B', 'C', 'D', 'E'];
         const App = () => {
           const onEnter = (e) => {
-          alert(e);
+          //alert(e);
         }
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <Listbox name="xxx" label="yyyyy" sx={sx} items={['a','b','c','d','e','f','g','h']}  onChange={onEnter}></Listbox>
+              <Button  label="click me" onChange={onEnter}></Button>
+              <InputText label="Enter your name"value="xxx" onChange={onEnter}></InputText>
+              <Typography variant="h1" value="hello world"></Typography>
+              <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
+              <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
+              <Checkbox label="check me" name="xxx" value={true} sx={sx} onChange={onEnter}></Checkbox>
+                            <Inputarea name="xxx" label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
             </div>
           );
         };

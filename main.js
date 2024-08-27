@@ -73,20 +73,17 @@ let props = {};  // if you want to pass in some default props - helpful to users
 
 return controls;
 function _visualTemplate(component, label, type, value, initialSize, props, resize) {
-  
-  let r =  {
+  return {
     component: component,
     label: label,
-    type: type,
+    type: type, 
     grow: resize,
     value: value,
     width: initialSize.width,
     height: initialSize.height,
-    props: props,
+    props: {name: ' ', label:  '*', ...props},
     dataProps: ''
     }
-  console.log('r', r);
-  return r;
 };
 }
 export default main;
