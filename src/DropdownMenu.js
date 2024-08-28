@@ -7,7 +7,7 @@ import MoreVert from '@mui/icons-material/MoreVert';
 
 
 function DropDownMenu(props) {
-  let { items, style, valueType, label, ...eProps } = props;
+  let { items, sx, valueType, label, ...eProps } = props;
   const onSelect = (m, i) => {
     props.onChange(valueType === 'index' ? i.toString() : m);
   };
@@ -24,12 +24,12 @@ function DropDownMenu(props) {
     });
   }
 
-  let sx = {height: 'inherit',justifyContent: 'left', ...style};
+  let isx = {height: 'inherit',justifyContent: 'left', ...sx};
   let ePropsL = {placement: 'bottom-start', ...eProps};
   return (
     
     <Dropdown>
-      <MenuButton sx={sx} {...ePropsL}>
+      <MenuButton sx={isx} {...ePropsL}>
         <MoreVert/>
         {label}
       </MenuButton>

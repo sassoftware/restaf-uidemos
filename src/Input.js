@@ -7,7 +7,7 @@ import { Input as JoyInput } from '@mui/joy';
 import { FormLabel } from '@mui/joy';
 
 function Input(props) {
-  const { name, label, type, style, designMode, onChange} = props;
+  const { name, label, type, sx, designMode, onChange} = props;
   const [value, setValue] = useState(() => (props.value == null) ? ' ' : props.value);
 
   let eProps = (props.eProps == null) ? {} : props.eProps;
@@ -53,7 +53,7 @@ function Input(props) {
     return true;
   };
 
-  let istyle = { ...style };
+  let istyle = { ...sx };
   istyle.textAlign = (props.align == null) ? 'right' : props.align;
 
   const _onBlur = (e) => {

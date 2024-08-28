@@ -7,13 +7,13 @@ import React from 'react';
 import btoa from 'btoa';
 
 function Image(props) {
-  const {value, label, style, srcType, refresh} = props;
+  const {value, label, sx, srcType, refresh} = props;
 
   // let ePropsL = {variant: 'outlined', disabled: designMode, color: 'primary', size:"md", ...eProps};
 
   // using value - to allow for changing the text of the button programmatically
 
-  let sx = {height: 'inherit',borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', ...style};
+  let isx = {height: 'inherit',borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', ...sx};
   let sx2 = {height: 'inherit',width: 'inherit'};
   
   let src = value;
@@ -21,7 +21,7 @@ function Image(props) {
     src = dataUrl(value, srcType);
   }
   
-  let show =  <div key={refresh} style={sx} ><img src={src} crossOrigin="" alt={label} key={refresh+1} style={sx2}  /> </div>;
+  let show =  <div key={refresh} style={isx} ><img src={src} crossOrigin="" alt={label} key={refresh+1} style={sx2}  /> </div>;
 
   return show;
 

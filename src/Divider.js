@@ -2,8 +2,8 @@ import React from 'react';
 import {Divider as JoyDivider} from '@mui/joy';
 
 function Divider(props) {
-  let {name, value, style, ...eProps} = props;
-  let sx = { ...style};
+  let {name, value, sx, ...eProps} = props;
+
   let ePropL = {
     //label: label,
     id: name,
