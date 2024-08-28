@@ -5,7 +5,7 @@
 import React  from 'react';
 function PlaceHolder (props) {
   const {sx} = props;
-  let isx = {height: 'inherit',  zIndex: 1, borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', ...sx};
+  let isx = {height: 'inherit',  borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', ...sx};
   return <div style={isx} >{props.value}</div>
 }
 export default PlaceHolder;

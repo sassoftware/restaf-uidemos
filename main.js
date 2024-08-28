@@ -43,18 +43,36 @@ let props = {};  // if you want to pass in some default props - helpful to users
   //Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'), 
   VSCode: _visualTemplate(frameControl.VScode,'VSCode','char',' ',medium,{language: 'text'},'b'),
 
-
-
   /* misc */
   Divider: _visualTemplate(frameControl.Divider,'Divider','char','Divider',small,{orientation: 'horizontal'},'h'), 
-  PlaceHolder: _visualTemplate(frameControl.PlaceHolder,'PlaceHolder','char',' ',small,{},'b'),
+  PlaceHolder: _visualTemplate(frameControl.PlaceHolder,'PlaceHolder','char',' ',small,{},'b',1),
   Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'), 
   
 
   /* local files */
  // SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
 
-  /* composites */
+  
+ }
+
+return controls;
+function _visualTemplate(component, label, type, value, initialSize, props, resize, zIndex) {
+  return {
+    component: component,
+    label: label,
+    type: type, 
+    grow: resize,
+    zIndex: (zIndex == null) ? 2 : zIndex,
+    value: value,
+    width: initialSize.width,
+    height: initialSize.height,
+    props: {name: ' ', label:  '*', ...props},
+    dataProps: ''
+    }
+};
+}
+export default main;
+/* composites */
   //TableViewer: _visualTemplate(frameControl.TableViewer,'TableViewer','char',' ',medium,
   // {style: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8}, sharedProps: ' ',dataProps: {lib: ' ', table: ' ', form: ' ', folder: ' ',userFunctions: null, _byvars: [], show: [], drop:[],where: ' ', limit: 10 }},{}, 'b'),
   //FormViewer: _visualTemplate(frameControl.FormViewer,'FormViewer','char',' ',medium,
@@ -70,21 +88,3 @@ let props = {};  // if you want to pass in some default props - helpful to users
   // SelectReport: _visualTemplate(frameControl.SelectReport,'SelectReport','char',' ',small,{folder: ' ', filter: {}, sharedProps: ' '},{}, 'h'),
   // SelectFolder: _visualTemplate(frameControl.SelectFolder,'SelectFolder','char',' ',small,{filter: {}, sharedProps: ' '},{}, 'h'),
   // SelectFiles: _visualTemplate(frameControl.SelectFiles,'SelectFiles','char',' ',small,{folder: ' ', filter: {}, sharedProps: ' '},{}, 'h'),
- }
-
-return controls;
-function _visualTemplate(component, label, type, value, initialSize, props, resize) {
-  return {
-    component: component,
-    label: label,
-    type: type, 
-    grow: resize,
-    value: value,
-    width: initialSize.width,
-    height: initialSize.height,
-    props: {name: ' ', label:  '*', ...props},
-    dataProps: ''
-    }
-};
-}
-export default main;
