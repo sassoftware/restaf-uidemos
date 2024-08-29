@@ -7,7 +7,7 @@ import HtmlText from './HtmlText';
 
 function Html(props) {
     let {sx, name, value, refresh} = props;
-    const [htmlContent, setHtmlContent] = useState('<h2> No link specified </h2>');
+    const [htmlContent, setHtmlContent] = useState('')
   
     useEffect(() => {
       /*
@@ -15,6 +15,7 @@ function Html(props) {
         return;
       }
         */
+    console.log('value', value);  
       if (value == null || value.trim().length === 0) {
         setHtmlContent('<h2> No link specified </h2>');
 
