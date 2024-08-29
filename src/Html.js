@@ -10,10 +10,11 @@ function Html(props) {
     const [htmlContent, setHtmlContent] = useState('<h2> No link specified </h2>');
   
     useEffect(() => {
-      
+      /*
       if (htmlContent !== null) {
         return;
       }
+        */
       if (value == null || value.trim().length === 0) {
         setHtmlContent('<h2> No link specified </h2>');
 
