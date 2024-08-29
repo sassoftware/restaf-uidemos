@@ -20,6 +20,7 @@
     let store = restaf.initStore();
     console.log(store);
     let Button = f['Button'].component
+    let Input = f['Input'].component
     let InputText = f['InputText'].component
     let Inputarea = f['Inputarea'].component
     let Typography = f['Typography'].component
@@ -49,15 +50,16 @@
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <Button  label="click me" onChange={onEnter}></Button>
-              <InputText label="Enter your name"value="xxx" onChange={onEnter}></InputText>
+              <Button  disabled={true} label="click me" onChange={onEnter}></Button>
+              <InputText label="Enter your name"value="xxx" disabled={true} onChange={onEnter}></InputText>
+              <Input label="Enter value "value={10}  onChange={onEnter}></Input>
               <Typography variant="h1" value="hello world"></Typography>
               <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
               <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
               <Checkbox label="check me" name="xxx" value={true} sx={sx} onChange={onEnter}></Checkbox>
                             <Inputarea name="xxx" label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
               <Html label="check me" name="xxx" value="https://www.sas.com" sx={sx} onChange={onEnter}></Html>
-              <PlaceHolder  label="click me" sx={{...sx, backgroundColor: 'lightgrey'}} onChange={onEnter}></PlaceHolder>
+              <PlaceHolder  label="click me" sheet={true} boxShadow={"20px"} sx={{...sx, boxShadow: 10,backgroundColor: 'lightgrey'}} onChange={onEnter}></PlaceHolder>
             
               </div>
           );
