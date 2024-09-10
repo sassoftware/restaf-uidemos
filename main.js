@@ -25,7 +25,7 @@ let props = {};  // if you want to pass in some default props - helpful to users
   Inputarea: _visualTemplate(frameControl.Inputarea,'InputArea','char', ' ', medium,{minRows: 2, maxRows: 5},'h'),
   Button: _visualTemplate(frameControl.Button,'Button','char','button',small,{},'b'),
   Checkbox: _visualTemplate(frameControl.Checkbox,'Checkbox','double',1,small,
-    {sx: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8}, variant: 'outlined', size: 'sm'},'h'),
+    {sx: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 6}, variant: 'outlined', size: 'sm'},'h'),
   RadioGroup: _visualTemplate(frameControl.RadioGroup,'RadioGroup','char',' ',small,{items: ['item 1', 'Item 2'], valueType: 'label'},'h'),
   Dropdown: _visualTemplate(frameControl.Dropdown,'Dropdown','char',' ',small,{items: ['item 1', 'Item 2']},'h'),
   Dropdown: _visualTemplate(frameControl.Dropdown,'Dropdown','char',' ',small,{items: ['item 1', 'Item 2'], multiple: false},'h'),
@@ -39,13 +39,13 @@ let props = {};  // if you want to pass in some default props - helpful to users
     {sx: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8},color: 'neutral',
      level: 'h2'}, 'h'),  
   HtmlText: _visualTemplate(frameControl.HtmlText,'HtmlText','char','<h1>Some html</h1>',medium,{},'b'),
-  Html: _visualTemplate(frameControl.Html,'Html','char','<h1>Some html</h1>',medium,{},'b'),
+  Html: _visualTemplate(frameControl.Html,'WebContent','char','<h1>Some html</h1>',medium,{},'b'),
   //Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'), 
   VSCode: _visualTemplate(frameControl.VScode,'VSCode','char',' ',medium,{language: 'text'},'b'),
 
   /* misc */
   Divider: _visualTemplate(frameControl.Divider,'Divider','char','Divider',small,{orientation: 'horizontal'},'h'), 
-  PlaceHolder: _visualTemplate(frameControl.PlaceHolder,'PlaceHolder','char',' ',small,{},'b',1),
+  PlaceHolder: _visualTemplate(frameControl.PlaceHolder,'Border','char',' ',small,{elevation: 10},'b',1),
   Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'), 
   
 

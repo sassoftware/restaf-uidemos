@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React  from 'react';
-import Sheet from '@mui/joy/Sheet';
+import Paper from '@mui/material/Paper';
 function PlaceHolder (props) {
-  const {sx, sheet} = props;
-  let isx = {height: 'inherit',  borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', ...sx};
-  return (sheet === true) ? <Sheet><div style={isx} >{props.value}</div></Sheet> : <div style={isx} >{props.value}</div>    
+  const {sx, usediv, ...eProps} = props;
+ // let isx = {height: 'inherit',  borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', ...sx};
+  return (usediv ===  true) ? <div style={sx} {...eProps} ></div>  : <Paper style={sx} {...eProps} ></Paper>
 }
 export default PlaceHolder;
