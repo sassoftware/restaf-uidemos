@@ -4,9 +4,9 @@
  */
 import React  from 'react';
 import Paper from '@mui/material/Paper';
-function PlaceHolder (props) {
+function Border (props) {
   const {sx, usediv, ...eProps} = props;
  let isx = {height: 'inherit',  width: 'inherit', ...sx};
   return (usediv ===  true) ? <div style={sx} {...eProps} ></div>  : <Paper style={sx} {...eProps} ></Paper>
 }
-export default PlaceHolder;
+export default Border;

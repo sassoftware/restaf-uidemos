@@ -7,7 +7,7 @@ import React, { useEffect, useState} from 'react';
 
 import createAppControl from './utils/createAppControl';
 import DataForm from '../frame/DataForm';
-import PlaceHolder from './PlaceHolder';
+import Border from './Border';
 import useSize from '@react-hook/size';
 // https://www.react-spring.dev/docs/utilities/use-resize
 
@@ -78,7 +78,7 @@ function FormViewer(props) {
   let sx ={height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8px', ...style};
   return (
     <div style={sx} ref={divref}>
-      {(appEnv !== null) ?<DataForm appEnv={appEnv} mode="display" testMode={designMode} menuflag={menu} parentSize={{height, width}} parentRef={divref}/> : <PlaceHolder/>}
+      {(appEnv !== null) ?<DataForm appEnv={appEnv} mode="display" testMode={designMode} menuflag={menu} parentSize={{height, width}} parentRef={divref}/> : <Border/>}
     </div>);
 };
 export default FormViewer;

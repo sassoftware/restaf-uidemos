@@ -6,7 +6,7 @@
 import React, { useState, useEffect} from 'react';
 import { getReportUri } from '@sassoftware/restaflib';
 import Sheet from '@mui/joy/Sheet';
-//import PlaceHolder from './PlaceHolder';
+//import Border from './Border';
 
 function VaSDK(props) {
   let { value, name, url, auth, sharedProps, style  } = props;

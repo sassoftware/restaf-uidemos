@@ -56,7 +56,7 @@ function visualProps(userControls) {
  
     /* misc */
     Divider: _makeProps({ grow: 'h',value: 'Divider', style:"{eProps: {orientation: 'horizontal'}}" }, 'Divider', 'Divider'),
-    PlaceHolder: _makeProps({ value: ''}, 'PlaceHolder', 'Border'),
+    Border: _makeProps({ value: ''}, 'Border', 'Border'),
     Image: _makeProps({ value: ' ', style: "{eProps: {height: 'inherit', width: 'inherit'}}"}, 'Image', 'Image'),
     VaSDK: _makeProps({  value: 'Retail Insights' , dataProps:  "{url: ' ', auth: 'credentials'}"}, 'VaSDK', 'Report Viewer'),
    

@@ -42,7 +42,7 @@ let controls = {
  
     /* misc */
     Divider: _visualTemplate(frameControl.Divider,'Divider','char','Divider',small,{orientation: 'horizontal'},{}, 'h'), 
-    PlaceHolder: _visualTemplate(frameControl.PlaceHolder,'PlaceHolder','char',' ',small,{},{}, 'b'),
+    Border: _visualTemplate(frameControl.Border,'Border','char',' ',small,{},{}, 'b'),
     Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},{}, 'b'), 
     VaSDK: _visualTemplate(frameControl.VaSDK,'VaSDK','char','Retail Insights',medium,{url: ' ', auth: 'credentials', sharedProps: ' '},{}, 'b'),
    

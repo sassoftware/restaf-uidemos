@@ -45,7 +45,7 @@ let props = {};  // if you want to pass in some default props - helpful to users
 
   /* misc */
   Divider: _visualTemplate(frameControl.Divider,'Divider','char','Divider',small,{orientation: 'horizontal'},'h'), 
-  PlaceHolder: _visualTemplate(frameControl.PlaceHolder,'Border','char',' ',small,{elevation: 10},'b',1),
+  Border: _visualTemplate(frameControl.Border,'Border','char',' ',small,{elevation: 10},'b',1),
   Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'), 
   
 
