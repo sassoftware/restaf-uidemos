@@ -9,7 +9,7 @@ import InputText from './InputText';
 import Typography from './Typography';
 import VaSDK from './VaSDK';
 //  import WherePrompt from "./WherePrompt";
-import Html from './Html';
+import WebContent  from './WebContent';
 import HtmlText from './HtmlText';
 import SASItemsDropDown from './SASItemsDropDown';
 import Dropdown from './Dropdown';
@@ -44,7 +44,7 @@ export default {
   Button,
   Checkbox,
   Dropdown,
-  Html,
+  WebContent,
   HtmlText,
   Input,
   InputText,

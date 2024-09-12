@@ -5,7 +5,7 @@
 import React, { useEffect, useState } from 'react';
 import HtmlText from './HtmlText';
 
-function Html(props) {
+function WebContent(props) {
     let {sx, name, value, refresh} = props;
     const [htmlContent, setHtmlContent] = useState('')
   
@@ -36,4 +36,4 @@ function Html(props) {
     console.log('htmlContent', htmlContent);
     return <HtmlText sx={sx} name={name} refresh={refresh} value={htmlContent} />;
   }
-  export default Html;
+  export default WebContent;

@@ -30,8 +30,8 @@
     let DropdownMenu = f['DropdownMenu'].component;
     //let Listbox = f['Listbox'].component;
     let RadioGroup = f['RadioGroup'].component;
-    let Html = f['Html'].component;
     let Border = f['Border'].component;
+    let WebContent = f['WebContent'].component;
     
     
    
@@ -58,9 +58,9 @@
               <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
               <Checkbox label="check me" name="xxx" value={true} sx={sx} onChange={onEnter}></Checkbox>
                             <Inputarea name="xxx" label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
-              <Html label="check me" name="xxx" target={"_blank"} value="https://www.sas.com" sx={sx} onChange={onEnter}></Html>
+              <WebContent label="check me" name="xxx" target={"_blank"} value="https://www.sas.com" sx={sx} onChange={onEnter}></WebContent>
               <br/>
-              <Border   sx={{height: 200, width: 200, backgroundColor: 'lightgrey'}} elevation={20} ></Border>
+              <Border  sx={{height: 200, width: 200, border: '5px'}} elevation={20} ></Border>
             
               </div>
           );
