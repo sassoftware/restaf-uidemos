@@ -4,25 +4,35 @@
  */
 import React  from 'react';
 import Paper from '@mui/material/Paper';
-import shadows from '@mui/system/shadows';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 function Border (props) {
-  const {name, sx, usediv, elevation, ...eProps} = props;
-  let tprop = {
+  const {name, sx, elevation, ...eProps} = props;
+
+let isx = {height: 'inherit', width: 'inherit', backgroundColor:  '#f5f5f5', ...sx};
+// Create a custom theme
+let tprop  =  {
+  components: {
     MuiPaper: {
-      root: {
-        backgroundColor: '#f5f5f5', // Light grey background
-        elevation: elevation,                // Set elevation for shadow effect
-        borderRadius: '8px',         // Rounded corners
-      }
-    }};
-  console.log('--------------------', tprop);
-  debugger;
-  const theme = createTheme(tprop);
+      styleOverrides: {
+        root: {
+          backgroundColor: isx.backgroundColor, // Change background color
+         // padding: '16px',            // Add some padding
+          elevation: (elevation == null) ? 5 : elevation, // Add shadow depth  
+          height: isx.height,
+          width: isx.width,           // Set elevation for shadow effect
+          borderRadius: '8px'        // Rounded corners
+        },
+      },
+    },
+  }};
+  console.log('tprop', tprop);
+const theme = createTheme(tprop);
 
- let isx = {height: 'inherit',  width: 'inherit',zindex: 1, ...sx};
- let V =  <Paper key={`${name}paper`} style={isx}  {...eProps} ></Paper>;
-
- return <ThemeProvider theme={theme}>{V}</ThemeProvider>;
+return (
+  <ThemeProvider theme={theme}>
+    <Paper key={`${name}paper`} sx={{zindex: 1}}>
+    </Paper>
+  </ThemeProvider>
+);
 }
 export default Border;
