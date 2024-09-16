@@ -3,9 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import frameControl from './src/index.js';
-function main() {
+function main(set) {
 
-console.log('frameControl', frameControl);
 let small = {height: 30, width: 200};
 let medium ={height: 120, width: 400};
 let large = {height: 120, width: 400};
@@ -45,17 +44,33 @@ let props = {};  // if you want to pass in some default props - helpful to users
 
   /* misc */
   Divider: _visualTemplate(frameControl.Divider,'Divider','char','Divider',small,{orientation: 'horizontal'},'h'), 
-  Border: _visualTemplate(frameControl.Border,'Border','char',' ',medium,{name: ' '},'b',1),
+  Border: _visualTemplate(frameControl.Border,'Border','char',' ',medium,{name: ' ',sx: { backgroundColor: '#f5f5f5',borderRadius: 4, boxShadow: 4}},'b',1),
   Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'), 
   
-
+  };
   /* local files */
  // SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
 
   
- }
 
-return controls;
+ let sasControls =  {
+  VaSDK: _visualTemplate(frameControl.VaSDK,'VA Reports','char','Retail Insights',medium,{name: ' ',url: ' ', auth: 'credentials', appConfig: ' '},'b'),
+  SelectLibrary: _visualTemplate(frameControl.SelectLibrary,'SelectLibrary','char',' ',small,{name: ' ',source: ' ',appConfig: ' '}, 'h'),
+  SelectTable: _visualTemplate(frameControl.SelectTable,'SelectTable','char',' ',small,{name: ' ',lib: ' ', appConfig: ' ',refresh: false}, 'h'),
+  SelectColumns: _visualTemplate(frameControl.SelectColumns,'SelectColumns','char',' ',small,{name: ' ',lib: ' ', table: ' ', appConfig: ' ',separator: ' ', refresh: false}, 'h'),
+  DistinctValues: _visualTemplate(frameControl.DistinctValues,'DistinctValues','char',' ',small,{name: ' ',lib: ' ', table: ' ', appConfig: ' ',column: ' ', where: ' ' },'h'),
+ };
+
+ let viyaControls = {
+ /* only for Viya and not workbench */
+  SelectReport: _visualTemplate(frameControl.SelectReport,'SelectReport','char',' ',small,{folder: ' ', filter: {}, appConfig: ' '},'h'),
+  SelectFolder: _visualTemplate(frameControl.SelectFolder,'SelectFolder','char',' ',small,{filter: {}, appConfig: ' '},'h'),
+  SelectFiles: _visualTemplate(frameControl.SelectFiles,'SelectFiles','char',' ',small,{folder: ' ', filter: {}, appConfig: ' '},'h'),
+ };
+
+let r =  (set === 'basic') ? controls : (set === 'sas') ? Object.assign({}, controls, sasControls) : (set === 'viya') ? Object.assign({},controls,sasControls, viyaControls) : {};
+return r ;
+
 function _visualTemplate(component, label, type, value, initialSize, props, resize, zIndex) {
   return {
     component: component,
@@ -74,17 +89,18 @@ function _visualTemplate(component, label, type, value, initialSize, props, resi
 export default main;
 /* composites */
   //TableViewer: _visualTemplate(frameControl.TableViewer,'TableViewer','char',' ',medium,
-  // {style: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8}, sharedProps: ' ',dataProps: {lib: ' ', table: ' ', form: ' ', folder: ' ',userFunctions: null, _byvars: [], show: [], drop:[],where: ' ', limit: 10 }},{}, 'b'),
+  // {style: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8}, appConfig: ' ',dataProps: {lib: ' ', table: ' ', form: ' ', folder: ' ',userFunctions: null, _byvars: [], show: [], drop:[],where: ' ', limit: 10 }},{}, 'b'),
   //FormViewer: _visualTemplate(frameControl.FormViewer,'FormViewer','char',' ',medium,
-  //  {style: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8},sharedProps: ' ', dataProps: {lib: ' ', table: ' ', form: ' ', folder: ' ',userFunctions: null, _byvars: [], show: [], drop:[],where: ' ', limit: 1 }},{}, 'b'), 
-  // VaSDK: _visualTemplate(frameControl.VaSDK,'VaSDK','char','Retail Insights',medium,{url: ' ', auth: 'credentials', sharedProps: ' '},{}, 'b'),
+  //  {style: {border: '1px', borderStyle:'solid', borderWidth: 1, borderRadius: 8},appConfig: ' ', dataProps: {lib: ' ', table: ' ', form: ' ', folder: ' ',userFunctions: null, _byvars: [], show: [], drop:[],where: ' ', limit: 1 }},{}, 'b'), 
+  // VaSDK: _visualTemplate(frameControl.VaSDK,'VaSDK','char','Retail Insights',medium,{url: ' ', auth: 'credentials', appConfig: ' '},{}, 'b'),
 
   /* data */
-  //SelectLibrary: _visualTemplate(frameControl.SelectLibrary,'SelectLibrary','char',' ',small,{source: ' ',sharedProps: ' '},{}, 'h'),
-  //SelectTable: _visualTemplate(frameControl.SelectTable,'SelectTable','char',' ',small,{lib: ' ', sharedProps: ' ',refresh: false},{}, 'h'),
-  //SelectColumns: _visualTemplate(frameControl.SelectColumns,'SelectColumns','char',' ',small,{lib: ' ', table: ' ', sharedProps: ' ',separator: ' ', refresh: false},{}, 'h'),
-  //DistintValues: _visualTemplate(frameControl.DistinctValues,'DistinctValues','char',' ',small,{lib: ' ', table: ' ', sharedProps: ' ',column: ' ', where: ' ' },{}, 'h'),
+  // VaSDK: _visualTemplate(frameControl.VaSDK,'VA Reports','char','Retail Insights',medium,{url: ' ', auth: 'credentials', appConfig: ' '},{}, 'b'),
+  //SelectLibrary: _visualTemplate(frameControl.SelectLibrary,'SelectLibrary','char',' ',small,{source: ' ',appConfig: ' '},{}, 'h'),
+  //SelectTable: _visualTemplate(frameControl.SelectTable,'SelectTable','char',' ',small,{lib: ' ', appConfig: ' ',refresh: false},{}, 'h'),
+  //SelectColumns: _visualTemplate(frameControl.SelectColumns,'SelectColumns','char',' ',small,{lib: ' ', table: ' ', appConfig: ' ',separator: ' ', refresh: false},{}, 'h'),
+  //DistintValues: _visualTemplate(frameControl.DistinctValues,'DistinctValues','char',' ',small,{lib: ' ', table: ' ', appConfig: ' ',column: ' ', where: ' ' },{}, 'h'),
   /* only for Viya and not workbench */
-  // SelectReport: _visualTemplate(frameControl.SelectReport,'SelectReport','char',' ',small,{folder: ' ', filter: {}, sharedProps: ' '},{}, 'h'),
-  // SelectFolder: _visualTemplate(frameControl.SelectFolder,'SelectFolder','char',' ',small,{filter: {}, sharedProps: ' '},{}, 'h'),
-  // SelectFiles: _visualTemplate(frameControl.SelectFiles,'SelectFiles','char',' ',small,{folder: ' ', filter: {}, sharedProps: ' '},{}, 'h'),
+  // SelectReport: _visualTemplate(frameControl.SelectReport,'SelectReport','char',' ',small,{folder: ' ', filter: {}, appConfig: ' '},{}, 'h'),
+  // SelectFolder: _visualTemplate(frameControl.SelectFolder,'SelectFolder','char',' ',small,{filter: {}, appConfig: ' '},{}, 'h'),
+  // SelectFiles: _visualTemplate(frameControl.SelectFiles,'SelectFiles','char',' ',small,{folder: ' ', filter: {}, appConfig: ' '},{}, 'h'),

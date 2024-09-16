@@ -3,41 +3,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React  from 'react';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 function Border (props) {
-  const {name, sx, elevation, ...eProps} = props;
+  const {name, sx} = props;
 
-let isx = {height: 'inherit', width: 'inherit', zindex: 1, backgroundColor:  '#f5f5f5', ...sx};
-// Create a custom theme
-let tprop  =  {
-  cssVariables: true,
-  components: {
-    Paper: {
-      styleOverrides: {
-       
-        root: {
-          backgroundColor: isx.backgroundColor, // Change background color
-         // padding: '16px',            // Add some padding
-          elevation: (elevation == null) ? 5 : elevation, // Add shadow depth  
-          height: isx.height,
-          width: isx.width,           // Set elevation for shadow effect
-          borderRadius: '8px'        // Rounded corners
-        },
-      },
-    },
-  }};
-  console.log('tprop', tprop);
-const theme = createTheme(tprop);
-/*
-return (
-  <ThemeProvider theme={theme}>
-    <Paper key={`${name}paper`} sx={{zindex: 1}}>
-    </Paper>
-  </ThemeProvider>
-);
-*/
+// let isx = {height: 'inherit', width: 'inherit', zindex: 1, boxShadow: 2, backgroundColor:  '#f5f5f5',border: 1, borderRadius: 4, ...sx};
+let isx = {height: 'inherit', width: 'inherit', zindex: 1, boxShadow: 2, ...sx};
+console.log(isx);
 return (
     <Box key={`${name}paper`} sx={isx}>
     </Box>
