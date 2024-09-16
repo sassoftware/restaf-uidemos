@@ -4,16 +4,19 @@
  */
 import React  from 'react';
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 function Border (props) {
   const {name, sx, elevation, ...eProps} = props;
 
-let isx = {height: 'inherit', width: 'inherit', backgroundColor:  '#f5f5f5', ...sx};
+let isx = {height: 'inherit', width: 'inherit', zindex: 1, backgroundColor:  '#f5f5f5', ...sx};
 // Create a custom theme
 let tprop  =  {
+  cssVariables: true,
   components: {
-    MuiPaper: {
+    Paper: {
       styleOverrides: {
+       
         root: {
           backgroundColor: isx.backgroundColor, // Change background color
          // padding: '16px',            // Add some padding
@@ -27,12 +30,18 @@ let tprop  =  {
   }};
   console.log('tprop', tprop);
 const theme = createTheme(tprop);
-
+/*
 return (
   <ThemeProvider theme={theme}>
     <Paper key={`${name}paper`} sx={{zindex: 1}}>
     </Paper>
   </ThemeProvider>
+);
+*/
+return (
+    <Box key={`${name}paper`} sx={isx}>
+    </Box>
+
 );
 }
 export default Border;
