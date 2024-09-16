@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/smart-controls-mui",
-  "version": "0.12.2",
+  "version": "0.12.3",
   "description": "Mui Frame Controls for use with @sassoftware/FrameBuilder",
   "source": "./index.js",
   "main": "/dist/smart-controls-mui.js",
