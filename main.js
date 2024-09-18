@@ -22,27 +22,28 @@ let props = {size: 'md', variant: 'outline', style: {height: 'inherit', width: '
 // The length,width and position will be controlled by the framebuilder
 
 
-let controls ={
-  Input: VisualTemplate(frameControl.Input, 'Input Text', 'char',' ', small, props, {}, 'h'),
-  Checkbox: VisualTemplate(frameControl.Checkbox, 'Checkbox', 'double', 0, small,
-  props,{}, 'h'),
-  Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props,{}, 'both'),
+let controls = {
+  Input: VisualTemplate(frameControl.Input, 'Input Text', 'char',' ', small, props, 'h'),
+  Checkbox: VisualTemplate(frameControl.Checkbox, 'Checkbox', 'number', 0, small,
+  props,'h'),
+  Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props,'both'),
   NumberInput: VisualTemplate(frameControl.NumberInput, 'Input Number', 'number', 0, small, 
-  props,{},'h')
+  props,'h')
 }
 return controls;
-function VisualTemplate(component, label, type, value, initialSize, props,dataProps, grow) {
+
+function VisualTemplate(component, label, type, value, initialSize, props,resize,zIndex) {
   return {
     component: component,
     label: label,
     type: type,
+    grow: resize,
+    zIndex: zIndex == null ? 2 : zIndex,
     value: value,
-    grow: grow,
     width: initialSize.width,
     height: initialSize.height,
-    props: props, 
-    dataProps: dataProps
-    }
+    props: { ...props },
+  };
 };
 }
 export default main;
