@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/smart-controls-chakra",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "chakra Frame Controls for use with @sassoftware/FrameBuilder",
   "source": "./index.js",
   "main": "/dist/smart-controls-chakra.js",
