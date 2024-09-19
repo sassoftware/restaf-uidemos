@@ -3,14 +3,17 @@ import {Checkbox as C} from '@chakra-ui/react';
 
 function Checkbox(props) {
   const {onChange, value, label, style, ...rest} = props;
+  console.log('---------------------------------checkbox', value);
   const _onChange = (e) => {
-    console.log(e);
-    onChange(e.checked === true ? 1 : 0);
+    debugger;
+    console.log('---------------------------------checkbox', e);
+    onChange(e.target.checked === true ? 1 : 0);
   }   
   let isChecked = value !== 0 ;
   let iStyle = {height: 'inherit', width: 'inherit',  ...style};
-
-  return <C isChecked={isChecked} {...iStyle} {...rest} onChange={_onChange} >
+  console.log(label);
+  debugger;
+  return <C isChecked={isChecked} {...iStyle} {...rest}  onChange={_onChange} >
     {label}
   </C>
 } 

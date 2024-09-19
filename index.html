@@ -35,20 +35,22 @@
         const root = createRoot(container);
       
         const App = () => {
+          let vals = {input: 'xxxx', checkbox: 1, switch: 1};
           const onEnter = (e) => {
-            console.log(e);
+            console.log('xxxxxxxxxxxxxxxxxxxx', e.target.value);
           alert(e);
         }
           let Style = {height: 100, width:400, variant: 'outlined', color:'red'};
+          console.log(vals);
           return (
             <div>
               <Button style={Style} backgroundColor='red' variant='outlined' color='black' label="click me" value="click" onChange={onEnter}></Button>
               <br></br>
-              <Input style={Style} label="Enter your name" value="xxx" onChange={onEnter}></Input>
+              <Input style={Style} label="Enter your name" value={vals.input} onChange={onEnter}></Input>
               <br></br>
-              <Checkbox style={Style} label="Check me"  value={1} onChange={onEnter}></Checkbox>
+              <Checkbox style={Style} label="Check me"  value={vals.checkbox} colorScheme="green" onChange={(e) => vals.checkbox = e}></Checkbox>
               <br></br>
-              <Switch style={Style} backgroundColor="red" variant='outlined' height={"50px"} label={"XXX"}  size={"lg"} onChange={onEnter}></Switch>
+              <Switch style={Style} value={vals.switch} backgroundColor="red" variant='outlined' height={"50px"} label={"XXX"}  size={"lg"} onChange={onEnter}></Switch>
               <br></br>
              
               </div>

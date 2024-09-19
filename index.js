@@ -23,8 +23,8 @@ let props = {size: 'md', variant: 'outline'};  // if you want to pass in some de
 let controls = {
   Input: VisualTemplate(frameControl.Input, 'Input Text', 'char',' ', small, props, 'h'),
   Checkbox: VisualTemplate(frameControl.Checkbox, 'Checkbox', 'number', 0, small,
-  props,'h'),
-  Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props,'both'),
+  {label: 'Select me'},'h'),
+  Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props,'b'),
   Switch: VisualTemplate(frameControl.Switch, 'Switch', 'number', 0, medium, props, 'h'),
   //InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number', 0, small, 
   //{min: 1, max: 10, defaultValue: 2, },'h')

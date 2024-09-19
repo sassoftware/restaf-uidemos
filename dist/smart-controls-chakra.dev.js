@@ -2562,15 +2562,19 @@ function Checkbox(props) {
     label = props.label,
     style = props.style,
     rest = _objectWithoutProperties(props, _excluded);
+  console.log('---------------------------------checkbox', value);
   var _onChange = function _onChange(e) {
-    console.log(e);
-    onChange(e.checked === true ? 1 : 0);
+    debugger;
+    console.log('---------------------------------checkbox', e);
+    onChange(e.target.checked === true ? 1 : 0);
   };
   var isChecked = value !== 0;
   var iStyle = _objectSpread({
     height: 'inherit',
     width: 'inherit'
   }, style);
+  console.log(label);
+  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Checkbox, _extends({
     isChecked: isChecked
   }, iStyle, rest, {
@@ -2698,7 +2702,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/switch/dist/chunk-VTV6N5LE.mjs");
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/react/dist/chunk-QAITB7GG.mjs");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _excluded = ["onChange", "value", "style"];
+var _excluded = ["onChange", "value", "label", "style"];
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -2713,19 +2717,24 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 function Switch(props) {
   var onChange = props.onChange,
     value = props.value,
+    label = props.label,
     style = props.style,
     rest = _objectWithoutProperties(props, _excluded);
   var _onChange = function _onChange(e) {
-    console.log(e);
-    onChange(e.checked === true ? 1 : 0);
+    debugger;
+    console.log('switch', e.target);
+    onChange(e.target.checked);
   };
+  var isChecked = value !== 0;
   var iStyle = _objectSpread({
     height: 'inherit',
     width: 'inherit'
   }, style);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Switch, _extends({}, iStyle, rest, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Switch, _extends({}, iStyle, {
+    isChecked: isChecked
+  }, rest, {
     onChange: _onChange
-  })));
+  })), label);
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Switch);
 
@@ -36743,8 +36752,10 @@ var props = {
 
 var controls = {
   Input: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Input, 'Input Text', 'char', ' ', small, props, 'h'),
-  Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'number', 0, small, props, 'h'),
-  Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'char', ' ', small, props, 'both'),
+  Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'number', 0, small, {
+    label: 'Select me'
+  }, 'h'),
+  Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'char', ' ', small, props, 'b'),
   Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'number', 0, medium, props, 'h')
   //InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number', 0, small, 
   //{min: 1, max: 10, defaultValue: 2, },'h')
