@@ -2477,84 +2477,6 @@ var weakMemoize = function weakMemoize(func) {
 
 /***/ }),
 
-/***/ "./main.js":
-/*!*****************!*\
-  !*** ./main.js ***!
-  \*****************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _src_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/index.js */ "./src/index.js");
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-/*
- * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
-
- * SPDX-License-Identifier: Apache-2.0
- */
-
-
-function main() {
-  console.log('frameControl', _src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
-  var small = {
-    height: 30,
-    width: 200
-  };
-  var medium = {
-    height: 120,
-    width: 400
-  };
-  // let large = {height: 120, width: 400};
-  var props = {
-    size: 'md',
-    variant: 'outline'
-  }; // if you want to pass in some default props - helpful to users in property sheet
-  // notes:
-  // The component is the actual react component that will be rendered
-  // The grow property is used to determine if the user can grow the control and in what direction
-  // The label is the label that will be displayed in the property sheet
-  // Type: currently only 'char' and 'number'. 
-  // The following are are initial values - user can change them in the property sheet
-  // initialSize:  width and height are used for initial sizing of the control
-  // props:  used to pass in any default props you want to pass including style
-  // The length,width and position will be controlled by the framebuilder
-
-  var controls = {
-    Input: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Input, 'Input Text', 'char', ' ', small, props, 'h'),
-    Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'number', 0, small, props, 'h'),
-    Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'char', ' ', small, props, 'both'),
-    Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'number', 0, medium, props, 'h')
-    //InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number', 0, small, 
-    //{min: 1, max: 10, defaultValue: 2, },'h')
-  };
-  return controls;
-  function VisualTemplate(component, label, type, value, initialSize, props, resize, zIndex) {
-    return {
-      component: component,
-      label: label,
-      type: type,
-      grow: resize,
-      zIndex: zIndex == null ? 2 : zIndex,
-      value: value,
-      width: initialSize.width,
-      height: initialSize.height,
-      props: _objectSpread({}, props)
-    };
-  }
-  ;
-}
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (main);
-
-/***/ }),
-
 /***/ "./src/Button.js":
 /*!***********************!*\
   !*** ./src/Button.js ***!
@@ -36782,10 +36704,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   controls: () => (/* binding */ controls)
 /* harmony export */ });
-/* harmony import */ var _main_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.js */ "./main.js");
+/* harmony import */ var _src_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/index.js */ "./src/index.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+/*
+ * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
 
-var controls = (0,_main_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
-console.log(controls);
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+console.log('frameControl', _src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+var small = {
+  height: 30,
+  width: 200
+};
+var medium = {
+  height: 120,
+  width: 400
+};
+// let large = {height: 120, width: 400};
+var props = {
+  size: 'md',
+  variant: 'outline'
+}; // if you want to pass in some default props - helpful to users in property sheet
+// notes:
+// The component is the actual react component that will be rendered
+// The grow property is used to determine if the user can grow the control and in what direction
+// The label is the label that will be displayed in the property sheet
+// Type: currently only 'char' and 'number'. 
+// The following are are initial values - user can change them in the property sheet
+// initialSize:  width and height are used for initial sizing of the control
+// props:  used to pass in any default props you want to pass including style
+// The length,width and position will be controlled by the framebuilder
+
+var controls = {
+  Input: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Input, 'Input Text', 'char', ' ', small, props, 'h'),
+  Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'number', 0, small, props, 'h'),
+  Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'char', ' ', small, props, 'both'),
+  Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'number', 0, medium, props, 'h')
+  //InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number', 0, small, 
+  //{min: 1, max: 10, defaultValue: 2, },'h')
+};
+function VisualTemplate(component, label, type, value, initialSize, props, resize, zIndex) {
+  return {
+    component: component,
+    label: label,
+    type: type,
+    grow: resize,
+    zIndex: zIndex == null ? 2 : zIndex,
+    value: value,
+    width: initialSize.width,
+    height: initialSize.height,
+    props: _objectSpread({}, props)
+  };
+}
+;
 
 })();
 
