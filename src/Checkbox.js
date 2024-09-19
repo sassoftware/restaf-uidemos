@@ -8,9 +8,9 @@ function Checkbox(props) {
     onChange(e.checked === true ? 1 : 0);
   }   
   let isChecked = value !== 0 ;
-  let iStyle = {border: '1', ...style};
+  let iStyle = {height: 'inherit', width: 'inherit',  ...style};
 
-  return <C isChecked={isChecked} style={iStyle} {...rest} onChange={_onChange} >
+  return <C isChecked={isChecked} {...iStyle} {...rest} onChange={_onChange} >
     {label}
   </C>
 } 

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import frameControl from './src/index.js';
+import { ChakraProvider } from '@chakra-ui/react';
 function main() {
 
 console.log('frameControl', frameControl);
@@ -28,8 +29,8 @@ let controls = {
   props,'h'),
   Button: VisualTemplate(frameControl.Button, 'Button', 'char', ' ', small, props,'both'),
   Switch: VisualTemplate(frameControl.Switch, 'Switch', 'number', 0, medium, props, 'h'),
-  InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number', 0, small, 
-  {min: 1, max: 10, defaultValue: 2, },'h')
+  //InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number', 0, small, 
+  //{min: 1, max: 10, defaultValue: 2, },'h')
 }
 return controls;
 

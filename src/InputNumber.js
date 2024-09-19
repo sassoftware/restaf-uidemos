@@ -4,8 +4,10 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  ChakraProvider,
 } from "@chakra-ui/react";
 import {  NumberInput } from "@chakra-ui/react";
+
 function InputNumber(props) {
   const { onChange, name, type, label, style, ...rest } = props;
 
@@ -13,12 +15,13 @@ function InputNumber(props) {
     console.log(e);
     onChange(e);
   };
-  let istyle = { height: "inherit", width: "inherit", ...style };
+  let istyle = { height: "inherit", width: "inherit" };
   debugger;
 
   console.log(rest);
 
-  return (
+  let show =
+    <ChakraProvider>
     <NumberInput style={istyle} {...rest} onChange={_onChange}>
       <NumberInputField >
       <NumberInputStepper>
@@ -27,6 +30,8 @@ function InputNumber(props) {
       </NumberInputStepper>
       </NumberInputField>
     </NumberInput>
-  );
+    </ChakraProvider>
+  ;
+  return show;
 }
 export default InputNumber;
