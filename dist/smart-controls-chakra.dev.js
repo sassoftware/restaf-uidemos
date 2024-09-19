@@ -2489,6 +2489,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _src_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/index.js */ "./src/index.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 /*
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
 
@@ -2501,15 +2507,14 @@ function main() {
     height: 30,
     width: 200
   };
-  // let medium ={height: 120, width: 400};
+  var medium = {
+    height: 120,
+    width: 400
+  };
   // let large = {height: 120, width: 400};
   var props = {
     size: 'md',
-    variant: 'outline',
-    style: {
-      height: 'inherit',
-      width: 'inherit'
-    }
+    variant: 'outline'
   }; // if you want to pass in some default props - helpful to users in property sheet
   // notes:
   // The component is the actual react component that will be rendered
@@ -2522,23 +2527,28 @@ function main() {
   // The length,width and position will be controlled by the framebuilder
 
   var controls = {
-    Input: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Input, 'Input Text', 'char', ' ', small, props, {}, 'h'),
-    Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'double', 0, small, props, {}, 'h'),
-    Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'char', ' ', small, props, {}, 'both'),
-    NumberInput: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].NumberInput, 'Input Number', 'number', 0, small, props, {}, 'h')
+    Input: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Input, 'Input Text', 'char', ' ', small, props, 'h'),
+    Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'number', 0, small, props, 'h'),
+    Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'char', ' ', small, props, 'both'),
+    Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'number', 0, medium, props, 'h'),
+    InputNumber: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].InputNumber, 'Input Number', 'number', 0, small, {
+      min: 1,
+      max: 10,
+      defaultValue: 2
+    }, 'h')
   };
   return controls;
-  function VisualTemplate(component, label, type, value, initialSize, props, dataProps, grow) {
+  function VisualTemplate(component, label, type, value, initialSize, props, resize, zIndex) {
     return {
       component: component,
       label: label,
       type: type,
+      grow: resize,
+      zIndex: zIndex == null ? 2 : zIndex,
       value: value,
-      grow: grow,
       width: initialSize.width,
       height: initialSize.height,
-      props: props,
-      dataProps: dataProps
+      props: _objectSpread({}, props)
     };
   }
   ;
@@ -2676,9 +2686,9 @@ function Input(props) {
 
 /***/ }),
 
-/***/ "./src/NumberInput.js":
+/***/ "./src/InputNumber.js":
 /*!****************************!*\
-  !*** ./src/NumberInput.js ***!
+  !*** ./src/InputNumber.js ***!
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2690,29 +2700,81 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/number-input/dist/chunk-2JJX6TVY.mjs");
-var _excluded = ["onChange", "name", "type", "label"];
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+var _excluded = ["onChange", "name", "type", "label", "style"];
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], t.indexOf(o) >= 0 || {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (e.indexOf(n) >= 0) continue; t[n] = r[n]; } return t; }
 
 
-function NumberInput(props) {
+
+function InputNumber(props) {
   var onChange = props.onChange,
     name = props.name,
     type = props.type,
     label = props.label,
+    style = props.style,
     rest = _objectWithoutProperties(props, _excluded);
   var _onChange = function _onChange(e) {
     console.log(e);
     onChange(e);
   };
+  var istyle = _objectSpread({
+    height: "inherit",
+    width: "inherit"
+  }, style);
   debugger;
   console.log(rest);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.NumberInput, _extends({}, rest, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.NumberInput, _extends({
+    style: istyle
+  }, rest, {
+    onChange: _onChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.NumberInputField, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.NumberInputStepper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.NumberIncrementStepper, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.NumberDecrementStepper, null))));
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InputNumber);
+
+/***/ }),
+
+/***/ "./src/Switch.js":
+/*!***********************!*\
+  !*** ./src/Switch.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/switch/dist/chunk-VTV6N5LE.mjs");
+var _excluded = ["onChange", "value", "style"];
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], t.indexOf(o) >= 0 || {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
+function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (e.indexOf(n) >= 0) continue; t[n] = r[n]; } return t; }
+
+
+
+function Switch(props) {
+  var onChange = props.onChange,
+    value = props.value,
+    style = props.style,
+    rest = _objectWithoutProperties(props, _excluded);
+  var _onChange = function _onChange(e) {
+    console.log(e);
+    onChange(e.checked === true ? 'a' : 'b');
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Switch, _extends({}, rest, {
     onChange: _onChange
   }));
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NumberInput);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Switch);
 
 /***/ }),
 
@@ -2729,8 +2791,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Checkbox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Checkbox */ "./src/Checkbox.js");
 /* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Input */ "./src/Input.js");
-/* harmony import */ var _NumberInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NumberInput */ "./src/NumberInput.js");
+/* harmony import */ var _InputNumber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./InputNumber */ "./src/InputNumber.js");
 /* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Button */ "./src/Button.js");
+/* harmony import */ var _Switch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Switch */ "./src/Switch.js");
+
 
 
 
@@ -2738,8 +2802,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   Checkbox: _Checkbox__WEBPACK_IMPORTED_MODULE_0__["default"],
   Input: _Input__WEBPACK_IMPORTED_MODULE_1__["default"],
-  NumberInput: _NumberInput__WEBPACK_IMPORTED_MODULE_2__["default"],
-  Button: _Button__WEBPACK_IMPORTED_MODULE_3__["default"]
+  InputNumber: _InputNumber__WEBPACK_IMPORTED_MODULE_2__["default"],
+  Button: _Button__WEBPACK_IMPORTED_MODULE_3__["default"],
+  Switch: _Switch__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 
 /***/ }),
@@ -11607,6 +11672,116 @@ function omitThemingProps(props) {
 
 /***/ }),
 
+/***/ "./node_modules/@chakra-ui/switch/dist/chunk-VTV6N5LE.mjs":
+/*!****************************************************************!*\
+  !*** ./node_modules/@chakra-ui/switch/dist/chunk-VTV6N5LE.mjs ***!
+  \****************************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Switch: () => (/* binding */ Switch)
+/* harmony export */ });
+/* harmony import */ var _chakra_ui_checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @chakra-ui/checkbox */ "./node_modules/@chakra-ui/checkbox/dist/chunk-7D6N5TE5.mjs");
+/* harmony import */ var _chakra_ui_shared_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @chakra-ui/shared-utils */ "./node_modules/@chakra-ui/shared-utils/dist/index.mjs");
+/* harmony import */ var _chakra_ui_system__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @chakra-ui/system */ "./node_modules/@chakra-ui/system/dist/chunk-ZJJGQIVY.mjs");
+/* harmony import */ var _chakra_ui_system__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @chakra-ui/system */ "./node_modules/@chakra-ui/system/dist/chunk-DMO4EI7P.mjs");
+/* harmony import */ var _chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @chakra-ui/system */ "./node_modules/@chakra-ui/styled-system/dist/index.mjs");
+/* harmony import */ var _chakra_ui_system__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @chakra-ui/system */ "./node_modules/@chakra-ui/system/dist/chunk-ZHQNHOQS.mjs");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+'use client'
+
+// src/switch.tsx
+;
+
+
+
+
+var Switch = (0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_2__.forwardRef)(function Switch2(props, ref) {
+  const styles = (0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_3__.useMultiStyleConfig)("Switch", props);
+  const { spacing = "0.5rem", children, ...ownProps } = (0,_chakra_ui_system__WEBPACK_IMPORTED_MODULE_4__.omitThemingProps)(props);
+  const {
+    getIndicatorProps,
+    getInputProps,
+    getCheckboxProps,
+    getRootProps,
+    getLabelProps
+  } = (0,_chakra_ui_checkbox__WEBPACK_IMPORTED_MODULE_5__.useCheckbox)(ownProps);
+  const containerStyles = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(
+    () => ({
+      display: "inline-block",
+      position: "relative",
+      verticalAlign: "middle",
+      lineHeight: 0,
+      ...styles.container
+    }),
+    [styles.container]
+  );
+  const trackStyles = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(
+    () => ({
+      display: "inline-flex",
+      flexShrink: 0,
+      justifyContent: "flex-start",
+      boxSizing: "content-box",
+      cursor: "pointer",
+      ...styles.track
+    }),
+    [styles.track]
+  );
+  const labelStyles = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(
+    () => ({
+      userSelect: "none",
+      marginStart: spacing,
+      ...styles.label
+    }),
+    [spacing, styles.label]
+  );
+  return /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(
+    _chakra_ui_system__WEBPACK_IMPORTED_MODULE_6__.chakra.label,
+    {
+      ...getRootProps(),
+      className: (0,_chakra_ui_shared_utils__WEBPACK_IMPORTED_MODULE_7__.cx)("chakra-switch", props.className),
+      __css: containerStyles,
+      children: [
+        /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", { className: "chakra-switch__input", ...getInputProps({}, ref) }),
+        /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
+          _chakra_ui_system__WEBPACK_IMPORTED_MODULE_6__.chakra.span,
+          {
+            ...getCheckboxProps(),
+            className: "chakra-switch__track",
+            __css: trackStyles,
+            children: /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
+              _chakra_ui_system__WEBPACK_IMPORTED_MODULE_6__.chakra.span,
+              {
+                __css: styles.thumb,
+                className: "chakra-switch__thumb",
+                ...getIndicatorProps()
+              }
+            )
+          }
+        ),
+        children && /* @__PURE__ */ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(
+          _chakra_ui_system__WEBPACK_IMPORTED_MODULE_6__.chakra.span,
+          {
+            className: "chakra-switch__label",
+            ...getLabelProps(),
+            __css: labelStyles,
+            children
+          }
+        )
+      ]
+    }
+  );
+});
+Switch.displayName = "Switch";
+
+
+//# sourceMappingURL=chunk-VTV6N5LE.mjs.map
+
+/***/ }),
+
 /***/ "./node_modules/@chakra-ui/system/dist/chunk-5PL47M24.mjs":
 /*!****************************************************************!*\
   !*** ./node_modules/@chakra-ui/system/dist/chunk-5PL47M24.mjs ***!
@@ -19687,6 +19862,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.js */ "./main.js");
 
 var controls = (0,_main_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+console.log(controls);
 
 })();
 

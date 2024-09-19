@@ -18,7 +18,12 @@
    console.log('controls',f);
   
 
-   
+    let Button = f.Button.component;
+    let Input = f.Input.component;
+    let Checkbox = f.Checkbox.component;
+    let InputNumber = f.InputNumber.component;
+    let Switch = f.Switch.component;
+
    
     </script>
     <script type="text/babel">
@@ -33,17 +38,17 @@
             console.log(e);
           alert(e);
         }
+        let Style = {height:'100px', width:'400px', color:'red'};
           return (
             <div>
-              <Button  label="click me" value="click" onChange={onEnter}></Button>
+              <Button {...Style} backgroundColor='red' color='black' label="click me" value="click" onChange={onEnter}></Button>
               <br></br>
-              <Input label="Enter your name" value="xxx" onChange={onEnter}></Input>
+              <Input {...Style} label="Enter your name" value="xxx" onChange={onEnter}></Input>
               <br></br>
-              <Checkbox label="Check me"  value={1} onChange={onEnter}></Checkbox>
-                
+              <Checkbox {...Style} label="Check me"  value={1} onChange={onEnter}></Checkbox>
               <br></br>
-              <NumberInput label="Enter your name" name="ni" value={1} onChange={onEnter}></NumberInput>
-<br></br>
+              <Switch variant='outlined' height={"50px"} label={"XXX"} width={"200px"} size={"lg"} onChange={onEnter}></Switch>
+             
               </div>
 
           );
@@ -61,14 +66,6 @@
 </body>
 </body>
 </html>
-
-<!-- 
-<Input label="Enter your name" value="xxx" onChange={onEnter}></Input>
-<br></br>
-<NumberInput label="Enter your name" style={{length:10, width:200}} value={1} onChange={onEnter}></NumberInput>
-<br></br>
-<Checkbox label="Check me"  value={1} onChange={onEnter}></Checkbox>
--->
 
 
 
