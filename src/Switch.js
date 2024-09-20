@@ -7,8 +7,7 @@ function Switch(props) {
   const {onChange, value, label, style, ...rest} = props;
   const _onChange = (e) => {
     debugger;
-    console.log('switch', e.target);
-    onChange(e.target.checked);
+    onChange(e.target.checked === true ? 1 : 0);
   }  
   let isChecked = value !== 0 ;
   let iStyle = {height: 'inherit', width: 'inherit',  ...style};

@@ -2722,8 +2722,7 @@ function Switch(props) {
     rest = _objectWithoutProperties(props, _excluded);
   var _onChange = function _onChange(e) {
     debugger;
-    console.log('switch', e.target);
-    onChange(e.target.checked);
+    onChange(e.target.checked === true ? 1 : 0);
   };
   var isChecked = value !== 0;
   var iStyle = _objectSpread({
