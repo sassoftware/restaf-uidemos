@@ -2493,7 +2493,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/button/dist/chunk-UVUR7MCU.mjs");
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/react/dist/chunk-QAITB7GG.mjs");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _excluded = ["onChange", "name", "style", "value", "type"];
+var _excluded = ["onChange", "style", "value", "type"];
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -2507,7 +2507,6 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 function Button(props) {
   var onChange = props.onChange,
-    name = props.name,
     style = props.style,
     value = props.value,
     type = props.type,
@@ -2520,9 +2519,7 @@ function Button(props) {
     height: "inherit",
     width: "inherit"
   }, style);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, _extends({
-    key: name
-  }, iStyle, rest, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, _extends({}, iStyle, rest, {
     onClick: _onChange
   }), value));
 }
@@ -2601,7 +2598,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/input/dist/chunk-6CVSDS6C.mjs");
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/react/dist/chunk-QAITB7GG.mjs");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-var _excluded = ["onChange", "name", "style", "type"];
+var _excluded = ["onChange", "style"];
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -2615,9 +2612,7 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 function Input(props) {
   var onChange = props.onChange,
-    name = props.name,
     style = props.style,
-    type = props.type,
     rest = _objectWithoutProperties(props, _excluded);
   var _onChange = function _onChange(e) {
     console.log(e);
@@ -2651,8 +2646,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/react/dist/chunk-QAITB7GG.mjs");
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakra-ui/number-input/dist/chunk-2JJX6TVY.mjs");
-var _excluded = ["onChange", "name", "type", "label", "style"];
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+var _excluded = ["onChange", "type", "style"];
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _objectWithoutProperties(e, t) { if (null == e) return {}; var o, r, i = _objectWithoutPropertiesLoose(e, t); if (Object.getOwnPropertySymbols) { var n = Object.getOwnPropertySymbols(e); for (r = 0; r < n.length; r++) o = n[r], t.indexOf(o) >= 0 || {}.propertyIsEnumerable.call(e, o) && (i[o] = e[o]); } return i; }
 function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t = {}; for (var n in r) if ({}.hasOwnProperty.call(r, n)) { if (e.indexOf(n) >= 0) continue; t[n] = r[n]; } return t; }
 
@@ -2660,26 +2661,22 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 function InputNumber(props) {
   var onChange = props.onChange,
-    name = props.name,
     type = props.type,
-    label = props.label,
     style = props.style,
     rest = _objectWithoutProperties(props, _excluded);
   var _onChange = function _onChange(e) {
     console.log(e);
     onChange(e);
   };
-  var istyle = {
+  var istyle = _objectSpread({
     height: "inherit",
     width: "inherit"
-  };
+  }, style);
   debugger;
   console.log(rest);
-  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.NumberInput, _extends({
-    style: istyle
-  }, rest, {
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.NumberInput, _extends({}, istyle, rest, {
     onChange: _onChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.NumberInputField, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.NumberInputStepper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.NumberIncrementStepper, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.NumberDecrementStepper, null)))));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.NumberInputField, null)));
   return show;
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InputNumber);
@@ -36739,27 +36736,23 @@ var props = {
   size: 'md',
   variant: 'outline'
 }; // if you want to pass in some default props - helpful to users in property sheet
-// notes:
-// The component is the actual react component that will be rendered
-// The grow property is used to determine if the user can grow the control and in what direction
-// The label is the label that will be displayed in the property sheet
-// Type: currently only 'char' and 'number'. 
-// The following are are initial values - user can change them in the property sheet
-// initialSize:  width and height are used for initial sizing of the control
-// props:  used to pass in any default props you want to pass including style
-// The length,width and position will be controlled by the framebuilder
 
 var controls = {
-  Input: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Input, 'Input Text', 'char', ' ', small, props, 'h'),
-  Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'double', 0, small, {
+  Input: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Input, 'Input Text', 'string', ' ', small, props, 'h'),
+  Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'number', 0, small, _objectSpread({
     label: 'Select me'
-  }, 'h'),
-  Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'char', ' ', small, props, 'b'),
-  Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'double', 0, medium, props, 'h')
-  //InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number', 0, small, 
-  //{min: 1, max: 10, defaultValue: 2, },'h')
+  }, props), 'h'),
+  Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'string', ' ', small, props, 'b'),
+  Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'number', 0, medium, props, 'h'),
+  InputNumber: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].InputNumber, 'Input Number', 'number', ' ', small, props, 'h')
 };
 function VisualTemplate(component, label, type, value, initialSize, props, resize, zIndex) {
+  /**
+   * This function is a template for creating a visual control object
+   * @param {React.Component} component - the component to be rendered
+   * @param {string} label - the label for the contro - used in the property sheet
+   * @param {string} type - the type of the control - char, numeric
+   */
   return {
     component: component,
     label: label,

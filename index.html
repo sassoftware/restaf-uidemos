@@ -24,6 +24,7 @@
     let Checkbox = f.Checkbox.component;
  
     let Switch = f.Switch.component;
+    let InputNumber = f.InputNumber.component;
 
    
     </script>
@@ -35,12 +36,12 @@
         const root = createRoot(container);
       
         const App = () => {
-          let vals = {input: 'xxxx', checkbox: 1, switch: 1};
+          let vals = {input: 'xxxx', checkbox: 1, switch: 1, inputNumber: 1};
           const onEnter = (e) => {
             console.log('xxxxxxxxxxxxxxxxxxxx', e.target.value);
           alert(e);
         }
-          let Style = {height: 100, width:400, variant: 'outlined', color:'red'};
+          let Style = {height: 100, width:400, variant: 'outlined'};
           console.log(vals);
           return (
             <div>
@@ -52,7 +53,7 @@
               <br></br>
               <Switch style={Style} value={vals.switch} backgroundColor="red" variant='outlined' height={"50px"} label={"XXX"}  size={"lg"} onChange={onEnter}></Switch>
               <br></br>
-             
+              <InputNumber style={Style} label="Enter a number" value={vals.inputNumber} onChange={onEnter}></InputNumber>
               </div>
             
           );
