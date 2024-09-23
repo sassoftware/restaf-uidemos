@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelector (props) {
-  let {name, value, items, onChange, designMode,label, sx} = props;
+  let {value, items, onChange, designMode,label, sx} = props;
   const _handleChange = (e, val) => {
     if (e == null) {
       onChange(null);
@@ -31,7 +31,7 @@ function BaseSelector (props) {
   let ePropsL = { 
     autoComplete: true,
     value: currentSelection,
-    label: (label == null) ? name : label, 
+    label: (label == null) ? ' ' : label, 
     size: "sm",
     variant: 'outlined',
     selectOnFocus: true,
