@@ -14,7 +14,7 @@ function main(set) {
     Input: _visualTemplate(
       frameControl.Input,
       "Input",
-      "double",
+      "number",
       0,
       small,
       { align: "right" },
@@ -23,7 +23,7 @@ function main(set) {
     InputText: _visualTemplate(
       frameControl.InputText,
       "InputText",
-      "char",
+      "string",
       "text",
       small,
       { align: "left" },
@@ -32,7 +32,7 @@ function main(set) {
     Inputarea: _visualTemplate(
       frameControl.Inputarea,
       "InputArea",
-      "char",
+      "string",
       " ",
       medium,
       { minRows: 2, maxRows: 5 },
@@ -41,7 +41,7 @@ function main(set) {
     Button: _visualTemplate(
       frameControl.Button,
       "Button",
-      "char",
+      "string",
       "button",
       small,
       {},
@@ -50,7 +50,7 @@ function main(set) {
     Checkbox: _visualTemplate(
       frameControl.Checkbox,
       "Checkbox",
-      "double",
+      "number",
       1,
       small,
       {
@@ -68,7 +68,7 @@ function main(set) {
     RadioGroup: _visualTemplate(
       frameControl.RadioGroup,
       "RadioGroup",
-      "char",
+      "string",
       " ",
       small,
       { items: ["item 1", "Item 2"], valueType: "label" },
@@ -77,7 +77,7 @@ function main(set) {
     Dropdown: _visualTemplate(
       frameControl.Dropdown,
       "Dropdown",
-      "char",
+      "string",
       " ",
       small,
       { items: ["item 1", "Item 2"] },
@@ -86,7 +86,7 @@ function main(set) {
     Dropdown: _visualTemplate(
       frameControl.Dropdown,
       "Dropdown",
-      "char",
+      "string",
       " ",
       small,
       { items: ["item 1", "Item 2"], multiple: false },
@@ -95,7 +95,7 @@ function main(set) {
     DropdownMenu: _visualTemplate(
       frameControl.DropdownMenu,
       "DropdownMenu",
-      "char",
+      "string",
       " ",
       small,
       { items: ["item 1", "Item 2"], valueType: "label" },
@@ -106,7 +106,7 @@ function main(set) {
     Slider: _visualTemplate(
       frameControl.Slider,
       "Slider",
-      "double",
+      "number",
       0.5,
       small,
       {
@@ -125,7 +125,7 @@ function main(set) {
     Typography: _visualTemplate(
       frameControl.Typography,
       "Typography",
-      "char",
+      "string",
       "Text",
       medium,
       {
@@ -143,7 +143,7 @@ function main(set) {
     HtmlText: _visualTemplate(
       frameControl.HtmlText,
       "HtmlText",
-      "char",
+      "string",
       "<h1>Some html</h1>",
       medium,
       {},
@@ -152,7 +152,7 @@ function main(set) {
     WebContent: _visualTemplate(
       frameControl.WebContent,
       "WebContent",
-      "char",
+      "string",
       "<h1>Some html</h1>",
       medium,
       {},
@@ -162,7 +162,7 @@ function main(set) {
     VSCode: _visualTemplate(
       frameControl.VScode,
       "VSCode",
-      "char",
+      "string",
       " ",
       medium,
       { language: "text" },
@@ -173,7 +173,7 @@ function main(set) {
     Divider: _visualTemplate(
       frameControl.Divider,
       "Divider",
-      "char",
+      "string",
       "Divider",
       small,
       { orientation: "horizontal" },
@@ -182,7 +182,7 @@ function main(set) {
     Border: _visualTemplate(
       frameControl.Border,
       "Border",
-      "char",
+      "string",
       " ",
       medium,
       {
@@ -195,7 +195,7 @@ function main(set) {
     Image: _visualTemplate(
       frameControl.Image,
       "Image",
-      "char",
+      "string",
       " ",
       small,
       {},
@@ -209,7 +209,7 @@ function main(set) {
     VaSDK: _visualTemplate(
       frameControl.VaSDK,
       "VA Reports",
-      "char",
+      "string",
       "Retail Insights",
       medium,
       { name: " ", url: " ", auth: "credentials", appConfig: " " },
@@ -218,7 +218,7 @@ function main(set) {
     SelectLibrary: _visualTemplate(
       frameControl.SelectLibrary,
       "SelectLibrary",
-      "char",
+      "string",
       " ",
       small,
       { name: " ", source: " ", appConfig: " " },
@@ -227,7 +227,7 @@ function main(set) {
     SelectTable: _visualTemplate(
       frameControl.SelectTable,
       "SelectTable",
-      "char",
+      "string",
       " ",
       small,
       { name: " ", lib: " ", appConfig: " ", refresh: false },
@@ -236,7 +236,7 @@ function main(set) {
     SelectColumns: _visualTemplate(
       frameControl.SelectColumns,
       "SelectColumns",
-      "char",
+      "string",
       " ",
       small,
       {
@@ -252,7 +252,7 @@ function main(set) {
     DistinctValues: _visualTemplate(
       frameControl.DistinctValues,
       "DistinctValues",
-      "char",
+      "string",
       " ",
       small,
       {
@@ -272,7 +272,7 @@ function main(set) {
     SelectReport: _visualTemplate(
       frameControl.SelectReport,
       "SelectReport",
-      "char",
+      "string",
       " ",
       small,
       { folder: " ", filter: {}, appConfig: " " },
@@ -281,7 +281,7 @@ function main(set) {
     SelectFolder: _visualTemplate(
       frameControl.SelectFolder,
       "SelectFolder",
-      "char",
+      "string",
       " ",
       small,
       { filter: {}, appConfig: " " },
@@ -290,7 +290,7 @@ function main(set) {
     SelectFiles: _visualTemplate(
       frameControl.SelectFiles,
       "SelectFiles",
-      "char",
+      "string",
       " ",
       small,
       { folder: " ", filter: {}, appConfig: " " },

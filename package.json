@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "stats": "webpack --env target=node p=a --config webpack.config.js",
-    "build": "rimraf dist && webpack --env target=umd p=n --config webpack.config.js && webpack --env target=umd p=y --config webpack.config.js"
+    "build": "rimraf dist && webpack --env target=umd p=n --config webpack.config.js && webpack --env target=umd p=y --config webpack.config.js",
+    "pub": "npm publish --tag dev --access public"
   },
   "author": "K. Deva Kumaraswamy",
   "license": "Apache-2.0",
@@ -51,7 +52,7 @@
   },
   "peerDependencies": {
     "@sassoftware/restaf": "^5.2.4",
-    "@sassoftware/restafedit": "^2.4.8",
+    "@sassoftware/restafedit": "^3.0.0-alpha.2",
     "@sassoftware/restaflib": "^5.2.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
