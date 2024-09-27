@@ -36,11 +36,12 @@
         const root = createRoot(container);
       
         const App = () => {
-          let vals = {input: 'xxxx', checkbox: 1, switch: 1, inputNumber: 1};
+          let [vals, useVals] = React.useState({input: 'xxxx', checkbox: true, switch: false, inputNumber: 1});
+         
           const onEnter = (e) => {
-            console.log('xxxxxxxxxxxxxxxxxxxx', e.target.value);
+           console.log('onEnter',e);
           alert(e);
-        }
+          }
           let Style = {height: 100, width:400, variant: 'outlined'};
           console.log(vals);
           return (

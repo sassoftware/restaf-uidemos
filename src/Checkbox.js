@@ -6,10 +6,10 @@ function Checkbox(props) {
   console.log('---------------------------------checkbox', value);
   const _onChange = (e) => {
     debugger;
-    console.log('---------------------------------checkbox', e);
-    onChange(e.target.checked === true ? 1 : 0);
+    console.log('---------------------------------checkbox', e.target.checked);
+    onChange(e.target.checked );
   }   
-  let isChecked = value !== 0 ;
+  let isChecked = value;
   let iStyle = {height: 'inherit', width: 'inherit',  ...style};
   console.log(label);
   debugger;

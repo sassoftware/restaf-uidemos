@@ -2562,10 +2562,10 @@ function Checkbox(props) {
   console.log('---------------------------------checkbox', value);
   var _onChange = function _onChange(e) {
     debugger;
-    console.log('---------------------------------checkbox', e);
-    onChange(e.target.checked === true ? 1 : 0);
+    console.log('---------------------------------checkbox', e.target.checked);
+    onChange(e.target.checked);
   };
-  var isChecked = value !== 0;
+  var isChecked = value;
   var iStyle = _objectSpread({
     height: 'inherit',
     width: 'inherit'
@@ -2719,9 +2719,10 @@ function Switch(props) {
     rest = _objectWithoutProperties(props, _excluded);
   var _onChange = function _onChange(e) {
     debugger;
-    onChange(e.target.checked === true ? 1 : 0);
+    console.log('---------------------------------switch', e.target.checked);
+    onChange(e.target.checked);
   };
-  var isChecked = value !== 0;
+  var isChecked = value;
   var iStyle = _objectSpread({
     height: 'inherit',
     width: 'inherit'
@@ -36739,11 +36740,11 @@ var props = {
 
 var controls = {
   Input: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Input, 'Input Text', 'string', ' ', small, props, 'h'),
-  Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'number', 0, small, _objectSpread({
+  Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'boolean', false, small, _objectSpread({
     label: 'Select me'
   }, props), 'h'),
   Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'string', ' ', small, props, 'b'),
-  Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'number', 0, medium, props, 'h'),
+  Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'boolean', false, medium, props, 'h'),
   InputNumber: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].InputNumber, 'Input Number', 'number', ' ', small, props, 'h')
 };
 function VisualTemplate(component, label, type, value, initialSize, props, resize, zIndex) {
