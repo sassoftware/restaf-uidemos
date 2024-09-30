@@ -17,7 +17,7 @@ function main(set) {
       "number",
       0,
       small,
-      { align: "right" },
+      { align: "right", label: data._name },
       "h"
     ),
     InputText: _visualTemplate(
@@ -191,7 +191,7 @@ function main(set) {
       "string",
       " ",
       small,
-      {label: " "},
+      {label: ' '},
       "b"
     ),
     SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
