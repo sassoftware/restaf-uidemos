@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelectorMultiple (props) {
-  let {name, value, items, separator, onChange, designMode,label, sx} = props;
+  let {value, items, separator, onChange, designMode,label, sx} = props;
   const _handleChange = (e, val) => {
     if (e == null) {
       return;
@@ -22,7 +22,7 @@ function BaseSelectorMultiple (props) {
   } 
 
   let ePropsL = { 
-    id: name, 
+    id:label, 
     value: value,
     label: label, 
     size: "sm",

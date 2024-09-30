@@ -9,7 +9,7 @@ import Sheet from '@mui/joy/Sheet';
 //import Border from './Border';
 
 function VaSDK(props) {
-  let { value, name, url, auth, sharedProps, style  } = props;
+  let { value, label, url, auth, sharedProps, style  } = props;
   let { appEnv } = sharedProps;
   const [reportUri, setReportUri] = useState(null);
 
@@ -53,7 +53,7 @@ function VaSDK(props) {
   } else {
       
       show = <div style={divStyle}>
-       <sas-report  key={name}
+       <sas-report  key={reportUri}
         hideNavigation="auto"
         url= {urlt}
         reportUri={reportUri}
@@ -63,7 +63,7 @@ function VaSDK(props) {
       </div>
     
   };
-  let shkey = name +'sheet';
+  let shkey = label +'sheet';
   return <Sheet key={shkey} style={{height: 'inherit', width: 'inherit'}}>
     {show}
     </Sheet>

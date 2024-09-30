@@ -44,14 +44,14 @@ function main(set) {
       "string",
       "button",
       small,
-      {},
+      {label: " "},
       "b"
     ),
     Checkbox: _visualTemplate(
       frameControl.Checkbox,
       "Checkbox",
-      "number",
-      1,
+      "boolean",
+      true,
       small,
       {
         sx: {
@@ -62,6 +62,7 @@ function main(set) {
         },
         variant: "outlined",
         size: "sm",
+        label: " ",
       },
       "h"
     ),
@@ -71,7 +72,7 @@ function main(set) {
       "string",
       " ",
       small,
-      { items: ["item 1", "Item 2"], valueType: "label" },
+      { items: ["item 1", "Item 2"], valueType: "label", label: " " },
       "h"
     ),
     Dropdown: _visualTemplate(
@@ -80,16 +81,7 @@ function main(set) {
       "string",
       " ",
       small,
-      { items: ["item 1", "Item 2"] },
-      "h"
-    ),
-    Dropdown: _visualTemplate(
-      frameControl.Dropdown,
-      "Dropdown",
-      "string",
-      " ",
-      small,
-      { items: ["item 1", "Item 2"], multiple: false },
+      { items: ["item 1", "Item 2"], label: " ", multiple: false },
       "h"
     ),
     DropdownMenu: _visualTemplate(
@@ -118,6 +110,7 @@ function main(set) {
         variant: "solid",
         track: "normal",
         size: "sm",
+        label: " "
       },
       "h"
     ),
@@ -146,7 +139,7 @@ function main(set) {
       "string",
       "<h1>Some html</h1>",
       medium,
-      {},
+      {label: " "},
       "b"
     ),
     WebContent: _visualTemplate(
@@ -155,7 +148,7 @@ function main(set) {
       "string",
       "<h1>Some html</h1>",
       medium,
-      {},
+      {label: " "},
       "b"
     ),
     //Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'),
@@ -165,7 +158,7 @@ function main(set) {
       "string",
       " ",
       medium,
-      { language: "text" },
+      { language: "text" , label: " "},
       "b"
     ),
 
@@ -176,7 +169,7 @@ function main(set) {
       "string",
       "Divider",
       small,
-      { orientation: "horizontal" },
+      { orientation: "horizontal", label: " " },
       "h"
     ),
     Border: _visualTemplate(
@@ -186,7 +179,7 @@ function main(set) {
       " ",
       medium,
       {
-        name: " ",
+        label: " ",
         sx: { backgroundColor: "#f5f5f5", borderRadius: 4, boxShadow: 4 },
       },
       "b",
@@ -198,12 +191,13 @@ function main(set) {
       "string",
       " ",
       small,
-      {},
+      {label: " "},
       "b"
     ),
+    SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
   };
   /* local files */
-  // SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
+  
 
   let sasControls = {
     VaSDK: _visualTemplate(
@@ -337,7 +331,7 @@ function main(set) {
       value: value,
       width: initialSize.width,
       height: initialSize.height,
-      props: { name: " ", label: "*", ...props }
+      props: { name: " ", label: " ", ...props }
     };
   }
 }

@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
  */
 
 function FileSelectorButton(props) {
-  let { name, onChange } = props;
+  let { label, onChange } = props;
   let inputRef = createRef(null);
   const _focusTextInput = () => inputRef.current.click();  //.click() passes the value of inputref.current as a click() event
 
@@ -27,7 +27,7 @@ function FileSelectorButton(props) {
           key: 'Enter',
           target: {
             value: null,
-            name: name
+            name: label
           }
         };
         onChange(synthE);
@@ -42,7 +42,7 @@ function FileSelectorButton(props) {
             key: 'Enter',
             target: {
               value: { fname: fname, file: file },
-              name: name
+              name: label
             }
           };
           onChange(synthE);
@@ -65,7 +65,7 @@ let show = (
       size="small"
       variant="outlined"
       onClick={_focusTextInput}>
-      {props.label}
+      {label}
     </Button>
     <br></br>
   </Fragment>

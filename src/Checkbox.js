@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Checkbox as JoyCheckbox } from "@mui/joy";
 
 function Checkbox(props) {
-  let { name, value, designMode, onChange, sx, ...eProps } = props;
+  let { label, value, designMode, onChange, sx, ...eProps } = props;
   const divref = React.useRef(null);
   //const [width, height] = useSize(divref);
   let [val, setVal] = useState(() =>
-    value == null ? false : value === 0 ? false : true
+    value == null ? false : value
   );
   let disabled =
     designMode === true
@@ -17,13 +17,12 @@ function Checkbox(props) {
 
   const _onChange = (e) => {
     if (!designMode && !disabled) {
-      setVal(e.target.checked);
-      onChange(e.target.checked === true ? 1 : 0);
+      onChange(e.target.checked === true)
     }
   };
   let isx = { height: 'inherit', width: 'inherit', ...sx };
   let ePropsL = {
-    label: name,
+    label: label,
     readOnly: disabled,
     variant: "outlined",
     ...eProps,
@@ -32,16 +31,9 @@ function Checkbox(props) {
   if (ePropsL.label == null) {
     ePropsL.label = 'checkbox'
   }
-  let V = <JoyCheckbox key={name} sx={isx} {...ePropsL} checked={val} onChange={_onChange} />;
+  let V = <JoyCheckbox key={label} sx={isx} {...ePropsL} checked={val} onChange={_onChange} />;
   return V;
 
-  /*let divStyle = { width: 'inherit', height: 'inherit', border: (designMode === true) ? "1px solid black": 'none'};
-  return (
-    <div ref={divref} style={divStyle}>
-      {V}
-    </div>
-  );
-  */
 
 }
 export default Checkbox;

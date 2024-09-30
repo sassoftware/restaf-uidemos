@@ -8,7 +8,7 @@ import { distinctValues } from '@sassoftware/restafedit';
 import BaseSelector from './BaseSelector';
 
 function DistinctValues(props) {
-  let { name, column, value, label, lib, table, where, style, onChange, designMode, sharedProps,...eProps } = props;
+  let { column, value, label, lib, table, where, style, onChange, designMode, sharedProps,...eProps } = props;
   let { appEnv } = sharedProps;
 
   const [list, setList] = useState([]);
@@ -45,7 +45,7 @@ function DistinctValues(props) {
         })
       }
 
-  }, [name, column, lib,table, where, appEnv]);
+  }, [label, column, lib,table, where, appEnv]);
 
   let pr = {
     name: 'distinct',

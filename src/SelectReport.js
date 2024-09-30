@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React from 'react';
-// import getStyles from './utils/getStyles';
 import SASItemsDropDown from './SASItemsDropDown';
 
 //TBD: need to skip this jump since this is just a simple wrapper
