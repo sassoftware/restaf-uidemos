@@ -17,7 +17,7 @@ function main(set) {
       "number",
       0,
       small,
-      { align: "right", label: data._name },
+      { align: "right", label: "" },
       "h"
     ),
     InputText: _visualTemplate(

@@ -52,7 +52,7 @@
   },
   "peerDependencies": {
     "@sassoftware/restaf": "^5.2.4",
-    "@sassoftware/restafedit": "^3.0.0-alpha.2",
+    "@sassoftware/restafedit": "^3.0.0-alpha.3",
     "@sassoftware/restaflib": "^5.2.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
