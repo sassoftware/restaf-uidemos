@@ -9,7 +9,7 @@ function Border (props) {
 
 // let isx = {height: 'inherit', width: 'inherit', zindex: 1, boxShadow: 2, backgroundColor:  '#f5f5f5',border: 1, borderRadius: 4, ...sx};
 let isx = {height: 'inherit', width: 'inherit', zindex: 1, boxShadow: 2, ...sx};
-console.log(isx);
+
 return (
     <Box key={"paper"} sx={isx}>
     </Box>

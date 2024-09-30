@@ -15,7 +15,7 @@ function WebContent(props) {
         return;
       }
         */
-    console.log('value', value);  
+    
       if (value == null || value.trim().length === 0) {
         setHtmlContent('<h2> No link specified </h2>');
 
@@ -33,7 +33,7 @@ function WebContent(props) {
       }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[name, value]);
-    console.log('htmlContent', htmlContent);
+  
     return <HtmlText sx={sx} name={name} refresh={refresh} value={htmlContent} />;
   }
   export default WebContent;
