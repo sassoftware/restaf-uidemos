@@ -24,7 +24,7 @@ function main(set) {
       frameControl.InputText,
       "InputText",
       "string",
-      "text",
+      " ",
       small,
       { align: "left" },
       "h"
@@ -70,9 +70,9 @@ function main(set) {
       frameControl.RadioGroup,
       "RadioGroup",
       "string",
-      " ",
+      "item1",
       small,
-      { items: ["item 1", "Item 2"], valueType: "label", label: " " },
+      { items: ["item1", "Item2"], valueType: "label", label: " " },
       "h"
     ),
     Dropdown: _visualTemplate(
@@ -88,9 +88,9 @@ function main(set) {
       frameControl.DropdownMenu,
       "DropdownMenu",
       "string",
-      " ",
+      "item1",
       small,
-      { items: ["item 1", "Item 2"], valueType: "label" },
+      { items: ["item1", "Item2"], valueType: "label" },
       "n"
     ),
     //Listbox: _visualTemplate(frameControl.Listbox,'Listbox','char',' ',small,
@@ -185,6 +185,7 @@ function main(set) {
       "b",
       1
     ),
+    /*
     Image: _visualTemplate(
       frameControl.Image,
       "Image",
@@ -194,7 +195,8 @@ function main(set) {
       {label: ' '},
       "b"
     ),
-    SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
+    */
+    //SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
   };
   /* local files */
   
@@ -271,25 +273,7 @@ function main(set) {
       small,
       { folder: " ", filter: {}, appConfig: " " },
       "h"
-    ),
-    SelectFolder: _visualTemplate(
-      frameControl.SelectFolder,
-      "SelectFolder",
-      "string",
-      " ",
-      small,
-      { filter: {}, appConfig: " " },
-      "h"
-    ),
-    SelectFiles: _visualTemplate(
-      frameControl.SelectFiles,
-      "SelectFiles",
-      "string",
-      " ",
-      small,
-      { folder: " ", filter: {}, appConfig: " " },
-      "h"
-    ),
+    )
   };
 
   let r =

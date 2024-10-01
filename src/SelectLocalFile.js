@@ -7,7 +7,7 @@ import getLocalFile from "./utils/getLocalFile";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 function SelectLocalFile(props) {
-  let { value, label, mode, buttonLabel, style, dataProps, onChange } = props;
+  let { value, type, label, sx, onChange } = props;
   const [newFile, setNewFile] = useState(value == null ? "" : value);
 
   const setNewName= (v) => {
@@ -15,7 +15,7 @@ function SelectLocalFile(props) {
     dataProps.name = v;
   }
   const _onImport = () => {
-    let accept = (dataProps.accept != null) ? dataProps.accept: '.txt';
+    let accept = (type == null) ? '.txt' : type;
     getLocalFile(dataProps.valueType, dataProps, mode, accept)
       .then((r) => {
         setNewFile(r.name);

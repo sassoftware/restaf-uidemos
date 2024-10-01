@@ -45,17 +45,20 @@
         let items = ['A', 'B', 'C', 'D', 'E'];
         const App = () => {
           const onEnter = (e) => {
+            alert(e);
         }
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
+              <RadioGroup label="Select one" value="A" items={items} sx={sx} onChange={onEnter}></RadioGroup>
+              <Checkbox label="check me"  value={false} sx={sx} onChange={onEnter}></Checkbox>
               <Button  disabled={true} label="click me" onChange={onEnter}></Button>
               <InputText label="Enter your name" value="xxx" disabled={true} onChange={onEnter}></InputText>
               <Input label="Enter value "value={10}  onChange={onEnter}></Input>
               <Typography variant="h1" value="hello world"></Typography>
               <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
               <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
-              <Checkbox label="check me"  value={true} sx={sx} onChange={onEnter}></Checkbox>
+            
                             <Inputarea label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
               <WebContent label="check me"  target={"_blank"} value="https://www.sas.com" sx={sx} onChange={onEnter}></WebContent>
               <br/>
