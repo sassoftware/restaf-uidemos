@@ -36740,12 +36740,17 @@ var props = {
   variant: 'outline'
 }; // if you want to pass in some default props - helpful to users in property sheet
 
+var bprops = {
+  size: 'md',
+  variant: 'outline',
+  backgroundColor: 'blue'
+}; // if you want to pass in some default props - helpful to users in property sheet
 var controls = {
   Input: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Input, 'Input Text', 'string', ' ', small, props, 'h'),
   Checkbox: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Checkbox, 'Checkbox', 'boolean', false, small, _objectSpread({
     label: 'Select me'
   }, props), 'h'),
-  Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'string', ' ', small, props, 'b'),
+  Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'string', ' ', small, bprops, 'b'),
   Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'boolean', false, medium, props, 'h'),
   InputNumber: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].InputNumber, 'Input Number', 'number', 0, small, props, 'h')
 };

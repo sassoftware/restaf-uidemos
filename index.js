@@ -11,12 +11,12 @@ let medium ={height: 120, width: 400};
 // let large = {height: 120, width: 400};
 let props = {size: 'md', variant: 'outline'};  // if you want to pass in some default props - helpful to users in property sheet
 
-
+let bprops = {size: 'md', variant: 'outline', backgroundColor: 'blue'};  // if you want to pass in some default props - helpful to users in property sheet
 let controls = {
   Input: VisualTemplate(frameControl.Input, 'Input Text', 'string',' ', small, props, 'h'),
   Checkbox: VisualTemplate(frameControl.Checkbox, 'Checkbox', 'boolean', false, small,
   {label: 'Select me', ...props},'h'),
-  Button: VisualTemplate(frameControl.Button, 'Button', 'string', ' ', small, props,'b'),
+  Button: VisualTemplate(frameControl.Button, 'Button', 'string', ' ', small, bprops,'b'),
   Switch: VisualTemplate(frameControl.Switch, 'Switch', 'boolean', false, medium, props, 'h'),
   InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number',0, small, props, 'h'),
 }
