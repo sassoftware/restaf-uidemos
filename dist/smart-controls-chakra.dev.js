@@ -2512,6 +2512,8 @@ function Button(props) {
     type = props.type,
     rest = _objectWithoutProperties(props, _excluded);
   var _onChange = function _onChange(e) {
+    debugger;
+    console.log("Button clicked", e);
     onChange(value);
   };
   console.log("Button", rest);
@@ -2554,28 +2556,21 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 
 function Checkbox(props) {
-  var onChange = props.onChange,
+  var _onChange = props.onChange,
     value = props.value,
     label = props.label,
     style = props.style,
     rest = _objectWithoutProperties(props, _excluded);
-  console.log('---------------------------------checkbox', value);
-  var _onChange = function _onChange(e) {
-    debugger;
-    console.log('---------------------------------checkbox', e.target.checked);
-    onChange(e.target.checked);
-  };
-  var isChecked = value;
   var iStyle = _objectSpread({
     height: 'inherit',
     width: 'inherit'
   }, style);
-  console.log(label);
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Checkbox, _extends({
-    isChecked: isChecked
+    isChecked: value
   }, iStyle, rest, {
-    onChange: _onChange
+    onChange: function onChange(e) {
+      return _onChange(e.target.checked);
+    }
   }), label);
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Checkbox);
@@ -2611,20 +2606,18 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 
 function Input(props) {
-  var onChange = props.onChange,
+  var _onChange = props.onChange,
     style = props.style,
     rest = _objectWithoutProperties(props, _excluded);
-  var _onChange = function _onChange(e) {
-    console.log(e);
-    props.onChange(e.target.value);
-  };
   var iStyle = _objectSpread({
     height: 'inherit',
     width: 'inherit'
   }, style);
   console.log('Input', rest);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Input, _extends({}, iStyle, rest, {
-    onChange: _onChange
+    onChange: function onChange(e) {
+      return _onChange(e.target.value);
+    }
   })), " ");
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Input);
@@ -2665,15 +2658,13 @@ function InputNumber(props) {
     style = props.style,
     rest = _objectWithoutProperties(props, _excluded);
   var _onChange = function _onChange(e) {
-    console.log(e);
+    debugger;
     onChange(e);
   };
   var istyle = _objectSpread({
     height: "inherit",
     width: "inherit"
   }, style);
-  debugger;
-  console.log(rest);
   var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.NumberInput, _extends({}, istyle, rest, {
     onChange: _onChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.NumberInputField, null)));
@@ -2712,26 +2703,22 @@ function _objectWithoutPropertiesLoose(r, e) { if (null == r) return {}; var t =
 
 
 function Switch(props) {
-  var onChange = props.onChange,
+  var _onChange = props.onChange,
     value = props.value,
     label = props.label,
     style = props.style,
     rest = _objectWithoutProperties(props, _excluded);
-  var _onChange = function _onChange(e) {
-    debugger;
-    console.log('---------------------------------switch', e.target.checked);
-    onChange(e.target.checked);
-  };
-  var isChecked = value;
   var iStyle = _objectSpread({
     height: 'inherit',
     width: 'inherit'
   }, style);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Switch, _extends({}, iStyle, {
-    isChecked: isChecked
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Switch, _extends({}, iStyle, {
+    isChecked: value
   }, rest, {
-    onChange: _onChange
-  })), label);
+    onChange: function onChange(e) {
+      return _onChange(e.target.checked);
+    }
+  }), label));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Switch);
 
@@ -36745,9 +36732,9 @@ var controls = {
   }, props), 'h'),
   Button: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Button, 'Button', 'string', ' ', small, props, 'b'),
   Switch: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].Switch, 'Switch', 'boolean', false, medium, props, 'h'),
-  InputNumber: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].InputNumber, 'Input Number', 'number', ' ', small, props, 'h')
+  InputNumber: VisualTemplate(_src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].InputNumber, 'Input Number', 'number', 0, small, props, 'h')
 };
-function VisualTemplate(component, label, type, value, initialSize, props, resize, zIndex) {
+function VisualTemplate(component, label, type, value, initialSize, props, resize) {
   /**
    * This function is a template for creating a visual control object
    * @param {React.Component} component - the component to be rendered
@@ -36759,7 +36746,7 @@ function VisualTemplate(component, label, type, value, initialSize, props, resiz
     label: label,
     type: type,
     grow: resize,
-    zIndex: zIndex == null ? 2 : zIndex,
+    zIndex: 2,
     value: value,
     width: initialSize.width,
     height: initialSize.height,

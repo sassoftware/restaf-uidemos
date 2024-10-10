@@ -17,11 +17,11 @@ let controls = {
   {label: 'Select me', ...props},'h'),
   Button: VisualTemplate(frameControl.Button, 'Button', 'string', ' ', small, props,'b'),
   Switch: VisualTemplate(frameControl.Switch, 'Switch', 'boolean', false, medium, props, 'h'),
-  InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number',' ', small, props, 'h'),
+  InputNumber: VisualTemplate(frameControl.InputNumber, 'Input Number', 'number',0, small, props, 'h'),
 }
 
 
-function VisualTemplate(component, label, type, value, initialSize, props,resize,zIndex) {
+function VisualTemplate(component, label, type, value, initialSize, props,resize) {
   /**
    * This function is a template for creating a visual control object
    * @param {React.Component} component - the component to be rendered
@@ -33,7 +33,7 @@ function VisualTemplate(component, label, type, value, initialSize, props,resize
     label: label,
     type: type,
     grow: resize,
-    zIndex: zIndex == null ? 2 : zIndex,
+    zIndex: 2,
     value: value,
     width: initialSize.width,
     height: initialSize.height,

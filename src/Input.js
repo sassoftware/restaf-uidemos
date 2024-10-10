@@ -4,12 +4,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 function Input(props) {
   const {onChange, style, ...rest} = props;
-  const _onChange = (e) => {
-    console.log(e);
-    props.onChange(e.target.value);
-  }
   let iStyle = {height: 'inherit', width: 'inherit', ...style};
   console.log('Input', rest);
-  return <ChakraProvider> <C {...iStyle} {...rest} onChange={_onChange} /> </ChakraProvider>
+  return <ChakraProvider> <C {...iStyle} {...rest} onChange={(e) => onChange(e.target.value)} /> </ChakraProvider>
 } 
 export default Input;

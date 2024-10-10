@@ -22,9 +22,8 @@
     console.log('Button',Button);
     let Input = f.Input.component;
     let Checkbox = f.Checkbox.component;
- 
-    let Switch = f.Switch.component;
     let InputNumber = f.InputNumber.component;
+    let Switch = f.Switch.component;
 
    
     </script>
@@ -36,25 +35,22 @@
         const root = createRoot(container);
       
         const App = () => {
-          let [vals, useVals] = React.useState({input: 'xxxx', checkbox: true, switch: false, inputNumber: 1});
-         
           const onEnter = (e) => {
-           console.log('onEnter',e);
+            console.log(e);
           alert(e);
-          }
-          let Style = {height: 100, width:400, variant: 'outlined'};
-          console.log(vals);
+        }
+          let Style = {height: 100, width:400, variant: 'outlined', color:'red'};
           return (
             <div>
               <Button style={Style} backgroundColor='red' variant='outlined' color='black' label="click me" value="click" onChange={onEnter}></Button>
               <br></br>
-              <Input style={Style} label="Enter your name" value={vals.input} onChange={onEnter}></Input>
+              <Input style={Style} label="Enter your name" value="xxx" onChange={onEnter}></Input>
               <br></br>
-              <Checkbox style={Style} label="Check me"  value={vals.checkbox} colorScheme="green" onChange={(e) => vals.checkbox = e}></Checkbox>
+              <Checkbox style={Style} label="Check me"  value={1} onChange={onEnter}></Checkbox>
               <br></br>
-              <Switch style={Style} value={vals.switch} backgroundColor="red" variant='outlined' height={"50px"} label={"XXX"}  size={"lg"} onChange={onEnter}></Switch>
+              <Switch style={Style} backgroundColor="red" variant='outlined' height={"50px"} label={"XXX"}  size={"lg"} onChange={onEnter}></Switch>
               <br></br>
-              <InputNumber style={Style} label="Enter a number" value={vals.inputNumber} onChange={onEnter}></InputNumber>
+              <InputNumber style={Style} label="Enter a number" value={10} onChange={onEnter}></InputNumber>
               </div>
             
           );

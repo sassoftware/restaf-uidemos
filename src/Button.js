@@ -4,6 +4,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 function Button(props) {
   const { onChange, style, value, type, ...rest } = props;
   const _onChange = (e) => {
+    debugger;
+    console.log("Button clicked", e);
     onChange(value);
   };
   console.log("Button", rest);
