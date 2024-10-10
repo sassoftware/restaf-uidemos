@@ -13,11 +13,11 @@
     <script type="text/javascript" src="./dist/smart-controls-chakra.dev.js"></script>
   
     <script>
-    console.log('smart controls',smartControls);;
-   let f = smartControls.controls;
+    console.log('smart controls',chakraControls);;
+    debugger;
+   let f = chakraControls.default;
    console.log('controls',f);
   
-
     let Button = f.Button.component;
     console.log('Button',Button);
     let Input = f.Input.component;
@@ -29,28 +29,42 @@
     </script>
     <script type="text/babel">
       function show(){
-
+   
         const createRoot = ReactDOM.createRoot;
         const container = document.getElementById('container1');
         const root = createRoot(container);
       
         const App = () => {
-          const onEnter = (e) => {
-            console.log(e);
-          alert(e);
+          let [state, setState] = React.useState({
+            Button: 'Button',
+            Input: 0,
+            Checkbox: false,
+            Switch: false,
+            InputNumber: 0
+          });
+          const onEnter = (name, e) => {
+            console.log({name, e});
+            let r = {...state};
+            r[name]=e;
+            setState(r);
+          alert(`${name}=${e}`);
         }
           let Style = {height: 100, width:400, variant: 'outlined', color:'red'};
           return (
             <div>
-              <Button style={Style} backgroundColor='red' variant='outlined' color='black' label="click me" value="click" onChange={onEnter}></Button>
+              <Button style={Style} backgroundColor='red' variant='outlined' color='black' label="click me" value={state.Button}
+                 onChange={(e) => onEnter('Button', e)}></Button>
               <br></br>
-              <Input style={Style} label="Enter your name" value="xxx" onChange={onEnter}></Input>
+              <Input style={Style} label="Enter your name" value={state.Input} onChange={(e) => onEnter('Input', e)}></Input>
               <br></br>
-              <Checkbox style={Style} label="Check me"  value={1} onChange={onEnter}></Checkbox>
+              <Checkbox style={Style} label="Check me"  value={state.Checkbox}
+                 onChange={(e) => onEnter('Checkbox', e)}></Checkbox>
               <br></br>
-              <Switch style={Style} backgroundColor="red" variant='outlined' height={"50px"} label={"XXX"}  size={"lg"} onChange={onEnter}></Switch>
+              <Switch style={Style} backgroundColor="red" variant='outlined' height={"50px"} label={"XXX"}  size={"lg"} value={state.Switch}
+                  onChange={(e)=> onEnter('Switch', e)}></Switch>
               <br></br>
-              <InputNumber style={Style} label="Enter a number" value={10} onChange={onEnter}></InputNumber>
+              <InputNumber style={Style} label="Enter a number" value={state.InputNumber} 
+                  onChange={(e) => onEnter('InputNumber', e)}></InputNumber>
               </div>
             
           );

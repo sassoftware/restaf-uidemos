@@ -1,18 +1,16 @@
+/*
+ * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
 import React from "react";
 import { Button as C } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
 function Button(props) {
   const { onChange, style, value, type, ...rest } = props;
-  const _onChange = (e) => {
-    debugger;
-    console.log("Button clicked", e);
-    onChange(value);
-  };
-  console.log("Button", rest);
   let iStyle = { height: "inherit", width: "inherit", ...style };
   return (
     <ChakraProvider>
-      <C  {...iStyle}  {...rest} onClick={_onChange}>
+      <C  {...iStyle}  {...rest} onClick={(e) => onChange(e)}>
         {value}
       </C>
     </ChakraProvider>

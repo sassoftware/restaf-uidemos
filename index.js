@@ -1,8 +1,9 @@
 /*
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
-
  * SPDX-License-Identifier: Apache-2.0
  */
+
+import { frame } from 'framer-motion';
 import frameControl from './src/index.js';
 console.log('frameControl', frameControl);
 let small = {height: 30, width: 200};
@@ -40,5 +41,5 @@ function VisualTemplate(component, label, type, value, initialSize, props,resize
     props: { ...props },
   };
 };
-export {controls};
+export default controls;
 
