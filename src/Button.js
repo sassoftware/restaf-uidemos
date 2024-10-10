@@ -10,11 +10,11 @@ function Button(props) {
   let iStyle = { height: "inherit", width: "inherit", ...style };
   debugger;
   return (
-   // <ChakraProvider>
+    <ChakraProvider>
       <C  {...iStyle}  {...rest} onClick={(e) => onChange(value)}>
         {value}
       </C>
-   // </ChakraProvider>
+    </ChakraProvider>
   );
 }
 export default Button;

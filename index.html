@@ -40,14 +40,16 @@
             Input: 0,
             Checkbox: false,
             Switch: false,
-            InputNumber: 0
+            InputNumber: 0,
+            value: ' '
           });
           const onEnter = (name, e) => {
             console.log({name, e});
             let r = {...state};
             r[name]=e;
+            r['value'] = `${name}= ${e}`;
             setState(r);
-          alert(`${name}=${e}`);
+          //alert(`${name}=${e}`);
         }
           let Style = {height: 100, width:400, variant: 'outlined', color:'red'};
           return (
@@ -65,8 +67,10 @@
               <br></br>
               <InputNumber style={Style} label="Enter a number" value={state.InputNumber} 
                   onChange={(e) => onEnter('InputNumber', e)}></InputNumber>
+              <br></br>
+              <p> {state.value}</p>
               </div>
-            
+              
           );
         };
         root.render( <App />)
