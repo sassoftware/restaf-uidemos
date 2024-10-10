@@ -2519,9 +2519,10 @@ function Button(props) {
     height: "inherit",
     width: "inherit"
   }, style);
+  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ChakraProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, _extends({}, iStyle, rest, {
     onClick: function onClick(e) {
-      return onChange(e);
+      return onChange(value);
     }
   }), value));
 }

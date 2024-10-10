@@ -8,9 +8,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 function Button(props) {
   const { onChange, style, value, type, ...rest } = props;
   let iStyle = { height: "inherit", width: "inherit", ...style };
+  debugger;
   return (
     <ChakraProvider>
-      <C  {...iStyle}  {...rest} onClick={(e) => onChange(e)}>
+      <C  {...iStyle}  {...rest} onClick={(e) => onChange(value)}>
         {value}
       </C>
     </ChakraProvider>
