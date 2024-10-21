@@ -13,7 +13,7 @@ function Checkbox(props) {
     variant: "outlined",
     ...eProps,
   };
-  let V = <JoyCheckbox sx={isx} {...ePropsL} checked={value} onChange={_onChange} />;
+  let V = <JoyCheckbox sx={isx} label={label} {...ePropsL} checked={value} onChange={_onChange} />;
   return V;
 
 

@@ -7,9 +7,7 @@ import { getTableList } from '@sassoftware/restafedit';
 import BaseSelector from './BaseSelector';
 
 function SelectTable(props) {
-  const { name, value, lib, label, refresh, designMode, style, eProps, sharedProps, onChange } = props;
-  
-  const { appEnv } = sharedProps;
+  const { name, value, lib, label, refresh, designMode, style, eProps, appEnv, onChange } = props;
   const [tableList, setTableList] = useState([]);
   const [sel, setSel] = useState(value);
   let lastlib = useRef(null);

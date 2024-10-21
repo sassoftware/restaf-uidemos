@@ -8,8 +8,7 @@ import BaseSelectorMultiple from './BaseSelectorMultiple';
 //import {getTableColumns} from '@sassoftware/restafedit'; 
 
 function SelectColumns(props) {
-  const {name, value, separator, style, label, lib, table,asArray, onChange, sharedProps} = props;
-  const {appEnv, designMode} = sharedProps;
+  const {name, value, separator, style, label, lib, table,asArray, onChange, designMode, appEnv} = props;
   let source = appEnv.source;
   const [list, setList] = useState([]);
   let sep = (separator == null) ? ' ' : separator;

@@ -7,8 +7,7 @@ import BaseSelector from './BaseSelector';
 import {getLibraryList} from '@sassoftware/restafedit';
 
 function SelectLibrary(props) {
-  const {name, value, style, label,onChange, eProps, designMode, sharedProps} = props;
-  const {appEnv} = sharedProps;
+  const {name, value, style, label,onChange, eProps, designMode, appEnv} = props;
   const {source, session} = appEnv;
   const [liblist, setLiblist] = useState([]);
   const [sel, setSel] = useState(value);

@@ -9,8 +9,7 @@ import Sheet from '@mui/joy/Sheet';
 //import Border from './Border';
 
 function VaSDK(props) {
-  let { value, label, url, auth, sharedProps, style  } = props;
-  let { appEnv } = sharedProps;
+  let { value, label, url, auth, appEnv, style  } = props;
   const [reportUri, setReportUri] = useState(null);
 
   const [errMsg, setErrMsg] = useState(null);

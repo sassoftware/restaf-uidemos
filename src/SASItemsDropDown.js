@@ -9,9 +9,7 @@ import getItemsList from './utils/getItemsList.js';
 import BaseSelector from './BaseSelector';
 
 function SASItemsDropDown(props) {
-  let { name, service, value, count, label, filter, onChange, style, sharedProps } = props;
-  let { appEnv, designMode} = sharedProps;
-
+  let { name, service, value, count, label, filter, onChange, style, designMode, appEnv } = props;
   const [menuList, setMenuList] = useState([]);
   const [sel, setSel] = useState('');
   
