@@ -204,11 +204,11 @@ function main(set) {
   let sasControls = {
     VaSDK: _visualTemplate(
       frameControl.VaSDK,
-      "VA Reports",
+      "View VA Report",
       "string",
       "Retail Insights",
       medium,
-      { name: " ", url: " ", auth: "credentials", appConfig: " " },
+      { name: " ", url: " ", auth: "credentials"},
       "b"
     ),
     SelectLibrary: _visualTemplate(
@@ -217,7 +217,7 @@ function main(set) {
       "string",
       " ",
       small,
-      { name: " ", source: " ", appConfig: " " },
+      { name: " ", source: " " },
       "h"
     ),
     SelectTable: _visualTemplate(
@@ -226,7 +226,7 @@ function main(set) {
       "string",
       " ",
       small,
-      { name: " ", lib: " ", appConfig: " ", refresh: false },
+      { name: " ", lib: " ",  refresh: false },
       "h"
     ),
     SelectColumns: _visualTemplate(
@@ -239,7 +239,6 @@ function main(set) {
         name: " ",
         lib: " ",
         table: " ",
-        appConfig: " ",
         separator: " ",
         refresh: false,
       },
@@ -255,7 +254,6 @@ function main(set) {
         name: " ",
         lib: " ",
         table: " ",
-        appConfig: " ",
         column: " ",
         where: " ",
       },
@@ -271,7 +269,7 @@ function main(set) {
       "string",
       " ",
       small,
-      { folder: " ", filter: {}, appConfig: " " },
+      { folder: " ", filter: {} },
       "h"
     )
   };

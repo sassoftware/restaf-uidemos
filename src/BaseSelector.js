@@ -47,7 +47,7 @@ function BaseSelector (props) {
         return false;
      }
   
-    debugger;
+    
     let show = 
     <FormControl>
       {label != null ? <FormLabel>{label}</FormLabel> : null}

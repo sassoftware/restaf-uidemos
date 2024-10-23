@@ -9,16 +9,12 @@ import Sheet from '@mui/joy/Sheet';
 //import Border from './Border';
 
 function VaSDK(props) {
-  let { value, label, url, auth, appEnv, style  } = props;
+  let { value,  url, auth, _userProps, style  } = props;
   const [reportUri, setReportUri] = useState(null);
 
   const [errMsg, setErrMsg] = useState(null);
   let reportName = value;
-  /*
-  if (report != null && report.trim().length > 0) {
-     reportName = report;
-  };
-  */
+  
 
   if (reportName == null || reportName.trim().length === 0) {
     reportName = 'Retail Insights';
@@ -28,9 +24,11 @@ function VaSDK(props) {
   sx = { ...sx, ...style };
   
   useEffect(() => {
-      appEnv.store.addServices('reports')
+    
+      _userProps.viyaEnv.store.addServices('reports')
         .then(r => {
-          getReportUri(appEnv.store, reportName)
+          
+          getReportUri(_userProps.viyaEnv.store, reportName)
             .then(r => {
               
               setReportUri(r[0].uri);
@@ -40,11 +38,12 @@ function VaSDK(props) {
               setErrMsg(err);
             });
         })
-    }, [reportName, value, appEnv]);
+    }, [reportName, value, _userProps]);
     
   let show = null;
   let divStyle = sx;
-  let urlt = (url == null || url.trim().length === 0) ? appEnv.logonPayload.host : url
+  
+  let urlt = (url == null || url.trim().length === 0) ? _userProps.viyaEnv.logonPayload.host : url
   if (errMsg !== null) {
     show = <div style={divStyle}><p>Report {reportName} was not found</p></div>;
   } else if (reportUri === null) {
@@ -62,7 +61,7 @@ function VaSDK(props) {
       </div>
     
   };
-  let shkey = label +'sheet';
+  let shkey = reportName +'sheet';
   return <Sheet key={shkey} style={{height: 'inherit', width: 'inherit'}}>
     {show}
     </Sheet>

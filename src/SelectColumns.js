@@ -8,8 +8,8 @@ import BaseSelectorMultiple from './BaseSelectorMultiple';
 //import {getTableColumns} from '@sassoftware/restafedit'; 
 
 function SelectColumns(props) {
-  const {name, value, separator, style, label, lib, table,asArray, onChange, designMode, appEnv} = props;
-  let source = appEnv.source;
+  const {name, value, separator, style, label, lib, table,asArray, onChange, designMode, _userProps} = props;
+  let source = _userProps.viyaEnv.source;
   const [list, setList] = useState([]);
   let sep = (separator == null) ? ' ' : separator;
   
@@ -24,18 +24,18 @@ function SelectColumns(props) {
     }
 
   });
-  debugger;
+  
   const _handleChange = (selx) => {
     setSel(selx);
     onChange(asArray === true ?  selx: selx.join(sep) );
   };
   useEffect(() => {
-    debugger;
+    
     if (table == null || table.trim().length === 0 || lib == null || lib.trim().length === 0) {
       setList([]);
       setSel([]);
     } else {
-      getTableColumns(appEnv.store, appEnv.session, source, lib, table)
+      getTableColumns(_userProps.viyaEnv.store, _userProps.viyaEnv.session, source, lib, table)
         .then ( r => {
           setList(r);
           setSel([]);

@@ -18,11 +18,11 @@ function IselectLibrary(props) {
     onChange(selx);
   };
   useEffect(() => {
-    debugger;
+    
     if (sessionID === null) {
       setLiblist([])
     } else {
-      debugger;
+      
       getLibraryList(appEnv)
         .then ( r => {
           setLiblist(r);

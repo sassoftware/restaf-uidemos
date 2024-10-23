@@ -7,7 +7,7 @@ import { getTableList } from '@sassoftware/restafedit';
 import BaseSelector from './BaseSelector';
 
 function SelectTable(props) {
-  const { name, value, lib, label, refresh, designMode, style, eProps, appEnv, onChange } = props;
+  const { name, value, lib, label, refresh, designMode, style, eProps, _userProps, onChange } = props;
   const [tableList, setTableList] = useState([]);
   const [sel, setSel] = useState(value);
   let lastlib = useRef(null);
@@ -15,15 +15,17 @@ function SelectTable(props) {
     setSel(selx);
     onChange(selx);
   };
- 
+
+  
   
   useEffect(() => {
     
+
     const _setupList = async (lib) => {
       if (lib == null) {
         return [];
       }
-      let tabList = await getTableList(lib, appEnv);
+      let tabList = await getTableList(lib, _userProps.viyaEnv);
       return tabList;
     }
     if (lib == null) {
@@ -46,7 +48,7 @@ function SelectTable(props) {
         })
       }
    // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [name, lib, value, refresh, appEnv]);
+   }, [name, lib, value, refresh, _userProps]);
 
 
   return <BaseSelector
