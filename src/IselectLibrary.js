@@ -9,7 +9,7 @@ import {getLibraryList} from '@sassoftware/restafedit';
 
 function IselectLibrary(props) {
   const {name, value, style, onChange, refresh, designMode, appEnv} = props;
-  const {source, session} = appEnv;
+  const {source, session, sessionID} = appEnv;
   const [liblist, setLiblist] = useState([]);
   const [sel, setSel] = useState(value);
 
@@ -18,10 +18,11 @@ function IselectLibrary(props) {
     onChange(selx);
   };
   useEffect(() => {
-    
-    if (source === 'compute' && session === null) {
+    debugger;
+    if (sessionID === null) {
       setLiblist([])
     } else {
+      debugger;
       getLibraryList(appEnv)
         .then ( r => {
           setLiblist(r);

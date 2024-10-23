@@ -7,14 +7,14 @@ import { Input as JoyInput } from '@mui/joy';
 import { FormLabel } from '@mui/joy';
 
 function Input(props) {
-  const { name, label, type, sx, designMode, onChange, ...eProps} = props;
+  const { name, label, type, sx, designMode, onChange,_userData, ...eProps} = props;
   const [value, setValue] = useState(() => (props.value == null) ? ' ' : props.value);
 
   let disabled = (eProps.disabled == null) ? false : eProps.disabled;
   
   disabled = (designMode === true) ? true : disabled;
   let extendedProps = (eProps == null) ? {} : eProps;
-
+  console.log(_userData);
   useEffect(() => {
     setValue(props.value);
   }, [props.value]);
