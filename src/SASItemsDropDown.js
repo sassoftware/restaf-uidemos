@@ -14,24 +14,25 @@ function SASItemsDropDown(props) {
   const [sel, setSel] = useState('');
   
   useEffect(() => {
-    
-    getItemsList(_userProps.viyaEnv, service.trim(), count, filter)
+    if (_userProps != null && _userProps.viyaEnv != null) {
+      getItemsList(_userProps.viyaEnv, service.trim(), count, filter)
 
-      .then(r => { 
-        
-        setMenuList(r);
-        if (value !== undefined && value !== null && value !== '' && r.includes(value)) {
-          setSel(value);
-        } else {
-          setSel(null);
-        }
-        
-      })
-      .catch(err => {
-        console.log(err);
-        setSel('');
+        .then(r => { 
+          
+          setMenuList(r);
+          if (value !== undefined && value !== null && value !== '' && r.includes(value)) {
+            setSel(value);
+          } else {
+            setSel(null);
+          }
+          
+        })
+        .catch(err => {
+          console.log(err);
+          setSel('');
 
-      })
+        })
+      }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, name, service, filter]);
 

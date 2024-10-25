@@ -24,30 +24,31 @@ function VaSDK(props) {
   sx = { ...sx, ...style };
   
   useEffect(() => {
-      if (_userProps == null || _userProps.viyaEnv == null) {
-        setErrMsg('No access to Viya');
-      } else {
-        _userProps.viyaEnv.store.addServices('reports')
-          .then(r => {
-            
-            getReportUri(_userProps.viyaEnv.store, reportName)
-              .then(r => {
-                
-                setReportUri(r[0].uri);
-                setErrMsg(null);
-              })
-              .catch(err => {
-                setErrMsg(err);
-              });
-          })
-        }
-    }, [reportName, value, _userProps]);
+    debugger;
+    if (_userProps != null &&  _userProps.viyaEnv != null) {
+      _userProps.viyaEnv.store.addServices('reports')
+        .then(r => {
+          getReportUri(_userProps.viyaEnv.store, reportName)
+            .then(r => {
+              
+              setReportUri(r[0].uri);
+              setErrMsg(null);
+            })
+            .catch(err => {
+              setErrMsg(err);
+            });
+        })
+      }
+    }, [reportName, value]);
     
   let show = null;
   let divStyle = sx;
-  if (errMsg !== null) {
-    show = <div style={divStyle}><p>{errMsg}</p></div>;
+  debugger;
+  if (_userProps == null || _userProps.viyaEnv == null) {
+    debugger;
+    show = <div style={divStyle}><p>No connection to Viya</p></div>;
   } else if (reportUri === null) {
+    debugger;
     show = <div style={divStyle}> <p> Report {reportName} was not found</p></div>
   } else {
       let urlt = (url == null || url.trim().length === 0) ? _userProps.viyaEnv.logonPayload.host : url

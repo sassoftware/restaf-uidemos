@@ -33,17 +33,18 @@ function SelectFiles(props) {
       let r = await getItemsList(appEnv, 'files', 1000, tfilter);
       return r;
     }
-    
-    setupCall()
-      .then (r => {
-        setList(r);
-        setSel(r.length === 0 || value == null || value.trim().length === 0 ? null : value);
-      })
-      .catch(err => {
-        console.log(err);
-        setSel(null);
-        setList([]);
-      })
+    if (_userProps != null && _userProps.viyaEnv != null) {
+      setupCall()
+        .then (r => {
+          setList(r);
+          setSel(r.length === 0 || value == null || value.trim().length === 0 ? null : value);
+        })
+        .catch(err => {
+          console.log(err);
+          setSel(null);
+          setList([]);
+        })
+      }
     }, [appEnv, value, folder, filter] );
 
     return <BaseSelector 

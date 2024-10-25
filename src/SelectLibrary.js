@@ -8,7 +8,7 @@ import {getLibraryList} from '@sassoftware/restafedit';
 
 function SelectLibrary(props) {
   const {name, value, style, label,onChange, eProps, designMode, _userProps} = props;
-  const {source, session} = _userProps;
+  
   const [liblist, setLiblist] = useState([]);
   const [sel, setSel] = useState(value);
 
@@ -18,25 +18,27 @@ function SelectLibrary(props) {
     onChange(selx);
   };
   useEffect(() => {
-    
-    if (source === 'compute' && session === null) {
-      setLiblist([])
-    } else {
-      getLibraryList(_userProps.viyaEnv)
-        .then ( r => {
-          setLiblist(r);
-          if (source === 'cas' && value != null && value.toUpperCase() === 'CASUSER') {
-            const index = r.findIndex (e => e.indexOf('CASUSER') >= 0 );
-            if (index >= 0) {
-              setSel(r[index]);
+    if (_userProps != null &&  _userProps.viyaEnv != null) {
+      const {source, session} = _userProps;
+      if (source === 'compute' && session === null) {
+        setLiblist([])
+      } else {
+        getLibraryList(_userProps.viyaEnv)
+          .then ( r => {
+            setLiblist(r);
+            if (source === 'cas' && value != null && value.toUpperCase() === 'CASUSER') {
+              const index = r.findIndex (e => e.indexOf('CASUSER') >= 0 );
+              if (index >= 0) {
+                setSel(r[index]);
+              }
             }
-          }
-        })
-        .catch(err => {
-          console.log(err);
-          setSel('');
-          setLiblist([]);
-        });
+          })
+          .catch(err => {
+            console.log(err);
+            setSel('');
+            setLiblist([]);
+          });
+        }
       }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name]);

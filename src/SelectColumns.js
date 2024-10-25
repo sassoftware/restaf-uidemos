@@ -9,7 +9,7 @@ import BaseSelectorMultiple from './BaseSelectorMultiple';
 
 function SelectColumns(props) {
   const {name, value, separator, style, label, lib, table,asArray, onChange, designMode, _userProps} = props;
-  let source = _userProps.viyaEnv.source;
+  
   const [list, setList] = useState([]);
   let sep = (separator == null) ? ' ' : separator;
   
@@ -30,8 +30,10 @@ function SelectColumns(props) {
     onChange(asArray === true ?  selx: selx.join(sep) );
   };
   useEffect(() => {
-    
-    if (table == null || table.trim().length === 0 || lib == null || lib.trim().length === 0) {
+    if (_userProps == null || _userProps.viyaEnv == null) {
+      setList([]);
+      setSel([]);
+    } else if (table == null || table.trim().length === 0 || lib == null || lib.trim().length === 0) {
       setList([]);
       setSel([]);
     } else {
@@ -48,7 +50,7 @@ function SelectColumns(props) {
         });
       }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [name, source, lib, table] );
+    }, [name, lib, table] );
     
   return <BaseSelectorMultiple
     name={name}
