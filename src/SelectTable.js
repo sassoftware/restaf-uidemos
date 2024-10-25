@@ -22,7 +22,7 @@ function SelectTable(props) {
     
 
     const _setupList = async (lib) => {
-      if (lib == null) {
+      if (lib == null || _userProps == null || _userProps.viyaEnv == null) {
         return [];
       }
       let tabList = await getTableList(lib, _userProps.viyaEnv);

@@ -24,32 +24,33 @@ function VaSDK(props) {
   sx = { ...sx, ...style };
   
   useEffect(() => {
-    
-      _userProps.viyaEnv.store.addServices('reports')
-        .then(r => {
-          
-          getReportUri(_userProps.viyaEnv.store, reportName)
-            .then(r => {
-              
-              setReportUri(r[0].uri);
-              setErrMsg(null);
-            })
-            .catch(err => {
-              setErrMsg(err);
-            });
-        })
+      if (_userProps == null || _userProps.viyaEnv == null) {
+        setErrMsg('No access to Viya');
+      } else {
+        _userProps.viyaEnv.store.addServices('reports')
+          .then(r => {
+            
+            getReportUri(_userProps.viyaEnv.store, reportName)
+              .then(r => {
+                
+                setReportUri(r[0].uri);
+                setErrMsg(null);
+              })
+              .catch(err => {
+                setErrMsg(err);
+              });
+          })
+        }
     }, [reportName, value, _userProps]);
     
   let show = null;
   let divStyle = sx;
-  
-  let urlt = (url == null || url.trim().length === 0) ? _userProps.viyaEnv.logonPayload.host : url
   if (errMsg !== null) {
-    show = <div style={divStyle}><p>Report {reportName} was not found</p></div>;
+    show = <div style={divStyle}><p>{errMsg}</p></div>;
   } else if (reportUri === null) {
     show = <div style={divStyle}> <p> Report {reportName} was not found</p></div>
   } else {
-      
+      let urlt = (url == null || url.trim().length === 0) ? _userProps.viyaEnv.logonPayload.host : url
       show = <div style={divStyle}>
        <sas-report  key={reportUri}
         hideNavigation="auto"

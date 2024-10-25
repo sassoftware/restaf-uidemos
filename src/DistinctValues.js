@@ -8,7 +8,7 @@ import { distinctValues } from '@sassoftware/restafedit';
 import BaseSelector from './BaseSelector';
 
 function DistinctValues(props) {
-  let { column, value, label, lib, table, where, style, onChange, designMode, appEnv,...eProps } = props;
+  let { column, value, label, lib, table, where, style, onChange, designMode, _userProps,...eProps } = props;
 
   const [list, setList] = useState([]);
   const [sel, setSel] = useState(value);
@@ -19,32 +19,38 @@ function DistinctValues(props) {
   };
 
   useEffect(() => {
-    if (column == null || column.trim().length === 0) {
-      setList([])
+    if (_userProps == null || _userProps.viyaEnv == null) {
+      setList([]);
     } else {
-      
-      let w = (where == null) ? '' : where;
-      let t = {name: table};
-      if (appEnv.source === 'cas') {
-        t.caslib = lib;
+
+      let appEnv = _userProps.viyaEnv
+      if (column == null || column.trim().length === 0) {
+        setList([])
       } else {
-        t.libref = lib;
+        
+        let w = (where == null) ? '' : where;
+        let t = {name: table};
+        if (appEnv.source === 'cas') {
+          t.caslib = lib;
+        } else {
+          t.libref = lib;
+        }
+
+        distinctValues(column, appEnv, t, w)
+          .then(r => {
+            
+            setList(r[column]);
+          })
+          .catch(err => {
+            
+            console.log(err);
+            setList([]);
+            setSel('');
+          })
+        }
       }
 
-      distinctValues(column, appEnv, t, w)
-        .then(r => {
-          
-          setList(r[column]);
-        })
-        .catch(err => {
-          
-          console.log(err);
-          setList([]);
-          setSel('');
-        })
-      }
-
-  }, [label, column, lib,table, where, appEnv]);
+  }, [label, column, lib,table, where, _userProps]);
 
   let pr = {
     name: 'distinct',

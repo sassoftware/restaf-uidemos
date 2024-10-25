@@ -11,7 +11,7 @@ import _visualTemplate from "./_visualTemplate.js";
   let props = {}; // if you want to pass in some default props - helpful to users in property sheet
   
 
-  let baseControls = {
+  let basicControls = {
     Input: _visualTemplate(
       frameControl.Input,
       "Input",
@@ -203,15 +203,7 @@ import _visualTemplate from "./_visualTemplate.js";
   
 
   let sasControls = {
-    VaSDK: _visualTemplate(
-      frameControl.VaSDK,
-      "View VA Report",
-      "string",
-      "Retail Insights",
-      medium,
-      { name: " ", url: " ", auth: "credentials"},
-      "b"
-    ),
+    ...basicControls,
     SelectLibrary: _visualTemplate(
       frameControl.SelectLibrary,
       "SelectLibrary",
@@ -262,8 +254,9 @@ import _visualTemplate from "./_visualTemplate.js";
     ),
   };
 
-  let viyaControls = {
+  let controls = {
     /* only for Viya and not workbench */
+    ...sasControls,
     SelectReport: _visualTemplate(
       frameControl.SelectReport,
       "SelectReport",
@@ -272,20 +265,19 @@ import _visualTemplate from "./_visualTemplate.js";
       small,
       { folder: " ", filter: {} },
       "h"
+    ),
+    VaSDK: _visualTemplate(
+      frameControl.VaSDK,
+      "View VA Report",
+      "string",
+      "Retail Insights",
+      medium,
+      { name: " ", url: " ", auth: "credentials"},
+      "b"
     )
   };
-  /*
-  let r =
-    set === "basic"
-      ? controls
-      : set === "sas"
-      ? Object.assign({}, controls, sasControls)
-      : set === "viya"
-      ? Object.assign({}, controls, sasControls, viyaControls)
-      : {};
-      */
-let controls = Object.assign({}, baseControls, sasControls, viyaControls)
- export {controls};
+
+ export {controls, basicControls, sasControls};
  
   
 
