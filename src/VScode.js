@@ -7,7 +7,7 @@ import Editor from "@monaco-editor/react";
 //import useSize from '@react-hook/size';
 
 function VScode(props) {
-  const {value,name, sx, onChange, language,_designMode} = props;
+  const {value,name, sx, onChange, language} = props;
   const [code, setCode] = useState(value);
   const divref = React.useRef(null);
  // const [width, height] = useSize(divref);
@@ -21,9 +21,6 @@ function VScode(props) {
         name : name
       }
     };
-    if (designMode === false) {
-      onChange(synthE.target.value, synthE);
-    }
   }
   /*
   height={height - 5}

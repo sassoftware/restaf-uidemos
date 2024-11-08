@@ -19,8 +19,9 @@ function SelectLibrary(props) {
   };
   useEffect(() => {
     if (_userProps != null &&  _userProps.viyaEnv != null) {
-      const {source, session} = _userProps;
-      if (source === 'compute' && session === null) {
+      const {source, session} = _userProps.viyaEnv
+      debugger;
+      if (session === null) {
         setLiblist([])
       } else {
         getLibraryList(_userProps.viyaEnv)
