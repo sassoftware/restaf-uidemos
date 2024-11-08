@@ -153,7 +153,7 @@ import _visualTemplate from "./_visualTemplate.js";
       "b"
     ),
     //Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'),
-    VSCode: _visualTemplate(
+    VScode: _visualTemplate(
       frameControl.VScode,
       "VSCode",
       "string",
