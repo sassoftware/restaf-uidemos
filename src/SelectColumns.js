@@ -37,7 +37,7 @@ function SelectColumns(props) {
       setList([]);
       setSel([]);
     } else {
-      getTableColumns(_userProps.viyaEnv.store, _userProps.viyaEnv.session, source, lib, table)
+      getTableColumns(_userProps.viyaEnv.store, _userProps.viyaEnv.session, _userProps.appEnv.source, lib, table)
         .then ( r => {
           setList(r);
           setSel([]);

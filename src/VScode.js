@@ -2,36 +2,27 @@
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React, {useState} from 'react';
+import React  from 'react';
 import Editor from "@monaco-editor/react";
 //import useSize from '@react-hook/size';
 
 function VScode(props) {
   const {value,name, sx, onChange, language} = props;
-  const [code, setCode] = useState(value);
+ // const [code, setCode] = useState(value);
   const divref = React.useRef(null);
  // const [width, height] = useSize(divref);
   
-  const _setCode = (value) => {
-    setCode(value);
-    const synthE = {
-      key   : 'Enter',
-      target: {
-        value: code,
-        name : name
-      }
-    };
+  const _setCode = (v) => {
+    return onChange(v);
   }
-  /*
-  height={height - 5}
-    width= {width -5}
-  */
+ 
+
   let editor = <Editor
     height="inherit"
     width= "Inherit"
-    value={code}
+    value={value}
     defaultLanguage={language}
-    defaultValue={code}
+    defaultValue={value}
     options={editorOptions()}
     onChange={_setCode}
     codeLens={false}
