@@ -6,23 +6,30 @@
   "description": "Mui Frame Controls for use with @sassoftware/FrameBuilder",
   "source": "./index.js",
   "main": "/dist/smart-controls-mui.js",
-  "unpkg": "/dist/smart-controls-mui.js",
   "browser": "/dist/smart-controls-mui.js",
+  "unpkg": "/dist/smart-controls-mui.js",
   "files": [
     "./dist"
   ],
   "scripts": {
     "stats": "webpack --env target=node p=a --config webpack.config.js",
     "build": "rimraf dist && webpack --env target=umd p=n --config webpack.config.js && webpack --env target=umd p=y --config webpack.config.js",
-    "pub": "npm publish --tag dev --access public"
+    "pub": "npm publish --tag dev --access public",
+    "lib": "rimraf ./dist && microbundle --name smartControls  --jsx React.createElement --jsxFragment React.Fragment"
   },
   "babel": {
     "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
+      "@babel/preset-react",
+      "@babel/preset-env"
     ]
   },
   "dependencies": {
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.24.5",
+    "@babel/plugin-transform-private-property-in-object": "^7.24.5",
+    "@babel/plugin-transform-runtime": "^7.24.3",
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@monaco-editor/react": "^4.6.0",
@@ -33,22 +40,15 @@
     "btoa": "^1.2.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.5",
-    "@babel/core": "^7.24.5",
     "@babel/eslint-parser": "7.19.1",
-    "@babel/plugin-transform-private-property-in-object": "^7.24.5",
-    "@babel/plugin-transform-runtime": "^7.24.3",
-    "@babel/preset-env": "^7.24.5",
-    "@babel/preset-react": "^7.24.1",
     "@svgr/webpack": "^6.5.1",
     "babel-loader": "^9.1.3",
     "eslint": "^8.28.0",
     "eslint-plugin-react": "^7.31.11",
+    "microbundle": "^0.15.1",
     "prettier": "^2.8.0",
     "prettier-eslint": "^15.0.1",
     "prettier-eslint-cli": "^7.1.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "rimraf": "^5.0.7",
     "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.91.0",
@@ -60,7 +60,6 @@
     "@sassoftware/restaf": "^5.2.4",
     "@sassoftware/restafedit": "^3.0.0-alpha.3",
     "@sassoftware/restaflib": "^5.2.4",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^18.3.1"
   }
 }
