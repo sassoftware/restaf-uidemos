@@ -2,7 +2,7 @@
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React, {useState, useEffect} from 'react';
+import  {useState, useEffect} from 'react';
 import BaseSelector from './BaseSelector';
 
 import getFolderUri from './utils/getFolderUri';

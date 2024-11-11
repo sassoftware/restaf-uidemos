@@ -2,14 +2,15 @@
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React  from 'react';
+
+import {useRef} from 'react';
 import Editor from "@monaco-editor/react";
 //import useSize from '@react-hook/size';
 
 function VScode(props) {
   const {value,name, sx, onChange, language} = props;
  // const [code, setCode] = useState(value);
-  const divref = React.useRef(null);
+  const divref = useRef(null);
  // const [width, height] = useSize(divref);
   
   const _setCode = (v) => {

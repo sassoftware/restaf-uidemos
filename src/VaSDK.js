@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect} from 'react';
+import  { useState, useEffect} from 'react';
 import { getReportUri } from '@sassoftware/restaflib';
 import Sheet from '@mui/joy/Sheet';
 //import Border from './Border';

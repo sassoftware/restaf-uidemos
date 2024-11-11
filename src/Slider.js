@@ -2,7 +2,7 @@
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import React, { useState, useRef } from 'react';
+import  { useState, useRef } from 'react';
 import { Slider as JoySlider } from '@mui/joy';
 import {Box, Typography} from '@mui/joy';
 import useSize from '@react-hook/size';

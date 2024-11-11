@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+// import Reactz from 'react';
 import btoa from 'btoa';
 
 function Image(props) {
