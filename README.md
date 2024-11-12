@@ -4,4 +4,5 @@ This library is currently intended to be a library that is passed to the `@sasso
 
 More information once the designer is published
 
-> this version uses microbundle
+> this version uses wenpack only and no esm
+

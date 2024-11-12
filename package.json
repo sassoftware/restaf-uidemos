@@ -5,21 +5,17 @@
   "license": "Apache-2.0",
   "description": "Mui Frame Controls for use with @sassoftware/FrameBuilder",
   "source": "./index.js",
-  "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.esm.js"
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.esm.js",
-  "unpkg": "./dist/index.umd.js",
+  "unpkg": "/dist/index.js",
+  "main": "/dist/index.js",
+  "browser": "/dist/index.js",
   "files": [
     "./dist"
   ],
   "scripts": {
     "stats": "webpack --env target=umd p=a --config webpack.config.js",
     "build:lib": "microbundle --visualize  --name smartControls --jsx React.createElement --jsxFragment React.Fragment",
-    "build:umd": "webpack --env target=umd p=n --config webpack.config.js",
-    "build": "rimraf dist && npm run build:lib && npm run build:umd",
+    "build:umd": "webpack --env target=umd p=n --config webpack.config.js && webpack --env target=umd p=y --config webpack.config.js",  
+    "build": "rimraf dist && npm run build:umd",
     "pub": "npm publish --tag dev --access public"
   },
   "babel": {

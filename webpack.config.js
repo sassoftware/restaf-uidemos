@@ -28,7 +28,7 @@ module.exports = (env) =>  {
     optimization: optimize,
     output: {
       path: usePath,
-      filename: (env.p === 'y') ? 'index.min.js' : 'index.umd.js',
+      filename: (env.p === 'y') ? 'index.js' : 'index.dev.js',
       libraryTarget: 'umd',
       library: "smartControls", 
       umdNamedDefine: true,
