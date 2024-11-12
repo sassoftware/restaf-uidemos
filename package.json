@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/smart-controls-mui",
-  "version": "0.22.0",
+  "version": "0.22.1",
   "author": "K. Deva Kumaraswamy",
   "license": "Apache-2.0",
   "description": "Mui Frame Controls for use with @sassoftware/FrameBuilder",
@@ -78,7 +78,6 @@
     "**/nth-check": "^2.0.1",
     "**/underscore.string": "3.3.6"
   },
-  
   "overrides": {
     "react": "18.3.1",
     "react-dom": "18.3.1"
