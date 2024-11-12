@@ -16,11 +16,12 @@
     "./dist"
   ],
   "scripts": {
-    "stats": "webpack --env target=node p=a --config webpack.config.js",
+    "stats": "webpack --env target=umd p=a --config webpack.config.js",
     "build:lib": "microbundle --visualize  --name smartControls --jsx React.createElement --jsxFragment React.Fragment",
     "build:umd": "webpack --env target=umd p=n --config webpack.config.js",
     "build": "rimraf dist && npm run build:lib && npm run build:umd",
     "pub": "npm publish --tag dev --access public"
+
   },
   "babel": {
     "presets": [
@@ -56,7 +57,8 @@
     "prettier": "^2.8.0",
     "prettier-eslint": "^15.0.1",
     "prettier-eslint-cli": "^7.1.0",
-    "restaf": "^1.5.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "rimraf": "^5.0.7",
     "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.91.0",
