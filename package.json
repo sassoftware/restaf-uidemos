@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "stats": "webpack --env target=node p=a --config webpack.config.js",
-    "build:lib": "microbundle --name smartControls --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react --globals react/jsx-runtime=jsx",
+    "build:lib": "microbundle --visualize  --name smartControls --jsx React.createElement --jsxFragment React.Fragment",
     "build:umd": "webpack --env target=umd p=n --config webpack.config.js",
     "build": "rimraf dist && npm run build:lib && npm run build:umd",
     "pub": "npm publish --tag dev --access public"
@@ -42,7 +42,9 @@
     "@mui/joy": "^5.0.0-beta.48",
     "@mui/material": "^5.15.16",
     "@react-hook/size": "^2.1.2",
-    "btoa": "^1.2.1"
+    "btoa": "^1.2.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.19.1",
@@ -54,6 +56,7 @@
     "prettier": "^2.8.0",
     "prettier-eslint": "^15.0.1",
     "prettier-eslint-cli": "^7.1.0",
+    "restaf": "^1.5.5",
     "rimraf": "^5.0.7",
     "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.91.0",
@@ -65,6 +68,19 @@
     "@sassoftware/restaf": "^5.2.4",
     "@sassoftware/restafedit": "^3.0.0-alpha.3",
     "@sassoftware/restaflib": "^5.2.4",
-    "react": "^18.3.1"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "resolutions": {
+    "**/@svgr/webpack": "8.0.1",
+    "**/fix": "0.0.6",
+    "**/json5": "2.2.0",
+    "**/nth-check": "^2.0.1",
+    "**/underscore.string": "3.3.6"
+  },
+  
+  "overrides": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   }
 }
