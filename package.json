@@ -7,9 +7,11 @@
   "source": "./index.js",
   "unpkg": "/dist/index.js",
   "main": "/dist/index.js",
+  "module": "/dist/index.js",
   "browser": "/dist/index.js",
   "files": [
-    "./dist"
+    "./dist",
+    "LICENSE" 
   ],
   "scripts": {
     "stats": "webpack --env target=umd p=a --config webpack.config.js",
