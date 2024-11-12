@@ -5,6 +5,7 @@
   "license": "Apache-2.0",
   "description": "Mui Frame Controls for use with @sassoftware/FrameBuilder",
   "source": "./index.js",
+  "packDirectory": "./dev",
   "unpkg": "/dist/index.js",
   "main": "/dist/index.js",
   "module": "/dist/index.js",
@@ -17,7 +18,8 @@
     "stats": "webpack --env target=umd p=a --config webpack.config.js",
     "build:lib": "microbundle --visualize  --name smartControls --jsx React.createElement --jsxFragment React.Fragment",
     "build:umd": "webpack --env target=umd p=n --config webpack.config.js && webpack --env target=umd p=y --config webpack.config.js",
-    "build": "rimraf dist && npm run build:umd",
+    "build": "rimraf dist && npm run build:umd && npm run localpack",
+    "localpack": "npm pack --pack-destination dev && bash ./dev.sh",
     "pub": "npm publish --tag dev --access public"
   },
   "babel": {
@@ -29,8 +31,6 @@
   "dependencies": {
     "@babel/cli": "^7.21.5",
     "@babel/core": "^7.24.5",
-    "@babel/plugin-transform-private-property-in-object": "^7.24.5",
-    "@babel/plugin-transform-runtime": "^7.24.3",
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-react": "^7.24.1",
     "@emotion/react": "^11.11.4",
@@ -52,8 +52,6 @@
     "prettier": "^2.8.0",
     "prettier-eslint": "^15.0.1",
     "prettier-eslint-cli": "^7.1.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "rimraf": "^5.0.7",
     "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.91.0",
@@ -74,5 +72,9 @@
     "**/json5": "2.2.0",
     "**/nth-check": "^2.0.1",
     "**/underscore.string": "3.3.6"
+  },
+  "overrides": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
