@@ -1,3 +1,4 @@
 sassoftware-smart-controls-mui-0.26.0.tgz
+sassoftware-smart-controls-mui-0.27.0.tgz
 smartcontrolsmui.tgz
-Tue, Nov 12, 2024  9:18:00 PM
+Tue, Nov 12, 2024  9:24:48 PM
