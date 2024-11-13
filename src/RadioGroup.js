@@ -40,10 +40,9 @@ function RadioGroup (props) {
   let ePropsL = { 
     value: currentSelection,
     label: label, 
-    row: false,
     size: "sm",
     variant: 'outlined',
-    selectOnFocus: true,
+   // selectOnFocus: true,
     readOnly: false, 
      ...eProps
     };
