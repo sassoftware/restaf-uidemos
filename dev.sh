@@ -4,7 +4,7 @@
 
 cd ./dev
 ls 
-rm -f smartcontrolmui.tgz
+rm -f smartcontrolsmui.tgz
 ls *.tgz >version.txt
 date >>version.txt
 find . -type f -name *.tgz | xargs -I {} mv {} smartcontrolsmui.tgz
