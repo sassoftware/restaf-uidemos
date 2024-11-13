@@ -8,7 +8,7 @@ import Radio from '@mui/joy/Radio';
 import {RadioGroup as JoyRadioGroup} from '@mui/joy';
 
 function RadioGroup (props) {
-  let {value, items, onChange,label, sx, ...eProps} = props;
+  let {value, items, onChange,label, sx, _userProps, ...eProps} = props;
   
   const _handleChange = (e) => {
     onChange(e.target.value);  

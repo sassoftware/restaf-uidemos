@@ -10,7 +10,7 @@ import useSize from '@react-hook/size';
 
 
 function Slider(props) {
-  const { name, value, designMode, onChange, sx,...eProps } = props;
+  const { name, value, designMode, onChange, sx,_userProps, ...eProps } = props;
   const [val, setVal] = useState(value);
   const divref = useRef(null);
   const [width, height] = useSize(divref);

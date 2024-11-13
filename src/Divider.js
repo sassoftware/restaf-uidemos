@@ -2,7 +2,7 @@
 import {Divider as JoyDivider} from '@mui/joy';
 
 function Divider(props) {
-  let {label, value, sx, ...eProps} = props;
+  let {label, value, sx, _userProps,...eProps} = props;
 
   let ePropL = {
     //label: label,

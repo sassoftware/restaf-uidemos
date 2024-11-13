@@ -8,7 +8,8 @@
 import BaseSelectorMultiple from './BaseSelectorMultiple';
 import BaseSelector from './BaseSelector';
 function Dropdown(props) {
-  return (props.multiple === true) ? <BaseSelectorMultiple {...props} /> : <BaseSelector {...props} />;
+  let {_userProps, ...eProps} = props;
+  return (props.multiple === true) ? <BaseSelectorMultiple {...eProps} /> : <BaseSelector {...eProps} />;
 
 }
 export default Dropdown;
