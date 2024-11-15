@@ -1,5 +1,0 @@
-import main from './main.js';
-
-let controls = main();
-// export {controls, sasControls, viyaControls};
-export {controls};

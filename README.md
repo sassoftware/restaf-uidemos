@@ -2,7 +2,6 @@
 
 This library is currently intended to be a library that is passed to the `@sassoftware/framedesigner` component as the controls to use in building a composite component.
 
-More information once the designer is published
-
-> this version uses wenpack only and no esm
+> uses rollup for esm and cjs builds
+> use webpack for umd build - rollup has issues handling restaf/jsx-runtime for building umd.
 

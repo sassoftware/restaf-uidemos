@@ -18,7 +18,10 @@ export default [
         'react-dom': 'ReactDOM'
       }
     },
-    external: ['react', 'react-dom'/*,'react/jsx-runtime', '@mui/material', '@mui/joy'*/],
+    external: ['react', 'react-dom' /*,'react/jsx-runtime' , '@mui/material', '@mui/joy'*/],
+    jsx: {
+      importSource: 'react/jsx-runtime'
+    },
     plugins: [
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'), // Replaces with "production"
@@ -38,10 +41,7 @@ export default [
       }),
       babel({
         babelHelpers: 'bundled',
-        presets: [
-          ['@babel/preset-env', { modules: false }],
-          ['@babel/preset-react', { runtime: 'automatic' }]
-        ],
+        configFile: "./.babelrc.umd",
         extensions: ['.js', '.jsx'],
         exclude: 'node_modules/**'
       }),
@@ -79,7 +79,8 @@ export default [
         ],
         extensions: ['.js', '.jsx'],
         exclude: 'node_modules/**'
-      })
+      }),
+      terser()
     ]
   }
 ];
