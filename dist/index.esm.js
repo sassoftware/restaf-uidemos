@@ -1,5 +1,5 @@
-import require$$2$1, { jsx, jsxs } from 'react/jsx-runtime';
-import * as React$1 from 'react';
+import require$$2$1, { jsx, jsxs, Fragment as Fragment$1 } from 'react/jsx-runtime';
+import * as React from 'react';
 import React__default, { forwardRef, useContext, useState, useEffect, Fragment, useRef, memo, useCallback } from 'react';
 import { getReportUri, caslRun } from '@sassoftware/restaflib';
 import * as ReactDOM from 'react-dom';
@@ -45,15 +45,6 @@ function _defineProperty$2(e, r, t) {
     configurable: !0,
     writable: !0
   }) : e[r] = t, e;
-}
-function _extends$2() {
-  return _extends$2 = Object.assign ? Object.assign.bind() : function (n) {
-    for (var e = 1; e < arguments.length; e++) {
-      var t = arguments[e];
-      for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
-    }
-    return n;
-  }, _extends$2.apply(null, arguments);
 }
 function _iterableToArrayLimit$1(r, l) {
   var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
@@ -726,7 +717,7 @@ function deprecatedPropType(validator, reason) {
 
 function isMuiElement(element, muiNames) {
   var _muiName, _element$type;
-  return /*#__PURE__*/React$1.isValidElement(element) && muiNames.indexOf( // For server components `muiName` is avaialble in element.type._payload.value.muiName
+  return /*#__PURE__*/React.isValidElement(element) && muiNames.indexOf( // For server components `muiName` is avaialble in element.type._payload.value.muiName
   // relevant info - https://github.com/facebook/react/blob/2807d781a08db8e9873687fccc25c0f12b4fb3d4/packages/react/src/ReactLazy.js#L45
   // eslint-disable-next-line no-underscore-dangle
   (_muiName = element.type.muiName) != null ? _muiName : (_element$type = element.type) == null || (_element$type = _element$type._payload) == null || (_element$type = _element$type.value) == null ? void 0 : _element$type.muiName) !== -1;
@@ -775,13 +766,13 @@ function setRef(ref, value) {
  * Before you use this hook, make sure to read https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
  * and confirm it doesn't apply to your use-case.
  */
-const useEnhancedEffect = typeof window !== 'undefined' ? React$1.useLayoutEffect : React$1.useEffect;
+const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
 let globalId = 0;
 function useGlobalId(idOverride) {
-  const [defaultId, setDefaultId] = React$1.useState(idOverride);
+  const [defaultId, setDefaultId] = React.useState(idOverride);
   const id = idOverride || defaultId;
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     if (defaultId == null) {
       // Fallback to this default id when possible.
       // Use the incrementing value for client-side rendering only.
@@ -795,7 +786,7 @@ function useGlobalId(idOverride) {
 }
 
 // downstream bundlers may remove unnecessary concatenation, but won't remove toString call -- Workaround for https://github.com/webpack/webpack/issues/14814
-const maybeReactUseId = React$1['useId'.toString()];
+const maybeReactUseId = React['useId'.toString()];
 /**
  *
  * @example <div id={useId()} />
@@ -826,10 +817,10 @@ function useControlled({
   // isControlled is ignored in the hook dependency lists as it should never change.
   const {
     current: isControlled
-  } = React$1.useRef(controlled !== undefined);
-  const [valueState, setValue] = React$1.useState(defaultProp);
+  } = React.useRef(controlled !== undefined);
+  const [valueState, setValue] = React.useState(defaultProp);
   const value = isControlled ? controlled : valueState;
-  const setValueIfUncontrolled = React$1.useCallback(newValue => {
+  const setValueIfUncontrolled = React.useCallback(newValue => {
     if (!isControlled) {
       setValue(newValue);
     }
@@ -843,11 +834,11 @@ function useControlled({
  */
 
 function useEventCallback(fn) {
-  const ref = React$1.useRef(fn);
+  const ref = React.useRef(fn);
   useEnhancedEffect(() => {
     ref.current = fn;
   });
-  return React$1.useRef((...args) =>
+  return React.useRef((...args) =>
   // @ts-expect-error hide `this`
   (0, ref.current)(...args)).current;
 }
@@ -858,7 +849,7 @@ function useForkRef(...refs) {
    * This means react will call the old forkRef with `null` and the new forkRef
    * with the ref. Cleanup naturally emerges from this behavior.
    */
-  return React$1.useMemo(() => {
+  return React.useMemo(() => {
     if (refs.every(ref => ref == null)) {
       return null;
     }
@@ -1002,12 +993,12 @@ function isFocusVisible(event) {
   return hadKeyboardEvent || focusTriggersKeyboardModality(target);
 }
 function useIsFocusVisible() {
-  const ref = React$1.useCallback(node => {
+  const ref = React.useCallback(node => {
     if (node != null) {
       prepare(node.ownerDocument);
     }
   }, []);
-  const isFocusVisibleRef = React$1.useRef(false);
+  const isFocusVisibleRef = React.useRef(false);
 
   /**
    * Should be called if a blur event is fired
@@ -1052,8 +1043,8 @@ function useIsFocusVisible() {
 }
 
 const usePreviousProps = value => {
-  const ref = React$1.useRef({});
-  React$1.useEffect(() => {
+  const ref = React.useRef({});
+  React.useEffect(() => {
     ref.current = value;
   });
   return ref.current;
@@ -1216,7 +1207,7 @@ function areArraysEqual(array1, array2, itemComparer = (a, b) => a === b) {
 const defaultContextValue = {
   disableDefaultClasses: false
 };
-const ClassNameConfiguratorContext = /*#__PURE__*/React$1.createContext(defaultContextValue);
+const ClassNameConfiguratorContext = /*#__PURE__*/React.createContext(defaultContextValue);
 /**
  * @ignore - internal hook.
  *
@@ -1228,7 +1219,7 @@ const ClassNameConfiguratorContext = /*#__PURE__*/React$1.createContext(defaultC
 function useClassNamesOverride(generateUtilityClass) {
   const {
     disableDefaultClasses
-  } = React$1.useContext(ClassNameConfiguratorContext);
+  } = React.useContext(ClassNameConfiguratorContext);
   return slot => {
     if (disableDefaultClasses) {
       return '';
@@ -1276,8 +1267,8 @@ function useRootElementName(parameters) {
     rootElementName: rootElementNameProp = '',
     componentName
   } = parameters;
-  const [rootElementName, setRootElementName] = React$1.useState(rootElementNameProp.toUpperCase());
-  const updateRootElementName = React$1.useCallback(instance => {
+  const [rootElementName, setRootElementName] = React.useState(rootElementNameProp.toUpperCase());
+  const updateRootElementName = React.useCallback(instance => {
     var _instance$tagName;
     setRootElementName((_instance$tagName = instance == null ? void 0 : instance.tagName) != null ? _instance$tagName : '');
   }, []);
@@ -1576,14 +1567,14 @@ function useSlider(parameters) {
     tabIndex,
     value: valueProp
   } = parameters;
-  const touchId = React$1.useRef();
+  const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
   // - The active state isn't transferred when inversing a range slider.
-  const [active, setActive] = React$1.useState(-1);
-  const [open, setOpen] = React$1.useState(-1);
-  const [dragging, setDragging] = React$1.useState(false);
-  const moveCount = React$1.useRef(0);
+  const [active, setActive] = React.useState(-1);
+  const [open, setOpen] = React.useState(-1);
+  const [dragging, setDragging] = React.useState(false);
+  const moveCount = React.useRef(0);
   const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue != null ? defaultValue : min,
@@ -1619,8 +1610,8 @@ function useSlider(parameters) {
     onFocus: handleFocusVisible,
     ref: focusVisibleRef
   } = useIsFocusVisible();
-  const [focusedThumbIndex, setFocusedThumbIndex] = React$1.useState(-1);
-  const sliderRef = React$1.useRef();
+  const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
+  const sliderRef = React.useRef();
   const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
   const handleRef = useForkRef(ref, handleFocusRef);
   const createHandleHiddenInputFocus = otherHandlers => event => {
@@ -1731,7 +1722,7 @@ function useSlider(parameters) {
     // @ts-ignore
     changeValue(event, event.target.valueAsNumber);
   };
-  const previousIndex = React$1.useRef();
+  const previousIndex = React.useRef();
   let axis = orientation;
   if (isRtl && orientation === 'horizontal') {
     axis += '-reverse';
@@ -1895,14 +1886,14 @@ function useSlider(parameters) {
       passive: true
     });
   });
-  const stopListening = React$1.useCallback(() => {
+  const stopListening = React.useCallback(() => {
     const doc = ownerDocument(sliderRef.current);
     doc.removeEventListener('mousemove', handleTouchMove);
     doc.removeEventListener('mouseup', handleTouchEnd);
     doc.removeEventListener('touchmove', handleTouchMove);
     doc.removeEventListener('touchend', handleTouchEnd);
   }, [handleTouchEnd, handleTouchMove]);
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     const {
       current: slider
     } = sliderRef;
@@ -1914,7 +1905,7 @@ function useSlider(parameters) {
       stopListening();
     };
   }, [stopListening, handleTouchStart]);
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     if (disabled) {
       stopListening();
     }
@@ -3923,16 +3914,16 @@ var syncFallback = function syncFallback(create) {
   return create();
 };
 
-var useInsertionEffect = React$1['useInsertion' + 'Effect'] ? React$1['useInsertion' + 'Effect'] : false;
+var useInsertionEffect = React['useInsertion' + 'Effect'] ? React['useInsertion' + 'Effect'] : false;
 var useInsertionEffectAlwaysWithSyncFallback = !isBrowser$2 ? syncFallback : useInsertionEffect || syncFallback;
-var useInsertionEffectWithLayoutFallback = useInsertionEffect || React$1.useLayoutEffect;
+var useInsertionEffectWithLayoutFallback = useInsertionEffect || React.useLayoutEffect;
 
 var isBrowser$1 = typeof document !== 'undefined';
 
 /* import { type EmotionCache } from '@emotion/utils' */
 var EmotionCacheContext
 /*: React.Context<EmotionCache | null> */
-= /* #__PURE__ */React$1.createContext( // we're doing this to avoid preconstruct's dead code elimination in this one case
+= /* #__PURE__ */React.createContext( // we're doing this to avoid preconstruct's dead code elimination in this one case
 // because this module is primarily intended for the browser and node
 // but it's also required in react native and similar environments sometimes
 // and we could have a special build just for that
@@ -3984,7 +3975,7 @@ if (!isBrowser$1) {
         cache = createCache({
           key: 'css'
         });
-        return /*#__PURE__*/React$1.createElement(EmotionCacheContext.Provider, {
+        return /*#__PURE__*/React.createElement(EmotionCacheContext.Provider, {
           value: cache
         }, func(props, cache));
       } else {
@@ -3994,7 +3985,7 @@ if (!isBrowser$1) {
   };
 }
 
-var ThemeContext = /* #__PURE__ */React$1.createContext({});
+var ThemeContext = /* #__PURE__ */React.createContext({});
 
 // initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
 // initial client-side render from SSR, use place of hydrating tag
@@ -4008,7 +3999,7 @@ GlobalProps
 , cache) {
 
   var styles = props.styles;
-  var serialized = serializeStyles([styles], undefined, React$1.useContext(ThemeContext));
+  var serialized = serializeStyles([styles], undefined, React.useContext(ThemeContext));
 
   if (!isBrowser$1) {
     var _ref;
@@ -4033,7 +4024,7 @@ GlobalProps
       return null;
     }
 
-    return /*#__PURE__*/React$1.createElement("style", (_ref = {}, _ref["data-emotion"] = cache.key + "-global " + serializedNames, _ref.dangerouslySetInnerHTML = {
+    return /*#__PURE__*/React.createElement("style", (_ref = {}, _ref["data-emotion"] = cache.key + "-global " + serializedNames, _ref.dangerouslySetInnerHTML = {
       __html: rules
     }, _ref.nonce = cache.sheet.nonce, _ref));
   } // yes, i know these hooks are used conditionally
@@ -4042,7 +4033,7 @@ GlobalProps
   // so it's not actually breaking anything
 
 
-  var sheetRef = React$1.useRef();
+  var sheetRef = React.useRef();
   useInsertionEffectWithLayoutFallback(function () {
     var key = cache.key + "-global"; // use case of https://github.com/emotion-js/emotion/issues/2675
 
@@ -4250,7 +4241,7 @@ var Insertion = function Insertion(_ref) {
       next = next.next;
     }
 
-    return /*#__PURE__*/React$1.createElement("style", (_ref2 = {}, _ref2["data-emotion"] = cache.key + " " + serializedNames, _ref2.dangerouslySetInnerHTML = {
+    return /*#__PURE__*/React.createElement("style", (_ref2 = {}, _ref2["data-emotion"] = cache.key + " " + serializedNames, _ref2.dangerouslySetInnerHTML = {
       __html: rules
     }, _ref2.nonce = cache.sheet.nonce, _ref2));
   }
@@ -4320,7 +4311,7 @@ var createStyled$3
           mergedProps[key] = props[key];
         }
 
-        mergedProps.theme = React$1.useContext(ThemeContext);
+        mergedProps.theme = React.useContext(ThemeContext);
       }
 
       if (typeof props.className === 'string') {
@@ -4353,11 +4344,11 @@ var createStyled$3
         newProps.ref = ref;
       }
 
-      return /*#__PURE__*/React$1.createElement(React$1.Fragment, null, /*#__PURE__*/React$1.createElement(Insertion, {
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Insertion, {
         cache: cache,
         serialized: serialized,
         isStringTag: typeof FinalTag === 'string'
-      }), /*#__PURE__*/React$1.createElement(FinalTag, newProps));
+      }), /*#__PURE__*/React.createElement(FinalTag, newProps));
     });
     Styled.displayName = identifierName !== undefined ? identifierName : "Styled(" + (typeof baseTag === 'string' ? baseTag : baseTag.displayName || baseTag.name || 'Component') + ")";
     Styled.defaultProps = tag.defaultProps;
@@ -5587,7 +5578,7 @@ function isObjectEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 function useTheme$1(defaultTheme = null) {
-  const contextTheme = React$1.useContext(ThemeContext);
+  const contextTheme = React.useContext(ThemeContext);
   return !contextTheme || isObjectEmpty(contextTheme) ? defaultTheme : contextTheme;
 }
 
@@ -5660,7 +5651,7 @@ function createBox(options = {}) {
   const BoxRoot = styled$2('div', {
     shouldForwardProp: prop => prop !== 'theme' && prop !== 'sx' && prop !== 'as'
   })(styleFunctionSx$1);
-  const Box = /*#__PURE__*/React$1.forwardRef(function Box(inProps, ref) {
+  const Box = /*#__PURE__*/React.forwardRef(function Box(inProps, ref) {
     const theme = useTheme(defaultTheme);
     const _extendSxProp = extendSxProp(inProps),
       {
@@ -5993,7 +5984,7 @@ const colorChannel = color => {
   return decomposedColor.values.slice(0, 3).map((val, idx) => decomposedColor.type.indexOf('hsl') !== -1 && idx !== 0 ? `${val}%` : val).join(' ');
 };
 
-const PropsContext = /*#__PURE__*/React$1.createContext(undefined);
+const PropsContext = /*#__PURE__*/React.createContext(undefined);
 function getThemeProps(params) {
   const {
     theme,
@@ -6018,7 +6009,7 @@ function useDefaultProps$1({
   props,
   name
 }) {
-  const ctx = React$1.useContext(PropsContext);
+  const ctx = React.useContext(PropsContext);
   return getThemeProps({
     props,
     name,
@@ -7467,7 +7458,7 @@ const SliderInput = styled$1('input', {
  *
  * - [Slider API](https://mui.com/joy-ui/api/slider/)
  */
-const Slider$1 = /*#__PURE__*/React$1.forwardRef(function Slider(inProps, ref) {
+const Slider$1 = /*#__PURE__*/React.forwardRef(function Slider(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoySlider'
@@ -7617,7 +7608,7 @@ const Slider$1 = /*#__PURE__*/React$1.forwardRef(function Slider(inProps, ref) {
       } else {
         markActive = track === 'normal' && (range ? mark.value >= values[0] && mark.value <= values[values.length - 1] : mark.value <= values[0]) || track === 'inverted' && (range ? mark.value <= values[0] || mark.value >= values[values.length - 1] : mark.value >= values[0]);
       }
-      return /*#__PURE__*/jsxs(React$1.Fragment, {
+      return /*#__PURE__*/jsxs(React.Fragment, {
         children: [/*#__PURE__*/jsx(SlotMark, _extends$1({
           "data-index": index
         }, markProps, !isHostComponent(SlotMark) && {
@@ -7696,10 +7687,10 @@ function Slider(props) {
   if (ePropsL['aria-label'] == null) {
     ePropsL['aria-label'] = name;
   }
-  return /*#__PURE__*/React__default.createElement(Slider$1, _extends$2({
+  return /*#__PURE__*/jsx(Slider$1, _objectSpread2$2(_objectSpread2$2({
     sx: istyle,
     value: val
-  }, ePropsL, {
+  }, ePropsL), {}, {
     onChange: function onChange(event, value) {
       return _onChange();
     },
@@ -7717,7 +7708,7 @@ const inputClasses = generateUtilityClasses$1('MuiInput', ['root', 'input', 'for
 /**
  * @ignore - internal component.
  */
-const FormControlContext$1 = /*#__PURE__*/React$1.createContext(undefined);
+const FormControlContext$1 = /*#__PURE__*/React.createContext(undefined);
 
 const GLOBAL_CLASS_PREFIX = 'base';
 function buildStateClass(state) {
@@ -7750,7 +7741,7 @@ function generateUtilityClasses(componentName, slots) {
  * - [useFormControlContext API](https://mui.com/base-ui/react-form-control/hooks-api/#use-form-control-context)
  */
 function useFormControlContext() {
-  return React$1.useContext(FormControlContext$1);
+  return React.useContext(FormControlContext$1);
 }
 
 /**
@@ -7797,16 +7788,16 @@ function useInput(parameters = {}) {
   }
   const {
     current: isControlled
-  } = React$1.useRef(value != null);
-  const handleInputRefWarning = React$1.useCallback(instance => {
+  } = React.useRef(value != null);
+  const handleInputRefWarning = React.useCallback(instance => {
   }, []);
-  const inputRef = React$1.useRef(null);
+  const inputRef = React.useRef(null);
   const handleInputRef = useForkRef(inputRef, inputRefProp, handleInputRefWarning);
-  const [focused, setFocused] = React$1.useState(false);
+  const [focused, setFocused] = React.useState(false);
 
   // The blur won't fire when the disabled state is set on a focused input.
   // We need to book keep the focused state manually.
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     if (!formControlContext && disabled && focused) {
       setFocused(false);
 
@@ -7906,12 +7897,12 @@ function useInput(parameters = {}) {
  * @internal
  */
 
-const FormControlContext = /*#__PURE__*/React$1.createContext(undefined);
+const FormControlContext = /*#__PURE__*/React.createContext(undefined);
 
 const _excluded$I = ["aria-describedby", "aria-label", "aria-labelledby", "autoComplete", "autoFocus", "className", "defaultValue", "disabled", "disabledInProp", "error", "id", "name", "onClick", "onChange", "onKeyDown", "onKeyUp", "onFocus", "onBlur", "placeholder", "readOnly", "required", "type", "value"];
 function useForwardedInput(props, classes) {
   var _ref;
-  const formControl = React$1.useContext(FormControlContext);
+  const formControl = React.useContext(FormControlContext);
   const {
       'aria-describedby': ariaDescribedby,
       'aria-label': ariaLabel,
@@ -8454,7 +8445,7 @@ const InputEndDecorator = styled$1(StyledInputEndDecorator, {
  *
  * - [Input API](https://mui.com/joy-ui/api/input/)
  */
-const Input$1 = /*#__PURE__*/React$1.forwardRef(function Input(inProps, ref) {
+const Input$1 = /*#__PURE__*/React.forwardRef(function Input(inProps, ref) {
   var _ref, _inProps$error, _ref2, _inProps$size, _inProps$color, _formControl$color;
   const props = useThemeProps({
     props: inProps,
@@ -8567,19 +8558,19 @@ function useButton(parameters = {}) {
     type,
     rootElementName: rootElementNameProp
   } = parameters;
-  const buttonRef = React$1.useRef();
-  const [active, setActive] = React$1.useState(false);
+  const buttonRef = React.useRef();
+  const [active, setActive] = React.useState(false);
   const {
     isFocusVisibleRef,
     onFocus: handleFocusVisible,
     onBlur: handleBlurVisible,
     ref: focusVisibleRef
   } = useIsFocusVisible();
-  const [focusVisible, setFocusVisible] = React$1.useState(false);
+  const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && !focusableWhenDisabled && focusVisible) {
     setFocusVisible(false);
   }
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
   const [rootElementName, updateRootElementName] = useRootElementName({
@@ -8733,7 +8724,7 @@ function useButton(parameters = {}) {
   };
 }
 
-const DropdownContext = /*#__PURE__*/React$1.createContext(null);
+const DropdownContext = /*#__PURE__*/React.createContext(null);
 
 function areEqual(a, b) {
   return a === b;
@@ -8768,8 +8759,8 @@ function useStateChangeDetection(parameters) {
     controlledProps,
     lastActionRef
   } = parameters;
-  const internalPreviousStateRef = React$1.useRef(initialState);
-  React$1.useEffect(() => {
+  const internalPreviousStateRef = React.useRef(initialState);
+  React.useEffect(() => {
     if (lastActionRef.current === null) {
       // Detect changes only if an action has been dispatched.
       return;
@@ -8816,7 +8807,7 @@ function useStateChangeDetection(parameters) {
  * @ignore - internal hook.
  */
 function useControllableReducer(parameters) {
-  const lastActionRef = React$1.useRef(null);
+  const lastActionRef = React.useRef(null);
   const {
     reducer,
     initialState,
@@ -8826,19 +8817,19 @@ function useControllableReducer(parameters) {
     actionContext,
     componentName = ''
   } = parameters;
-  React$1.useRef(controlledProps);
+  React.useRef(controlledProps);
 
   // The reducer that is passed to React.useReducer is wrapped with a function that augments the state with controlled values.
-  const reducerWithControlledState = React$1.useCallback((state, action) => {
+  const reducerWithControlledState = React.useCallback((state, action) => {
     lastActionRef.current = action;
     const controlledState = getControlledState(state, controlledProps);
     const newState = reducer(controlledState, action);
     return newState;
   }, [controlledProps, reducer]);
-  const [nextState, dispatch] = React$1.useReducer(reducerWithControlledState, initialState);
+  const [nextState, dispatch] = React.useReducer(reducerWithControlledState, initialState);
 
   // The action that is passed to dispatch is augmented with the actionContext.
-  const dispatchWithContext = React$1.useCallback(action => {
+  const dispatchWithContext = React.useCallback(action => {
     dispatch(_extends$1({}, action, {
       context: actionContext
     }));
@@ -8911,16 +8902,16 @@ function useDropdown(parameters = {}) {
     open: openProp,
     componentName = 'useDropdown'
   } = parameters;
-  const [popupId, setPopupId] = React$1.useState('');
-  const [triggerElement, setTriggerElement] = React$1.useState(null);
-  const lastActionType = React$1.useRef(null);
-  const handleStateChange = React$1.useCallback((event, field, value, reason) => {
+  const [popupId, setPopupId] = React.useState('');
+  const [triggerElement, setTriggerElement] = React.useState(null);
+  const lastActionType = React.useRef(null);
+  const handleStateChange = React.useCallback((event, field, value, reason) => {
     if (field === 'open') {
       onOpenChange == null || onOpenChange(event, value);
     }
     lastActionType.current = reason;
   }, [onOpenChange]);
-  const controlledProps = React$1.useMemo(() => openProp !== undefined ? {
+  const controlledProps = React.useMemo(() => openProp !== undefined ? {
     open: openProp
   } : {}, [openProp]);
   const [state, dispatch] = useControllableReducer({
@@ -8936,7 +8927,7 @@ function useDropdown(parameters = {}) {
     reducer: dropdownReducer,
     componentName
   });
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     if (!state.open && lastActionType.current !== null && lastActionType.current !== DropdownActionTypes.blur) {
       triggerElement == null || triggerElement.focus();
     }
@@ -9355,11 +9346,11 @@ const TEXT_NAVIGATION_RESET_TIMEOUT = 500; // milliseconds
  * @returns A function to be used in a keydown event handler.
  */
 function useTextNavigation(callback) {
-  const textCriteriaRef = React$1.useRef({
+  const textCriteriaRef = React.useRef({
     searchString: '',
     lastTime: null
   });
-  return React$1.useCallback(event => {
+  return React.useCallback(event => {
     if (event.key.length === 1 && event.key !== ' ') {
       const textCriteria = textCriteriaRef.current;
       const lowerKey = event.key.toLowerCase();
@@ -9430,22 +9421,22 @@ function useList(params) {
     stateReducer: externalReducer,
     componentName = 'useList'
   } = params;
-  const listRef = React$1.useRef(null);
+  const listRef = React.useRef(null);
   const handleRef = useForkRef(externalListRef, listRef);
-  const handleHighlightChange = React$1.useCallback((event, value, reason) => {
+  const handleHighlightChange = React.useCallback((event, value, reason) => {
     onHighlightChange == null || onHighlightChange(event, value, reason);
     if (focusManagement === 'DOM' && value != null && (reason === ListActionTypes.itemClick || reason === ListActionTypes.keyDown || reason === ListActionTypes.textNavigation)) {
       var _getItemDomElement;
       getItemDomElement == null || (_getItemDomElement = getItemDomElement(value)) == null || _getItemDomElement.focus();
     }
   }, [getItemDomElement, onHighlightChange, focusManagement]);
-  const stateComparers = React$1.useMemo(() => ({
+  const stateComparers = React.useMemo(() => ({
     highlightedValue: itemComparer,
     selectedValues: (valuesArray1, valuesArray2) => areArraysEqual(valuesArray1, valuesArray2, itemComparer)
   }), [itemComparer]);
 
   // This gets called whenever a reducer changes the state.
-  const handleStateChange = React$1.useCallback((event, field, value, reason, state) => {
+  const handleStateChange = React.useCallback((event, field, value, reason, state) => {
     onStateChange == null || onStateChange(event, field, value, reason, state);
     switch (field) {
       case 'highlightedValue':
@@ -9459,7 +9450,7 @@ function useList(params) {
 
   // The following object is added to each action when it's dispatched.
   // It's accessible in the reducer via the `action.context` field.
-  const listActionContext = React$1.useMemo(() => {
+  const listActionContext = React.useMemo(() => {
     return {
       disabledItemsFocusable,
       disableListWrap,
@@ -9477,7 +9468,7 @@ function useList(params) {
   }, [disabledItemsFocusable, disableListWrap, focusManagement, isItemDisabled, itemComparer, items, getItemAsString, handleHighlightChange, orientation, pageSize, selectionMode, stateComparers]);
   const initialState = getInitialState();
   const reducer = externalReducer != null ? externalReducer : listReducer;
-  const actionContext = React$1.useMemo(() => _extends$1({}, reducerActionContext, listActionContext), [reducerActionContext, listActionContext]);
+  const actionContext = React.useMemo(() => _extends$1({}, reducerActionContext, listActionContext), [reducerActionContext, listActionContext]);
   const [state, dispatch] = useControllableReducer({
     reducer,
     actionContext,
@@ -9496,8 +9487,8 @@ function useList(params) {
     event,
     searchString
   }));
-  const previousItems = React$1.useRef([]);
-  React$1.useEffect(() => {
+  const previousItems = React.useRef([]);
+  React.useEffect(() => {
     // Whenever the `items` object changes, we need to determine if the actual items changed.
     // If they did, we need to dispatch an `itemsChange` action, so the selected/highlighted state is updated.
     if (areArraysEqual(previousItems.current, items, itemComparer)) {
@@ -9567,7 +9558,7 @@ function useList(params) {
       onKeyDown: createHandleKeyDown(externalEventHandlers)
     });
   };
-  const getItemState = React$1.useCallback(item => {
+  const getItemState = React.useCallback(item => {
     const selected = (selectedValues != null ? selectedValues : []).some(value => value != null && itemComparer(item, value));
     const highlighted = highlightedValue != null && itemComparer(item, highlightedValue);
     const focusable = focusManagement === 'DOM';
@@ -9577,11 +9568,11 @@ function useList(params) {
       selected
     };
   }, [itemComparer, selectedValues, highlightedValue, focusManagement]);
-  const contextValue = React$1.useMemo(() => ({
+  const contextValue = React.useMemo(() => ({
     dispatch,
     getItemState
   }), [dispatch, getItemState]);
-  React$1.useDebugValue({
+  React.useDebugValue({
     state
   });
   return {
@@ -9593,7 +9584,7 @@ function useList(params) {
   };
 }
 
-const ListContext = /*#__PURE__*/React$1.createContext(null);
+const ListContext = /*#__PURE__*/React.createContext(null);
 
 /**
  * Contains the logic for an item of a list-like component (for example Select, Menu, etc.).
@@ -9607,7 +9598,7 @@ function useListItem(parameters) {
     handlePointerOverEvents = false,
     item
   } = parameters;
-  const listContext = React$1.useContext(ListContext);
+  const listContext = React.useContext(ListContext);
   if (!listContext) {
     throw new Error('useListItem must be used within a ListProvider');
   }
@@ -9620,7 +9611,7 @@ function useListItem(parameters) {
     selected,
     focusable
   } = getItemState(item);
-  const createHandleClick = React$1.useCallback(externalHandlers => event => {
+  const createHandleClick = React.useCallback(externalHandlers => event => {
     var _externalHandlers$onC;
     (_externalHandlers$onC = externalHandlers.onClick) == null || _externalHandlers$onC.call(externalHandlers, event);
     if (event.defaultPrevented) {
@@ -9632,7 +9623,7 @@ function useListItem(parameters) {
       event
     });
   }, [dispatch, item]);
-  const createHandlePointerOver = React$1.useCallback(externalHandlers => event => {
+  const createHandlePointerOver = React.useCallback(externalHandlers => event => {
     var _externalHandlers$onM;
     (_externalHandlers$onM = externalHandlers.onMouseOver) == null || _externalHandlers$onM.call(externalHandlers, event);
     if (event.defaultPrevented) {
@@ -9704,7 +9695,7 @@ function menuReducer(state, action) {
   return newState;
 }
 
-const CompoundComponentContext = /*#__PURE__*/React$1.createContext(null);
+const CompoundComponentContext = /*#__PURE__*/React.createContext(null);
 /**
  * Sorts the subitems by their position in the DOM.
  */
@@ -9742,9 +9733,9 @@ function sortSubitems(subitems) {
  * @ignore - internal hook.
  */
 function useCompoundParent() {
-  const [subitems, setSubitems] = React$1.useState(new Map());
-  const subitemKeys = React$1.useRef(new Set());
-  const deregisterItem = React$1.useCallback(function deregisterItem(id) {
+  const [subitems, setSubitems] = React.useState(new Map());
+  const subitemKeys = React.useRef(new Set());
+  const deregisterItem = React.useCallback(function deregisterItem(id) {
     subitemKeys.current.delete(id);
     setSubitems(previousState => {
       const newState = new Map(previousState);
@@ -9752,7 +9743,7 @@ function useCompoundParent() {
       return newState;
     });
   }, []);
-  const registerItem = React$1.useCallback(function registerItem(id, item) {
+  const registerItem = React.useCallback(function registerItem(id, item) {
     let providedOrGeneratedId;
     if (typeof id === 'function') {
       providedOrGeneratedId = id(subitemKeys.current);
@@ -9770,11 +9761,11 @@ function useCompoundParent() {
       deregister: () => deregisterItem(providedOrGeneratedId)
     };
   }, [deregisterItem]);
-  const sortedSubitems = React$1.useMemo(() => sortSubitems(subitems), [subitems]);
-  const getItemIndex = React$1.useCallback(function getItemIndex(id) {
+  const sortedSubitems = React.useMemo(() => sortSubitems(subitems), [subitems]);
+  const getItemIndex = React.useCallback(function getItemIndex(id) {
     return Array.from(sortedSubitems.keys()).indexOf(id);
   }, [sortedSubitems]);
-  const contextValue = React$1.useMemo(() => ({
+  const contextValue = React.useMemo(() => ({
     getItemIndex,
     registerItem,
     totalSubitemCount: subitems.size
@@ -9797,14 +9788,14 @@ function useCompoundParent() {
  * @ignore - internal hook.
  */
 function useCompoundItem(id, itemMetadata) {
-  const context = React$1.useContext(CompoundComponentContext);
+  const context = React.useContext(CompoundComponentContext);
   if (context === null) {
     throw new Error('useCompoundItem must be used within a useCompoundParent');
   }
   const {
     registerItem
   } = context;
-  const [registeredId, setRegisteredId] = React$1.useState(typeof id === 'function' ? undefined : id);
+  const [registeredId, setRegisteredId] = React.useState(typeof id === 'function' ? undefined : id);
   useEnhancedEffect(() => {
     const {
       id: returnedId,
@@ -9875,7 +9866,7 @@ function useMenu(parameters = {}) {
     autoFocus = true,
     componentName = 'useMenu'
   } = parameters;
-  const rootRef = React$1.useRef(null);
+  const rootRef = React.useRef(null);
   const handleRef = useForkRef(rootRef, listboxRefProp);
   const listboxId = (_useId = useId(idParam)) != null ? _useId : '';
   const {
@@ -9886,32 +9877,32 @@ function useMenu(parameters = {}) {
     dispatch: menuDispatch,
     triggerElement,
     registerPopup
-  } = (_React$useContext = React$1.useContext(DropdownContext)) != null ? _React$useContext : FALLBACK_MENU_CONTEXT$1;
+  } = (_React$useContext = React.useContext(DropdownContext)) != null ? _React$useContext : FALLBACK_MENU_CONTEXT$1;
 
   // store the initial open state to prevent focus stealing
   // (the first menu items gets focued only when the menu is opened by the user)
-  const isInitiallyOpen = React$1.useRef(open);
+  const isInitiallyOpen = React.useRef(open);
   const {
     subitems,
     contextValue: compoundComponentContextValue
   } = useCompoundParent();
-  const subitemKeys = React$1.useMemo(() => Array.from(subitems.keys()), [subitems]);
-  const getItemDomElement = React$1.useCallback(itemId => {
+  const subitemKeys = React.useMemo(() => Array.from(subitems.keys()), [subitems]);
+  const getItemDomElement = React.useCallback(itemId => {
     var _subitems$get$ref$cur, _subitems$get;
     if (itemId == null) {
       return null;
     }
     return (_subitems$get$ref$cur = (_subitems$get = subitems.get(itemId)) == null ? void 0 : _subitems$get.ref.current) != null ? _subitems$get$ref$cur : null;
   }, [subitems]);
-  const isItemDisabled = React$1.useCallback(id => {
+  const isItemDisabled = React.useCallback(id => {
     var _subitems$get2;
     return (subitems == null || (_subitems$get2 = subitems.get(id)) == null ? void 0 : _subitems$get2.disabled) || false;
   }, [subitems]);
-  const getItemAsString = React$1.useCallback(id => {
+  const getItemAsString = React.useCallback(id => {
     var _subitems$get3, _subitems$get4;
     return ((_subitems$get3 = subitems.get(id)) == null ? void 0 : _subitems$get3.label) || ((_subitems$get4 = subitems.get(id)) == null || (_subitems$get4 = _subitems$get4.ref.current) == null ? void 0 : _subitems$get4.innerText);
   }, [subitems]);
-  const reducerActionContext = React$1.useMemo(() => ({
+  const reducerActionContext = React.useMemo(() => ({
     listboxRef: rootRef
   }), [rootRef]);
   const {
@@ -9952,13 +9943,13 @@ function useMenu(parameters = {}) {
       });
     }
   }, [open, changeReason, listDispatch]);
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     if (open && autoFocus && highlightedValue && !isInitiallyOpen.current) {
       var _subitems$get5;
       (_subitems$get5 = subitems.get(highlightedValue)) == null || (_subitems$get5 = _subitems$get5.ref) == null || (_subitems$get5 = _subitems$get5.current) == null || _subitems$get5.focus();
     }
   }, [open, autoFocus, highlightedValue, subitems, subitemKeys]);
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     var _rootRef$current;
     // set focus to the highlighted item (but prevent stealing focus from other elements on the page)
     if ((_rootRef$current = rootRef.current) != null && _rootRef$current.contains(document.activeElement) && highlightedValue !== null) {
@@ -10005,7 +9996,7 @@ function useMenu(parameters = {}) {
       role: 'menu'
     });
   };
-  React$1.useDebugValue({
+  React.useDebugValue({
     subitems,
     highlightedValue
   });
@@ -10038,12 +10029,12 @@ function MenuProvider(props) {
     registerItem,
     totalSubitemCount
   } = value;
-  const listContextValue = React$1.useMemo(() => ({
+  const listContextValue = React.useMemo(() => ({
     dispatch,
     getItemState,
     getItemIndex
   }), [dispatch, getItemIndex, getItemState]);
-  const compoundComponentContextValue = React$1.useMemo(() => ({
+  const compoundComponentContextValue = React.useMemo(() => ({
     getItemIndex,
     registerItem,
     totalSubitemCount
@@ -10073,15 +10064,15 @@ function getContainer(container) {
  *
  * - [Portal API](https://mui.com/base-ui/react-portal/components-api/#portal)
  */
-const Portal = /*#__PURE__*/React$1.forwardRef(function Portal(props, forwardedRef) {
+const Portal = /*#__PURE__*/React.forwardRef(function Portal(props, forwardedRef) {
   const {
     children,
     container,
     disablePortal = false
   } = props;
-  const [mountNode, setMountNode] = React$1.useState(null);
+  const [mountNode, setMountNode] = React.useState(null);
   // @ts-expect-error TODO upstream fix
-  const handleRef = useForkRef( /*#__PURE__*/React$1.isValidElement(children) ? children.ref : null, forwardedRef);
+  const handleRef = useForkRef( /*#__PURE__*/React.isValidElement(children) ? children.ref : null, forwardedRef);
   useEnhancedEffect(() => {
     if (!disablePortal) {
       setMountNode(getContainer(container) || document.body);
@@ -10097,17 +10088,17 @@ const Portal = /*#__PURE__*/React$1.forwardRef(function Portal(props, forwardedR
     return undefined;
   }, [forwardedRef, mountNode, disablePortal]);
   if (disablePortal) {
-    if ( /*#__PURE__*/React$1.isValidElement(children)) {
+    if ( /*#__PURE__*/React.isValidElement(children)) {
       const newProps = {
         ref: handleRef
       };
-      return /*#__PURE__*/React$1.cloneElement(children, newProps);
+      return /*#__PURE__*/React.cloneElement(children, newProps);
     }
-    return /*#__PURE__*/jsx(React$1.Fragment, {
+    return /*#__PURE__*/jsx(React.Fragment, {
       children: children
     });
   }
-  return /*#__PURE__*/jsx(React$1.Fragment, {
+  return /*#__PURE__*/jsx(React.Fragment, {
     children: mountNode ? /*#__PURE__*/ReactDOM.createPortal(children, mountNode) : mountNode
   });
 });
@@ -10128,7 +10119,7 @@ function useMenuButton(parameters = {}) {
     focusableWhenDisabled,
     rootRef: externalRef
   } = parameters;
-  const menuContext = React$1.useContext(DropdownContext);
+  const menuContext = React.useContext(DropdownContext);
   if (menuContext === null) {
     throw new Error('useMenuButton: no menu context available.');
   }
@@ -10233,8 +10224,8 @@ function useMenuItem(params) {
     disableFocusOnHover = false
   } = params;
   const id = useId(idParam);
-  const itemRef = React$1.useRef(null);
-  const itemMetadata = React$1.useMemo(() => ({
+  const itemRef = React.useRef(null);
+  const itemMetadata = React.useMemo(() => ({
     disabled,
     id: id != null ? id : '',
     label,
@@ -10242,7 +10233,7 @@ function useMenuItem(params) {
   }), [disabled, id, label]);
   const {
     dispatch
-  } = (_React$useContext = React$1.useContext(DropdownContext)) != null ? _React$useContext : FALLBACK_MENU_CONTEXT;
+  } = (_React$useContext = React.useContext(DropdownContext)) != null ? _React$useContext : FALLBACK_MENU_CONTEXT;
   const {
     getRootProps: getListRootProps,
     highlighted
@@ -10263,7 +10254,7 @@ function useMenuItem(params) {
     focusableWhenDisabled: true
   });
   const handleRef = useForkRef(buttonRefHandler, externalRef, itemRef);
-  React$1.useDebugValue({
+  React.useDebugValue({
     id,
     highlighted,
     disabled,
@@ -10332,7 +10323,7 @@ function useMenuItem(params) {
  * - [useMenuItemContextStabilizer API](https://mui.com/base-ui/react-menu/hooks-api/#use-menu-item-context-stabilizer)
  */
 function useMenuItemContextStabilizer(id) {
-  const listContext = React$1.useContext(ListContext);
+  const listContext = React.useContext(ListContext);
   if (!listContext) {
     throw new Error('MenuItem: ListContext was not found.');
   }
@@ -10359,7 +10350,7 @@ function useMenuItemContextStabilizer(id) {
 
   // The local version of getItemState can be only called with the current Option's value.
   // It doesn't make much sense to render an Option depending on other Options' state anyway.
-  const localGetItemState = React$1.useCallback(itemValue => {
+  const localGetItemState = React.useCallback(itemValue => {
     if (itemValue !== itemId) {
       throw new Error(['Base UI MenuItem: Tried to access the state of another MenuItem.', `itemValue: ${itemValue} | id: ${itemId}`, 'This is unsupported when the MenuItem uses the MenuItemContextStabilizer as a performance optimization.'].join('/n'));
     }
@@ -10373,7 +10364,7 @@ function useMenuItemContextStabilizer(id) {
   // Create a local (per MenuItem) instance of the ListContext that changes only when
   // the getItemState's return value changes.
   // This makes MenuItems re-render only when their state actually change, not when any MenuItem's state changes.
-  const localContextValue = React$1.useMemo(() => ({
+  const localContextValue = React.useMemo(() => ({
     dispatch,
     getItemState: localGetItemState
   }), [dispatch, localGetItemState]);
@@ -12212,7 +12203,7 @@ const useUtilityClasses$q = () => {
   return composeClasses(slots, useClassNamesOverride(getPopperUtilityClass));
 };
 const defaultPopperOptions = {};
-const PopperTooltip = /*#__PURE__*/React$1.forwardRef(function PopperTooltip(props, forwardedRef) {
+const PopperTooltip = /*#__PURE__*/React.forwardRef(function PopperTooltip(props, forwardedRef) {
   var _slots$root;
   const {
       anchorEl,
@@ -12231,28 +12222,28 @@ const PopperTooltip = /*#__PURE__*/React$1.forwardRef(function PopperTooltip(pro
       // prevent from spreading to DOM, it can come from the parent component e.g. Select.
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$G);
-  const tooltipRef = React$1.useRef(null);
+  const tooltipRef = React.useRef(null);
   const ownRef = useForkRef(tooltipRef, forwardedRef);
-  const popperRef = React$1.useRef(null);
+  const popperRef = React.useRef(null);
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
-  const handlePopperRefRef = React$1.useRef(handlePopperRef);
+  const handlePopperRefRef = React.useRef(handlePopperRef);
   useEnhancedEffect(() => {
     handlePopperRefRef.current = handlePopperRef;
   }, [handlePopperRef]);
-  React$1.useImperativeHandle(popperRefProp, () => popperRef.current, []);
+  React.useImperativeHandle(popperRefProp, () => popperRef.current, []);
   const rtlPlacement = flipPlacement(initialPlacement, direction);
   /**
    * placement initialized from prop but can change during lifetime if modifiers.flip.
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
-  const [placement, setPlacement] = React$1.useState(rtlPlacement);
-  const [resolvedAnchorElement, setResolvedAnchorElement] = React$1.useState(resolveAnchorEl(anchorEl));
-  React$1.useEffect(() => {
+  const [placement, setPlacement] = React.useState(rtlPlacement);
+  const [resolvedAnchorElement, setResolvedAnchorElement] = React.useState(resolveAnchorEl(anchorEl));
+  React.useEffect(() => {
     if (popperRef.current) {
       popperRef.current.forceUpdate();
     }
   });
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     if (anchorEl) {
       setResolvedAnchorElement(resolveAnchorEl(anchorEl));
     }
@@ -12336,7 +12327,7 @@ const PopperTooltip = /*#__PURE__*/React$1.forwardRef(function PopperTooltip(pro
  *
  * - [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
-const Popper = /*#__PURE__*/React$1.forwardRef(function Popper(props, forwardedRef) {
+const Popper = /*#__PURE__*/React.forwardRef(function Popper(props, forwardedRef) {
   const {
       anchorEl,
       children,
@@ -12355,7 +12346,7 @@ const Popper = /*#__PURE__*/React$1.forwardRef(function Popper(props, forwardedR
       slots = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded2$4);
-  const [exited, setExited] = React$1.useState(true);
+  const [exited, setExited] = React.useState(true);
   const handleEnter = () => {
     setExited(false);
   };
@@ -12457,14 +12448,14 @@ function useSwitch(props) {
     onFocus: handleFocusVisible,
     ref: focusVisibleRef
   } = useIsFocusVisible();
-  const [focusVisible, setFocusVisible] = React$1.useState(false);
+  const [focusVisible, setFocusVisible] = React.useState(false);
   if (disabled && focusVisible) {
     setFocusVisible(false);
   }
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
-  const inputRef = React$1.useRef(null);
+  const inputRef = React.useRef(null);
   const createHandleFocus = otherProps => event => {
     var _otherProps$onFocus;
     // Fix for https://github.com/facebook/react/issues/7769
@@ -12548,7 +12539,7 @@ function isEmpty$1(obj) {
  *
  * - [TextareaAutosize API](https://mui.com/base-ui/react-textarea-autosize/components-api/#textarea-autosize)
  */
-const TextareaAutosize = /*#__PURE__*/React$1.forwardRef(function TextareaAutosize(props, forwardedRef) {
+const TextareaAutosize = /*#__PURE__*/React.forwardRef(function TextareaAutosize(props, forwardedRef) {
   const {
       onChange,
       maxRows,
@@ -12559,11 +12550,11 @@ const TextareaAutosize = /*#__PURE__*/React$1.forwardRef(function TextareaAutosi
     other = _objectWithoutPropertiesLoose$1(props, _excluded$F);
   const {
     current: isControlled
-  } = React$1.useRef(value != null);
-  const inputRef = React$1.useRef(null);
+  } = React.useRef(value != null);
+  const inputRef = React.useRef(null);
   const handleRef = useForkRef(forwardedRef, inputRef);
-  const shadowRef = React$1.useRef(null);
-  const calculateTextareaStyles = React$1.useCallback(() => {
+  const shadowRef = React.useRef(null);
+  const calculateTextareaStyles = React.useCallback(() => {
     const input = inputRef.current;
     const containerWindow = ownerWindow(input);
     const computedStyle = containerWindow.getComputedStyle(input);
@@ -12613,7 +12604,7 @@ const TextareaAutosize = /*#__PURE__*/React$1.forwardRef(function TextareaAutosi
       overflowing
     };
   }, [maxRows, minRows, props.placeholder]);
-  const syncHeight = React$1.useCallback(() => {
+  const syncHeight = React.useCallback(() => {
     const textareaStyles = calculateTextareaStyles();
     if (isEmpty$1(textareaStyles)) {
       return;
@@ -12660,7 +12651,7 @@ const TextareaAutosize = /*#__PURE__*/React$1.forwardRef(function TextareaAutosi
       onChange(event);
     }
   };
-  return /*#__PURE__*/jsxs(React$1.Fragment, {
+  return /*#__PURE__*/jsxs(React.Fragment, {
     children: [/*#__PURE__*/jsx("textarea", _extends$1({
       value: value,
       onChange: handleChange,
@@ -12795,14 +12786,14 @@ function useAutocomplete(props) {
     }
     return optionLabel;
   };
-  const ignoreFocus = React$1.useRef(false);
-  const firstFocus = React$1.useRef(true);
-  const inputRef = React$1.useRef(null);
-  const listboxRef = React$1.useRef(null);
-  const [anchorEl, setAnchorEl] = React$1.useState(null);
-  const [focusedTag, setFocusedTag] = React$1.useState(-1);
+  const ignoreFocus = React.useRef(false);
+  const firstFocus = React.useRef(true);
+  const inputRef = React.useRef(null);
+  const listboxRef = React.useRef(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHighlight ? 0 : -1;
-  const highlightedIndexRef = React$1.useRef(defaultHighlighted);
+  const highlightedIndexRef = React.useRef(defaultHighlighted);
   const [value, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
@@ -12814,8 +12805,8 @@ function useAutocomplete(props) {
     name: componentName,
     state: 'inputValue'
   });
-  const [focused, setFocused] = React$1.useState(false);
-  const resetInputValue = React$1.useCallback((event, newValue) => {
+  const [focused, setFocused] = React.useState(false);
+  const resetInputValue = React.useCallback((event, newValue) => {
     // retain current `inputValue` if new option isn't selected and `clearOnBlur` is false
     // When `multiple` is enabled, `newValue` is an array of all selected items including the newly selected item
     const isOptionSelected = multiple ? value.length < newValue.length : newValue !== null;
@@ -12845,7 +12836,7 @@ function useAutocomplete(props) {
     name: componentName,
     state: 'open'
   });
-  const [inputPristine, setInputPristine] = React$1.useState(true);
+  const [inputPristine, setInputPristine] = React.useState(true);
   const inputValueIsSelectedValue = !multiple && value != null && inputValue === getOptionLabel(value);
   const popupOpen = open && !readOnly;
   const filteredOptions = popupOpen ? filterOptions(options.filter(option => {
@@ -12865,7 +12856,7 @@ function useAutocomplete(props) {
     value,
     inputValue
   });
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     const valueChange = value !== previousProps.value;
     if (focused && !valueChange) {
       return;
@@ -12887,7 +12878,7 @@ function useAutocomplete(props) {
   });
 
   // Ensure the focusedTag is never inconsistent
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     if (multiple && focusedTag > value.length - 1) {
       setFocusedTag(-1);
       focusTag(-1);
@@ -13066,7 +13057,7 @@ function useAutocomplete(props) {
     }
     return -1;
   };
-  const syncHighlightedIndex = React$1.useCallback(() => {
+  const syncHighlightedIndex = React.useCallback(() => {
     if (!popupOpen) {
       return;
     }
@@ -13139,7 +13130,7 @@ function useAutocomplete(props) {
     }
     syncHighlightedIndex();
   });
-  React$1.useEffect(() => {
+  React.useEffect(() => {
     syncHighlightedIndex();
   }, [syncHighlightedIndex]);
   const handleOpen = event => {
@@ -13174,7 +13165,7 @@ function useAutocomplete(props) {
     }
     setValueState(newValue);
   };
-  const isTouch = React$1.useRef(false);
+  const isTouch = React.useRef(false);
   const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {
     let reason = reasonProp;
     let newValue = option;
@@ -13636,17 +13627,17 @@ function getListItemUtilityClass(slot) {
 }
 const listItemClasses = generateUtilityClasses$1('MuiListItem', ['root', 'startAction', 'endAction', 'nested', 'nesting', 'sticky', 'colorPrimary', 'colorNeutral', 'colorDanger', 'colorSuccess', 'colorWarning', 'colorContext', 'variantPlain', 'variantSoft', 'variantOutlined', 'variantSolid']);
 
-const NestedListContext = /*#__PURE__*/React$1.createContext(false);
+const NestedListContext = /*#__PURE__*/React.createContext(false);
 
-const RowListContext = /*#__PURE__*/React$1.createContext(false);
+const RowListContext = /*#__PURE__*/React.createContext(false);
 
-const WrapListContext = /*#__PURE__*/React$1.createContext(false);
+const WrapListContext = /*#__PURE__*/React.createContext(false);
 
-const ComponentListContext = /*#__PURE__*/React$1.createContext(undefined);
+const ComponentListContext = /*#__PURE__*/React.createContext(undefined);
 
-const ListSubheaderContext = /*#__PURE__*/React$1.createContext(undefined);
+const ListSubheaderContext = /*#__PURE__*/React.createContext(undefined);
 
-const GroupListContext = /*#__PURE__*/React$1.createContext(undefined);
+const GroupListContext = /*#__PURE__*/React.createContext(undefined);
 
 const _excluded$E = ["component", "className", "children", "nested", "sticky", "variant", "color", "startAction", "endAction", "role", "slots", "slotProps"];
 const useUtilityClasses$p = ownerState => {
@@ -13773,16 +13764,16 @@ const ListItemEndAction = styled$1('div', {
  *
  * - [ListItem API](https://mui.com/joy-ui/api/list-item/)
  */
-const ListItem = /*#__PURE__*/React$1.forwardRef(function ListItem(inProps, ref) {
+const ListItem = /*#__PURE__*/React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyListItem'
   });
-  const group = React$1.useContext(GroupListContext);
-  const listComponent = React$1.useContext(ComponentListContext);
-  const row = React$1.useContext(RowListContext);
-  const wrap = React$1.useContext(WrapListContext);
-  const nesting = React$1.useContext(NestedListContext);
+  const group = React.useContext(GroupListContext);
+  const listComponent = React.useContext(ComponentListContext);
+  const row = React.useContext(RowListContext);
+  const wrap = React.useContext(WrapListContext);
+  const nesting = React.useContext(NestedListContext);
   const {
       component: componentProp,
       className,
@@ -13798,7 +13789,7 @@ const ListItem = /*#__PURE__*/React$1.forwardRef(function ListItem(inProps, ref)
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$E);
-  const [subheaderId, setSubheaderId] = React$1.useState('');
+  const [subheaderId, setSubheaderId] = React.useState('');
   const [listElement, listRole] = (listComponent == null ? void 0 : listComponent.split(':')) || ['', ''];
   const component = componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined);
   let role = group === 'menu' ? 'none' : undefined;
@@ -13862,7 +13853,7 @@ const ListItem = /*#__PURE__*/React$1.forwardRef(function ListItem(inProps, ref)
       children: /*#__PURE__*/jsxs(SlotRoot, _extends$1({}, rootProps, {
         children: [startAction && /*#__PURE__*/jsx(SlotStartAction, _extends$1({}, startActionProps, {
           children: startAction
-        })), React$1.Children.map(children, (child, index) => /*#__PURE__*/React$1.isValidElement(child) ? /*#__PURE__*/React$1.cloneElement(child, _extends$1({}, index === 0 && {
+        })), React.Children.map(children, (child, index) => /*#__PURE__*/React.isValidElement(child) ? /*#__PURE__*/React.cloneElement(child, _extends$1({}, index === 0 && {
           'data-first-child': ''
         }, isMuiElement(child, ['ListItem']) && {
           // The ListItem of ListItem should not be 'li'
@@ -13902,9 +13893,9 @@ function ListProvider(props) {
     value: row,
     children: /*#__PURE__*/jsx(WrapListContext.Provider, {
       value: wrap,
-      children: React$1.Children.map(children, (child, index) => /*#__PURE__*/React$1.isValidElement(child) ? /*#__PURE__*/React$1.cloneElement(child, _extends$1({}, index === 0 && {
+      children: React.Children.map(children, (child, index) => /*#__PURE__*/React.isValidElement(child) ? /*#__PURE__*/React.cloneElement(child, _extends$1({}, index === 0 && {
         'data-first-child': ''
-      }, index === React$1.Children.count(children) - 1 && {
+      }, index === React.Children.count(children) - 1 && {
         'data-last-child': ''
       })) : child)
     })
@@ -13980,7 +13971,7 @@ function getListUtilityClass(slot) {
 }
 const listClasses = generateUtilityClasses$1('MuiList', ['root', 'nesting', 'scoped', 'sizeSm', 'sizeMd', 'sizeLg', 'colorPrimary', 'colorNeutral', 'colorDanger', 'colorSuccess', 'colorWarning', 'colorContext', 'variantPlain', 'variantOutlined', 'variantSoft', 'variantSolid', 'horizontal', 'vertical']);
 
-const RadioGroupContext = /*#__PURE__*/React$1.createContext(undefined);
+const RadioGroupContext = /*#__PURE__*/React.createContext(undefined);
 
 const _excluded$D = ["component", "className", "children", "size", "orientation", "wrap", "variant", "color", "role", "slots", "slotProps"];
 const useUtilityClasses$o = ownerState => {
@@ -14130,11 +14121,11 @@ const ListRoot = styled$1(StyledList, {
  *
  * - [List API](https://mui.com/joy-ui/api/list/)
  */
-const List = /*#__PURE__*/React$1.forwardRef(function List(inProps, ref) {
+const List = /*#__PURE__*/React.forwardRef(function List(inProps, ref) {
   var _inProps$size;
-  const nesting = React$1.useContext(NestedListContext);
-  const group = React$1.useContext(GroupListContext);
-  const radioGroupContext = React$1.useContext(RadioGroupContext);
+  const nesting = React.useContext(NestedListContext);
+  const group = React.useContext(GroupListContext);
+  const radioGroupContext = React.useContext(RadioGroupContext);
   const props = useThemeProps({
     props: inProps,
     name: 'JoyList'
@@ -14209,7 +14200,7 @@ function getListItemButtonUtilityClass(slot) {
 }
 const listItemButtonClasses = generateUtilityClasses$1('MuiListItemButton', ['root', 'horizontal', 'vertical', 'colorPrimary', 'colorNeutral', 'colorDanger', 'colorSuccess', 'colorWarning', 'colorContext', 'focusVisible', 'disabled', 'selected', 'variantPlain', 'variantSoft', 'variantOutlined', 'variantSolid']);
 
-const ListItemButtonOrientationContext = /*#__PURE__*/React$1.createContext('horizontal');
+const ListItemButtonOrientationContext = /*#__PURE__*/React.createContext('horizontal');
 
 const _excluded$C = ["children", "className", "action", "component", "orientation", "role", "selected", "color", "variant", "slots", "slotProps"];
 const useUtilityClasses$n = ownerState => {
@@ -14324,12 +14315,12 @@ const ListItemButtonRoot = styled$1(StyledListItemButton, {
  *
  * - [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
  */
-const ListItemButton = /*#__PURE__*/React$1.forwardRef(function ListItemButton(inProps, ref) {
+const ListItemButton = /*#__PURE__*/React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyListItemButton'
   });
-  const row = React$1.useContext(RowListContext);
+  const row = React.useContext(RowListContext);
   const {
       children,
       className,
@@ -14344,7 +14335,7 @@ const ListItemButton = /*#__PURE__*/React$1.forwardRef(function ListItemButton(i
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$C);
-  const buttonRef = React$1.useRef(null);
+  const buttonRef = React.useRef(null);
   const handleRef = useForkRef(buttonRef, ref);
   const {
     focusVisible,
@@ -14353,7 +14344,7 @@ const ListItemButton = /*#__PURE__*/React$1.forwardRef(function ListItemButton(i
   } = useButton(_extends$1({}, props, {
     rootRef: handleRef
   }));
-  React$1.useImperativeHandle(action, () => ({
+  React.useImperativeHandle(action, () => ({
     focusVisible: () => {
       var _buttonRef$current;
       setFocusVisible(true);
@@ -14458,7 +14449,7 @@ const SvgIconRoot$1 = styled$1('svg', {
  *
  * - [SvgIcon API](https://mui.com/joy-ui/api/svg-icon/)
  */
-const SvgIcon$1 = /*#__PURE__*/React$1.forwardRef(function SvgIcon(inProps, ref) {
+const SvgIcon$1 = /*#__PURE__*/React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoySvgIcon'
@@ -14478,7 +14469,7 @@ const SvgIcon$1 = /*#__PURE__*/React$1.forwardRef(function SvgIcon(inProps, ref)
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$B);
-  const hasSvgAsChild = /*#__PURE__*/React$1.isValidElement(children) && children.type === 'svg';
+  const hasSvgAsChild = /*#__PURE__*/React.isValidElement(children) && children.type === 'svg';
   const ownerState = _extends$1({}, props, {
     color,
     component,
@@ -14535,7 +14526,7 @@ function createSvgIcon$2(path, displayName) {
   Component.muiName = SvgIcon$1.muiName;
 
   // @ts-ignore internal component
-  return /*#__PURE__*/React$1.memo( /*#__PURE__*/React$1.forwardRef(Component));
+  return /*#__PURE__*/React.memo( /*#__PURE__*/React.forwardRef(Component));
 }
 
 var CloseIcon = createSvgIcon$2( /*#__PURE__*/jsx("path", {
@@ -14546,7 +14537,7 @@ var ArrowDropDownIcon = createSvgIcon$2( /*#__PURE__*/jsx("path", {
   d: "M7 10l5 5 5-5z"
 }), 'ArrowDropDown');
 
-const VariantColorContext = /*#__PURE__*/React$1.createContext(undefined);
+const VariantColorContext = /*#__PURE__*/React.createContext(undefined);
 
 /**
  * @internal For internal usage only.
@@ -14578,7 +14569,7 @@ function getChildVariantAndColor(parentVariant, parentColor) {
  * For example, the `Option` component in `Select` component is using this function.
  */
 function useVariantColor(instanceVariant, instanceColor, alwaysInheritColor = false) {
-  const value = React$1.useContext(VariantColorContext);
+  const value = React.useContext(VariantColorContext);
   const [variant, color] = typeof value === 'string' ? value.split(':') : [];
   const result = getChildVariantAndColor(variant || undefined, color || undefined);
   result.variant = instanceVariant || result.variant;
@@ -14608,12 +14599,12 @@ const iconButtonClasses = generateUtilityClasses$1('MuiIconButton', ['root', 'co
 /**
  * @ignore - internal component.
  */
-const ButtonGroupContext = /*#__PURE__*/React$1.createContext({});
+const ButtonGroupContext = /*#__PURE__*/React.createContext({});
 
 /**
  * @ignore - internal component.
  */
-const ToggleButtonGroupContext = /*#__PURE__*/React$1.createContext(undefined);
+const ToggleButtonGroupContext = /*#__PURE__*/React.createContext(undefined);
 
 function getCircularProgressUtilityClass(slot) {
   return generateUtilityClass$1('MuiCircularProgress', slot);
@@ -14807,7 +14798,7 @@ const CircularProgressProgress = styled$1('circle', {
  *
  * - [CircularProgress API](https://mui.com/joy-ui/api/circular-progress/)
  */
-const CircularProgress = /*#__PURE__*/React$1.forwardRef(function CircularProgress(inProps, ref) {
+const CircularProgress = /*#__PURE__*/React.forwardRef(function CircularProgress(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyCircularProgress'
@@ -15019,7 +15010,7 @@ const ButtonLoading = styled$1('span', {
  *
  * - [IconButton API](https://mui.com/joy-ui/api/icon-button/)
  */
-const IconButton = /*#__PURE__*/React$1.forwardRef(function IconButton(inProps, ref) {
+const IconButton = /*#__PURE__*/React.forwardRef(function IconButton(inProps, ref) {
   var _ref;
   const props = useThemeProps({
     props: inProps,
@@ -15039,13 +15030,13 @@ const IconButton = /*#__PURE__*/React$1.forwardRef(function IconButton(inProps, 
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$z);
-  const buttonGroup = React$1.useContext(ButtonGroupContext);
-  const toggleButtonGroup = React$1.useContext(ToggleButtonGroupContext);
+  const buttonGroup = React.useContext(ButtonGroupContext);
+  const toggleButtonGroup = React.useContext(ToggleButtonGroupContext);
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
   const color = inProps.color || buttonGroup.color || colorProp;
   const disabled = (_ref = inProps.loading || inProps.disabled) != null ? _ref : buttonGroup.disabled || loading || disabledProp;
-  const buttonRef = React$1.useRef(null);
+  const buttonRef = React.useRef(null);
   const handleRef = useForkRef(buttonRef, ref);
   const {
     focusVisible,
@@ -15063,7 +15054,7 @@ const IconButton = /*#__PURE__*/React$1.forwardRef(function IconButton(inProps, 
       lg: 4
     }[size] || 3
   });
-  React$1.useImperativeHandle(action, () => ({
+  React.useImperativeHandle(action, () => ({
     focusVisible: () => {
       var _buttonRef$current;
       setFocusVisible(true);
@@ -15146,7 +15137,7 @@ function getChipUtilityClass(slot) {
 }
 const chipClasses = generateUtilityClasses$1('MuiChip', ['root', 'clickable', 'colorPrimary', 'colorNeutral', 'colorDanger', 'colorSuccess', 'colorWarning', 'colorContext', 'disabled', 'endDecorator', 'focusVisible', 'label', 'labelSm', 'labelMd', 'labelLg', 'sizeSm', 'sizeMd', 'sizeLg', 'startDecorator', 'variantPlain', 'variantSolid', 'variantSoft', 'variantOutlined']);
 
-const ChipColorContext = /*#__PURE__*/React$1.createContext({
+const ChipColorContext = /*#__PURE__*/React.createContext({
   disabled: undefined,
   variant: undefined,
   color: undefined
@@ -15351,7 +15342,7 @@ const ChipEndDecorator = styled$1('span', {
  *
  * - [Chip API](https://mui.com/joy-ui/api/chip/)
  */
-const Chip = /*#__PURE__*/React$1.forwardRef(function Chip(inProps, ref) {
+const Chip = /*#__PURE__*/React.forwardRef(function Chip(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyChip'
@@ -15381,7 +15372,7 @@ const Chip = /*#__PURE__*/React$1.forwardRef(function Chip(inProps, ref) {
     focusVisible: false
   });
   const resolvedActionProps = typeof slotProps.action === 'function' ? slotProps.action(ownerState) : slotProps.action;
-  const actionRef = React$1.useRef(null);
+  const actionRef = React.useRef(null);
   const {
     focusVisible,
     getRootProps
@@ -15436,7 +15427,7 @@ const Chip = /*#__PURE__*/React$1.forwardRef(function Chip(inProps, ref) {
     externalForwardedProps,
     ownerState
   });
-  const chipContextValue = React$1.useMemo(() => ({
+  const chipContextValue = React.useMemo(() => ({
     disabled
   }), [disabled]);
   return /*#__PURE__*/jsx(ChipColorContext.Provider, {
@@ -15516,7 +15507,7 @@ const ChipDeleteRoot = styled$1(StyledIconButton, {
  *
  * - [ChipDelete API](https://mui.com/joy-ui/api/chip-delete/)
  */
-const ChipDelete = /*#__PURE__*/React$1.forwardRef(function ChipDelete(inProps, ref) {
+const ChipDelete = /*#__PURE__*/React.forwardRef(function ChipDelete(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyChipDelete'
@@ -15534,14 +15525,14 @@ const ChipDelete = /*#__PURE__*/React$1.forwardRef(function ChipDelete(inProps, 
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$x);
-  const chipContext = React$1.useContext(ChipColorContext);
+  const chipContext = React.useContext(ChipColorContext);
   const {
     variant = variantProp,
     color: inheritedColor = colorProp
   } = useVariantColor(inProps.variant, inProps.color, true);
   const color = inProps.color || inheritedColor;
   const disabled = disabledProp != null ? disabledProp : chipContext.disabled;
-  const buttonRef = React$1.useRef(null);
+  const buttonRef = React.useRef(null);
   const handleRef = useForkRef(buttonRef, ref);
   const {
     focusVisible,
@@ -15663,7 +15654,7 @@ const ListSubheaderRoot$1 = styled$1('div', {
  *
  * - [ListSubheader API](https://mui.com/joy-ui/api/list-subheader/)
  */
-const ListSubheader$1 = /*#__PURE__*/React$1.forwardRef(function ListSubheader(inProps, ref) {
+const ListSubheader$1 = /*#__PURE__*/React.forwardRef(function ListSubheader(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyListSubheader'
@@ -15681,8 +15672,8 @@ const ListSubheader$1 = /*#__PURE__*/React$1.forwardRef(function ListSubheader(i
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$w);
   const id = useId(idOverride);
-  const setSubheaderId = React$1.useContext(ListSubheaderContext);
-  React$1.useEffect(() => {
+  const setSubheaderId = React.useContext(ListSubheaderContext);
+  React.useEffect(() => {
     if (setSubheaderId) {
       setSubheaderId(id || '');
     }
@@ -15987,7 +15978,7 @@ const AutocompleteLimitTag = styled$1('div', {
  *
  * - [Autocomplete API](https://mui.com/joy-ui/api/autocomplete/)
  */
-const Autocomplete = /*#__PURE__*/React$1.forwardRef(function Autocomplete(inProps, ref) {
+const Autocomplete = /*#__PURE__*/React.forwardRef(function Autocomplete(inProps, ref) {
   var _ref, _inProps$error, _ref2, _inProps$size, _inProps$color, _formControl$color, _ref3;
   const props = useThemeProps({
     props: inProps,
@@ -16037,7 +16028,7 @@ const Autocomplete = /*#__PURE__*/React$1.forwardRef(function Autocomplete(inPro
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$v);
-  const formControl = React$1.useContext(FormControlContext);
+  const formControl = React.useContext(FormControlContext);
   const error = (_ref = (_inProps$error = inProps.error) != null ? _inProps$error : formControl == null ? void 0 : formControl.error) != null ? _ref : errorProp;
   const size = (_ref2 = (_inProps$size = inProps.size) != null ? _inProps$size : formControl == null ? void 0 : formControl.size) != null ? _ref2 : sizeProp;
   const color = (_inProps$color = inProps.color) != null ? _inProps$color : error ? 'danger' : (_formControl$color = formControl == null ? void 0 : formControl.color) != null ? _formControl$color : colorProp;
@@ -16354,7 +16345,7 @@ const Autocomplete = /*#__PURE__*/React$1.forwardRef(function Autocomplete(inPro
   };
 
   // Wait for `listboxProps` because `slotProps.listbox` could be a function.
-  const modifiers = React$1.useMemo(() => [{
+  const modifiers = React.useMemo(() => [{
     name: 'offset',
     options: {
       offset: [0, 4]
@@ -16398,7 +16389,7 @@ const Autocomplete = /*#__PURE__*/React$1.forwardRef(function Autocomplete(inPro
       })
     });
   }
-  return /*#__PURE__*/jsxs(React$1.Fragment, {
+  return /*#__PURE__*/jsxs(React.Fragment, {
     children: [/*#__PURE__*/jsxs(SlotRoot, _extends$1({}, rootProps, {
       children: [startDecorator && /*#__PURE__*/jsx(SlotStartDecorator, _extends$1({}, startDecoratorProps, {
         children: startDecorator
@@ -16446,7 +16437,7 @@ const _excluded$u = ["color", "textColor"],
  * For creating nested Typography to have inherit level (unless an explicit `level` prop is provided)
  * and change the HTML tag to `span` (unless an explicit `component` prop is provided).
  */
-const TypographyNestedContext = /*#__PURE__*/React$1.createContext(false);
+const TypographyNestedContext = /*#__PURE__*/React.createContext(false);
 
 /**
  * @internal
@@ -16454,7 +16445,7 @@ const TypographyNestedContext = /*#__PURE__*/React$1.createContext(false);
  *
  * This is used in components, for example Table, to inherit the parent's size by default.
  */
-const TypographyInheritContext = /*#__PURE__*/React$1.createContext(false);
+const TypographyInheritContext = /*#__PURE__*/React.createContext(false);
 const useUtilityClasses$f = ownerState => {
   const {
     gutterBottom,
@@ -16558,7 +16549,7 @@ const defaultVariantMapping = {
  *
  * - [Typography API](https://mui.com/joy-ui/api/typography/)
  */
-const Typography$1 = /*#__PURE__*/React$1.forwardRef(function Typography(inProps, ref) {
+const Typography$1 = /*#__PURE__*/React.forwardRef(function Typography(inProps, ref) {
   var _inProps$color;
   const _useThemeProps = useThemeProps({
       props: inProps,
@@ -16569,8 +16560,8 @@ const Typography$1 = /*#__PURE__*/React$1.forwardRef(function Typography(inProps
       textColor
     } = _useThemeProps,
     themeProps = _objectWithoutPropertiesLoose$1(_useThemeProps, _excluded$u);
-  const nesting = React$1.useContext(TypographyNestedContext);
-  const inheriting = React$1.useContext(TypographyInheritContext);
+  const nesting = React.useContext(TypographyNestedContext);
+  const inheriting = React.useContext(TypographyInheritContext);
   const props = extendSxProp(_extends$1({}, themeProps, {
     color: textColor
   }));
@@ -16632,7 +16623,7 @@ const Typography$1 = /*#__PURE__*/React$1.forwardRef(function Typography(inProps
     children: /*#__PURE__*/jsxs(SlotRoot, _extends$1({}, rootProps, {
       children: [startDecorator && /*#__PURE__*/jsx(SlotStartDecorator, _extends$1({}, startDecoratorProps, {
         children: startDecorator
-      })), hasSkeleton ? /*#__PURE__*/React$1.cloneElement(children, {
+      })), hasSkeleton ? /*#__PURE__*/React.cloneElement(children, {
         variant: children.props.variant || 'inline'
       }) : children, endDecorator && /*#__PURE__*/jsx(SlotEndDecorator, _extends$1({}, endDecoratorProps, {
         children: endDecorator
@@ -16808,7 +16799,7 @@ const ButtonRoot = styled$1('button', {
  *
  * - [Button API](https://mui.com/joy-ui/api/button/)
  */
-const Button$1 = /*#__PURE__*/React$1.forwardRef(function Button(inProps, ref) {
+const Button$1 = /*#__PURE__*/React.forwardRef(function Button(inProps, ref) {
   var _ref;
   const props = useThemeProps({
     props: inProps,
@@ -16832,13 +16823,13 @@ const Button$1 = /*#__PURE__*/React$1.forwardRef(function Button(inProps, ref) {
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$t);
-  const buttonGroup = React$1.useContext(ButtonGroupContext);
-  const toggleButtonGroup = React$1.useContext(ToggleButtonGroupContext);
+  const buttonGroup = React.useContext(ButtonGroupContext);
+  const toggleButtonGroup = React.useContext(ToggleButtonGroupContext);
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
   const color = inProps.color || buttonGroup.color || colorProp;
   const disabled = (_ref = inProps.loading || inProps.disabled) != null ? _ref : buttonGroup.disabled || loading || disabledProp;
-  const buttonRef = React$1.useRef(null);
+  const buttonRef = React.useRef(null);
   const handleRef = useForkRef(buttonRef, ref);
   const {
     focusVisible,
@@ -16856,7 +16847,7 @@ const Button$1 = /*#__PURE__*/React$1.forwardRef(function Button(inProps, ref) {
       lg: 4
     }[size] || 3
   });
-  React$1.useImperativeHandle(action, () => ({
+  React.useImperativeHandle(action, () => ({
     focusVisible: () => {
       var _buttonRef$current;
       setFocusVisible(true);
@@ -17088,7 +17079,7 @@ const ButtonGroupRoot = styled$1(StyledButtonGroup, {
  *
  * - [ButtonGroup API](https://mui.com/joy-ui/api/button-group/)
  */
-const ButtonGroup = /*#__PURE__*/React$1.forwardRef(function ButtonGroup(inProps, ref) {
+const ButtonGroup = /*#__PURE__*/React.forwardRef(function ButtonGroup(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyButtonGroup'
@@ -17133,7 +17124,7 @@ const ButtonGroup = /*#__PURE__*/React$1.forwardRef(function ButtonGroup(inProps
     },
     ownerState
   });
-  const buttonGroupContext = React$1.useMemo(() => ({
+  const buttonGroupContext = React.useMemo(() => ({
     variant,
     color,
     size,
@@ -17142,8 +17133,8 @@ const ButtonGroup = /*#__PURE__*/React$1.forwardRef(function ButtonGroup(inProps
   return /*#__PURE__*/jsx(SlotRoot, _extends$1({}, rootProps, {
     children: /*#__PURE__*/jsx(ButtonGroupContext.Provider, {
       value: buttonGroupContext,
-      children: React$1.Children.map(children, (child, index) => {
-        if (! /*#__PURE__*/React$1.isValidElement(child)) {
+      children: React.Children.map(children, (child, index) => {
+        if (! /*#__PURE__*/React.isValidElement(child)) {
           return child;
         }
         const extraProps = {};
@@ -17154,15 +17145,15 @@ const ButtonGroup = /*#__PURE__*/React$1.forwardRef(function ButtonGroup(inProps
           extraProps.role = 'presentation';
           extraProps.component = 'span';
         }
-        if (React$1.Children.count(children) > 1) {
+        if (React.Children.count(children) > 1) {
           if (index === 0) {
             extraProps['data-first-child'] = '';
           }
-          if (index === React$1.Children.count(children) - 1) {
+          if (index === React.Children.count(children) - 1) {
             extraProps['data-last-child'] = '';
           }
         }
-        return /*#__PURE__*/React$1.cloneElement(child, extraProps);
+        return /*#__PURE__*/React.cloneElement(child, extraProps);
       })
     })
   }));
@@ -17364,7 +17355,7 @@ const defaultIndeterminateIcon = /*#__PURE__*/jsx(IndeterminateIcon, {});
  *
  * - [Checkbox API](https://mui.com/joy-ui/api/checkbox/)
  */
-const Checkbox$1 = /*#__PURE__*/React$1.forwardRef(function Checkbox(inProps, ref) {
+const Checkbox$1 = /*#__PURE__*/React.forwardRef(function Checkbox(inProps, ref) {
   var _ref, _inProps$disabled, _ref2, _inProps$size, _formControl$color;
   const props = useThemeProps({
     props: inProps,
@@ -17398,7 +17389,7 @@ const Checkbox$1 = /*#__PURE__*/React$1.forwardRef(function Checkbox(inProps, re
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$r);
-  const formControl = React$1.useContext(FormControlContext);
+  const formControl = React.useContext(FormControlContext);
   const disabledProp = (_ref = (_inProps$disabled = inProps.disabled) != null ? _inProps$disabled : formControl == null ? void 0 : formControl.disabled) != null ? _ref : disabledExternalProp;
   const size = (_ref2 = (_inProps$size = inProps.size) != null ? _inProps$size : formControl == null ? void 0 : formControl.size) != null ? _ref2 : sizeProp;
   const id = useId(idOverride != null ? idOverride : formControl == null ? void 0 : formControl.htmlFor);
@@ -17589,7 +17580,7 @@ const DividerRoot = styled$1('hr', {
  *
  * - [Divider API](https://mui.com/joy-ui/api/divider/)
  */
-const Divider$1 = /*#__PURE__*/React$1.forwardRef(function Divider(inProps, ref) {
+const Divider$1 = /*#__PURE__*/React.forwardRef(function Divider(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyDivider'
@@ -17723,7 +17714,7 @@ const FormControlRoot = styled$1('div', {
  *
  * - [FormControl API](https://mui.com/joy-ui/api/form-control/)
  */
-const FormControl = /*#__PURE__*/React$1.forwardRef(function FormControl(inProps, ref) {
+const FormControl = /*#__PURE__*/React.forwardRef(function FormControl(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyFormControl'
@@ -17743,7 +17734,7 @@ const FormControl = /*#__PURE__*/React$1.forwardRef(function FormControl(inProps
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$p);
   const id = useId(idOverride);
-  const [helperText, setHelperText] = React$1.useState(null);
+  const [helperText, setHelperText] = React.useState(null);
   const ownerState = _extends$1({}, props, {
     id,
     component,
@@ -17767,7 +17758,7 @@ const FormControl = /*#__PURE__*/React$1.forwardRef(function FormControl(inProps
     }),
     ownerState
   });
-  const formControlContextValue = React$1.useMemo(() => ({
+  const formControlContextValue = React.useMemo(() => ({
     disabled,
     required,
     error,
@@ -17838,7 +17829,7 @@ const AsteriskComponent = styled$1('span', {
  *
  * - [FormLabel API](https://mui.com/joy-ui/api/form-label/)
  */
-const FormLabel = /*#__PURE__*/React$1.forwardRef(function FormLabel(inProps, ref) {
+const FormLabel = /*#__PURE__*/React.forwardRef(function FormLabel(inProps, ref) {
   var _ref, _inProps$required;
   const props = useThemeProps({
     props: inProps,
@@ -17853,7 +17844,7 @@ const FormLabel = /*#__PURE__*/React$1.forwardRef(function FormLabel(inProps, re
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$o);
-  const formControl = React$1.useContext(FormControlContext);
+  const formControl = React.useContext(FormControlContext);
   const required = (_ref = (_inProps$required = inProps.required) != null ? _inProps$required : formControl == null ? void 0 : formControl.required) != null ? _ref : false;
   const ownerState = _extends$1({}, props, {
     required
@@ -17947,7 +17938,7 @@ const MenuRoot = styled$1(StyledList, {
  * - [Menu API](https://mui.com/joy-ui/api/menu/)
  * - inherits [Popper API](https://mui.com/base-ui/react-popper/components-api/#popper)
  */
-const Menu = /*#__PURE__*/React$1.forwardRef(function Menu(inProps, ref) {
+const Menu = /*#__PURE__*/React.forwardRef(function Menu(inProps, ref) {
   var _props$slots;
   const props = useThemeProps({
     props: inProps,
@@ -17981,7 +17972,7 @@ const Menu = /*#__PURE__*/React$1.forwardRef(function Menu(inProps, ref) {
     id,
     listboxRef: ref
   });
-  React$1.useImperativeHandle(actions, () => ({
+  React.useImperativeHandle(actions, () => ({
     dispatch,
     resetHighlight: () => dispatch({
       type: ListActionTypes.resetHighlight,
@@ -18004,7 +17995,7 @@ const Menu = /*#__PURE__*/React$1.forwardRef(function Menu(inProps, ref) {
     slots,
     slotProps
   });
-  const modifiers = React$1.useMemo(() => [{
+  const modifiers = React.useMemo(() => [{
     name: 'offset',
     options: {
       offset: [0, 4]
@@ -18126,7 +18117,7 @@ const MenuButtonLoadingCenter = styled$1('span', {
  *
  * - [MenuButton API](https://mui.com/joy-ui/api/menu-button/)
  */
-const MenuButton = /*#__PURE__*/React$1.forwardRef(function MenuButton(inProps, forwardedRef) {
+const MenuButton = /*#__PURE__*/React.forwardRef(function MenuButton(inProps, forwardedRef) {
   var _inProps$disabled;
   const props = useThemeProps({
     props: inProps,
@@ -18148,7 +18139,7 @@ const MenuButton = /*#__PURE__*/React$1.forwardRef(function MenuButton(inProps, 
       variant: variantProp = 'outlined'
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$m);
-  const buttonGroup = React$1.useContext(ButtonGroupContext);
+  const buttonGroup = React.useContext(ButtonGroupContext);
   const variant = inProps.variant || buttonGroup.variant || variantProp;
   const size = inProps.size || buttonGroup.size || sizeProp;
   const disabled = (_inProps$disabled = inProps.disabled) != null ? _inProps$disabled : buttonGroup.disabled || disabledProp || loading;
@@ -18244,12 +18235,12 @@ const MenuItemRoot = styled$1(StyledListItemButton, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root
 })({});
-const MenuItem = /*#__PURE__*/React$1.memo( /*#__PURE__*/React$1.forwardRef(function MenuItem(inProps, ref) {
+const MenuItem = /*#__PURE__*/React.memo( /*#__PURE__*/React.forwardRef(function MenuItem(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyMenuItem'
   });
-  const row = React$1.useContext(RowListContext);
+  const row = React.useContext(RowListContext);
   const {
       children,
       disabled: disabledProp = false,
@@ -18319,7 +18310,7 @@ const MenuItem = /*#__PURE__*/React$1.memo( /*#__PURE__*/React$1.forwardRef(func
  * - [MenuItem API](https://mui.com/joy-ui/api/menu-item/)
  * - inherits [ListItemButton API](https://mui.com/joy-ui/api/list-item-button/)
  */
-const StableMenuItem = /*#__PURE__*/React$1.forwardRef(function StableMenuItem(props, ref) {
+const StableMenuItem = /*#__PURE__*/React.forwardRef(function StableMenuItem(props, ref) {
   // This wrapper component is used as a performance optimization.
   // `useMenuItemContextStabilizer` ensures that the context value
   // is stable across renders, so that the actual MenuItem re-renders
@@ -18557,7 +18548,7 @@ const RadioIcon = styled$1('span', {
  *
  * - [Radio API](https://mui.com/joy-ui/api/radio/)
  */
-const Radio = /*#__PURE__*/React$1.forwardRef(function Radio(inProps, ref) {
+const Radio = /*#__PURE__*/React.forwardRef(function Radio(inProps, ref) {
   var _ref, _ref2, _inProps$color, _ref3, _ref4, _inProps$color2, _inProps$color3;
   const props = useThemeProps({
     props: inProps,
@@ -18589,9 +18580,9 @@ const Radio = /*#__PURE__*/React$1.forwardRef(function Radio(inProps, ref) {
       slotProps = {}
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$k);
-  const formControl = React$1.useContext(FormControlContext);
+  const formControl = React.useContext(FormControlContext);
   const id = useId(idOverride != null ? idOverride : formControl == null ? void 0 : formControl.htmlFor);
-  const radioGroup = React$1.useContext(RadioGroupContext);
+  const radioGroup = React.useContext(RadioGroupContext);
   const activeColor = formControl != null && formControl.error ? 'danger' : (_ref = (_ref2 = (_inProps$color = inProps.color) != null ? _inProps$color : formControl == null ? void 0 : formControl.color) != null ? _ref2 : colorProp) != null ? _ref : 'primary';
   const inactiveColor = formControl != null && formControl.error ? 'danger' : (_ref3 = (_ref4 = (_inProps$color2 = inProps.color) != null ? _inProps$color2 : formControl == null ? void 0 : formControl.color) != null ? _ref4 : colorProp) != null ? _ref3 : 'neutral';
   const size = inProps.size || (formControl == null ? void 0 : formControl.size) || (radioGroup == null ? void 0 : radioGroup.size) || sizeProp;
@@ -18749,7 +18740,7 @@ const RadioGroupRoot = styled$1('div', {
  *
  * - [RadioGroup API](https://mui.com/joy-ui/api/radio-group/)
  */
-const RadioGroup$1 = /*#__PURE__*/React$1.forwardRef(function RadioGroup(inProps, ref) {
+const RadioGroup$1 = /*#__PURE__*/React.forwardRef(function RadioGroup(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyRadioGroup'
@@ -18778,7 +18769,7 @@ const RadioGroup$1 = /*#__PURE__*/React$1.forwardRef(function RadioGroup(inProps
     default: defaultValue,
     name: 'RadioGroup'
   });
-  const formControl = React$1.useContext(FormControlContext);
+  const formControl = React.useContext(FormControlContext);
   const size = inProps.size || (formControl == null ? void 0 : formControl.size) || sizeProp;
   const ownerState = _extends$1({
     orientation,
@@ -18789,7 +18780,7 @@ const RadioGroup$1 = /*#__PURE__*/React$1.forwardRef(function RadioGroup(inProps
   }, props);
   const classes = useUtilityClasses$4(ownerState);
   const name = useId(nameProp);
-  const contextValue = React$1.useMemo(() => ({
+  const contextValue = React.useMemo(() => ({
     disableIcon,
     overlay,
     orientation,
@@ -18829,9 +18820,9 @@ const RadioGroup$1 = /*#__PURE__*/React$1.forwardRef(function RadioGroup(inProps
     children: /*#__PURE__*/jsx(SlotRoot, _extends$1({}, rootProps, {
       children: /*#__PURE__*/jsx(FormControlContext.Provider, {
         value: undefined,
-        children: React$1.Children.map(children, (child, index) => /*#__PURE__*/React$1.isValidElement(child) ? /*#__PURE__*/React$1.cloneElement(child, _extends$1({}, index === 0 && {
+        children: React.Children.map(children, (child, index) => /*#__PURE__*/React.isValidElement(child) ? /*#__PURE__*/React.cloneElement(child, _extends$1({}, index === 0 && {
           'data-first-child': ''
-        }, index === React$1.Children.count(children) - 1 && {
+        }, index === React.Children.count(children) - 1 && {
           'data-last-child': ''
         }, {
           'data-parent': 'RadioGroup'
@@ -18900,7 +18891,7 @@ const SheetRoot = styled$1('div', {
  *
  * - [Sheet API](https://mui.com/joy-ui/api/sheet/)
  */
-const Sheet = /*#__PURE__*/React$1.forwardRef(function Sheet(inProps, ref) {
+const Sheet = /*#__PURE__*/React.forwardRef(function Sheet(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoySheet'
@@ -19134,7 +19125,7 @@ const TextareaEndDecorator = styled$1('div', {
  *
  * - [Textarea API](https://mui.com/joy-ui/api/textarea/)
  */
-const Textarea = /*#__PURE__*/React$1.forwardRef(function Textarea(inProps, ref) {
+const Textarea = /*#__PURE__*/React.forwardRef(function Textarea(inProps, ref) {
   var _ref, _inProps$disabled, _ref2, _inProps$error, _ref3, _inProps$size, _inProps$color, _formControl$color;
   const props = useThemeProps({
     props: inProps,
@@ -19339,12 +19330,14 @@ function Input(props) {
     }
   }, extendedProps);
   delete ePropsL.disabled;
-  var t = /*#__PURE__*/React__default.createElement(Fragment, null, /*#__PURE__*/React__default.createElement(FormLabel, {
-    key: name
-  }, label), /*#__PURE__*/React__default.createElement(Input$1, _extends$2({}, ePropsL, {
-    value: value,
-    onChange: _onChange
-  })));
+  var t = /*#__PURE__*/jsxs(Fragment, {
+    children: [/*#__PURE__*/jsx(FormLabel, {
+      children: label
+    }, name), /*#__PURE__*/jsx(Input$1, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+      value: value,
+      onChange: _onChange
+    }))]
+  });
   return t;
 }
 
@@ -19459,12 +19452,14 @@ function InputText(props) {
     }
   }, extendedProps);
   delete ePropsL.disabled;
-  var t = /*#__PURE__*/React__default.createElement(Fragment, null, /*#__PURE__*/React__default.createElement(FormLabel, {
-    key: name
-  }, label), /*#__PURE__*/React__default.createElement(Input$1, _extends$2({}, ePropsL, {
-    value: value,
-    onChange: _onChange
-  })));
+  var t = /*#__PURE__*/jsxs(Fragment, {
+    children: [/*#__PURE__*/jsx(FormLabel, {
+      children: label
+    }, name), /*#__PURE__*/jsx(Input$1, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+      value: value,
+      onChange: _onChange
+    }))]
+  });
   return t;
 }
 
@@ -19484,13 +19479,15 @@ function Typography(props) {
     borderWidth: 1,
     borderRadius: 8
   }, sx);
-  var show = /*#__PURE__*/React__default.createElement(Fragment, null, /*#__PURE__*/React__default.createElement(Typography$1, _extends$2({
-    sx: isx
-  }, eProps), value));
+  var show = /*#__PURE__*/jsx(Fragment, {
+    children: /*#__PURE__*/jsx(Typography$1, _objectSpread2$2(_objectSpread2$2({
+      sx: isx
+    }, eProps), {}, {
+      children: value
+    }))
+  });
   return show;
 }
-
-//import Border from './Border';
 
 function VaSDK(props) {
   var value = props.value,
@@ -19536,35 +19533,41 @@ function VaSDK(props) {
   debugger;
   if (_userProps == null || _userProps.viyaEnv == null) {
     debugger;
-    show = /*#__PURE__*/React__default.createElement("div", {
-      style: divStyle
-    }, /*#__PURE__*/React__default.createElement("p", null, "No connection to Viya"));
+    show = /*#__PURE__*/jsx("div", {
+      style: divStyle,
+      children: /*#__PURE__*/jsx("p", {
+        children: "No connection to Viya"
+      })
+    });
   } else if (reportUri === null) {
     debugger;
-    show = /*#__PURE__*/React__default.createElement("div", {
-      style: divStyle
-    }, " ", /*#__PURE__*/React__default.createElement("p", null, " Report ", reportName, " was not found"));
+    show = /*#__PURE__*/jsxs("div", {
+      style: divStyle,
+      children: [" ", /*#__PURE__*/jsxs("p", {
+        children: [" Report ", reportName, " was not found"]
+      })]
+    });
   } else {
     var urlt = url == null || url.trim().length === 0 ? _userProps.viyaEnv.logonPayload.host : url;
-    show = /*#__PURE__*/React__default.createElement("div", {
-      style: divStyle
-    }, /*#__PURE__*/React__default.createElement("sas-report", {
-      key: reportUri,
-      hideNavigation: "auto",
-      url: urlt,
-      reportUri: reportUri,
-      authenticationType: auth == null ? 'credential' : auth,
-      style: sx
-    }));
+    show = /*#__PURE__*/jsx("div", {
+      style: divStyle,
+      children: /*#__PURE__*/jsx("sas-report", {
+        hideNavigation: "auto",
+        url: urlt,
+        reportUri: reportUri,
+        authenticationType: auth == null ? 'credential' : auth,
+        style: sx
+      }, reportUri)
+    });
   }
   var shkey = reportName + 'sheet';
-  return /*#__PURE__*/React__default.createElement(Sheet, {
-    key: shkey,
+  return /*#__PURE__*/jsx(Sheet, {
     style: {
       height: 'inherit',
       width: 'inherit'
-    }
-  }, show);
+    },
+    children: show
+  }, shkey);
 }
 
 function HtmlText(props) {
@@ -19590,14 +19593,13 @@ function HtmlText(props) {
   if (refresh != null) {
     shkey = shkey + Date();
   }
-  return /*#__PURE__*/React__default.createElement(Sheet, {
-    key: shkey,
-    style: isx
-  }, /*#__PURE__*/React__default.createElement("div", {
-    key: name,
+  return /*#__PURE__*/jsx(Sheet, {
     style: isx,
-    dangerouslySetInnerHTML: htmlContent
-  }));
+    children: /*#__PURE__*/jsx("div", {
+      style: isx,
+      dangerouslySetInnerHTML: htmlContent
+    }, name)
+  }, shkey);
 }
 //  <div style={sx} dangerouslySetInnerHTML={html}></div>
 
@@ -19625,7 +19627,7 @@ function WebContent(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, value]);
-  return /*#__PURE__*/React__default.createElement(HtmlText, {
+  return /*#__PURE__*/jsx(HtmlText, {
     sx: sx,
     name: name,
     refresh: refresh,
@@ -19754,11 +19756,15 @@ function BaseSelector(props) {
       return true;
     } else return false;
   };
-  var show = /*#__PURE__*/React__default.createElement(FormControl, null, label != null ? /*#__PURE__*/React__default.createElement(FormLabel, null, label) : null, /*#__PURE__*/React__default.createElement(Autocomplete, _extends$2({}, ePropsL, {
-    options: options != null ? options : [],
-    isOptionEqualToValue: check,
-    onChange: _handleChange
-  })));
+  var show = /*#__PURE__*/jsxs(FormControl, {
+    children: [label != null ? /*#__PURE__*/jsx(FormLabel, {
+      children: label
+    }) : null, /*#__PURE__*/jsx(Autocomplete, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+      options: options != null ? options : [],
+      isOptionEqualToValue: check,
+      onChange: _handleChange
+    }))]
+  });
   return show;
 }
 // isOptionEqualToValue={(option, value) => (value.trim().length === 0 || option === value) ? true : false}
@@ -19802,7 +19808,7 @@ function SASItemsDropDown(props) {
     setSel(val);
     onChange(val);
   };
-  return /*#__PURE__*/React__default.createElement(BaseSelector, {
+  return /*#__PURE__*/jsx(BaseSelector, {
     name: name,
     label: label,
     value: sel,
@@ -19850,10 +19856,14 @@ function BaseSelectorMultiple(props) {
   };
 
   // isOptionEqualToValue={check}
-  var show = /*#__PURE__*/React__default.createElement(FormControl, null, label !== null ? /*#__PURE__*/React__default.createElement(FormLabel, null, label) : null, /*#__PURE__*/React__default.createElement(Autocomplete, _extends$2({}, ePropsL, {
-    options: items != null ? items : [],
-    onChange: _handleChange
-  })));
+  var show = /*#__PURE__*/jsxs(FormControl, {
+    children: [label !== null ? /*#__PURE__*/jsx(FormLabel, {
+      children: label
+    }) : null, /*#__PURE__*/jsx(Autocomplete, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+      options: items != null ? items : [],
+      onChange: _handleChange
+    }))]
+  });
   return show;
 }
 // isOptionEqualToValue={(option, value) => (value.trim().length === 0 || option === value) ? true : false}
@@ -19862,7 +19872,7 @@ var _excluded$d = ["_userProps"];
 function Dropdown(props) {
   props._userProps;
     var eProps = _objectWithoutProperties$1(props, _excluded$d);
-  return props.multiple === true ? /*#__PURE__*/React__default.createElement(BaseSelectorMultiple, eProps) : /*#__PURE__*/React__default.createElement(BaseSelector, eProps);
+  return props.multiple === true ? /*#__PURE__*/jsx(BaseSelectorMultiple, _objectSpread2$2({}, eProps)) : /*#__PURE__*/jsx(BaseSelector, _objectSpread2$2({}, eProps));
 }
 
 var THEME_ID = '$$material';
@@ -21211,10 +21221,9 @@ function Border(props) {
     zindex: 1,
     boxShadow: 2
   }, sx);
-  return /*#__PURE__*/React__default.createElement(Box, {
-    key: "paper",
+  return /*#__PURE__*/jsx(Box, {
     sx: isx
-  });
+  }, "paper");
 }
 
 var _excluded$8 = ["column", "value", "label", "lib", "table", "where", "style", "onChange", "designMode", "_userProps"];
@@ -21279,7 +21288,7 @@ function DistinctValues(props) {
     style: style,
     eProps: eProps
   };
-  return /*#__PURE__*/React__default.createElement(BaseSelector, pr);
+  return /*#__PURE__*/jsx(BaseSelector, _objectSpread2$2({}, pr));
 }
 
 var _excluded$7 = ["value", "sx", "label", "designMode", "onChange", "_userProps"];
@@ -21310,11 +21319,12 @@ function Button(props) {
   }, sx);
   debugger;
   console.log(Button$1);
-  return /*#__PURE__*/React__default.createElement(Button$1, _extends$2({
+  return /*#__PURE__*/jsx(Button$1, _objectSpread2$2(_objectSpread2$2({
     sx: isx
-  }, ePropsL, {
-    onClick: _handleClick
-  }), label);
+  }, ePropsL), {}, {
+    onClick: _handleClick,
+    children: label
+  }));
 }
 
 var _excluded$6 = ["label", "value", "onChange", "sx", "_userProps"];
@@ -21336,10 +21346,10 @@ function Checkbox(props) {
     label: label,
     variant: "outlined"
   }, eProps);
-  var V = /*#__PURE__*/React__default.createElement(Checkbox$1, _extends$2({
+  var V = /*#__PURE__*/jsx(Checkbox$1, _objectSpread2$2(_objectSpread2$2({
     sx: isx,
     label: label
-  }, ePropsL, {
+  }, ePropsL), {}, {
     checked: value,
     onChange: _onChange
   }));
@@ -21415,7 +21425,7 @@ function SelectTable(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, lib, value, refresh, _userProps]);
-  return /*#__PURE__*/React__default.createElement(BaseSelector, {
+  return /*#__PURE__*/jsx(BaseSelector, {
     name: name,
     value: sel,
     items: tableList,
@@ -21476,7 +21486,7 @@ function SelectLibrary(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
-  return /*#__PURE__*/React.createElement(BaseSelector, {
+  return /*#__PURE__*/jsx(BaseSelector, {
     name: name,
     value: sel,
     items: liblist,
@@ -21626,8 +21636,6 @@ function _computeTableColumns() {
   return _computeTableColumns.apply(this, arguments);
 }
 
-//import {getTableColumns} from '@sassoftware/restafedit'; 
-
 function SelectColumns(props) {
   var name = props.name,
     value = props.value,
@@ -21680,7 +21688,7 @@ function SelectColumns(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, lib, table]);
-  return /*#__PURE__*/React__default.createElement(BaseSelectorMultiple, {
+  return /*#__PURE__*/jsx(BaseSelectorMultiple, {
     name: name,
     value: sel,
     items: list,
@@ -21691,9 +21699,8 @@ function SelectColumns(props) {
   });
 }
 
-//TBD: need to skip this jump since this is just a simple wrapper
 function SelectReport(props) {
-  return /*#__PURE__*/React.createElement(SASItemsDropDown, _extends$2({}, props, {
+  return /*#__PURE__*/jsx(SASItemsDropDown, _objectSpread2$2(_objectSpread2$2({}, props), {}, {
     service: "reports"
   }));
 }
@@ -21751,7 +21758,6 @@ function _getFolderUri() {
   return _getFolderUri.apply(this, arguments);
 }
 
-//TBD: need to skip this jump since this is just a simple wrapper
 function SelectFiles(props) {
   var name = props.name,
     value = props.value,
@@ -21819,7 +21825,7 @@ function SelectFiles(props) {
       });
     }
   }, [appEnv, value, folder, filter]);
-  return /*#__PURE__*/React__default.createElement(BaseSelector, {
+  return /*#__PURE__*/jsx(BaseSelector, {
     name: name,
     value: sel,
     items: list,
@@ -21832,11 +21838,9 @@ function SelectFiles(props) {
 }
 
 function SelectFolder(props) {
-  return /*#__PURE__*/React__default.createElement(SASItemsDropDown, _extends$2({
-    key: props.name
-  }, props, {
+  return /*#__PURE__*/jsx(SASItemsDropDown, _objectSpread2$2(_objectSpread2$2({}, props), {}, {
     service: "folders"
-  }));
+  }), props.name);
 }
 
 function Inputarea(props) {
@@ -21942,13 +21946,17 @@ function Inputarea(props) {
     }
   };
   delete ePropsL.disabled;
-  var t = /*#__PURE__*/React__default.createElement(Textarea, _extends$2({
-    key: name
-  }, ePropsL, {
+  var t = /*#__PURE__*/jsx(Textarea, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
     value: value,
     onChange: _onChange
-  }));
-  t = label != null && label.trim().length > 0 ? /*#__PURE__*/React__default.createElement(FormControl, null, /*#__PURE__*/React__default.createElement(FormLabel, null, label), t) : /*#__PURE__*/React__default.createElement("div", null, t);
+  }), name);
+  t = label != null && label.trim().length > 0 ? /*#__PURE__*/jsxs(FormControl, {
+    children: [/*#__PURE__*/jsx(FormLabel, {
+      children: label
+    }), t]
+  }) : /*#__PURE__*/jsx("div", {
+    children: t
+  });
   return t;
 }
 
@@ -21966,7 +21974,9 @@ function Divider(props) {
     sx: sx,
     orientation: "horizontal"
   }, eProps);
-  var show = /*#__PURE__*/React__default.createElement(Divider$1, ePropL, " ", value);
+  var show = /*#__PURE__*/jsxs(Divider$1, _objectSpread2$2(_objectSpread2$2({}, ePropL), {}, {
+    children: [" ", value]
+  }));
   return show;
 }
 
@@ -22025,16 +22035,15 @@ function Image(props) {
   if (srcType != null) {
     src = dataUrl(value, srcType);
   }
-  var show = /*#__PURE__*/React__default.createElement("div", {
-    key: refresh,
-    style: isx
-  }, /*#__PURE__*/React__default.createElement("img", {
-    src: src,
-    crossOrigin: "",
-    alt: label,
-    key: refresh + 1,
-    style: sx2
-  }), " ");
+  var show = /*#__PURE__*/jsxs("div", {
+    style: isx,
+    children: [/*#__PURE__*/jsx("img", {
+      src: src,
+      crossOrigin: "",
+      alt: label,
+      style: sx2
+    }, refresh + 1), " "]
+  }, refresh);
   return show;
   function svgToDataURL(svgString) {
     return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString)));
@@ -22113,7 +22122,7 @@ const SvgIconRoot = styled('svg', {
     }[ownerState.color]
   };
 });
-const SvgIcon = /*#__PURE__*/React$1.forwardRef(function SvgIcon(inProps, ref) {
+const SvgIcon = /*#__PURE__*/React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useDefaultProps({
     props: inProps,
     name: 'MuiSvgIcon'
@@ -22130,7 +22139,7 @@ const SvgIcon = /*#__PURE__*/React$1.forwardRef(function SvgIcon(inProps, ref) {
       viewBox = '0 0 24 24'
     } = props,
     other = _objectWithoutPropertiesLoose$1(props, _excluded$4);
-  const hasSvgAsChild = /*#__PURE__*/React$1.isValidElement(children) && children.type === 'svg';
+  const hasSvgAsChild = /*#__PURE__*/React.isValidElement(children) && children.type === 'svg';
   const ownerState = _extends$1({}, props, {
     color,
     component,
@@ -22172,7 +22181,7 @@ function createSvgIcon(path, displayName) {
     }));
   }
   Component.muiName = SvgIcon.muiName;
-  return /*#__PURE__*/React$1.memo( /*#__PURE__*/React$1.forwardRef(Component));
+  return /*#__PURE__*/React.memo( /*#__PURE__*/React.forwardRef(Component));
 }
 
 // TODO: remove this export once ClassNameGenerator is stable
@@ -22269,12 +22278,12 @@ function DropDownMenu(props) {
   };
   if (items != null) {
     items.forEach(function (m, i) {
-      menuList.push(/*#__PURE__*/React__default.createElement(StableMenuItem, {
-        key: m,
+      menuList.push(/*#__PURE__*/jsx(StableMenuItem, {
         sx: sxb,
         onClick: function onClick() {
           return onSelect(m, i);
-        }
+        },
+        children: m
       }, m));
     });
   }
@@ -22285,9 +22294,15 @@ function DropDownMenu(props) {
   var ePropsL = _objectSpread2$2({
     placement: 'bottom-start'
   }, eProps);
-  return /*#__PURE__*/React__default.createElement(Dropdown$1, null, /*#__PURE__*/React__default.createElement(MenuButton, _extends$2({
-    sx: isx
-  }, ePropsL), /*#__PURE__*/React__default.createElement(MoreVert, null), label), /*#__PURE__*/React__default.createElement(Menu, ePropsL, menuList));
+  return /*#__PURE__*/jsxs(Dropdown$1, {
+    children: [/*#__PURE__*/jsxs(MenuButton, _objectSpread2$2(_objectSpread2$2({
+      sx: isx
+    }, ePropsL), {}, {
+      children: [/*#__PURE__*/jsx(MoreVert, {}), label]
+    })), /*#__PURE__*/jsx(Menu, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+      children: menuList
+    }))]
+  });
 }
 
 var FirstPage$1 = {};
@@ -22386,10 +22401,6 @@ function requireLastPage () {
 var LastPageExports = /*@__PURE__*/ requireLastPage();
 var LastPage = /*@__PURE__*/getDefaultExportFromCjs(LastPageExports);
 
-/*
- * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
 function WherePrompt(props) {
   var value = props.value,
     _onChange = props.onChange;
@@ -22413,7 +22424,7 @@ function WherePrompt(props) {
       return _onChange(v);
     }
   };
-  return /*#__PURE__*/React__default.createElement(Input, pr);
+  return /*#__PURE__*/jsx(Input, _objectSpread2$2({}, pr));
 }
 
 function ScrollMenu(props) {
@@ -22422,19 +22433,19 @@ function ScrollMenu(props) {
     where = props.where,
     groups = props.groups;
   var iconList = {
-    first: /*#__PURE__*/React__default.createElement(FirstPage, {
+    first: /*#__PURE__*/jsx(FirstPage, {
       size: "small"
     }),
-    last: /*#__PURE__*/React__default.createElement(LastPage, {
+    last: /*#__PURE__*/jsx(LastPage, {
       size: "small"
     }),
-    next: /*#__PURE__*/React__default.createElement(ChevronRight, {
+    next: /*#__PURE__*/jsx(ChevronRight, {
       size: "small"
     }),
-    prev: /*#__PURE__*/React__default.createElement(ChevronLeft, {
+    prev: /*#__PURE__*/jsx(ChevronLeft, {
       size: "small"
     }),
-    more: /*#__PURE__*/React__default.createElement(MoreVert, {
+    more: /*#__PURE__*/jsx(MoreVert, {
       size: "small"
     })
   };
@@ -22474,25 +22485,23 @@ function ScrollMenu(props) {
     label: ''
   };
   if (showGroups.includes('dropdown') === true) {
-    menu.push(/*#__PURE__*/React__default.createElement(DropDownMenu, _extends$2({
-      key: "more"
-    }, p, {
+    menu.push(/*#__PURE__*/jsx(DropDownMenu, _objectSpread2$2(_objectSpread2$2({}, p), {}, {
       onChange: _dropDown
-    })));
+    }), "more"));
   }
   if (showGroups.includes('scroll') === true) {
     var _loop = function _loop(_m) {
       var c = menus[_m];
-      var t = /*#__PURE__*/React__default.createElement(IconButton, {
+      var t = /*#__PURE__*/jsx(IconButton, {
         onClick: function onClick() {
           return _select(_m);
         },
-        key: _m,
         disabled: c.disabled,
         sx: sxb,
         size: "small",
-        variant: "outlined"
-      }, iconList[_m]);
+        variant: "outlined",
+        children: iconList[_m]
+      }, _m);
       menu.push(t);
     };
     for (var _m in scroll) {
@@ -22501,17 +22510,17 @@ function ScrollMenu(props) {
   }
 
   // let show = <ButtonGroup  key="buttongrid" sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}> {menu} </ButtonGroup>;
-  var show = /*#__PURE__*/React__default.createElement(Box$1, {
+  var show = /*#__PURE__*/jsxs(Box$1, {
     display: "flex",
     alignItems: "start",
-    justifyContent: "left"
-  }, /*#__PURE__*/React__default.createElement(ButtonGroup, {
-    key: "buttongrid"
-  }, " ", menu, " "), showGroups.includes('where') === true ? /*#__PURE__*/React__default.createElement(WherePrompt, {
-    key: "where",
-    value: where,
-    onChange: _where
-  }) : null);
+    justifyContent: "left",
+    children: [/*#__PURE__*/jsxs(ButtonGroup, {
+      children: [" ", menu, " "]
+    }, "buttongrid"), showGroups.includes('where') === true ? /*#__PURE__*/jsx(WherePrompt, {
+      value: where,
+      onChange: _where
+    }, "where") : null]
+  });
   return show;
 }
 
@@ -22567,18 +22576,24 @@ function RadioGroup(props) {
     readOnly: false
   }, eProps);
   var buttons = options.map(function (m, i) {
-    return /*#__PURE__*/React__default.createElement(Radio, {
-      key: i,
+    return /*#__PURE__*/jsx(Radio, {
       value: m,
       label: m
-    });
+    }, i);
   });
-  var show = /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(FormControl, null, /*#__PURE__*/React__default.createElement(FormLabel, null, label), /*#__PURE__*/React__default.createElement(RadioGroup$1, _extends$2({
-    defaultValue: currentSelection
-  }, ePropsL, {
-    sx: isx,
-    onChange: _handleChange
-  }), buttons)));
+  var show = /*#__PURE__*/jsx(Fragment$1, {
+    children: /*#__PURE__*/jsxs(FormControl, {
+      children: [/*#__PURE__*/jsx(FormLabel, {
+        children: label
+      }), /*#__PURE__*/jsx(RadioGroup$1, _objectSpread2$2(_objectSpread2$2({
+        defaultValue: currentSelection
+      }, ePropsL), {}, {
+        sx: isx,
+        onChange: _handleChange,
+        children: buttons
+      }))]
+    })
+  });
   return show;
 }
 
@@ -22692,23 +22707,24 @@ function SelectLocalFile(props) {
     });
   };
   var msg = buttonLabel != null ? buttonLabel : mode === 'write' ? 'Select Folder' : 'Select Form';
-  var show = /*#__PURE__*/React.createElement("div", {
-    style: style
-  }, /*#__PURE__*/React.createElement(Input$1, {
-    value: newFile,
-    label: buttonLabel == null ? 'Open' : buttonLabel,
-    onChange: function onChange(e) {
-      return setNewName(e.target.value);
-    },
-    endDecorator: /*#__PURE__*/React.createElement(Button$1, {
-      size: "sm",
-      key: "openButtonform",
-      variant: "outlined",
-      onClick: function onClick() {
-        return _onImport();
-      }
-    }, msg)
-  }));
+  var show = /*#__PURE__*/jsx("div", {
+    style: style,
+    children: /*#__PURE__*/jsx(Input$1, {
+      value: newFile,
+      label: buttonLabel == null ? 'Open' : buttonLabel,
+      onChange: function onChange(e) {
+        return setNewName(e.target.value);
+      },
+      endDecorator: /*#__PURE__*/jsx(Button$1, {
+        size: "sm",
+        variant: "outlined",
+        onClick: function onClick() {
+          return _onImport();
+        },
+        children: msg
+      }, "openButtonform")
+    })
+  });
   return show;
 }
 
@@ -22771,20 +22787,21 @@ function SelectLocalFolder(props) {
       console.log(e);
     });
   };
-  var show = /*#__PURE__*/React.createElement("div", {
-    style: style
-  }, /*#__PURE__*/React.createElement(Input$1, {
-    value: newFolder,
-    label: label,
-    endDecorator: /*#__PURE__*/React.createElement(Button$1, {
-      size: "sm",
-      key: "openButtonform",
-      variant: "outlined",
-      onClick: function onClick() {
-        return _onImport();
-      }
-    }, "Select Folder")
-  }));
+  var show = /*#__PURE__*/jsx("div", {
+    style: style,
+    children: /*#__PURE__*/jsx(Input$1, {
+      value: newFolder,
+      label: label,
+      endDecorator: /*#__PURE__*/jsx(Button$1, {
+        size: "sm",
+        variant: "outlined",
+        onClick: function onClick() {
+          return _onImport();
+        },
+        children: "Select Folder"
+      }, "openButtonform")
+    })
+  });
   return show;
 }
 
@@ -23417,8 +23434,6 @@ var loader = {
 
 var le={wrapper:{display:"flex",position:"relative",textAlign:"initial"},fullWidth:{width:"100%"},hide:{display:"none"}},v=le;var ae={container:{display:"flex",height:"100%",width:"100%",justifyContent:"center",alignItems:"center"}},Y=ae;function Me({children:e}){return React__default.createElement("div",{style:Y.container},e)}var Z=Me;var $=Z;function Ee({width:e,height:r,isEditorReady:n,loading:t,_ref:a,className:m,wrapperProps:E}){return React__default.createElement("section",{style:{...v.wrapper,width:e,height:r},...E},!n&&React__default.createElement($,null,t),React__default.createElement("div",{ref:a,style:{...v.fullWidth,...!n&&v.hide},className:m}))}var ee=Ee;var H=memo(ee);function Ce(e){useEffect(e,[]);}var k=Ce;function he(e,r,n=!0){let t=useRef(!0);useEffect(t.current||!n?()=>{t.current=!1;}:e,r);}var l=he;function D(){}function h(e,r,n,t){return De(e,t)||be(e,r,n,t)}function De(e,r){return e.editor.getModel(te(e,r))}function be(e,r,n,t){return e.editor.createModel(r,n,t?te(e,t):void 0)}function te(e,r){return e.Uri.parse(r)}function Oe({original:e,modified:r,language:n,originalLanguage:t,modifiedLanguage:a,originalModelPath:m,modifiedModelPath:E,keepCurrentOriginalModel:g=!1,keepCurrentModifiedModel:N=!1,theme:x="light",loading:P="Loading...",options:y={},height:V="100%",width:z="100%",className:F,wrapperProps:j={},beforeMount:A=D,onMount:q=D}){let[M,O]=useState(!1),[T,s]=useState(!0),u=useRef(null),c=useRef(null),w=useRef(null),d=useRef(q),o=useRef(A),b=useRef(!1);k(()=>{let i=loader.init();return i.then(f=>(c.current=f)&&s(!1)).catch(f=>f?.type!=="cancelation"&&console.error("Monaco initialization: error:",f)),()=>u.current?I():i.cancel()}),l(()=>{if(u.current&&c.current){let i=u.current.getOriginalEditor(),f=h(c.current,e||"",t||n||"text",m||"");f!==i.getModel()&&i.setModel(f);}},[m],M),l(()=>{if(u.current&&c.current){let i=u.current.getModifiedEditor(),f=h(c.current,r||"",a||n||"text",E||"");f!==i.getModel()&&i.setModel(f);}},[E],M),l(()=>{let i=u.current.getModifiedEditor();i.getOption(c.current.editor.EditorOption.readOnly)?i.setValue(r||""):r!==i.getValue()&&(i.executeEdits("",[{range:i.getModel().getFullModelRange(),text:r||"",forceMoveMarkers:!0}]),i.pushUndoStop());},[r],M),l(()=>{u.current?.getModel()?.original.setValue(e||"");},[e],M),l(()=>{let{original:i,modified:f}=u.current.getModel();c.current.editor.setModelLanguage(i,t||n||"text"),c.current.editor.setModelLanguage(f,a||n||"text");},[n,t,a],M),l(()=>{c.current?.editor.setTheme(x);},[x],M),l(()=>{u.current?.updateOptions(y);},[y],M);let L=useCallback(()=>{if(!c.current)return;o.current(c.current);let i=h(c.current,e||"",t||n||"text",m||""),f=h(c.current,r||"",a||n||"text",E||"");u.current?.setModel({original:i,modified:f});},[n,r,a,e,t,m,E]),U=useCallback(()=>{!b.current&&w.current&&(u.current=c.current.editor.createDiffEditor(w.current,{automaticLayout:!0,...y}),L(),c.current?.editor.setTheme(x),O(!0),b.current=!0);},[y,x,L]);useEffect(()=>{M&&d.current(u.current,c.current);},[M]),useEffect(()=>{!T&&!M&&U();},[T,M,U]);function I(){let i=u.current?.getModel();g||i?.original?.dispose(),N||i?.modified?.dispose(),u.current?.dispose();}return React__default.createElement(H,{width:z,height:V,isEditorReady:M,loading:P,_ref:w,className:F,wrapperProps:j})}var ie=Oe;memo(ie);function He(e){let r=useRef();return useEffect(()=>{r.current=e;},[e]),r.current}var se=He;var _=new Map;function Ve({defaultValue:e,defaultLanguage:r,defaultPath:n,value:t,language:a,path:m,theme:E="light",line:g,loading:N="Loading...",options:x={},overrideServices:P={},saveViewState:y=!0,keepCurrentModel:V=!1,width:z="100%",height:F="100%",className:j,wrapperProps:A={},beforeMount:q=D,onMount:M=D,onChange:O,onValidate:T=D}){let[s,u]=useState(!1),[c,w]=useState(!0),d=useRef(null),o=useRef(null),b=useRef(null),L=useRef(M),U=useRef(q),I=useRef(),i=useRef(t),f=se(m),Q=useRef(!1),B=useRef(!1);k(()=>{let p=loader.init();return p.then(R=>(d.current=R)&&w(!1)).catch(R=>R?.type!=="cancelation"&&console.error("Monaco initialization: error:",R)),()=>o.current?pe():p.cancel()}),l(()=>{let p=h(d.current,e||t||"",r||a||"",m||n||"");p!==o.current?.getModel()&&(y&&_.set(f,o.current?.saveViewState()),o.current?.setModel(p),y&&o.current?.restoreViewState(_.get(m)));},[m],s),l(()=>{o.current?.updateOptions(x);},[x],s),l(()=>{!o.current||t===void 0||(o.current.getOption(d.current.editor.EditorOption.readOnly)?o.current.setValue(t):t!==o.current.getValue()&&(B.current=!0,o.current.executeEdits("",[{range:o.current.getModel().getFullModelRange(),text:t,forceMoveMarkers:!0}]),o.current.pushUndoStop(),B.current=!1));},[t],s),l(()=>{let p=o.current?.getModel();p&&a&&d.current?.editor.setModelLanguage(p,a);},[a],s),l(()=>{g!==void 0&&o.current?.revealLine(g);},[g],s),l(()=>{d.current?.editor.setTheme(E);},[E],s);let X=useCallback(()=>{if(!(!b.current||!d.current)&&!Q.current){U.current(d.current);let p=m||n,R=h(d.current,t||e||"",r||a||"",p||"");o.current=d.current?.editor.create(b.current,{model:R,automaticLayout:!0,...x},P),y&&o.current.restoreViewState(_.get(p)),d.current.editor.setTheme(E),g!==void 0&&o.current.revealLine(g),u(!0),Q.current=!0;}},[e,r,n,t,a,m,x,P,y,E,g]);useEffect(()=>{s&&L.current(o.current,d.current);},[s]),useEffect(()=>{!c&&!s&&X();},[c,s,X]),i.current=t,useEffect(()=>{s&&O&&(I.current?.dispose(),I.current=o.current?.onDidChangeModelContent(p=>{B.current||O(o.current.getValue(),p);}));},[s,O]),useEffect(()=>{if(s){let p=d.current.editor.onDidChangeMarkers(R=>{let G=o.current.getModel()?.uri;if(G&&R.find(J=>J.path===G.path)){let J=d.current.editor.getModelMarkers({resource:G});T?.(J);}});return ()=>{p?.dispose();}}return ()=>{}},[s,T]);function pe(){I.current?.dispose(),V?y&&_.set(m,o.current.saveViewState()):o.current.getModel()?.dispose(),o.current.dispose();}return React__default.createElement(H,{width:z,height:F,isEditorReady:s,loading:N,_ref:b,className:j,wrapperProps:A})}var fe=Ve;var de=memo(fe);var Ft=de;
 
-//import useSize from '@react-hook/size';
-
 function VScode(props) {
   var value = props.value,
     name = props.name,
@@ -23432,7 +23447,7 @@ function VScode(props) {
   var _setCode = function _setCode(v) {
     return onChange(v);
   };
-  var editor = /*#__PURE__*/React.createElement(Ft, {
+  var editor = /*#__PURE__*/jsx(Ft, {
     height: "inherit",
     width: "Inherit",
     value: value,
@@ -23450,11 +23465,12 @@ function VScode(props) {
     borderWidth: '1px',
     borderRadius: '8px'
   }, sx);
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/jsx("div", {
     name: name,
     style: isx,
-    ref: divref
-  }, editor);
+    ref: divref,
+    children: editor
+  });
 }
 function editorOptions() {
   return {
@@ -23578,7 +23594,7 @@ const ListSubheaderRoot = styled('li', {
   zIndex: 1,
   backgroundColor: (theme.vars || theme).palette.background.paper
 }));
-const ListSubheader = /*#__PURE__*/React$1.forwardRef(function ListSubheader(inProps, ref) {
+const ListSubheader = /*#__PURE__*/React.forwardRef(function ListSubheader(inProps, ref) {
   const props = useDefaultProps({
     props: inProps,
     name: 'MuiListSubheader'
@@ -23640,14 +23656,14 @@ function Listbox(props) {
       ivariant = variant == null ? 'solid' : variant;
       selected = true;
     }
-    return /*#__PURE__*/React__default.createElement(ListItemButton, {
-      key: m,
+    return /*#__PURE__*/jsx(ListItemButton, {
       selected: selected,
       color: icolor,
       variant: ivariant,
       onClick: function onClick(e) {
         return _handleChange(m, i);
-      }
+      },
+      children: m
     }, m);
   });
   var isx = {
@@ -23665,12 +23681,18 @@ function Listbox(props) {
   }, labelProp) : {
     level: 'h4'
   };
-  var show = /*#__PURE__*/React__default.createElement(Sheet, {
+  var show = /*#__PURE__*/jsx(Sheet, {
     variant: "outlined",
-    sx: isx
-  }, /*#__PURE__*/React__default.createElement(ListItem, {
-    nested: true
-  }, /*#__PURE__*/React__default.createElement(ListSubheader, lprop, title), /*#__PURE__*/React__default.createElement(List, null, newMenu)));
+    sx: isx,
+    children: /*#__PURE__*/jsxs(ListItem, {
+      nested: true,
+      children: [/*#__PURE__*/jsx(ListSubheader, _objectSpread2$2(_objectSpread2$2({}, lprop), {}, {
+        children: title
+      })), /*#__PURE__*/jsx(List, {
+        children: newMenu
+      })]
+    })
+  });
   return show;
 }
 

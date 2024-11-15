@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react/jsx-runtime'), require('react'), require('@sassoftware/restaflib'), require('react-dom'), require('@sassoftware/restafedit')) :
   typeof define === 'function' && define.amd ? define(['exports', 'react/jsx-runtime', 'react', '@sassoftware/restaflib', 'react-dom', '@sassoftware/restafedit'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.smartControls = {}, global.require$$2$1, global.React, global.restaflib, global.ReactDOM, global.restafedit));
-})(this, (function (exports, require$$2$1, React$1, restaflib, ReactDOM, restafedit) { 'use strict';
+})(this, (function (exports, require$$2$1, React, restaflib, ReactDOM, restafedit) { 'use strict';
 
   function _interopNamespaceDefault(e) {
     var n = Object.create(null);
@@ -21,7 +21,7 @@
     return Object.freeze(n);
   }
 
-  var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React$1);
+  var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
   var ReactDOM__namespace = /*#__PURE__*/_interopNamespaceDefault(ReactDOM);
 
   function _arrayLikeToArray$1(r, a) {
@@ -64,15 +64,6 @@
       configurable: !0,
       writable: !0
     }) : e[r] = t, e;
-  }
-  function _extends$2() {
-    return _extends$2 = Object.assign ? Object.assign.bind() : function (n) {
-      for (var e = 1; e < arguments.length; e++) {
-        var t = arguments[e];
-        for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
-      }
-      return n;
-    }, _extends$2.apply(null, arguments);
   }
   function _iterableToArrayLimit$1(r, l) {
     var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
@@ -3970,13 +3961,13 @@
   )
   /*: React.AbstractComponent<Props> */
   {
-    return /*#__PURE__*/React$1.forwardRef(function (props
+    return /*#__PURE__*/React.forwardRef(function (props
     /*: Props */
     , ref
     /*: Ref */
     ) {
       // the cache will never be null in the browser
-      var cache = React$1.useContext(EmotionCacheContext);
+      var cache = React.useContext(EmotionCacheContext);
       return func(props, cache, ref);
     });
   };
@@ -3992,7 +3983,7 @@
       return function (props
       /*: Props */
       ) {
-        var cache = React$1.useContext(EmotionCacheContext);
+        var cache = React.useContext(EmotionCacheContext);
 
         if (cache === null) {
           // yes, we're potentially creating this on every render
@@ -7686,7 +7677,7 @@
       sx = props.sx;
       props._userProps;
       var eProps = _objectWithoutProperties$1(props, _excluded$J);
-    var _useState = React$1.useState(value),
+    var _useState = React.useState(value),
       _useState2 = _slicedToArray$1(_useState, 2),
       val = _useState2[0],
       setVal = _useState2[1];
@@ -7715,10 +7706,10 @@
     if (ePropsL['aria-label'] == null) {
       ePropsL['aria-label'] = name;
     }
-    return /*#__PURE__*/React$1.createElement(Slider$1, _extends$2({
+    return /*#__PURE__*/require$$2$1.jsx(Slider$1, _objectSpread2$2(_objectSpread2$2({
       sx: istyle,
       value: val
-    }, ePropsL, {
+    }, ePropsL), {}, {
       onChange: function onChange(event, value) {
         return _onChange();
       },
@@ -19256,7 +19247,7 @@
       onChange = props.onChange;
       props._userProps;
       var eProps = _objectWithoutProperties$1(props, _excluded$g);
-    var _useState = React$1.useState(function () {
+    var _useState = React.useState(function () {
         return props.value == null ? ' ' : props.value;
       }),
       _useState2 = _slicedToArray$1(_useState, 2),
@@ -19265,7 +19256,7 @@
     var disabled = eProps.disabled == null ? false : eProps.disabled;
     disabled = designMode === true ? true : disabled;
     var extendedProps = eProps == null ? {} : eProps;
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       setValue(props.value);
     }, [props.value]);
     var handleChange = function handleChange(synthE) {
@@ -19358,12 +19349,14 @@
       }
     }, extendedProps);
     delete ePropsL.disabled;
-    var t = /*#__PURE__*/React$1.createElement(React$1.Fragment, null, /*#__PURE__*/React$1.createElement(FormLabel, {
-      key: name
-    }, label), /*#__PURE__*/React$1.createElement(Input$1, _extends$2({}, ePropsL, {
-      value: value,
-      onChange: _onChange
-    })));
+    var t = /*#__PURE__*/require$$2$1.jsxs(React.Fragment, {
+      children: [/*#__PURE__*/require$$2$1.jsx(FormLabel, {
+        children: label
+      }, name), /*#__PURE__*/require$$2$1.jsx(Input$1, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+        value: value,
+        onChange: _onChange
+      }))]
+    });
     return t;
   }
 
@@ -19376,7 +19369,7 @@
       onChange = props.onChange;
       props._userProps;
       var eProps = _objectWithoutProperties$1(props, _excluded$f);
-    var _useState = React$1.useState(function () {
+    var _useState = React.useState(function () {
         return props.value == null ? ' ' : props.value;
       }),
       _useState2 = _slicedToArray$1(_useState, 2),
@@ -19385,7 +19378,7 @@
     var disabled = eProps.disabled == null ? false : eProps.disabled;
     disabled = designMode === true ? true : disabled;
     var extendedProps = eProps == null ? {} : eProps;
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       setValue(props.value);
     }, [props.value]);
     var handleChange = function handleChange(synthE) {
@@ -19478,12 +19471,14 @@
       }
     }, extendedProps);
     delete ePropsL.disabled;
-    var t = /*#__PURE__*/React$1.createElement(React$1.Fragment, null, /*#__PURE__*/React$1.createElement(FormLabel, {
-      key: name
-    }, label), /*#__PURE__*/React$1.createElement(Input$1, _extends$2({}, ePropsL, {
-      value: value,
-      onChange: _onChange
-    })));
+    var t = /*#__PURE__*/require$$2$1.jsxs(React.Fragment, {
+      children: [/*#__PURE__*/require$$2$1.jsx(FormLabel, {
+        children: label
+      }, name), /*#__PURE__*/require$$2$1.jsx(Input$1, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+        value: value,
+        onChange: _onChange
+      }))]
+    });
     return t;
   }
 
@@ -19503,13 +19498,15 @@
       borderWidth: 1,
       borderRadius: 8
     }, sx);
-    var show = /*#__PURE__*/React$1.createElement(React$1.Fragment, null, /*#__PURE__*/React$1.createElement(Typography$1, _extends$2({
-      sx: isx
-    }, eProps), value));
+    var show = /*#__PURE__*/require$$2$1.jsx(React.Fragment, {
+      children: /*#__PURE__*/require$$2$1.jsx(Typography$1, _objectSpread2$2(_objectSpread2$2({
+        sx: isx
+      }, eProps), {}, {
+        children: value
+      }))
+    });
     return show;
   }
-
-  //import Border from './Border';
 
   function VaSDK(props) {
     var value = props.value,
@@ -19517,11 +19514,11 @@
       auth = props.auth,
       _userProps = props._userProps,
       style = props.style;
-    var _useState = React$1.useState(null),
+    var _useState = React.useState(null),
       _useState2 = _slicedToArray$1(_useState, 2),
       reportUri = _useState2[0],
       setReportUri = _useState2[1];
-    var _useState3 = React$1.useState(null),
+    var _useState3 = React.useState(null),
       _useState4 = _slicedToArray$1(_useState3, 2);
       _useState4[0];
       var setErrMsg = _useState4[1];
@@ -19537,7 +19534,7 @@
       borderWidth: '1px'
     };
     sx = _objectSpread2$2(_objectSpread2$2({}, sx), style);
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       debugger;
       if (_userProps != null && _userProps.viyaEnv != null) {
         _userProps.viyaEnv.store.addServices('reports').then(function (r) {
@@ -19555,35 +19552,41 @@
     debugger;
     if (_userProps == null || _userProps.viyaEnv == null) {
       debugger;
-      show = /*#__PURE__*/React$1.createElement("div", {
-        style: divStyle
-      }, /*#__PURE__*/React$1.createElement("p", null, "No connection to Viya"));
+      show = /*#__PURE__*/require$$2$1.jsx("div", {
+        style: divStyle,
+        children: /*#__PURE__*/require$$2$1.jsx("p", {
+          children: "No connection to Viya"
+        })
+      });
     } else if (reportUri === null) {
       debugger;
-      show = /*#__PURE__*/React$1.createElement("div", {
-        style: divStyle
-      }, " ", /*#__PURE__*/React$1.createElement("p", null, " Report ", reportName, " was not found"));
+      show = /*#__PURE__*/require$$2$1.jsxs("div", {
+        style: divStyle,
+        children: [" ", /*#__PURE__*/require$$2$1.jsxs("p", {
+          children: [" Report ", reportName, " was not found"]
+        })]
+      });
     } else {
       var urlt = url == null || url.trim().length === 0 ? _userProps.viyaEnv.logonPayload.host : url;
-      show = /*#__PURE__*/React$1.createElement("div", {
-        style: divStyle
-      }, /*#__PURE__*/React$1.createElement("sas-report", {
-        key: reportUri,
-        hideNavigation: "auto",
-        url: urlt,
-        reportUri: reportUri,
-        authenticationType: auth == null ? 'credential' : auth,
-        style: sx
-      }));
+      show = /*#__PURE__*/require$$2$1.jsx("div", {
+        style: divStyle,
+        children: /*#__PURE__*/require$$2$1.jsx("sas-report", {
+          hideNavigation: "auto",
+          url: urlt,
+          reportUri: reportUri,
+          authenticationType: auth == null ? 'credential' : auth,
+          style: sx
+        }, reportUri)
+      });
     }
     var shkey = reportName + 'sheet';
-    return /*#__PURE__*/React$1.createElement(Sheet, {
-      key: shkey,
+    return /*#__PURE__*/require$$2$1.jsx(Sheet, {
       style: {
         height: 'inherit',
         width: 'inherit'
-      }
-    }, show);
+      },
+      children: show
+    }, shkey);
   }
 
   function HtmlText(props) {
@@ -19609,14 +19612,13 @@
     if (refresh != null) {
       shkey = shkey + Date();
     }
-    return /*#__PURE__*/React$1.createElement(Sheet, {
-      key: shkey,
-      style: isx
-    }, /*#__PURE__*/React$1.createElement("div", {
-      key: name,
+    return /*#__PURE__*/require$$2$1.jsx(Sheet, {
       style: isx,
-      dangerouslySetInnerHTML: htmlContent
-    }));
+      children: /*#__PURE__*/require$$2$1.jsx("div", {
+        style: isx,
+        dangerouslySetInnerHTML: htmlContent
+      }, name)
+    }, shkey);
   }
   //  <div style={sx} dangerouslySetInnerHTML={html}></div>
 
@@ -19625,11 +19627,11 @@
       name = props.name,
       value = props.value,
       refresh = props.refresh;
-    var _useState = React$1.useState(''),
+    var _useState = React.useState(''),
       _useState2 = _slicedToArray$1(_useState, 2),
       htmlContent = _useState2[0],
       setHtmlContent = _useState2[1];
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       if (value == null || value.trim().length === 0) {
         setHtmlContent('<h2> No link specified </h2>');
       } else {
@@ -19644,7 +19646,7 @@
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name, value]);
-    return /*#__PURE__*/React$1.createElement(HtmlText, {
+    return /*#__PURE__*/require$$2$1.jsx(HtmlText, {
       sx: sx,
       name: name,
       refresh: refresh,
@@ -19773,11 +19775,15 @@
         return true;
       } else return false;
     };
-    var show = /*#__PURE__*/React$1.createElement(FormControl, null, label != null ? /*#__PURE__*/React$1.createElement(FormLabel, null, label) : null, /*#__PURE__*/React$1.createElement(Autocomplete, _extends$2({}, ePropsL, {
-      options: options != null ? options : [],
-      isOptionEqualToValue: check,
-      onChange: _handleChange
-    })));
+    var show = /*#__PURE__*/require$$2$1.jsxs(FormControl, {
+      children: [label != null ? /*#__PURE__*/require$$2$1.jsx(FormLabel, {
+        children: label
+      }) : null, /*#__PURE__*/require$$2$1.jsx(Autocomplete, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+        options: options != null ? options : [],
+        isOptionEqualToValue: check,
+        onChange: _handleChange
+      }))]
+    });
     return show;
   }
   // isOptionEqualToValue={(option, value) => (value.trim().length === 0 || option === value) ? true : false}
@@ -19793,15 +19799,15 @@
       style = props.style,
       designMode = props.designMode,
       _userProps = props._userProps;
-    var _useState = React$1.useState([]),
+    var _useState = React.useState([]),
       _useState2 = _slicedToArray$1(_useState, 2),
       menuList = _useState2[0],
       setMenuList = _useState2[1];
-    var _useState3 = React$1.useState(''),
+    var _useState3 = React.useState(''),
       _useState4 = _slicedToArray$1(_useState3, 2),
       sel = _useState4[0],
       setSel = _useState4[1];
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       if (_userProps != null && _userProps.viyaEnv != null) {
         getItemsList(_userProps.viyaEnv, service.trim(), count, filter).then(function (r) {
           setMenuList(r);
@@ -19821,7 +19827,7 @@
       setSel(val);
       onChange(val);
     };
-    return /*#__PURE__*/React$1.createElement(BaseSelector, {
+    return /*#__PURE__*/require$$2$1.jsx(BaseSelector, {
       name: name,
       label: label,
       value: sel,
@@ -19869,10 +19875,14 @@
     };
 
     // isOptionEqualToValue={check}
-    var show = /*#__PURE__*/React$1.createElement(FormControl, null, label !== null ? /*#__PURE__*/React$1.createElement(FormLabel, null, label) : null, /*#__PURE__*/React$1.createElement(Autocomplete, _extends$2({}, ePropsL, {
-      options: items != null ? items : [],
-      onChange: _handleChange
-    })));
+    var show = /*#__PURE__*/require$$2$1.jsxs(FormControl, {
+      children: [label !== null ? /*#__PURE__*/require$$2$1.jsx(FormLabel, {
+        children: label
+      }) : null, /*#__PURE__*/require$$2$1.jsx(Autocomplete, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+        options: items != null ? items : [],
+        onChange: _handleChange
+      }))]
+    });
     return show;
   }
   // isOptionEqualToValue={(option, value) => (value.trim().length === 0 || option === value) ? true : false}
@@ -19881,7 +19891,7 @@
   function Dropdown(props) {
     props._userProps;
       var eProps = _objectWithoutProperties$1(props, _excluded$d);
-    return props.multiple === true ? /*#__PURE__*/React$1.createElement(BaseSelectorMultiple, eProps) : /*#__PURE__*/React$1.createElement(BaseSelector, eProps);
+    return props.multiple === true ? /*#__PURE__*/require$$2$1.jsx(BaseSelectorMultiple, _objectSpread2$2({}, eProps)) : /*#__PURE__*/require$$2$1.jsx(BaseSelector, _objectSpread2$2({}, eProps));
   }
 
   var THEME_ID = '$$material';
@@ -21230,10 +21240,9 @@
       zindex: 1,
       boxShadow: 2
     }, sx);
-    return /*#__PURE__*/React$1.createElement(Box, {
-      key: "paper",
+    return /*#__PURE__*/require$$2$1.jsx(Box, {
       sx: isx
-    });
+    }, "paper");
   }
 
   var _excluded$8 = ["column", "value", "label", "lib", "table", "where", "style", "onChange", "designMode", "_userProps"];
@@ -21249,11 +21258,11 @@
       designMode = props.designMode,
       _userProps = props._userProps,
       eProps = _objectWithoutProperties$1(props, _excluded$8);
-    var _useState = React$1.useState([]),
+    var _useState = React.useState([]),
       _useState2 = _slicedToArray$1(_useState, 2),
       list = _useState2[0],
       setList = _useState2[1];
-    var _useState3 = React$1.useState(value),
+    var _useState3 = React.useState(value),
       _useState4 = _slicedToArray$1(_useState3, 2),
       sel = _useState4[0],
       setSel = _useState4[1];
@@ -21261,7 +21270,7 @@
       setSel(selx);
       onChange(selx);
     };
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       if (_userProps == null || _userProps.viyaEnv == null) {
         setList([]);
       } else {
@@ -21298,7 +21307,7 @@
       style: style,
       eProps: eProps
     };
-    return /*#__PURE__*/React$1.createElement(BaseSelector, pr);
+    return /*#__PURE__*/require$$2$1.jsx(BaseSelector, _objectSpread2$2({}, pr));
   }
 
   var _excluded$7 = ["value", "sx", "label", "designMode", "onChange", "_userProps"];
@@ -21329,11 +21338,12 @@
     }, sx);
     debugger;
     console.log(Button$1);
-    return /*#__PURE__*/React$1.createElement(Button$1, _extends$2({
+    return /*#__PURE__*/require$$2$1.jsx(Button$1, _objectSpread2$2(_objectSpread2$2({
       sx: isx
-    }, ePropsL, {
-      onClick: _handleClick
-    }), label);
+    }, ePropsL), {}, {
+      onClick: _handleClick,
+      children: label
+    }));
   }
 
   var _excluded$6 = ["label", "value", "onChange", "sx", "_userProps"];
@@ -21355,10 +21365,10 @@
       label: label,
       variant: "outlined"
     }, eProps);
-    var V = /*#__PURE__*/React$1.createElement(Checkbox$1, _extends$2({
+    var V = /*#__PURE__*/require$$2$1.jsx(Checkbox$1, _objectSpread2$2(_objectSpread2$2({
       sx: isx,
       label: label
-    }, ePropsL, {
+    }, ePropsL), {}, {
       checked: value,
       onChange: _onChange
     }));
@@ -21376,20 +21386,20 @@
       eProps = props.eProps,
       _userProps = props._userProps,
       onChange = props.onChange;
-    var _useState = React$1.useState([]),
+    var _useState = React.useState([]),
       _useState2 = _slicedToArray$1(_useState, 2),
       tableList = _useState2[0],
       setTableList = _useState2[1];
-    var _useState3 = React$1.useState(value),
+    var _useState3 = React.useState(value),
       _useState4 = _slicedToArray$1(_useState3, 2),
       sel = _useState4[0],
       setSel = _useState4[1];
-    var lastlib = React$1.useRef(null);
+    var lastlib = React.useRef(null);
     var _handleChange = function _handleChange(selx) {
       setSel(selx);
       onChange(selx);
     };
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       var _setupList = /*#__PURE__*/function () {
         var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(lib) {
           var tabList;
@@ -21434,7 +21444,7 @@
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name, lib, value, refresh, _userProps]);
-    return /*#__PURE__*/React$1.createElement(BaseSelector, {
+    return /*#__PURE__*/require$$2$1.jsx(BaseSelector, {
       name: name,
       value: sel,
       items: tableList,
@@ -21455,11 +21465,11 @@
       props.eProps;
       var designMode = props.designMode,
       _userProps = props._userProps;
-    var _useState = React$1.useState([]),
+    var _useState = React.useState([]),
       _useState2 = _slicedToArray$1(_useState, 2),
       liblist = _useState2[0],
       setLiblist = _useState2[1];
-    var _useState3 = React$1.useState(value),
+    var _useState3 = React.useState(value),
       _useState4 = _slicedToArray$1(_useState3, 2),
       sel = _useState4[0],
       setSel = _useState4[1];
@@ -21467,7 +21477,7 @@
       setSel(selx);
       onChange(selx);
     };
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       if (_userProps != null && _userProps.viyaEnv != null) {
         var _userProps$viyaEnv = _userProps.viyaEnv,
           source = _userProps$viyaEnv.source,
@@ -21495,7 +21505,7 @@
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name]);
-    return /*#__PURE__*/React.createElement(BaseSelector, {
+    return /*#__PURE__*/require$$2$1.jsx(BaseSelector, {
       name: name,
       value: sel,
       items: liblist,
@@ -21645,8 +21655,6 @@
     return _computeTableColumns.apply(this, arguments);
   }
 
-  //import {getTableColumns} from '@sassoftware/restafedit'; 
-
   function SelectColumns(props) {
     var name = props.name,
       value = props.value,
@@ -21659,12 +21667,12 @@
       onChange = props.onChange,
       designMode = props.designMode,
       _userProps = props._userProps;
-    var _useState = React$1.useState([]),
+    var _useState = React.useState([]),
       _useState2 = _slicedToArray$1(_useState, 2),
       list = _useState2[0],
       setList = _useState2[1];
     var sep = separator == null ? ' ' : separator;
-    var _useState3 = React$1.useState(function () {
+    var _useState3 = React.useState(function () {
         if (value == null) {
           return [];
         } else if (typeof value === 'string') {
@@ -21680,7 +21688,7 @@
       setSel(selx);
       onChange(asArray === true ? selx : selx.join(sep));
     };
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       if (_userProps == null || _userProps.viyaEnv == null) {
         setList([]);
         setSel([]);
@@ -21699,7 +21707,7 @@
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name, lib, table]);
-    return /*#__PURE__*/React$1.createElement(BaseSelectorMultiple, {
+    return /*#__PURE__*/require$$2$1.jsx(BaseSelectorMultiple, {
       name: name,
       value: sel,
       items: list,
@@ -21710,9 +21718,8 @@
     });
   }
 
-  //TBD: need to skip this jump since this is just a simple wrapper
   function SelectReport(props) {
-    return /*#__PURE__*/React.createElement(SASItemsDropDown, _extends$2({}, props, {
+    return /*#__PURE__*/require$$2$1.jsx(SASItemsDropDown, _objectSpread2$2(_objectSpread2$2({}, props), {}, {
       service: "reports"
     }));
   }
@@ -21770,7 +21777,6 @@
     return _getFolderUri.apply(this, arguments);
   }
 
-  //TBD: need to skip this jump since this is just a simple wrapper
   function SelectFiles(props) {
     var name = props.name,
       value = props.value,
@@ -21782,11 +21788,11 @@
       onChange = props.onChange,
       designMode = props.designMode,
       _userProps = props._userProps;
-    var _useState = React$1.useState([]),
+    var _useState = React.useState([]),
       _useState2 = _slicedToArray$1(_useState, 2),
       list = _useState2[0],
       setList = _useState2[1];
-    var _useState3 = React$1.useState(''),
+    var _useState3 = React.useState(''),
       _useState4 = _slicedToArray$1(_useState3, 2),
       sel = _useState4[0],
       setSel = _useState4[1];
@@ -21796,7 +21802,7 @@
       setSel(selx);
       onChange(selx);
     };
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       var setupCall = /*#__PURE__*/function () {
         var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
           var folderUri, tfilter, r;
@@ -21838,7 +21844,7 @@
         });
       }
     }, [appEnv, value, folder, filter]);
-    return /*#__PURE__*/React$1.createElement(BaseSelector, {
+    return /*#__PURE__*/require$$2$1.jsx(BaseSelector, {
       name: name,
       value: sel,
       items: list,
@@ -21851,11 +21857,9 @@
   }
 
   function SelectFolder(props) {
-    return /*#__PURE__*/React$1.createElement(SASItemsDropDown, _extends$2({
-      key: props.name
-    }, props, {
+    return /*#__PURE__*/require$$2$1.jsx(SASItemsDropDown, _objectSpread2$2(_objectSpread2$2({}, props), {}, {
       service: "folders"
-    }));
+    }), props.name);
   }
 
   function Inputarea(props) {
@@ -21866,7 +21870,7 @@
       onChange = props.onChange,
       minRows = props.minRows,
       maxRows = props.maxRows;
-    var _useState = React$1.useState(function () {
+    var _useState = React.useState(function () {
         return props.value == null ? ' ' : props.value;
       }),
       _useState2 = _slicedToArray$1(_useState, 2),
@@ -21874,7 +21878,7 @@
       setValue = _useState2[1];
     var disabled = props.disabled == null ? false : props.disabled;
     disabled = designMode === true ? true : disabled;
-    React$1.useEffect(function () {
+    React.useEffect(function () {
       setValue(props.value == null ? ' ' : props.value);
     }, [props.value]);
     var handleChange = function handleChange(synthE) {
@@ -21961,13 +21965,17 @@
       }
     };
     delete ePropsL.disabled;
-    var t = /*#__PURE__*/React$1.createElement(Textarea, _extends$2({
-      key: name
-    }, ePropsL, {
+    var t = /*#__PURE__*/require$$2$1.jsx(Textarea, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
       value: value,
       onChange: _onChange
-    }));
-    t = label != null && label.trim().length > 0 ? /*#__PURE__*/React$1.createElement(FormControl, null, /*#__PURE__*/React$1.createElement(FormLabel, null, label), t) : /*#__PURE__*/React$1.createElement("div", null, t);
+    }), name);
+    t = label != null && label.trim().length > 0 ? /*#__PURE__*/require$$2$1.jsxs(FormControl, {
+      children: [/*#__PURE__*/require$$2$1.jsx(FormLabel, {
+        children: label
+      }), t]
+    }) : /*#__PURE__*/require$$2$1.jsx("div", {
+      children: t
+    });
     return t;
   }
 
@@ -21985,7 +21993,9 @@
       sx: sx,
       orientation: "horizontal"
     }, eProps);
-    var show = /*#__PURE__*/React$1.createElement(Divider$1, ePropL, " ", value);
+    var show = /*#__PURE__*/require$$2$1.jsxs(Divider$1, _objectSpread2$2(_objectSpread2$2({}, ePropL), {}, {
+      children: [" ", value]
+    }));
     return show;
   }
 
@@ -22044,16 +22054,15 @@
     if (srcType != null) {
       src = dataUrl(value, srcType);
     }
-    var show = /*#__PURE__*/React$1.createElement("div", {
-      key: refresh,
-      style: isx
-    }, /*#__PURE__*/React$1.createElement("img", {
-      src: src,
-      crossOrigin: "",
-      alt: label,
-      key: refresh + 1,
-      style: sx2
-    }), " ");
+    var show = /*#__PURE__*/require$$2$1.jsxs("div", {
+      style: isx,
+      children: [/*#__PURE__*/require$$2$1.jsx("img", {
+        src: src,
+        crossOrigin: "",
+        alt: label,
+        style: sx2
+      }, refresh + 1), " "]
+    }, refresh);
     return show;
     function svgToDataURL(svgString) {
       return 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString)));
@@ -22288,12 +22297,12 @@
     };
     if (items != null) {
       items.forEach(function (m, i) {
-        menuList.push(/*#__PURE__*/React$1.createElement(StableMenuItem, {
-          key: m,
+        menuList.push(/*#__PURE__*/require$$2$1.jsx(StableMenuItem, {
           sx: sxb,
           onClick: function onClick() {
             return onSelect(m, i);
-          }
+          },
+          children: m
         }, m));
       });
     }
@@ -22304,9 +22313,15 @@
     var ePropsL = _objectSpread2$2({
       placement: 'bottom-start'
     }, eProps);
-    return /*#__PURE__*/React$1.createElement(Dropdown$1, null, /*#__PURE__*/React$1.createElement(MenuButton, _extends$2({
-      sx: isx
-    }, ePropsL), /*#__PURE__*/React$1.createElement(MoreVert, null), label), /*#__PURE__*/React$1.createElement(Menu, ePropsL, menuList));
+    return /*#__PURE__*/require$$2$1.jsxs(Dropdown$1, {
+      children: [/*#__PURE__*/require$$2$1.jsxs(MenuButton, _objectSpread2$2(_objectSpread2$2({
+        sx: isx
+      }, ePropsL), {}, {
+        children: [/*#__PURE__*/require$$2$1.jsx(MoreVert, {}), label]
+      })), /*#__PURE__*/require$$2$1.jsx(Menu, _objectSpread2$2(_objectSpread2$2({}, ePropsL), {}, {
+        children: menuList
+      }))]
+    });
   }
 
   var FirstPage$1 = {};
@@ -22405,10 +22420,6 @@
   var LastPageExports = /*@__PURE__*/ requireLastPage();
   var LastPage = /*@__PURE__*/getDefaultExportFromCjs(LastPageExports);
 
-  /*
-   * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
-   * SPDX-License-Identifier: Apache-2.0
-   */
   function WherePrompt(props) {
     var value = props.value,
       _onChange = props.onChange;
@@ -22432,7 +22443,7 @@
         return _onChange(v);
       }
     };
-    return /*#__PURE__*/React$1.createElement(Input, pr);
+    return /*#__PURE__*/require$$2$1.jsx(Input, _objectSpread2$2({}, pr));
   }
 
   function ScrollMenu(props) {
@@ -22441,19 +22452,19 @@
       where = props.where,
       groups = props.groups;
     var iconList = {
-      first: /*#__PURE__*/React$1.createElement(FirstPage, {
+      first: /*#__PURE__*/require$$2$1.jsx(FirstPage, {
         size: "small"
       }),
-      last: /*#__PURE__*/React$1.createElement(LastPage, {
+      last: /*#__PURE__*/require$$2$1.jsx(LastPage, {
         size: "small"
       }),
-      next: /*#__PURE__*/React$1.createElement(ChevronRight, {
+      next: /*#__PURE__*/require$$2$1.jsx(ChevronRight, {
         size: "small"
       }),
-      prev: /*#__PURE__*/React$1.createElement(ChevronLeft, {
+      prev: /*#__PURE__*/require$$2$1.jsx(ChevronLeft, {
         size: "small"
       }),
-      more: /*#__PURE__*/React$1.createElement(MoreVert, {
+      more: /*#__PURE__*/require$$2$1.jsx(MoreVert, {
         size: "small"
       })
     };
@@ -22493,25 +22504,23 @@
       label: ''
     };
     if (showGroups.includes('dropdown') === true) {
-      menu.push(/*#__PURE__*/React$1.createElement(DropDownMenu, _extends$2({
-        key: "more"
-      }, p, {
+      menu.push(/*#__PURE__*/require$$2$1.jsx(DropDownMenu, _objectSpread2$2(_objectSpread2$2({}, p), {}, {
         onChange: _dropDown
-      })));
+      }), "more"));
     }
     if (showGroups.includes('scroll') === true) {
       var _loop = function _loop(_m) {
         var c = menus[_m];
-        var t = /*#__PURE__*/React$1.createElement(IconButton, {
+        var t = /*#__PURE__*/require$$2$1.jsx(IconButton, {
           onClick: function onClick() {
             return _select(_m);
           },
-          key: _m,
           disabled: c.disabled,
           sx: sxb,
           size: "small",
-          variant: "outlined"
-        }, iconList[_m]);
+          variant: "outlined",
+          children: iconList[_m]
+        }, _m);
         menu.push(t);
       };
       for (var _m in scroll) {
@@ -22520,17 +22529,17 @@
     }
 
     // let show = <ButtonGroup  key="buttongrid" sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}> {menu} </ButtonGroup>;
-    var show = /*#__PURE__*/React$1.createElement(Box$1, {
+    var show = /*#__PURE__*/require$$2$1.jsxs(Box$1, {
       display: "flex",
       alignItems: "start",
-      justifyContent: "left"
-    }, /*#__PURE__*/React$1.createElement(ButtonGroup, {
-      key: "buttongrid"
-    }, " ", menu, " "), showGroups.includes('where') === true ? /*#__PURE__*/React$1.createElement(WherePrompt, {
-      key: "where",
-      value: where,
-      onChange: _where
-    }) : null);
+      justifyContent: "left",
+      children: [/*#__PURE__*/require$$2$1.jsxs(ButtonGroup, {
+        children: [" ", menu, " "]
+      }, "buttongrid"), showGroups.includes('where') === true ? /*#__PURE__*/require$$2$1.jsx(WherePrompt, {
+        value: where,
+        onChange: _where
+      }, "where") : null]
+    });
     return show;
   }
 
@@ -22586,18 +22595,24 @@
       readOnly: false
     }, eProps);
     var buttons = options.map(function (m, i) {
-      return /*#__PURE__*/React$1.createElement(Radio, {
-        key: i,
+      return /*#__PURE__*/require$$2$1.jsx(Radio, {
         value: m,
         label: m
-      });
+      }, i);
     });
-    var show = /*#__PURE__*/React$1.createElement(React$1.Fragment, null, /*#__PURE__*/React$1.createElement(FormControl, null, /*#__PURE__*/React$1.createElement(FormLabel, null, label), /*#__PURE__*/React$1.createElement(RadioGroup$1, _extends$2({
-      defaultValue: currentSelection
-    }, ePropsL, {
-      sx: isx,
-      onChange: _handleChange
-    }), buttons)));
+    var show = /*#__PURE__*/require$$2$1.jsx(require$$2$1.Fragment, {
+      children: /*#__PURE__*/require$$2$1.jsxs(FormControl, {
+        children: [/*#__PURE__*/require$$2$1.jsx(FormLabel, {
+          children: label
+        }), /*#__PURE__*/require$$2$1.jsx(RadioGroup$1, _objectSpread2$2(_objectSpread2$2({
+          defaultValue: currentSelection
+        }, ePropsL), {}, {
+          sx: isx,
+          onChange: _handleChange,
+          children: buttons
+        }))]
+      })
+    });
     return show;
   }
 
@@ -22692,7 +22707,7 @@
       props.label;
       props.sx;
       var onChange = props.onChange;
-    var _useState = React$1.useState(value == null ? "" : value),
+    var _useState = React.useState(value == null ? "" : value),
       _useState2 = _slicedToArray$1(_useState, 2),
       newFile = _useState2[0],
       setNewFile = _useState2[1];
@@ -22711,23 +22726,24 @@
       });
     };
     var msg = buttonLabel != null ? buttonLabel : mode === 'write' ? 'Select Folder' : 'Select Form';
-    var show = /*#__PURE__*/React.createElement("div", {
-      style: style
-    }, /*#__PURE__*/React.createElement(Input$1, {
-      value: newFile,
-      label: buttonLabel == null ? 'Open' : buttonLabel,
-      onChange: function onChange(e) {
-        return setNewName(e.target.value);
-      },
-      endDecorator: /*#__PURE__*/React.createElement(Button$1, {
-        size: "sm",
-        key: "openButtonform",
-        variant: "outlined",
-        onClick: function onClick() {
-          return _onImport();
-        }
-      }, msg)
-    }));
+    var show = /*#__PURE__*/require$$2$1.jsx("div", {
+      style: style,
+      children: /*#__PURE__*/require$$2$1.jsx(Input$1, {
+        value: newFile,
+        label: buttonLabel == null ? 'Open' : buttonLabel,
+        onChange: function onChange(e) {
+          return setNewName(e.target.value);
+        },
+        endDecorator: /*#__PURE__*/require$$2$1.jsx(Button$1, {
+          size: "sm",
+          variant: "outlined",
+          onClick: function onClick() {
+            return _onImport();
+          },
+          children: msg
+        }, "openButtonform")
+      })
+    });
     return show;
   }
 
@@ -22776,7 +22792,7 @@
       style = props.style,
       dataProps = props.dataProps,
       onChange = props.onChange;
-    var _useState = React$1.useState(value != null && value.name != null ? value.name : ''),
+    var _useState = React.useState(value != null && value.name != null ? value.name : ''),
       _useState2 = _slicedToArray$1(_useState, 2),
       newFolder = _useState2[0],
       setNewFolder = _useState2[1];
@@ -22790,20 +22806,21 @@
         console.log(e);
       });
     };
-    var show = /*#__PURE__*/React.createElement("div", {
-      style: style
-    }, /*#__PURE__*/React.createElement(Input$1, {
-      value: newFolder,
-      label: label,
-      endDecorator: /*#__PURE__*/React.createElement(Button$1, {
-        size: "sm",
-        key: "openButtonform",
-        variant: "outlined",
-        onClick: function onClick() {
-          return _onImport();
-        }
-      }, "Select Folder")
-    }));
+    var show = /*#__PURE__*/require$$2$1.jsx("div", {
+      style: style,
+      children: /*#__PURE__*/require$$2$1.jsx(Input$1, {
+        value: newFolder,
+        label: label,
+        endDecorator: /*#__PURE__*/require$$2$1.jsx(Button$1, {
+          size: "sm",
+          variant: "outlined",
+          onClick: function onClick() {
+            return _onImport();
+          },
+          children: "Select Folder"
+        }, "openButtonform")
+      })
+    });
     return show;
   }
 
@@ -23434,9 +23451,7 @@
     __getMonacoInstance: __getMonacoInstance
   };
 
-  var le={wrapper:{display:"flex",position:"relative",textAlign:"initial"},fullWidth:{width:"100%"},hide:{display:"none"}},v=le;var ae={container:{display:"flex",height:"100%",width:"100%",justifyContent:"center",alignItems:"center"}},Y=ae;function Me({children:e}){return React$1.createElement("div",{style:Y.container},e)}var Z=Me;var $=Z;function Ee({width:e,height:r,isEditorReady:n,loading:t,_ref:a,className:m,wrapperProps:E}){return React$1.createElement("section",{style:{...v.wrapper,width:e,height:r},...E},!n&&React$1.createElement($,null,t),React$1.createElement("div",{ref:a,style:{...v.fullWidth,...!n&&v.hide},className:m}))}var ee=Ee;var H=React$1.memo(ee);function Ce(e){React$1.useEffect(e,[]);}var k=Ce;function he(e,r,n=!0){let t=React$1.useRef(!0);React$1.useEffect(t.current||!n?()=>{t.current=!1;}:e,r);}var l=he;function D(){}function h(e,r,n,t){return De(e,t)||be(e,r,n,t)}function De(e,r){return e.editor.getModel(te(e,r))}function be(e,r,n,t){return e.editor.createModel(r,n,t?te(e,t):void 0)}function te(e,r){return e.Uri.parse(r)}function Oe({original:e,modified:r,language:n,originalLanguage:t,modifiedLanguage:a,originalModelPath:m,modifiedModelPath:E,keepCurrentOriginalModel:g=!1,keepCurrentModifiedModel:N=!1,theme:x="light",loading:P="Loading...",options:y={},height:V="100%",width:z="100%",className:F,wrapperProps:j={},beforeMount:A=D,onMount:q=D}){let[M,O]=React$1.useState(!1),[T,s]=React$1.useState(!0),u=React$1.useRef(null),c=React$1.useRef(null),w=React$1.useRef(null),d=React$1.useRef(q),o=React$1.useRef(A),b=React$1.useRef(!1);k(()=>{let i=loader.init();return i.then(f=>(c.current=f)&&s(!1)).catch(f=>f?.type!=="cancelation"&&console.error("Monaco initialization: error:",f)),()=>u.current?I():i.cancel()}),l(()=>{if(u.current&&c.current){let i=u.current.getOriginalEditor(),f=h(c.current,e||"",t||n||"text",m||"");f!==i.getModel()&&i.setModel(f);}},[m],M),l(()=>{if(u.current&&c.current){let i=u.current.getModifiedEditor(),f=h(c.current,r||"",a||n||"text",E||"");f!==i.getModel()&&i.setModel(f);}},[E],M),l(()=>{let i=u.current.getModifiedEditor();i.getOption(c.current.editor.EditorOption.readOnly)?i.setValue(r||""):r!==i.getValue()&&(i.executeEdits("",[{range:i.getModel().getFullModelRange(),text:r||"",forceMoveMarkers:!0}]),i.pushUndoStop());},[r],M),l(()=>{u.current?.getModel()?.original.setValue(e||"");},[e],M),l(()=>{let{original:i,modified:f}=u.current.getModel();c.current.editor.setModelLanguage(i,t||n||"text"),c.current.editor.setModelLanguage(f,a||n||"text");},[n,t,a],M),l(()=>{c.current?.editor.setTheme(x);},[x],M),l(()=>{u.current?.updateOptions(y);},[y],M);let L=React$1.useCallback(()=>{if(!c.current)return;o.current(c.current);let i=h(c.current,e||"",t||n||"text",m||""),f=h(c.current,r||"",a||n||"text",E||"");u.current?.setModel({original:i,modified:f});},[n,r,a,e,t,m,E]),U=React$1.useCallback(()=>{!b.current&&w.current&&(u.current=c.current.editor.createDiffEditor(w.current,{automaticLayout:!0,...y}),L(),c.current?.editor.setTheme(x),O(!0),b.current=!0);},[y,x,L]);React$1.useEffect(()=>{M&&d.current(u.current,c.current);},[M]),React$1.useEffect(()=>{!T&&!M&&U();},[T,M,U]);function I(){let i=u.current?.getModel();g||i?.original?.dispose(),N||i?.modified?.dispose(),u.current?.dispose();}return React$1.createElement(H,{width:z,height:V,isEditorReady:M,loading:P,_ref:w,className:F,wrapperProps:j})}var ie=Oe;React$1.memo(ie);function He(e){let r=React$1.useRef();return React$1.useEffect(()=>{r.current=e;},[e]),r.current}var se=He;var _=new Map;function Ve({defaultValue:e,defaultLanguage:r,defaultPath:n,value:t,language:a,path:m,theme:E="light",line:g,loading:N="Loading...",options:x={},overrideServices:P={},saveViewState:y=!0,keepCurrentModel:V=!1,width:z="100%",height:F="100%",className:j,wrapperProps:A={},beforeMount:q=D,onMount:M=D,onChange:O,onValidate:T=D}){let[s,u]=React$1.useState(!1),[c,w]=React$1.useState(!0),d=React$1.useRef(null),o=React$1.useRef(null),b=React$1.useRef(null),L=React$1.useRef(M),U=React$1.useRef(q),I=React$1.useRef(),i=React$1.useRef(t),f=se(m),Q=React$1.useRef(!1),B=React$1.useRef(!1);k(()=>{let p=loader.init();return p.then(R=>(d.current=R)&&w(!1)).catch(R=>R?.type!=="cancelation"&&console.error("Monaco initialization: error:",R)),()=>o.current?pe():p.cancel()}),l(()=>{let p=h(d.current,e||t||"",r||a||"",m||n||"");p!==o.current?.getModel()&&(y&&_.set(f,o.current?.saveViewState()),o.current?.setModel(p),y&&o.current?.restoreViewState(_.get(m)));},[m],s),l(()=>{o.current?.updateOptions(x);},[x],s),l(()=>{!o.current||t===void 0||(o.current.getOption(d.current.editor.EditorOption.readOnly)?o.current.setValue(t):t!==o.current.getValue()&&(B.current=!0,o.current.executeEdits("",[{range:o.current.getModel().getFullModelRange(),text:t,forceMoveMarkers:!0}]),o.current.pushUndoStop(),B.current=!1));},[t],s),l(()=>{let p=o.current?.getModel();p&&a&&d.current?.editor.setModelLanguage(p,a);},[a],s),l(()=>{g!==void 0&&o.current?.revealLine(g);},[g],s),l(()=>{d.current?.editor.setTheme(E);},[E],s);let X=React$1.useCallback(()=>{if(!(!b.current||!d.current)&&!Q.current){U.current(d.current);let p=m||n,R=h(d.current,t||e||"",r||a||"",p||"");o.current=d.current?.editor.create(b.current,{model:R,automaticLayout:!0,...x},P),y&&o.current.restoreViewState(_.get(p)),d.current.editor.setTheme(E),g!==void 0&&o.current.revealLine(g),u(!0),Q.current=!0;}},[e,r,n,t,a,m,x,P,y,E,g]);React$1.useEffect(()=>{s&&L.current(o.current,d.current);},[s]),React$1.useEffect(()=>{!c&&!s&&X();},[c,s,X]),i.current=t,React$1.useEffect(()=>{s&&O&&(I.current?.dispose(),I.current=o.current?.onDidChangeModelContent(p=>{B.current||O(o.current.getValue(),p);}));},[s,O]),React$1.useEffect(()=>{if(s){let p=d.current.editor.onDidChangeMarkers(R=>{let G=o.current.getModel()?.uri;if(G&&R.find(J=>J.path===G.path)){let J=d.current.editor.getModelMarkers({resource:G});T?.(J);}});return ()=>{p?.dispose();}}return ()=>{}},[s,T]);function pe(){I.current?.dispose(),V?y&&_.set(m,o.current.saveViewState()):o.current.getModel()?.dispose(),o.current.dispose();}return React$1.createElement(H,{width:z,height:F,isEditorReady:s,loading:N,_ref:b,className:j,wrapperProps:A})}var fe=Ve;var de=React$1.memo(fe);var Ft=de;
-
-  //import useSize from '@react-hook/size';
+  var le={wrapper:{display:"flex",position:"relative",textAlign:"initial"},fullWidth:{width:"100%"},hide:{display:"none"}},v=le;var ae={container:{display:"flex",height:"100%",width:"100%",justifyContent:"center",alignItems:"center"}},Y=ae;function Me({children:e}){return React.createElement("div",{style:Y.container},e)}var Z=Me;var $=Z;function Ee({width:e,height:r,isEditorReady:n,loading:t,_ref:a,className:m,wrapperProps:E}){return React.createElement("section",{style:{...v.wrapper,width:e,height:r},...E},!n&&React.createElement($,null,t),React.createElement("div",{ref:a,style:{...v.fullWidth,...!n&&v.hide},className:m}))}var ee=Ee;var H=React.memo(ee);function Ce(e){React.useEffect(e,[]);}var k=Ce;function he(e,r,n=!0){let t=React.useRef(!0);React.useEffect(t.current||!n?()=>{t.current=!1;}:e,r);}var l=he;function D(){}function h(e,r,n,t){return De(e,t)||be(e,r,n,t)}function De(e,r){return e.editor.getModel(te(e,r))}function be(e,r,n,t){return e.editor.createModel(r,n,t?te(e,t):void 0)}function te(e,r){return e.Uri.parse(r)}function Oe({original:e,modified:r,language:n,originalLanguage:t,modifiedLanguage:a,originalModelPath:m,modifiedModelPath:E,keepCurrentOriginalModel:g=!1,keepCurrentModifiedModel:N=!1,theme:x="light",loading:P="Loading...",options:y={},height:V="100%",width:z="100%",className:F,wrapperProps:j={},beforeMount:A=D,onMount:q=D}){let[M,O]=React.useState(!1),[T,s]=React.useState(!0),u=React.useRef(null),c=React.useRef(null),w=React.useRef(null),d=React.useRef(q),o=React.useRef(A),b=React.useRef(!1);k(()=>{let i=loader.init();return i.then(f=>(c.current=f)&&s(!1)).catch(f=>f?.type!=="cancelation"&&console.error("Monaco initialization: error:",f)),()=>u.current?I():i.cancel()}),l(()=>{if(u.current&&c.current){let i=u.current.getOriginalEditor(),f=h(c.current,e||"",t||n||"text",m||"");f!==i.getModel()&&i.setModel(f);}},[m],M),l(()=>{if(u.current&&c.current){let i=u.current.getModifiedEditor(),f=h(c.current,r||"",a||n||"text",E||"");f!==i.getModel()&&i.setModel(f);}},[E],M),l(()=>{let i=u.current.getModifiedEditor();i.getOption(c.current.editor.EditorOption.readOnly)?i.setValue(r||""):r!==i.getValue()&&(i.executeEdits("",[{range:i.getModel().getFullModelRange(),text:r||"",forceMoveMarkers:!0}]),i.pushUndoStop());},[r],M),l(()=>{u.current?.getModel()?.original.setValue(e||"");},[e],M),l(()=>{let{original:i,modified:f}=u.current.getModel();c.current.editor.setModelLanguage(i,t||n||"text"),c.current.editor.setModelLanguage(f,a||n||"text");},[n,t,a],M),l(()=>{c.current?.editor.setTheme(x);},[x],M),l(()=>{u.current?.updateOptions(y);},[y],M);let L=React.useCallback(()=>{if(!c.current)return;o.current(c.current);let i=h(c.current,e||"",t||n||"text",m||""),f=h(c.current,r||"",a||n||"text",E||"");u.current?.setModel({original:i,modified:f});},[n,r,a,e,t,m,E]),U=React.useCallback(()=>{!b.current&&w.current&&(u.current=c.current.editor.createDiffEditor(w.current,{automaticLayout:!0,...y}),L(),c.current?.editor.setTheme(x),O(!0),b.current=!0);},[y,x,L]);React.useEffect(()=>{M&&d.current(u.current,c.current);},[M]),React.useEffect(()=>{!T&&!M&&U();},[T,M,U]);function I(){let i=u.current?.getModel();g||i?.original?.dispose(),N||i?.modified?.dispose(),u.current?.dispose();}return React.createElement(H,{width:z,height:V,isEditorReady:M,loading:P,_ref:w,className:F,wrapperProps:j})}var ie=Oe;React.memo(ie);function He(e){let r=React.useRef();return React.useEffect(()=>{r.current=e;},[e]),r.current}var se=He;var _=new Map;function Ve({defaultValue:e,defaultLanguage:r,defaultPath:n,value:t,language:a,path:m,theme:E="light",line:g,loading:N="Loading...",options:x={},overrideServices:P={},saveViewState:y=!0,keepCurrentModel:V=!1,width:z="100%",height:F="100%",className:j,wrapperProps:A={},beforeMount:q=D,onMount:M=D,onChange:O,onValidate:T=D}){let[s,u]=React.useState(!1),[c,w]=React.useState(!0),d=React.useRef(null),o=React.useRef(null),b=React.useRef(null),L=React.useRef(M),U=React.useRef(q),I=React.useRef(),i=React.useRef(t),f=se(m),Q=React.useRef(!1),B=React.useRef(!1);k(()=>{let p=loader.init();return p.then(R=>(d.current=R)&&w(!1)).catch(R=>R?.type!=="cancelation"&&console.error("Monaco initialization: error:",R)),()=>o.current?pe():p.cancel()}),l(()=>{let p=h(d.current,e||t||"",r||a||"",m||n||"");p!==o.current?.getModel()&&(y&&_.set(f,o.current?.saveViewState()),o.current?.setModel(p),y&&o.current?.restoreViewState(_.get(m)));},[m],s),l(()=>{o.current?.updateOptions(x);},[x],s),l(()=>{!o.current||t===void 0||(o.current.getOption(d.current.editor.EditorOption.readOnly)?o.current.setValue(t):t!==o.current.getValue()&&(B.current=!0,o.current.executeEdits("",[{range:o.current.getModel().getFullModelRange(),text:t,forceMoveMarkers:!0}]),o.current.pushUndoStop(),B.current=!1));},[t],s),l(()=>{let p=o.current?.getModel();p&&a&&d.current?.editor.setModelLanguage(p,a);},[a],s),l(()=>{g!==void 0&&o.current?.revealLine(g);},[g],s),l(()=>{d.current?.editor.setTheme(E);},[E],s);let X=React.useCallback(()=>{if(!(!b.current||!d.current)&&!Q.current){U.current(d.current);let p=m||n,R=h(d.current,t||e||"",r||a||"",p||"");o.current=d.current?.editor.create(b.current,{model:R,automaticLayout:!0,...x},P),y&&o.current.restoreViewState(_.get(p)),d.current.editor.setTheme(E),g!==void 0&&o.current.revealLine(g),u(!0),Q.current=!0;}},[e,r,n,t,a,m,x,P,y,E,g]);React.useEffect(()=>{s&&L.current(o.current,d.current);},[s]),React.useEffect(()=>{!c&&!s&&X();},[c,s,X]),i.current=t,React.useEffect(()=>{s&&O&&(I.current?.dispose(),I.current=o.current?.onDidChangeModelContent(p=>{B.current||O(o.current.getValue(),p);}));},[s,O]),React.useEffect(()=>{if(s){let p=d.current.editor.onDidChangeMarkers(R=>{let G=o.current.getModel()?.uri;if(G&&R.find(J=>J.path===G.path)){let J=d.current.editor.getModelMarkers({resource:G});T?.(J);}});return ()=>{p?.dispose();}}return ()=>{}},[s,T]);function pe(){I.current?.dispose(),V?y&&_.set(m,o.current.saveViewState()):o.current.getModel()?.dispose(),o.current.dispose();}return React.createElement(H,{width:z,height:F,isEditorReady:s,loading:N,_ref:b,className:j,wrapperProps:A})}var fe=Ve;var de=React.memo(fe);var Ft=de;
 
   function VScode(props) {
     var value = props.value,
@@ -23445,13 +23460,13 @@
       onChange = props.onChange,
       language = props.language;
     // const [code, setCode] = useState(value);
-    var divref = React$1.useRef(null);
+    var divref = React.useRef(null);
     // const [width, height] = useSize(divref);
 
     var _setCode = function _setCode(v) {
       return onChange(v);
     };
-    var editor = /*#__PURE__*/React.createElement(Ft, {
+    var editor = /*#__PURE__*/require$$2$1.jsx(Ft, {
       height: "inherit",
       width: "Inherit",
       value: value,
@@ -23469,11 +23484,12 @@
       borderWidth: '1px',
       borderRadius: '8px'
     }, sx);
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/require$$2$1.jsx("div", {
       name: name,
       style: isx,
-      ref: divref
-    }, editor);
+      ref: divref,
+      children: editor
+    });
   }
   function editorOptions() {
     return {
@@ -23659,14 +23675,14 @@
         ivariant = variant == null ? 'solid' : variant;
         selected = true;
       }
-      return /*#__PURE__*/React$1.createElement(ListItemButton, {
-        key: m,
+      return /*#__PURE__*/require$$2$1.jsx(ListItemButton, {
         selected: selected,
         color: icolor,
         variant: ivariant,
         onClick: function onClick(e) {
           return _handleChange(m, i);
-        }
+        },
+        children: m
       }, m);
     });
     var isx = {
@@ -23684,12 +23700,18 @@
     }, labelProp) : {
       level: 'h4'
     };
-    var show = /*#__PURE__*/React$1.createElement(Sheet, {
+    var show = /*#__PURE__*/require$$2$1.jsx(Sheet, {
       variant: "outlined",
-      sx: isx
-    }, /*#__PURE__*/React$1.createElement(ListItem, {
-      nested: true
-    }, /*#__PURE__*/React$1.createElement(ListSubheader, lprop, title), /*#__PURE__*/React$1.createElement(List, null, newMenu)));
+      sx: isx,
+      children: /*#__PURE__*/require$$2$1.jsxs(ListItem, {
+        nested: true,
+        children: [/*#__PURE__*/require$$2$1.jsx(ListSubheader, _objectSpread2$2(_objectSpread2$2({}, lprop), {}, {
+          children: title
+        })), /*#__PURE__*/require$$2$1.jsx(List, {
+          children: newMenu
+        })]
+      })
+    });
     return show;
   }
 

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import jsx  from 'react/jsx-runtime';
-import React from 'react';
+//import React from 'react';
 import frameControl from "./src/index.js";
 import _visualTemplate from "./_visualTemplate.js";
 debugger;
