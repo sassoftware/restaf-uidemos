@@ -280,7 +280,7 @@ debugger;
     )
   };
 
- export default {controls, basicControls, sasControls};
+ export {controls, basicControls, sasControls};
  
   
 
