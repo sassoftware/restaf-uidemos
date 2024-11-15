@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react/jsx-runtime'), require('react'), require('@sassoftware/restaflib'), require('react-dom'), require('@sassoftware/restafedit')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'react/jsx-runtime', 'react', '@sassoftware/restaflib', 'react-dom', '@sassoftware/restafedit'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.smartControls = {}, global.require$$2$1, global.React, global.restaflib, global.ReactDOM, global.restafedit));
-})(this, (function (exports, require$$2$1, React, restaflib, ReactDOM, restafedit) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('react/jsx-runtime'), require('react'), require('@sassoftware/restaflib'), require('react-dom'), require('@sassoftware/restafedit')) :
+  typeof define === 'function' && define.amd ? define(['react/jsx-runtime', 'react', '@sassoftware/restaflib', 'react-dom', '@sassoftware/restafedit'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.smartControls = factory(global.require$$2$1, global.React, global.restaflib, global.ReactDOM, global.restafedit));
+})(this, (function (require$$2$1, React, restaflib, ReactDOM, restafedit) { 'use strict';
 
   function _interopNamespaceDefault(e) {
     var n = Object.create(null);
@@ -23153,7 +23153,7 @@
     return changes;
   }
 
-  var index$1 = {
+  var index$2 = {
     create: create
   };
 
@@ -23274,7 +23274,7 @@
 
   /** the local state of the module */
 
-  var _state$create = index$1.create({
+  var _state$create = index$2.create({
     config: config$1,
     isInitialized: false,
     resolve: null,
@@ -23936,9 +23936,12 @@
       auth: "credentials"
     }, "b")
   });
+  var index$1 = {
+    controls: controls,
+    basicControls: basicControls,
+    sasControls: sasControls
+  };
 
-  exports.basicControls = basicControls;
-  exports.controls = controls;
-  exports.sasControls = sasControls;
+  return index$1;
 
 }));

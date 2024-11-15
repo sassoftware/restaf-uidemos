@@ -23155,7 +23155,7 @@ function didStateUpdate(state, handler, changes) {
   return changes;
 }
 
-var index$1 = {
+var index$2 = {
   create: create
 };
 
@@ -23276,7 +23276,7 @@ function makeCancelable(promise) {
 
 /** the local state of the module */
 
-var _state$create = index$1.create({
+var _state$create = index$2.create({
   config: config$1,
   isInitialized: false,
   resolve: null,
@@ -23938,7 +23938,10 @@ var controls = _objectSpread2$2(_objectSpread2$2({}, sasControls), {}, {
     auth: "credentials"
   }, "b")
 });
+var index$1 = {
+  controls: controls,
+  basicControls: basicControls,
+  sasControls: sasControls
+};
 
-exports.basicControls = basicControls;
-exports.controls = controls;
-exports.sasControls = sasControls;
+module.exports = index$1;
