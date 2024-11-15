@@ -23706,7 +23706,7 @@ function Listbox(props) {
 // import TableViewer from './TableViewer';
 // eslint-disable-next-line import/no-anonymous-default-export
 var frameControl = {
-  JoyButton: Button,
+  Button: Button,
   Checkbox: Checkbox,
   Dropdown: Dropdown,
   WebContent: WebContent,
