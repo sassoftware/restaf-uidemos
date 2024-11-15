@@ -16808,7 +16808,7 @@ const ButtonRoot = styled$1('button', {
  *
  * - [Button API](https://mui.com/joy-ui/api/button/)
  */
-const Button = /*#__PURE__*/React$1.forwardRef(function Button(inProps, ref) {
+const Button$1 = /*#__PURE__*/React$1.forwardRef(function Button(inProps, ref) {
   var _ref;
   const props = useThemeProps({
     props: inProps,
@@ -16948,7 +16948,7 @@ const Button = /*#__PURE__*/React$1.forwardRef(function Button(inProps, ref) {
 });
 
 // @ts-ignore internal logic for ToggleButtonGroup
-Button.muiName = 'Button';
+Button$1.muiName = 'Button';
 
 function getButtonGroupUtilityClass(slot) {
   return generateUtilityClass$1('MuiButtonGroup', slot);
@@ -21283,7 +21283,7 @@ function DistinctValues(props) {
 }
 
 var _excluded$7 = ["value", "sx", "label", "designMode", "onChange", "_userProps"];
-function JoyButton(props) {
+function Button(props) {
   var value = props.value,
     sx = props.sx,
     label = props.label,
@@ -21309,8 +21309,8 @@ function JoyButton(props) {
     width: 'inherit'
   }, sx);
   debugger;
-  console.log(Button);
-  return /*#__PURE__*/React__default.createElement(Button, _extends$2({
+  console.log(Button$1);
+  return /*#__PURE__*/React__default.createElement(Button$1, _extends$2({
     sx: isx
   }, ePropsL, {
     onClick: _handleClick
@@ -22700,7 +22700,7 @@ function SelectLocalFile(props) {
     onChange: function onChange(e) {
       return setNewName(e.target.value);
     },
-    endDecorator: /*#__PURE__*/React.createElement(Button, {
+    endDecorator: /*#__PURE__*/React.createElement(Button$1, {
       size: "sm",
       key: "openButtonform",
       variant: "outlined",
@@ -22776,7 +22776,7 @@ function SelectLocalFolder(props) {
   }, /*#__PURE__*/React.createElement(Input$1, {
     value: newFolder,
     label: label,
-    endDecorator: /*#__PURE__*/React.createElement(Button, {
+    endDecorator: /*#__PURE__*/React.createElement(Button$1, {
       size: "sm",
       key: "openButtonform",
       variant: "outlined",
@@ -23684,7 +23684,7 @@ function Listbox(props) {
 // import TableViewer from './TableViewer';
 // eslint-disable-next-line import/no-anonymous-default-export
 var frameControl = {
-  JoyButton: JoyButton,
+  JoyButton: Button,
   Checkbox: Checkbox,
   Dropdown: Dropdown,
   WebContent: WebContent,

@@ -3,11 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React from 'react';
-import Button from '@mui/joy/Button';
+import JoyButton from '@mui/joy/Button';
 
-function JoyButton(props) {
+function Button(props) {
   const {value, sx, label, designMode, onChange,_userProps,...eProps} = props;
-  
   const _handleClick = () => {
     onChange(value);
   }
@@ -16,9 +15,9 @@ function JoyButton(props) {
   // using value - to allow for changing the text of the button programmatically
   let isx = {textTransform: 'capitalize',backgroundColor: 'lightblue', height: 'inherit', width: 'inherit', ...sx};
   debugger;
-  console.log(Button);
-  return <Button sx={isx} 
+  console.log(JoyButton);
+  return <JoyButton sx={isx} 
             {...ePropsL}
-            onClick={_handleClick}>{label}</Button>;
+            onClick={_handleClick}>{label}</JoyButton>;
 }
-export default JoyButton;
+export default Button;
