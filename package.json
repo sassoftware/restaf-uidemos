@@ -10,34 +10,22 @@
     "require": "./dist/index.cjs",
     "default": "./dist/index.esm.js"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.esm.js",
-  "browser": "./dist/index.umd.js",
-  "unpkg": "./dist/index.umd.js",
+  "main": "/dist/index.cjs",
+  "module": "/dist/index.esm.js",
+  "browser": "/dist/index.umd.js",
+  "unpkg": "/dist/index.umd.js",
   "files": [
     "./dist",
     "LICENSE"
   ],
   "scripts": {
-    "stats": "webpack --env target=umd p=a --config webpack.config.js",
-    "build:lib": "microbundle --visualize  --name smartControls --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react --globals react/jsx-runtime=jsx",
-    "buildl": "webpack --env target=umd p=n --config webpack.config.js",
-    "buildo": "webpack --env target=umd p=y --config webpack.config.js",
-    "build": "rimraf dist && npm run build:lib && npm run buildl && npm run buildo && npm run localpack",
-    "localpack": "npm pack --pack-destination dev && bash ./dev.sh",
-    "pub": "npm publish smartcontrolsmui.tgz --tag dev --access public"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-react",
-      "@babel/preset-env"
-    ]
+    "src2": "babel src --out-dir src2",
+    "build": "rimraf dist && rollup -c --bundleConfigAsCjs",
+    "pub": "npm publish --tag alpha --access public"
   },
   "dependencies": {
     "@babel/cli": "^7.21.5",
     "@babel/core": "^7.24.5",
-    "@babel/preset-env": "^7.24.5",
-    "@babel/preset-react": "^7.24.1",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@monaco-editor/react": "^4.6.0",
@@ -45,42 +33,50 @@
     "@mui/joy": "^5.0.0-beta.48",
     "@mui/material": "^5.15.16",
     "@react-hook/size": "^2.1.2",
-    "btoa": "^1.2.1"
+    "@sassoftware/restaf": "^5.2.4",
+    "@sassoftware/restafedit": "^3.0.0-alpha.3",
+    "@sassoftware/restaflib": "^5.2.4",
+    "@types/react": "^18.3.12",
+    "btoa": "^1.2.1",
+    "react": "^18.1.3",
+    "react-dom": "^18.1.3"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.19.1",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-replace": "^6.0.1",
+    "@rollup/plugin-strip": "^3.0.4",
+    "@rollup/plugin-terser": "^0.4.4",
     "@svgr/webpack": "^6.5.1",
     "babel-loader": "^9.1.3",
-    "eslint": "^8.28.0",
+    "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.31.11",
     "microbundle": "^0.15.1",
     "prettier": "^2.8.0",
     "prettier-eslint": "^15.0.1",
     "prettier-eslint-cli": "^7.1.0",
-    "react-scripts": "^5.0.1",
     "rimraf": "^5.0.7",
-    "terser-webpack-plugin": "^5.3.10",
-    "webpack": "^5.91.0",
-    "webpack-bundle-analyzer": "^4.10.2",
-    "webpack-cli": "^5.1.4",
-    "webpack-node-externals": "^3.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "rollup": "^4.26.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4"
   },
   "peerDependencies": {
     "@sassoftware/restaf": "^5.2.4",
     "@sassoftware/restafedit": "^3.0.0-alpha.3",
-    "@sassoftware/restaflib": "^5.2.4"
+    "@sassoftware/restaflib": "^5.2.4",
+    "react": "^18.1.3",
+    "react-dom": "^18.1.3"
   },
   "resolutions": {
     "**/@svgr/webpack": "8.0.1",
     "**/fix": "0.0.6",
     "**/json5": "2.2.0",
     "**/nth-check": "^2.0.1",
-    "**/underscore.string": "3.3.6"
-  },
-  "overrides": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "**/underscore.string": "3.3.6",
+    "**/rimraf": "^5.0.7",
+    "**/glob": "^11.0.0"
   }
 }

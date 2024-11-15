@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import React from 'react';
 import Box from '@mui/material/Box';
 function Border (props) {
 const {sx} = props;

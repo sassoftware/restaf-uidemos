@@ -15,7 +15,7 @@ import SASItemsDropDown from './SASItemsDropDown';
 import Dropdown from './Dropdown';
 import Border from './Border';
 import SelectDataValues from './DistinctValues';
-import Button  from './Button';
+import JoyButton  from './JoyButton';
 import Checkbox from './Checkbox';
 import SelectTable from './SelectTable';
 import SelectLibrary from './SelectLibrary';
@@ -41,7 +41,7 @@ import Listbox from './Listbox';
 // import TableViewer from './TableViewer';
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  Button,
+  JoyButton,
   Checkbox,
   Dropdown,
   WebContent,

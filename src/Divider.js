@@ -1,4 +1,4 @@
-// import Reactz from 'react';
+import React from 'react';
 import {Divider as JoyDivider} from '@mui/joy';
 
 function Divider(props) {

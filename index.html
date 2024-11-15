@@ -10,7 +10,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script async src="https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf"></script>
-    <script type="text/javascript" src="./dist/index.dev.js"></script>
+    <script type="text/javascript" src="./dist/index.umd.js"></script>
     <script>
     console.log(smartControls);
     debugger;
@@ -18,25 +18,11 @@
    debugger;
 
     console.log(f);
-    let Button = f['Button'].component
-    let Input = f['Input'].component
-    let InputText = f['InputText'].component
-    let Inputarea = f['Inputarea'].component
-    let Typography = f['Typography'].component
-    let Slider = f['Slider'].component;
-    let Checkbox = f['Checkbox'].component;
-    let Dropdown = f['Dropdown'].component;
-    let DropdownMenu = f['DropdownMenu'].component;
-    //let Listbox = f['Listbox'].component;
-    let RadioGroup = f['RadioGroup'].component;
-    let Border = f['Border'].component;
-    let WebContent = f['WebContent'].component;
-    let VaSDK = f['VaSDK'].component;
-    let SelectLibrary = f['SelectLibrary'].component;
-    let VScode = f['VScode'].component;
+    debugger;
+    let Button = f['JoyButton'].component
     
-    
-   
+    console.log(Button);
+    debugger;
     </script>
     <script type="text/babel">
       function show(){
@@ -52,24 +38,9 @@
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <RadioGroup label="Select one" value="A" items={items} sx={sx} onChange={onEnter}></RadioGroup>
-              <Checkbox label="check me"  value={false} sx={sx} onChange={onEnter}></Checkbox>
+
               <Button  disabled={true} label="click me" onChange={onEnter}></Button>
-              <InputText label="Enter your name" value="xxx" disabled={true} onChange={onEnter}></InputText>
-              <Input label="Enter value "value={10}  onChange={onEnter}></Input>
-              <Typography variant="h1" value="hello world"></Typography>
-              <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
-              <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
-            
-                            <Inputarea label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
-              <WebContent label="check me"  target={"_blank"} value="https://www.sas.com" sx={sx} onChange={onEnter}></WebContent>
-              <br/>
-              <Border  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></Border>
-              <VaSDK  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></VaSDK>
-              <VScode  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}} language="text" value="xxxx"  ></VScode>
-              <SelectLibrary  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></SelectLibrary>
               
-            
               </div>
           );
         };

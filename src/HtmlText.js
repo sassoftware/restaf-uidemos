@@ -2,11 +2,8 @@
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import Reactz from 'react';
-// import sanitize from 'sanitize-html';
+import React from 'react';
 import Sheet from '@mui/joy/Sheet';
-//import parse  from 'html-react-parser';
-
 function HtmlText(props) {
   let {value, name, sx,refresh} = props;
  

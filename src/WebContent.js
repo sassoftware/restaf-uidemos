@@ -2,6 +2,7 @@
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
+import React from 'react';
 import  { useEffect, useState } from 'react';
 import HtmlText from './HtmlText';
 
@@ -10,12 +11,6 @@ function WebContent(props) {
     const [htmlContent, setHtmlContent] = useState('')
   
     useEffect(() => {
-      /*
-      if (htmlContent !== null) {
-        return;
-      }
-        */
-    
       if (value == null || value.trim().length === 0) {
         setHtmlContent('<h2> No link specified </h2>');
 

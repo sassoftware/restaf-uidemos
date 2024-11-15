@@ -2,8 +2,9 @@
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import  { useState, useEffect } from 'react';
-import { Input as JoyInput } from '@mui/joy';
+import React from 'react';
+import  { useState, useEffect, Fragment } from 'react';
+import JoyInput from '@mui/joy/Input';
 import { FormLabel } from '@mui/joy';
 
 function Input(props) {
@@ -119,14 +120,14 @@ function Input(props) {
   };
   delete ePropsL.disabled;
 
-  const t = <>
+  let t = <Fragment>
     <FormLabel key={name}>{label}</FormLabel>
     <JoyInput
       {...ePropsL}
       value={value}
       onChange={_onChange}
     ></JoyInput>
-  </>;
+  </Fragment>;
   return t;
 }
 export default Input;

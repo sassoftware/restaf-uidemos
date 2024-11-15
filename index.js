@@ -2,9 +2,12 @@
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
+import jsx  from 'react/jsx-runtime';
+import React from 'react';
 import frameControl from "./src/index.js";
 import _visualTemplate from "./_visualTemplate.js";
-
+debugger;
+  console.log('jsx', jsx);
   let small = { height: 30, width: 200 };
   let medium = { height: 120, width: 400 };
   let large = { height: 120, width: 400 };
