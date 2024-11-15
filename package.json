@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/smart-controls-mui",
-  "version": "0.30.3",
+  "version": "0.31.0",
   "author": "K. Deva Kumaraswamy",
   "license": "Apache-2.0",
   "description": "Mui Frame Controls for use with @sassoftware/FrameBuilder",
@@ -25,7 +25,6 @@
     "build:umdd": "webpack --env target=umd p=n --config webpack.config.js",
     "build:umdp": "webpack --env target=umd p=y --config webpack.config.js",
     "build:umd": "npm run build:umdd && npm run build:umdp"
-
   },
   "dependencies": {
     "@babel/cli": "^7.21.5",
