@@ -20,11 +20,13 @@
   ],
   "scripts": {
     "src2": "babel src --out-dir src2",
-    "build": "rimraf dist && rollup -c --bundleConfigAsCjs",
+    "build:rollup": "rimraf dist && rollup -c --bundleConfigAsCjs",
     "pub": "npm publish --tag alpha --access public",
     "build:umdd": "webpack --env target=umd p=n --config webpack.config.js",
     "build:umdp": "webpack --env target=umd p=y --config webpack.config.js",
-    "build:umd": "npm run build:umdd && npm run build:umdp"
+    "build:umd": "npm run build:umdd && npm run build:umdp",
+    "build": "npm run build:rollup && npm run build:umd",
+    "stats": "webpack --env target=umd p=a --config webpack.config.js"
   },
   "dependencies": {
     "@babel/cli": "^7.21.5",
