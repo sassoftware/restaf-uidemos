@@ -56,7 +56,7 @@ export default [
       { file: 'dist/index.cjs.js', format: 'cjs' },
       { file: 'dist/index.esm.js', format: 'esm' }
     ],
-    external: ['react', 'react-dom', 'react/jsx-runtime', '@mui/material', '@mui/joy', 'restaf', 'restaflib', 'restafedit'],
+    external: ['react', 'react-dom', 'react/jsx-runtime'],
     plugins: [
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'), // Replaces with "production"
