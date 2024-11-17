@@ -27,7 +27,7 @@
     "build:umd": "npm run build:umdd && npm run build:umdp",
     "build": "npm run build:rollup && npm run build:umd",
     "stats": "webpack --env target=umd p=a --config webpack.config.js",
-    "bump": "npm version patch"
+    "bump": "npm version prerelease"
   },
   "dependencies": {
     "@babel/cli": "^7.21.5",
