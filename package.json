@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/smart-controls-mui",
-  "version": "1.0.0-alpha",
+  "version": "1.0.0",
   "author": "K. Deva Kumaraswamy",
   "license": "Apache-2.0",
   "description": "Mui Frame Controls for use with @sassoftware/FrameBuilder",
