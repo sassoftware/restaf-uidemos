@@ -4,15 +4,16 @@ import { DataGrid } from '@mui/x-data-grid';
 import { setup, scroll } from '@sassoftware/restafedit';
 
 function SmallTable(props) {
-  let { lib, name, _userProps } = props;
+  let { lib, name, test, _userProps } = props;
   let [appEnv, setAppEnv] = useState(null);
   let [columns, setColumns] = useState([]);
+  let [nodata, setNodata] = useState(true);
 
 
   useEffect(() => {
-    let viyaEnv = _userProps.viyaEnv;
+  
     const setup1 = async () => {
-
+      let viyaEnv = _userProps.viyaEnv;
       let tabled = { name: name };
       if (viyaEnv.source === 'cas') {
         tabled.caslib = lib;
@@ -50,26 +51,29 @@ function SmallTable(props) {
       setColumns(cols);
       setAppEnv(r);
     };
-    setup1()
-      .then(r => {
-        console.log('setup done');
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if (lib && name && _userProps) {
+      setup1()
+        .then(r => {
+          console.log('setup done');
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
 
   }, [lib, name, _userProps]);
 
   return (
     <Box sx={{ height: 'inherit', width: 'inherit' }}>
-      <DataGrid
+      {appEnv === null   ? <p>No Data to display </p>
+      : <DataGrid
         rows={appEnv.state.rows}
         columns={columns}
         pageSize={20}
         rowsPerPageOptions={[20]}
         checkboxSelection={false}
         disableSelectionOnClick
-      />
+      />}
     </Box>
   );
 

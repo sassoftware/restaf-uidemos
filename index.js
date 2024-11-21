@@ -227,7 +227,7 @@ debugger;
     ),
     SmallTable: _visualTemplate(
       frameControl.SmallTable,
-      "Small Table",
+      "SmallTable",
       "string",
       " ",
       medium,

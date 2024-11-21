@@ -51,6 +51,7 @@
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
+              <SmallTable  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}} lib={null} name={null} ></SmallTable>
               <RadioGroup label="Select one" value="A" items={items} sx={sx} onChange={onEnter}></RadioGroup>
               <Checkbox label="check me"  value={false} sx={sx} onChange={onEnter}></Checkbox>
               <Button  disabled={true} label="click me" onChange={onEnter}></Button>
