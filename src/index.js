@@ -36,6 +36,7 @@ import SelectLocalFile from './SelectLocalFile';
 import SelectLocalFolder from './SelectLocalFolder';
 import VScode from './VScode';
 import Listbox from './Listbox';
+import SmallTable from './SmallTable';
 //import Markdown from './Markdown';
 
 // import TableViewer from './TableViewer';
@@ -72,5 +73,6 @@ export default {
   RadioGroup,
   SelectLocalFile,
   SelectLocalFolder,
-  VScode
+  VScode,
+  SmallTable,
 }

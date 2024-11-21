@@ -225,6 +225,14 @@ debugger;
       { name: " ", lib: " ",  refresh: false },
       "h"
     ),
+    SimpleTable: _visualTemplate(
+      frameControl.SimpleTable,
+      "Small Table",
+      "string",
+      medium,
+      { name: " ", lib: " ", limit: 200},
+      "b"
+    ),
     SelectColumns: _visualTemplate(
       frameControl.SelectColumns,
       "SelectColumns",
