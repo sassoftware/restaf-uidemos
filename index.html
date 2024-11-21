@@ -48,11 +48,10 @@
           const onEnter = (e) => {
             alert(e);
         }
-        let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'};
+        let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <SmallTable  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}} lib={null} name={null} ></SmallTable>
-              <RadioGroup label="Select one" value="A" items={items} sx={sx} onChange={onEnter}></RadioGroup>
+              <SmallTable   value="A" items={items} sx={sx} onChange={onEnter}></SmallTable>
               <Checkbox label="check me"  value={false} sx={sx} onChange={onEnter}></Checkbox>
               <Button  disabled={true} label="click me" onChange={onEnter}></Button>
               <InputText label="Enter your name" value="xxx" disabled={true} onChange={onEnter}></InputText>
@@ -67,7 +66,7 @@
               <Border  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></Border>
               <VaSDK  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></VaSDK>
               <VScode  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}} language="text" value="xxxx"  ></VScode>
-              <SelectLibrary  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></SelectLibrary>
+              <SelectLibrary  sx={{height: 200, width: 200, borderRadius: 4}}  ></SelectLibrary>
               
             
               </div>

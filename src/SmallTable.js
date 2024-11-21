@@ -4,10 +4,10 @@ import { DataGrid } from '@mui/x-data-grid';
 import { setup, scroll } from '@sassoftware/restafedit';
 
 function SmallTable(props) {
-  let { lib, name, test, _userProps } = props;
+  let { lib, name, sx, _userProps, ...rest } = props;
   let [appEnv, setAppEnv] = useState(null);
   let [columns, setColumns] = useState([]);
-  let [nodata, setNodata] = useState(true);
+
 
 
   useEffect(() => {
@@ -62,17 +62,16 @@ function SmallTable(props) {
     }
 
   }, [lib, name, _userProps]);
-
+  
+  let style = { height: 'inherit', width: 'inherit',  borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black', ...sx};
+  let eProps = {pageSize:20, rowsPerPageOptions:[20], checkboxSelection:false, border: 1, disableSelectionOnClick: true, ...rest};
   return (
-    <Box sx={{ height: 'inherit', width: 'inherit' }}>
+    <Box sx={style}>
       {appEnv === null   ? <p>No Data to display </p>
       : <DataGrid
         rows={appEnv.state.rows}
         columns={columns}
-        pageSize={20}
-        rowsPerPageOptions={[20]}
-        checkboxSelection={false}
-        disableSelectionOnClick
+        {...eProps}
       />}
     </Box>
   );
