@@ -14,8 +14,6 @@ function Button(props) {
 
   // using value - to allow for changing the text of the button programmatically
   let isx = {textTransform: 'capitalize',backgroundColor: 'lightblue', height: 'inherit', width: 'inherit', ...sx};
-  debugger;
-  console.log(JoyButton);
   return <JoyButton sx={isx} 
             {...ePropsL}
             onClick={_handleClick}>{label}</JoyButton>;

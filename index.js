@@ -7,7 +7,7 @@ import jsx  from 'react/jsx-runtime';
 import frameControl from "./src/index.js";
 import _visualTemplate from "./_visualTemplate.js";
 debugger;
-  console.log('jsx', jsx);
+
   let small = { height: 30, width: 200 };
   let medium = { height: 120, width: 400 };
   let large = { height: 120, width: 400 };
@@ -225,10 +225,11 @@ debugger;
       { name: " ", lib: " ",  refresh: false },
       "h"
     ),
-    SimpleTable: _visualTemplate(
-      frameControl.SimpleTable,
+    SmallTable: _visualTemplate(
+      frameControl.SmallTable,
       "Small Table",
       "string",
+      " ",
       medium,
       { name: " ", lib: " ", limit: 200},
       "b"
