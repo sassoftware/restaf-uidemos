@@ -25,35 +25,38 @@ function SmallTable(props) {
         table: tabled,
         initialFetch: {
           qs: {
-            start : 0,
-            limit : (props.limit) ? props.limit : 200,
-            format: false,
-            where : ' '
+            start: 0,
+            limit: (props.limit) ? props.limit : 200,
+            format: true,
+            where: ' '
           }
         },
       }
 
-      // read the first set of rows
-      let r = await setup(viyaEnv.logonPayload, appControl);
+      // setup and read the first set of rows(reuse sessionID)
+      let r = await setup(viyaEnv.logonPayload, appControl, viyaEnv.sessionID);
       await scroll('first', r);
 
-      let cols = r.state.columns.forEach(c => {
-        return {
-          field: c.name,
-          headerName: c.label,
-          editable: false,
-        };
+      let cols = [];
+      r.state.columns.forEach(c => {
+        if (c.internal === false) {
+          cols.push({
+            field: c.Column,
+            headerName: c.Label,
+            editable: false
+          });
+        }
       });
       setColumns(cols);
       setAppEnv(r);
     };
     setup1()
-    .then (r => {
-      console.log('setup done');
-    })
-    .catch(err => {
-      console.log(err);
-    });
+      .then(r => {
+        console.log('setup done');
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
   }, [lib, name, _userProps]);
 
