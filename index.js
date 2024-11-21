@@ -225,15 +225,6 @@ debugger;
       { name: " ", lib: " ",  refresh: false },
       "h"
     ),
-    SmallTable: _visualTemplate(
-      frameControl.SmallTable,
-      "SmallTable",
-      "string",
-      " ",
-      medium,
-      { name: " ", lib: " ", limit: 200},
-      "b"
-    ),
     SelectColumns: _visualTemplate(
       frameControl.SelectColumns,
       "SelectColumns",
