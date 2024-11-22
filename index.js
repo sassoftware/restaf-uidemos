@@ -231,7 +231,7 @@ debugger;
       "string",
       " ",
       medium,
-      { name: " ", lib: " ", limit: 200},
+      { name: " ", lib: " ", limit: 200, minWidth: 150 },
       "b"
     ),
     SelectColumns: _visualTemplate(

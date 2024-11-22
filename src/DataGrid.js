@@ -50,13 +50,15 @@ function DataGrid(props) {
         await scrollTable('first', r);
         debugger;
         let cols = [];
-        for (let k in r.state.columns) {
+        for (let k in r.state.columns ) {
           let c = r.state.columns[k];
-          if (c.internal !== true) {
+          if (c.internal !== true && c.Column !== '_index_') {
             cols.push({
               field: c.Column,
               headerName: c.Label,
-              width: c.FormattedLength,
+              // width: Math.max(c.FormattedLength,c.Label.length),
+              minWidth: (eProps.minWidth != null) ? eProps.minWidth : 150,
+              align: (c.Type === 'string') ? 'left' : 'right',
               sortable: true,
               editable: false
             });
