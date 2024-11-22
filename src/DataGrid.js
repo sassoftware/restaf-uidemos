@@ -92,7 +92,7 @@ function DataGrid(props) {
 
   let show = <Box style={style}>
     {appEnv === null ? <p> No data to display </p> :
-      <ViyaDataGrid rows={appEnv === null ? null : appEnv.state.data} columns={columns} {...eProps} style={style} />}
+      <ViyaDataGrid rows={appEnv === null ? null : appEnv.state.data} columns={columns} getRowId={(row)=> row._index_}{...eProps} style={style} />}
   </Box>
  
   return show;
