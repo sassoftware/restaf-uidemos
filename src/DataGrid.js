@@ -4,7 +4,7 @@ import { DataGrid as ViyaDataGrid } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 
 function DataGrid(props) {
-  let { value, lib, name, sx, _userProps, ...rest } = props;
+  let { value, lib, limit, name, sx, _userProps, ...rest } = props;
   let [appEnv, setAppEnv] = useState(null);
   let [columns, setColumns] = useState([]);
 
