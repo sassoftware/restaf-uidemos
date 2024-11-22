@@ -93,7 +93,7 @@ function DataGrid(props) {
   console.log(scroll);
   let style = { height: 'inherit', width: 'inherit', borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black', ...sx };
   let eProps = { autoPageSize: true, checkboxSelection: false, border: 1, disableSelectionOnClick: true, ...rest };
-  console.log(appEnv.state.data);
+  
   let show = <Box style={style}>
     {appEnv === null ? <p> No data to display </p> :
       <ViyaDataGrid rows={appEnv === null ? null : appEnv.state.data} columns={columns} getRowId={(row)=> row._index_}{...eProps} style={style} />}
