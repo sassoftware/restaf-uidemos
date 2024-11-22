@@ -4,18 +4,29 @@ import { DataGrid as ViyaDataGrid } from '@mui/x-data-grid';
 import { Box } from '@mui/material';
 
 function DataGrid(props) {
-  let { lib, name, sx, _userProps, ...rest } = props;
+  let { value, lib, name, sx, _userProps, ...rest } = props;
   let [appEnv, setAppEnv] = useState(null);
   let [columns, setColumns] = useState([]);
 
   useEffect(() => {
     const setup1 = async () => {
       let viyaEnv = _userProps.viyaEnv;
-      let tabled = { name: name };
-      if (viyaEnv.source === 'cas') {
-        tabled.caslib = lib;
+      let tabled = {};
+      if (value != null && value.trim().length > 0) {
+        let t = value.split('.');
+        tabled = { name: t[1] };
+        if (viyaEnv.source === 'cas') {
+          tabled.caslib = t[0];
+        } else {
+          tabled.libref = t[0];
+        }
       } else {
-        tabled.libref = lib;
+        tabled = { name: name };
+        if (viyaEnv.source === 'cas') {
+          tabled.caslib = lib;
+        } else {
+          tabled.libref = lib;
+        }
       }
 
       let appControl = {
@@ -71,7 +82,7 @@ function DataGrid(props) {
         });
     }
 
-  }, [lib, name, _userProps]);
+  }, [value, lib, name, _userProps]);
   console.log(scroll);
   let style = { height: 'inherit', width: 'inherit', borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black', ...sx };
   let eProps = { pageSize: 20, rowsPerPageOptions: [20], checkboxSelection: false, border: 1, disableSelectionOnClick: true, ...rest };
