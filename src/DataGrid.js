@@ -31,30 +31,31 @@ function DataGrid(props) {
         },
       }
       console.log(appControl);
-
+      debugger;
       // setup and read the first set of rows(reuse sessionID)
       try {
         let r = await setup(viyaEnv.logonPayload, appControl, viyaEnv.sessionID);
         debugger;
         await scrollTable('first', r);
+        let cols = [];
+        r.state.columns.forEach(c => {
+          if (c.internal === false) {
+            cols.push({
+              field: c.Column,
+              headerName: c.Label,
+              editable: false
+            });
+          }
+        });
+        setColumns(cols);
+        setAppEnv(r);
         debugger;
       } catch (err) {
         console.log(err);
+        return 
       }
+    }
 
-      let cols = [];
-      r.state.columns.forEach(c => {
-        if (c.internal === false) {
-          cols.push({
-            field: c.Column,
-            headerName: c.Label,
-            editable: false
-          });
-        }
-      });
-      setColumns(cols);
-      setAppEnv(r);
-    };
     debugger;
     
     if (lib && name && _userProps) {
