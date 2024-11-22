@@ -39,7 +39,7 @@ function DataGrid(props) {
         await scrollTable('first', r);
         let cols = [];
         for (let k in r.state.columns) {
-          let c = state.columns[k];
+          let c = r.state.columns[k];
           if (c.internal === false) {
             cols.push({
               field: c.Column,
