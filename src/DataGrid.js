@@ -38,15 +38,18 @@ function DataGrid(props) {
         debugger;
         await scrollTable('first', r);
         let cols = [];
-        r.state.columns.forEach(c => {
+        for (let k in r.state.columns) {
+          let c = state.columns[k];
           if (c.internal === false) {
             cols.push({
               field: c.Column,
               headerName: c.Label,
+              width: c.FormattedLength,
+              sortable: true,
               editable: false
             });
           }
-        });
+        };
         setColumns(cols);
         setAppEnv(r);
         debugger;
