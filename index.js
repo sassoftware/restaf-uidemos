@@ -225,9 +225,9 @@ debugger;
       { name: " ", lib: " ",  refresh: false },
       "h"
     ),
-    SmallTable: _visualTemplate(
-      frameControl.SmallTable,
-      "SmallTable",
+    DataGrid: _visualTemplate(
+      frameControl.DataGrid,
+      "DataGrid",
       "string",
       " ",
       medium,

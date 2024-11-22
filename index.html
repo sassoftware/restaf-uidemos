@@ -10,7 +10,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script async src="https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf"></script>
-    <script type="text/javascript" src="./dist/index.umd.js"></script>
+    <script type="text/javascript" src="./dist/index.dev.js"></script>
      
 
     <script type="text/javascript">
@@ -33,8 +33,8 @@
     let VaSDK = f['VaSDK'].component;
     let SelectLibrary = f['SelectLibrary'].component;
     let VScode = f['VScode'].component;
-    let SmallTable= f['SmallTable'].component;
-    console.log(SmallTable)
+    let DataGrid= f['DataGrid'].component;
+    console.log(DataGrid)
    
     </script>
     <script type="text/babel">
@@ -51,7 +51,7 @@
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <SmallTable   value="A" items={items} sx={sx} onChange={onEnter}></SmallTable>
+              <DataGrid   value="A" lib={null} name={null}  sx={sx} onChange={onEnter}></DataGrid>
               <Checkbox label="check me"  value={false} sx={sx} onChange={onEnter}></Checkbox>
               <Button  disabled={true} label="click me" onChange={onEnter}></Button>
               <InputText label="Enter your name" value="xxx" disabled={true} onChange={onEnter}></InputText>
