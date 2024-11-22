@@ -21,6 +21,7 @@ function DataGrid(props) {
           tabled.libref = t[0];
         }
       } else {
+       
         tabled = { name: name };
         if (viyaEnv.source === 'cas') {
           tabled.caslib = lib;
@@ -52,7 +53,7 @@ function DataGrid(props) {
         let cols = [];
         for (let k in r.state.columns ) {
           let c = r.state.columns[k];
-          if (c.internal !== true && c.Column !== '_index_') {
+          if (c.internal !== true && c.Column !== '_Index_') {
             cols.push({
               field: c.Column,
               headerName: c.Label,
@@ -71,21 +72,22 @@ function DataGrid(props) {
         debugger;
       } catch (err) {
         console.log(err);
-        return 
+        setAppEnv(null);
+        setColumns([]);
       }
     }
 
     debugger;
     
-    if (lib && name && _userProps) {
-      setup1()
-        .then(r => {
-          console.log('setup done');
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+
+    setup1()
+      .then(r => {
+        console.log('setup done');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
 
   }, [value, lib, name, _userProps]);
   console.log(scroll);
