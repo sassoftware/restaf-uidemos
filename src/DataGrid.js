@@ -52,7 +52,7 @@ function DataGrid(props) {
         let cols = [];
         for (let k in r.state.columns) {
           let c = r.state.columns[k];
-          if (c.internal === false) {
+          if (c.internal !== true) {
             cols.push({
               field: c.Column,
               headerName: c.Label,
