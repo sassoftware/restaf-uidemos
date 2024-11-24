@@ -4,6 +4,7 @@ import babel from '@rollup/plugin-babel';
 import terser  from '@rollup/plugin-terser';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import replace from '@rollup/plugin-replace';
+import postcss from 'rollup-plugin-postcss';
 //import strip from '@rollup/plugin-strip';
 
 export default [
@@ -39,6 +40,9 @@ export default [
         include: /node_modules/,
         exclude: [/*/node_modules\/@mui\/material/, /node_modules\/@mui\/joy/*/]
       }),
+      postcss({
+        inject: true
+      }),
       babel({
         babelHelpers: 'bundled',
         configFile: "./.babelrc.umd",
@@ -70,6 +74,9 @@ export default [
         ignoreGlobal: true,
         include: /node_modules/,
         exclude: [/*/node_modules\/@mui\/material/, /node_modules\/@mui\/joy/*/]
+      }),
+      postcss({
+        inject: true
       }),
       babel({
         babelHelpers: 'bundled',
