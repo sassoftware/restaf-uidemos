@@ -7,7 +7,6 @@ function DataGrid(props) {
   let parentRef = useRef(null);
   const [width,height] = useSize(parentRef);
   const mainControl  = useRef(null);
-  let [appEnv, setAppEnv] = useState(null); 
   
     useEffect(() => {
       const setup1 = async () => {
@@ -22,9 +21,6 @@ function DataGrid(props) {
             tabled.libref = t[0];
           }
         } else { 
-          if (table === null || table.trim().length === 0 || lib === null || lib.trim().length === 0) { 
-            return;
-          }
           tabled = { name: table };
           if (viyaEnv.source === 'cas') {
             tabled.caslib = lib;
@@ -32,7 +28,7 @@ function DataGrid(props) {
             tabled.libref = lib;
           }
         }
-      
+
         let appControl = {
           source: viyaEnv.source,
           table: tabled,
@@ -50,11 +46,11 @@ function DataGrid(props) {
         try {
           let tAppEnv = await setup(viyaEnv.logonPayload, appControl, viyaEnv.sessionID);
           mainControl.current = tAppEnv;
-          setAppEnv(tAppEnv);
           debugger;
           return true
         } catch (err) {
           console.log(err);
+          setAppEnv(null);
           return false;
         }
 
@@ -64,7 +60,6 @@ function DataGrid(props) {
         console.log('No Viya Environment');
         return;
       } 
-      console.log('-------------------in DataGrid setup');
       setup1()
       .then(r => {
         console.log(r);
