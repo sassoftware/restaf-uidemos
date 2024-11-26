@@ -231,7 +231,7 @@ debugger;
       "string",
       " ",
       medium,
-      {  value: ' ',lib: " ",table: " ",limit: 200, keep: [] },
+      {  value: '',lib: '',table: '',limit: 200, keep: []},
       "b"
     ),
     SelectColumns: _visualTemplate(

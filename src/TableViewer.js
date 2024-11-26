@@ -1,5 +1,5 @@
 
-import { useEffect, useState} from 'react';
+import { useEffect, useState, useRef} from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -10,100 +10,114 @@ import FirstPage from '@mui/icons-material/FirstPage';
 import { setup, scrollTable } from '@sassoftware/restafedit';
 
 function TableViewer(props) {
-  let { control,keep, sx,...rest } = props;
-  let [columns, setColumns] = useState([]);
-  let [currentData, setCurrentData] = useState([]);
+  let { value, lib,table,limit,keep, sx, _userProps } = props;
+  let [refresh, setRefresh] = useState(false); 
+  let control = useRef({appEnv: null, columns: null, msg: null}); 
   
-
- 
   useEffect(() => {
-    const setup1 = async () => {
-      /*
-      const cellValue = (name, type) => (params) => {
-        if (type === 'number') {
-          return params.data[name];
-        } else return params.data[name].trim();
-      }
-        */
-      // setup and read the first set of rows(reuse sessionID)
-      try {
-        debugger;
-       
-        await scrollTable('first',control.current);
-        setCurrentData(control.current.state.data);
-        debugger;
-        let columns = [];
-        let showColumns = control.current.state.columns;
-        if (keep != null && keep.length > 0) {
-          showColumns = {};
-          keep.forEach(k => {    
-            k = k.toLowerCase();
-            if (control.current.state.columns[k] != null) {
-              showColumns[k] = control.current.state.columns[k];
-            }
-          })
-        }
-        for (let k in showColumns) {
-          let c = showColumns[k];
-         // let setVal = cellValue(k, c.Type);
-          
-          if (c.internal !== true && k !== '_index_') {
-            columns.push({
-              field: c.Column.toLowerCase(),
-              headerName: c.Label,
-              //valueGetter: setVal,
-              cellStyle: (c.Type === 'double') ? { textAlign: 'right' } : { textAlign: 'left' },
-              sortable: true,
-              editable: false,
-              resizable: true,
-            });
-          }
-        };
-        console.log(control.current.state.data[0]);
-        console.log(columns);
-        setColumns(columns);
-      //  setCurrentData(control.current.state.data);
 
-        debugger;
+      const setup1 = async () => {
+        let viyaEnv = _userProps.viyaEnv;
+        let tabled = {};
+        if (value != null && value.trim().length > 0) {
+          let t = value.split('.');
+          tabled = { name: t[1] };
+          if (viyaEnv.source === 'cas') {
+            tabled.caslib = t[0];
+          } else {
+            tabled.libref = t[0];
+          }
+        } else { 
+          if (table === null || table.trim().length === 0 || lib === null || lib.trim().length === 0) { 
+            return;
+          }
+          tabled = { name: table };
+          if (viyaEnv.source === 'cas') {
+            tabled.caslib = lib;
+          } else {
+            tabled.libref = lib;
+          }
+        }
+      
+        let appControl = {
+          source: viyaEnv.source,
+          table: tabled,
+          initialFetch: {
+            qs: {
+              start: 0,
+              limit: (limit) ? limit : 20,
+              format: true,
+              where: ' '
+            }
+          },
+        }
+       
+        // setup and read the first set of rows(reuse sessionID)
+        try {
+        
+          
+          let tAppEnv = await setup(viyaEnv.logonPayload, appControl, viyaEnv.sessionID);
+          await scrollTable('first',tAppEnv);
+          
+          let columns = [];
+          let showColumns = tAppEnv.state.columns;
+          if (keep != null && keep.length > 0) {
+            showColumns = {};
+            let ocolumns = tAppEnv.state.columns;
+            keep.forEach(k => {    
+              k = k.toLowerCase();
+              if (ocolumns[k] != null) {
+                showColumns[k] = ocolumns[k];
+              }
+            })
+          }
+          for (let k in showColumns) {
+            let c = showColumns[k];
+          // let setVal = cellValue(k, c.Type);
+            
+            if (c.internal !== true && k !== '_index_') {
+              columns.push({
+                field: c.Column.toLowerCase(),
+                headerName: c.Label,
+                //valueGetter: setVal,
+                cellStyle: (c.Type === 'double') ? { textAlign: 'right' } : { textAlign: 'left' },
+                sortable: true,
+                editable: false,
+                resizable: true,
+              });
+            }
+          };
+          control.current = {appEnv: tAppEnv, columns: columns};
+          setRefresh(!refresh);
+
+        
       } catch (err) {
         console.log(err);
-        setCurrentData(null);
-        setColumns([]);
+        control.current = {appEnv: null, columns: null, msg: err};
       }
     }
 
-    debugger;
-    console.log('in TableViewer useEffect');
-
     setup1()
       .then(r => {
-        console.log('setup done');
+        console.log('setup status', r);
       })
       .catch(err => {
         console.log(err);
+        control.current = {appEnv: null, columns: null, msg: err};
       });
 
 
-  }, []);
+  }, [lib, table, limit, keep]);
 
 
   let eProps = { pagination: true, paginationPageSize: 20 /*domautoHeightLayout: ''*/ };
 
-  const _getRows = () => {
-    console.log(currentData);
-    debugger;
-    return currentData;
-  }
-
   const _scroll = (direction) => {
-    debugger;
-    console.log('scrolling', direction);
-    console.log(control.current.state.scrollOptions)
-    scrollTable(direction, control.current)
+    let appEnv = control.current.appEnv;
+    scrollTable(direction, appEnv)
       .then(r => {
-        console.log('scroll done');
-        debugger;
-        setCurrentData(control.current.state.data);
+        control.current = {appEnv: appEnv, columns: control.current.columns};
+        setRefresh(!refresh);
       })
       .catch(err => {
         console.log(err);
@@ -111,33 +125,33 @@ function TableViewer(props) {
   }
 
   let gridStyle = { height: sx.height -32 , width: sx.width };
-  console.log(gridStyle);
-  debugger;
-  console.log('data length', control.current.state.data.length);
-  let show = (columns.length === 0 ) ? null :
+
+  
+  const _getRows = () => {
+    
+    let data = control.current.appEnv.state.data;
+    return data;
+  }
+ 
+  let show  = null;
+  if (control.current.columns !== null) {
+    let scrollOptions = control.current.appEnv.state.scrollOptions;
+    show = 
     <>
     <div style={{height: '30px', borderBottom:'2px', minHeight: '30px', direction: 'row'}}>
-        <Button key={"b1"} onClick={() => _scroll('first')} disabled={control.current.state.scrollOptions.includes('first') === false} ><FirstPage/></Button>
-        <Button key={"b2"} onClick={()=> _scroll('prev')}  disabled={control.current.state.scrollOptions.includes('prev') === false}><ChevronLeft/></Button>
-        <Button key={"b3"} onClick={()=>_scroll('next')} disabled={control.current.state.scrollOptions.includes('next') === false}><ChevronRight/></Button>
+        <Button key={"b1"} onClick={() => _scroll('first')} disabled={scrollOptions.includes('first') === false} ><FirstPage/></Button>
+        <Button key={"b2"} onClick={()=> _scroll('prev')}  disabled={scrollOptions.includes('prev') === false}><ChevronLeft/></Button>
+        <Button key={"b3"} onClick={()=>_scroll('next')} disabled={scrollOptions.includes('next') === false}><ChevronRight/></Button>
     </div>
     <div className="ag-theme-alpine" style={gridStyle}>
       <AgGridReact
         rowData={_getRows()}
-        columnDefs={columns}
+        columnDefs={control.current.columns}
         {...eProps} />
     </div></>;
-  
-
+  } 
+    
   return show;
 
 }
 export default TableViewer;
-
-/*
-<><div style={{height: '30px', borderBottom:'2px', minHeight: '30px', direction: 'row'}}>
-        <Button key={"b1"} onClick={() => _scroll('first')} disabled={control.current.scrollOptions.includes('first') === false} ><FirstPage/></Button>
-        <Button key={"b2"} onClick={()=> _scroll('prev')}  disabled={control.current.scrollOptions.includes('prev') === false}><ChevronLeft/></Button>
-        <Button key={"b3"} onClick={()=>_scroll('next')} disabled={control.current.scrollOptions.includes('next') === false}><ChevronRight/></Button>
-    </div>
-*/
