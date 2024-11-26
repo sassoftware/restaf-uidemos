@@ -225,6 +225,15 @@ debugger;
       { name: " ", lib: " ",  refresh: false },
       "h"
     ),
+    DataGrid: _visualTemplate(
+      frameControl.DataGrid,
+      "DataGrid",
+      "string",
+      " ",
+      medium,
+      {  value: '',lib: '',table: '',limit: 200, keep: []},
+      "b"
+    ),
     SelectColumns: _visualTemplate(
       frameControl.SelectColumns,
       "SelectColumns",

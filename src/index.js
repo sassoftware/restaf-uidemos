@@ -36,7 +36,7 @@ import SelectLocalFile from './SelectLocalFile';
 import SelectLocalFolder from './SelectLocalFolder';
 import VScode from './VScode';
 import Listbox from './Listbox';
-import SmallTable from './SmallTable';
+import DataGrid from './DataGrid';
 //import Markdown from './Markdown';
 
 // import TableViewer from './TableViewer';
@@ -74,5 +74,5 @@ export default {
   SelectLocalFile,
   SelectLocalFolder,
   VScode,
-  SmallTable,
+  DataGrid,
 }

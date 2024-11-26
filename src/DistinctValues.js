@@ -8,7 +8,7 @@ import { distinctValues } from '@sassoftware/restafedit';
 import BaseSelector from './BaseSelector';
 
 function DistinctValues(props) {
-  let { column, value, label, lib, table, where, style, onChange, designMode, _userProps,...eProps } = props;
+  let { column, value, label, lib, table, where, sx, onChange, designMode, _userProps,...eProps } = props;
 
   const [list, setList] = useState([]);
   const [sel, setSel] = useState(value);
@@ -59,7 +59,7 @@ function DistinctValues(props) {
     label: label,
     onChange: _handleChange,
     designMode: designMode, 
-    style: style,
+    style: sx,
     eProps: eProps
 
   }
