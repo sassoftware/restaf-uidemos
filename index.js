@@ -231,7 +231,7 @@ debugger;
       "string",
       " ",
       medium,
-      {  value: '',lib: '',table: '',limit: 200, keep: []},
+      {  value: '',lib: '',table: '',limit: 20, keep: [], gridClass:'', refresh: false },
       "b"
     ),
     SelectColumns: _visualTemplate(
