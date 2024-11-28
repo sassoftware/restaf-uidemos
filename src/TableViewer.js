@@ -10,7 +10,7 @@ import FirstPage from '@mui/icons-material/FirstPage';
 import { setup, scrollTable } from '@sassoftware/restafedit';
 
 function TableViewer(props) {
-  let { value, lib,table,limit,keep, refresh, sx,gridClass,gridOptions, _userProps } = props;
+  let { value, lib,table,limit,keep, refresh, sx,gridOptions, _userProps } = props;
   let [redraw, reDraw] = useState(false); 
   let control = useRef({appEnv: null, columns: null, msg: null}); 
   
@@ -58,6 +58,7 @@ function TableViewer(props) {
         
           
           let tAppEnv = await setup(viyaEnv.logonPayload, appControl, viyaEnv.sessionID);
+        
           await scrollTable('first',tAppEnv);
           
           let columns = [];
@@ -90,6 +91,7 @@ function TableViewer(props) {
           };
           control.current = {appEnv: tAppEnv, columns: columns};
           reDraw(!redraw);
+          return true;
 
         
       } catch (err) {
@@ -108,7 +110,7 @@ function TableViewer(props) {
       });
 
 
-  }, [value, lib, table, limit, keep, refresh]);
+  }, [value, lib, table, limit, keep, gridOptions, refresh]);
 
 
  
@@ -133,7 +135,7 @@ function TableViewer(props) {
  
   let show  = null;
   let gridStyle = { height: sx.height -32 , width: sx.width };
-  let agTheme =(gridClass == null || gridClass.length === 0) ? 'ag-theme-balham' : gridClass;
+  let agTheme ='ag-theme-alpine';
   let eProps = {pagination: true, paginationPageSize: 20, ...gridOptions};
 
   if (control.current.columns !== null) {
@@ -151,7 +153,7 @@ function TableViewer(props) {
         columnDefs={control.current.columns}
         {...eProps} />
     </div></>;
-  } 
+  }
     
   return show;
 
