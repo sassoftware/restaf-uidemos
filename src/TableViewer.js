@@ -10,7 +10,7 @@ import FirstPage from '@mui/icons-material/FirstPage';
 import { setup, scrollTable } from '@sassoftware/restafedit';
 
 function TableViewer(props) {
-  let { value, lib,table,limit,keep, refresh, sx, _userProps } = props;
+  let { value, lib,table,limit,keep, refresh, sx,gridClass,gridOptions, _userProps } = props;
   let [redraw, reDraw] = useState(false); 
   let control = useRef({appEnv: null, columns: null, msg: null}); 
   
@@ -18,6 +18,7 @@ function TableViewer(props) {
 
       const setup1 = async () => {
         let viyaEnv = _userProps.viyaEnv;
+        debugger;
         let tabled = {};
         if (value != null && value.trim().length > 0) {
           let t = value.split('.');
@@ -96,7 +97,7 @@ function TableViewer(props) {
         control.current = {appEnv: null, columns: null, msg: err};
       }
     }
-
+    debugger;
     setup1()
       .then(r => {
         console.log('setup status', r);
@@ -107,10 +108,10 @@ function TableViewer(props) {
       });
 
 
-  }, [value, lib, table, limit, keep]);
+  }, [value, lib, table, limit, keep, refresh]);
 
 
-  let eProps = { pagination: true, paginationPageSize: 20 /*domautoHeightLayout: ''*/ };
+ 
 
   const _scroll = (direction) => {
     let appEnv = control.current.appEnv;
@@ -124,16 +125,17 @@ function TableViewer(props) {
       });
   }
 
-  let gridStyle = { height: sx.height -32 , width: sx.width };
-
-  
   const _getRows = () => {
-    
+    // not really needed but useful when debugging issues.
     let data = control.current.appEnv.state.data;
     return data;
   }
  
   let show  = null;
+  let gridStyle = { height: sx.height -32 , width: sx.width };
+  let agTheme =(gridClass == null || gridClass.length === 0) ? 'ag-theme-balham' : gridClass;
+  let eProps = {pagination: true, paginationPageSize: 20, ...gridOptions};
+
   if (control.current.columns !== null) {
     let scrollOptions = control.current.appEnv.state.scrollOptions;
     show = 
@@ -143,7 +145,7 @@ function TableViewer(props) {
         <Button key={"b2"} onClick={()=> _scroll('prev')}  disabled={scrollOptions.includes('prev') === false}><ChevronLeft/></Button>
         <Button key={"b3"} onClick={()=>_scroll('next')} disabled={scrollOptions.includes('next') === false}><ChevronRight/></Button>
     </div>
-    <div className="ag-theme-alpine" style={gridStyle}>
+    <div className={agTheme} style={gridStyle}>
       <AgGridReact
         rowData={_getRows()}
         columnDefs={control.current.columns}
