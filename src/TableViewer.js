@@ -10,8 +10,8 @@ import FirstPage from '@mui/icons-material/FirstPage';
 import { setup, scrollTable } from '@sassoftware/restafedit';
 
 function TableViewer(props) {
-  let { value, lib,table,limit,keep, sx, _userProps } = props;
-  let [refresh, setRefresh] = useState(false); 
+  let { value, lib,table,limit,keep, refresh, sx, _userProps } = props;
+  let [redraw, reDraw] = useState(false); 
   let control = useRef({appEnv: null, columns: null, msg: null}); 
   
   useEffect(() => {
@@ -88,7 +88,7 @@ function TableViewer(props) {
             }
           };
           control.current = {appEnv: tAppEnv, columns: columns};
-          setRefresh(!refresh);
+          reDraw(!redraw);
 
         
       } catch (err) {
@@ -107,7 +107,7 @@ function TableViewer(props) {
       });
 
 
-  }, [lib, table, limit, keep]);
+  }, [value, lib, table, limit, keep]);
 
 
   let eProps = { pagination: true, paginationPageSize: 20 /*domautoHeightLayout: ''*/ };
@@ -117,7 +117,7 @@ function TableViewer(props) {
     scrollTable(direction, appEnv)
       .then(r => {
         control.current = {appEnv: appEnv, columns: control.current.columns};
-        setRefresh(!refresh);
+        reDraw(!redraw);
       })
       .catch(err => {
         console.log(err);
