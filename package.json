@@ -9,9 +9,9 @@
   "exports": {
     "default": "./dist/index.js"
   },
-  "main": "/dist/index.js",
-  "browser": "/dist/index.js",
-  "unpkg": "/dist/index.js",
+  "main": "./dist/index.js",
+  "browser": "./dist/index.js",
+  "unpkg": "./dist/index.js",
   "files": [
     "./dist",
     "LICENSE"
