@@ -3,9 +3,9 @@
   "version": "0.6.4",
   "description": "chakra Frame Controls for use with @sassoftware/FrameBuilder",
   "source": "./index.js",
-  "main": "/dist/smart-controls-chakra.js",
-  "unpkg": "/dist/smart-controls-chakra.js",
-  "browser": "/dist/smart-controls-chakra.js",
+  "main": "./dist/index.js",
+  "unpkg": "./dist/index.js",
+  "browser": "./dist/index.js",
   "registry": "https://github.com/sassoftware/restaf-uidemos/tree/smart-controls-chakra",
   "files": [
     "./dist"
@@ -23,8 +23,8 @@
     "@react-hook/size": "^2.1.2",
     "btoa": "^1.2.1",
     "framer-motion": "^11.2.9",
-    "react": "18.3.0",
-    "react-dom": "18.3.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.5",
@@ -41,8 +41,8 @@
     "prettier": "^2.8.0",
     "prettier-eslint": "^15.0.1",
     "prettier-eslint-cli": "^7.1.0",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "rimraf": "^5.0.7",
     "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.91.0",
@@ -54,11 +54,11 @@
     "@sassoftware/restaf": "^5.2.4",
     "@sassoftware/restafedit": "^2.4.8",
     "@sassoftware/restaflib": "^5.2.4",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "overrides": {
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

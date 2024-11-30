@@ -42,6 +42,4 @@ function VisualTemplate(component, label, type, value, initialSize, props,resize
   };
 };
 export {controls};
-let chakraControls = {controls: controls};
-export default chakraControls;
 

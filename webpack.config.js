@@ -30,9 +30,9 @@ module.exports = (env) => {
     devtool: 'source-map',
     output: {
       path: usePath,
-      filename: (env.p === 'y') ? 'smart-controls-chakra.js' : 'smart-controls-chakra.dev.js',
+      filename: (env.p === 'y') ? 'index.js' : 'index.dev.js',
       libraryTarget: 'umd',
-      library: "chakraControls",
+      library: "smartControls",
       umdNamedDefine: true,
       globalObject: 'this'
     },

@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"), require("react-dom"));
 	else if(typeof define === 'function' && define.amd)
-		define("chakraControls", ["react", "react-dom"], factory);
+		define("smartControls", ["react", "react-dom"], factory);
 	else if(typeof exports === 'object')
-		exports["chakraControls"] = factory(require("react"), require("react-dom"));
+		exports["smartControls"] = factory(require("react"), require("react-dom"));
 	else
-		root["chakraControls"] = factory(root["React"], root["ReactDOM"]);
+		root["smartControls"] = factory(root["React"], root["ReactDOM"]);
 })(this, (__WEBPACK_EXTERNAL_MODULE_react__, __WEBPACK_EXTERNAL_MODULE_react_dom__) => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
@@ -37914,8 +37914,7 @@ var __webpack_exports__ = {};
   \******************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   controls: () => (/* binding */ controls),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   controls: () => (/* binding */ controls)
 /* harmony export */ });
 /* harmony import */ var _src_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/index.js */ "./src/index.js");
 function _typeof(o) {
@@ -37976,7 +37975,6 @@ function _toPrimitive(t, r) {
  */
 
 
-
 console.log('frameControl', _src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 var small = {
   height: 30,
@@ -38027,14 +38025,10 @@ function VisualTemplate(component, label, type, value, initialSize, props, resiz
 }
 ;
 
-var chakraControls = {
-  controls: controls
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (chakraControls);
 })();
 
 /******/ 	return __webpack_exports__;
 /******/ })()
 ;
 });
-//# sourceMappingURL=smart-controls-chakra.dev.js.map
+//# sourceMappingURL=index.dev.js.map
