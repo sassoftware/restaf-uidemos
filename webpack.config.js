@@ -4,6 +4,7 @@
  */
 const path = require("path");
 const TerserPlugin = require('terser-webpack-plugin');
+const { EvalDevToolModulePlugin } = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env) => {
@@ -26,9 +27,10 @@ module.exports = (env) => {
     mode: (env.p === 'y') ? "production" : "development",
     plugins: plugins,
     optimization: optimize,
+    devtool: 'source-map',
     output: {
       path: usePath,
-      filename: (env.p === 'y') ? 'index.umd.js' : 'index.dev.js',
+      filename: (env.p === 'y') ? 'index.js' : 'index.dev.js',
       libraryTarget: 'umd',
       library: "smartControls",
       umdNamedDefine: true,
@@ -52,16 +54,14 @@ module.exports = (env) => {
           test: /\.png$/i,
           type: "asset/inline",
         },
+        { test: /\.(js|jsx)$/, use: "babel-loader" },
         {
-          test: /\.(js|jsx)$/,
+          test: /\.js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
-              presets: [
-                ['@babel/preset-env'],
-                ['@babel/preset-react', { runtime: 'classic' }]
-              ],
+              presets: ['@babel/preset-env', '@babel/preset-react'],
             },
           },
         },
@@ -70,10 +70,19 @@ module.exports = (env) => {
     },
 
     externals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-    }
-
+      react: {
+        commonjs: 'react',
+        commonjs2: 'react',
+        amd: 'react',
+        root: 'React',
+      },
+      'react-dom': {
+        commonjs: 'react-dom',
+        commonjs2: 'react-dom',
+        amd: 'react-dom',
+        root: 'ReactDOM',
+      },
+    },
 
   };
   console.log(config);
