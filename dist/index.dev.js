@@ -57973,9 +57973,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/FormLabel */ "./node_modules/@mui/joy/FormLabel/FormLabel.js");
-/* harmony import */ var _mui_joy_Autocomplete__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/joy/Autocomplete */ "./node_modules/@mui/joy/Autocomplete/Autocomplete.js");
-/* harmony import */ var _mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/joy/FormControl */ "./node_modules/@mui/joy/FormControl/FormControl.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/joy/FormLabel */ "./node_modules/@mui/joy/FormLabel/FormLabel.js");
+/* harmony import */ var _mui_joy_Autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/joy/Autocomplete */ "./node_modules/@mui/joy/Autocomplete/Autocomplete.js");
+/* harmony import */ var _mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/FormControl */ "./node_modules/@mui/joy/FormControl/FormControl.js");
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -58037,7 +58039,7 @@ function _toPrimitive(t, r) {
   }
   return ("string" === r ? String : Number)(t);
 }
-// import React from 'react';
+
 
 // import {Sheet} from '@mui/joy'
 
@@ -58087,7 +58089,7 @@ function BaseSelector(props) {
       return true;
     } else return false;
   };
-  var show = /*#__PURE__*/React.createElement(_mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_0__["default"], null, label != null ? /*#__PURE__*/React.createElement(_mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_1__["default"], null, label) : null, /*#__PURE__*/React.createElement(_mui_joy_Autocomplete__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, ePropsL, {
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_1__["default"], null, label != null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_2__["default"], null, label) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Autocomplete__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({}, ePropsL, {
     options: options != null ? options : [],
     isOptionEqualToValue: check,
     onChange: _handleChange
@@ -58110,9 +58112,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/FormLabel */ "./node_modules/@mui/joy/FormLabel/FormLabel.js");
-/* harmony import */ var _mui_joy_Autocomplete__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/joy/Autocomplete */ "./node_modules/@mui/joy/Autocomplete/Autocomplete.js");
-/* harmony import */ var _mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/joy/FormControl */ "./node_modules/@mui/joy/FormControl/FormControl.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/joy/FormLabel */ "./node_modules/@mui/joy/FormLabel/FormLabel.js");
+/* harmony import */ var _mui_joy_Autocomplete__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/joy/Autocomplete */ "./node_modules/@mui/joy/Autocomplete/Autocomplete.js");
+/* harmony import */ var _mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/FormControl */ "./node_modules/@mui/joy/FormControl/FormControl.js");
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -58174,7 +58178,7 @@ function _toPrimitive(t, r) {
   }
   return ("string" === r ? String : Number)(t);
 }
-// import React from 'react';
+
 
 // import {Sheet} from '@mui/joy'
 
@@ -58217,7 +58221,7 @@ function BaseSelectorMultiple(props) {
   };
 
   // isOptionEqualToValue={check}
-  var show = /*#__PURE__*/React.createElement(_mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_0__["default"], null, label !== null ? /*#__PURE__*/React.createElement(_mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_1__["default"], null, label) : null, /*#__PURE__*/React.createElement(_mui_joy_Autocomplete__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, ePropsL, {
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_1__["default"], null, label !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_2__["default"], null, label) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Autocomplete__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({}, ePropsL, {
     options: items != null ? items : [],
     onChange: _handleChange
   })));
@@ -58239,7 +58243,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_material_Box__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/material/Box */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_material_Box__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/material/Box */ "./node_modules/@mui/material/Box/Box.js");
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -58297,7 +58303,7 @@ function _toPrimitive(t, r) {
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// import React from 'react';
+
 
 function Border(props) {
   var sx = props.sx;
@@ -58309,7 +58315,7 @@ function Border(props) {
     zindex: 1,
     boxShadow: 2
   }, sx);
-  return /*#__PURE__*/React.createElement(_mui_material_Box__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material_Box__WEBPACK_IMPORTED_MODULE_1__["default"], {
     key: "paper",
     sx: isx
   });
@@ -58329,7 +58335,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_joy_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/joy/Button */ "./node_modules/@mui/joy/Button/Button.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_joy_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/Button */ "./node_modules/@mui/joy/Button/Button.js");
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -58416,7 +58424,7 @@ function _objectWithoutPropertiesLoose(r, e) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 function Button(props) {
   var value = props.value,
@@ -58443,7 +58451,7 @@ function Button(props) {
     height: 'inherit',
     width: 'inherit'
   }, sx);
-  return /*#__PURE__*/React.createElement(_mui_joy_Button__WEBPACK_IMPORTED_MODULE_0__["default"], _extends({
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Button__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
     sx: isx
   }, ePropsL, {
     onClick: _handleClick
@@ -58823,7 +58831,7 @@ function _objectWithoutPropertiesLoose(r, e) {
 * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
 * SPDX-License-Identifier: Apache-2.0
 */
-// import React from 'react';
+
 
 
 
@@ -58888,7 +58896,7 @@ function DistinctValues(props) {
     style: sx,
     eProps: eProps
   };
-  return /*#__PURE__*/React.createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_2__["default"], pr);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_2__["default"], pr);
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DistinctValues);
 
@@ -58905,7 +58913,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_joy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/joy */ "./node_modules/@mui/joy/Divider/Divider.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_joy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy */ "./node_modules/@mui/joy/Divider/Divider.js");
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -58979,7 +58989,7 @@ function _objectWithoutPropertiesLoose(r, e) {
   }
   return t;
 }
-// import React from 'react';
+
 
 function Divider(props) {
   var label = props.label,
@@ -58994,7 +59004,7 @@ function Divider(props) {
     sx: sx,
     orientation: "horizontal"
   }, eProps);
-  var show = /*#__PURE__*/React.createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_0__["default"], ePropL, " ", value);
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_1__["default"], ePropL, " ", value);
   return show;
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Divider);
@@ -59012,8 +59022,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _BaseSelectorMultiple__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BaseSelectorMultiple */ "./src/BaseSelectorMultiple.js");
-/* harmony import */ var _BaseSelector__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseSelector */ "./src/BaseSelector.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _BaseSelectorMultiple__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseSelectorMultiple */ "./src/BaseSelectorMultiple.js");
+/* harmony import */ var _BaseSelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BaseSelector */ "./src/BaseSelector.js");
 var _excluded = ["_userProps"];
 function _objectWithoutProperties(e, t) {
   if (null == e) return {};
@@ -59040,14 +59052,13 @@ function _objectWithoutPropertiesLoose(r, e) {
 * SPDX-License-Identifier: Apache-2.0
 */
 
-// import React from 'react';
 
 
 
 function Dropdown(props) {
   var _userProps = props._userProps,
     eProps = _objectWithoutProperties(props, _excluded);
-  return props.multiple === true ? /*#__PURE__*/React.createElement(_BaseSelectorMultiple__WEBPACK_IMPORTED_MODULE_0__["default"], eProps) : /*#__PURE__*/React.createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_1__["default"], eProps);
+  return props.multiple === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BaseSelectorMultiple__WEBPACK_IMPORTED_MODULE_1__["default"], eProps) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_2__["default"], eProps);
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dropdown);
 
@@ -59211,7 +59222,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/joy/Sheet */ "./node_modules/@mui/joy/Sheet/Sheet.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/Sheet */ "./node_modules/@mui/joy/Sheet/Sheet.js");
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -59268,7 +59281,7 @@ function _toPrimitive(t, r) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 function HtmlText(props) {
   var value = props.value,
@@ -59294,10 +59307,10 @@ function HtmlText(props) {
   if (refresh != null) {
     shkey = shkey + Date();
   }
-  return /*#__PURE__*/React.createElement(_mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_1__["default"], {
     key: shkey,
     style: isx
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     key: name,
     style: isx,
     dangerouslySetInnerHTML: htmlContent
@@ -59319,8 +59332,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var btoa__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! btoa */ "./node_modules/btoa/index.js");
-/* harmony import */ var btoa__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(btoa__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var btoa__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! btoa */ "./node_modules/btoa/index.js");
+/* harmony import */ var btoa__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(btoa__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -59378,7 +59393,7 @@ function _toPrimitive(t, r) {
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// import React from 'react';
+
 
 function Image(props) {
   var value = props.value,
@@ -59406,10 +59421,10 @@ function Image(props) {
   if (srcType != null) {
     src = dataUrl(value, srcType);
   }
-  var show = /*#__PURE__*/React.createElement("div", {
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     key: refresh,
     style: isx
-  }, /*#__PURE__*/React.createElement("img", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     src: src,
     crossOrigin: "",
     alt: label,
@@ -59418,7 +59433,7 @@ function Image(props) {
   }), " ");
   return show;
   function svgToDataURL(svgString) {
-    return 'data:image/svg+xml;base64,' + btoa__WEBPACK_IMPORTED_MODULE_0___default()(unescape(encodeURIComponent(svgString)));
+    return 'data:image/svg+xml;base64,' + btoa__WEBPACK_IMPORTED_MODULE_1___default()(unescape(encodeURIComponent(svgString)));
   }
   function pngToDataURL(pngBuffer) {
     return 'data:image/png;base64,' + pngBuffer.toString('base64');
@@ -59581,7 +59596,7 @@ function _objectWithoutPropertiesLoose(r, e) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 
 
@@ -59696,9 +59711,9 @@ function Input(props) {
     }
   }, extendedProps);
   delete ePropsL.disabled;
-  var t = /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  var t = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_1__["default"], {
     key: name
-  }, label), /*#__PURE__*/React.createElement(_mui_joy_Input__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, ePropsL, {
+  }, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Input__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({}, ePropsL, {
     value: value,
     onChange: _onChange
   })));
@@ -60112,7 +60127,7 @@ function _arrayWithHoles(r) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 
 
@@ -60221,13 +60236,13 @@ function Inputarea(props) {
     }
   };
   delete ePropsL.disabled;
-  var t = /*#__PURE__*/React.createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
+  var t = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
     key: name
   }, ePropsL, {
     value: value,
     onChange: _onChange
   }));
-  t = label != null && label.trim().length > 0 ? /*#__PURE__*/React.createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/React.createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_3__["default"], null, label), t) : /*#__PURE__*/React.createElement("div", null, t);
+  t = label != null && label.trim().length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_3__["default"], null, label), t) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, t);
   return t;
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Inputarea);
@@ -60245,11 +60260,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_joy_List__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/joy/List */ "./node_modules/@mui/joy/List/List.js");
-/* harmony import */ var _mui_joy_ListItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/joy/ListItem */ "./node_modules/@mui/joy/ListItem/ListItem.js");
-/* harmony import */ var _mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/Sheet */ "./node_modules/@mui/joy/Sheet/Sheet.js");
-/* harmony import */ var _mui_joy_ListItemButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/joy/ListItemButton */ "./node_modules/@mui/joy/ListItemButton/ListItemButton.js");
-/* harmony import */ var _mui_material_ListSubheader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material/ListSubheader */ "./node_modules/@mui/material/ListSubheader/ListSubheader.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_joy_List__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/joy/List */ "./node_modules/@mui/joy/List/List.js");
+/* harmony import */ var _mui_joy_ListItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/joy/ListItem */ "./node_modules/@mui/joy/ListItem/ListItem.js");
+/* harmony import */ var _mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/joy/Sheet */ "./node_modules/@mui/joy/Sheet/Sheet.js");
+/* harmony import */ var _mui_joy_ListItemButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/ListItemButton */ "./node_modules/@mui/joy/ListItemButton/ListItemButton.js");
+/* harmony import */ var _mui_material_ListSubheader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/ListSubheader */ "./node_modules/@mui/material/ListSubheader/ListSubheader.js");
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -60329,7 +60346,7 @@ function _objectWithoutPropertiesLoose(r, e) {
 */
 
 // import Reactz from 'react';
-// import React from 'react';
+
 
 
 
@@ -60365,7 +60382,7 @@ function Listbox(props) {
       ivariant = variant == null ? 'solid' : variant;
       selected = true;
     }
-    return /*#__PURE__*/React.createElement(_mui_joy_ListItemButton__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_ListItemButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: m,
       selected: selected,
       color: icolor,
@@ -60394,12 +60411,12 @@ function Listbox(props) {
   }, labelProp) : {
     level: 'h4'
   };
-  var show = /*#__PURE__*/React.createElement(_mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_2__["default"], {
     variant: "outlined",
     sx: isx
-  }, /*#__PURE__*/React.createElement(_mui_joy_ListItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_ListItem__WEBPACK_IMPORTED_MODULE_3__["default"], {
     nested: true
-  }, /*#__PURE__*/React.createElement(_mui_material_ListSubheader__WEBPACK_IMPORTED_MODULE_3__["default"], lprop, title), /*#__PURE__*/React.createElement(_mui_joy_List__WEBPACK_IMPORTED_MODULE_4__["default"], null, newMenu)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material_ListSubheader__WEBPACK_IMPORTED_MODULE_4__["default"], lprop, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_List__WEBPACK_IMPORTED_MODULE_5__["default"], null, newMenu)));
   return show;
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Listbox);
@@ -60417,10 +60434,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/joy/FormLabel */ "./node_modules/@mui/joy/FormLabel/FormLabel.js");
-/* harmony import */ var _mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/FormControl */ "./node_modules/@mui/joy/FormControl/FormControl.js");
-/* harmony import */ var _mui_joy_Radio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mui/joy/Radio */ "./node_modules/@mui/joy/Radio/Radio.js");
-/* harmony import */ var _mui_joy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/joy */ "./node_modules/@mui/joy/RadioGroup/RadioGroup.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/joy/FormLabel */ "./node_modules/@mui/joy/FormLabel/FormLabel.js");
+/* harmony import */ var _mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/joy/FormControl */ "./node_modules/@mui/joy/FormControl/FormControl.js");
+/* harmony import */ var _mui_joy_Radio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mui/joy/Radio */ "./node_modules/@mui/joy/Radio/Radio.js");
+/* harmony import */ var _mui_joy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/joy */ "./node_modules/@mui/joy/RadioGroup/RadioGroup.js");
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -60505,7 +60524,7 @@ function _objectWithoutPropertiesLoose(r, e) {
 }
 // import Reactz from 'react';
 
-// import React from 'react';
+
 
 
 
@@ -60561,13 +60580,13 @@ function RadioGroup(props) {
     readOnly: false
   }, eProps);
   var buttons = options.map(function (m, i) {
-    return /*#__PURE__*/React.createElement(_mui_joy_Radio__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Radio__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: i,
       value: m,
       label: m
     });
   });
-  var show = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(_mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/React.createElement(_mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_2__["default"], null, label), /*#__PURE__*/React.createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_FormControl__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_FormLabel__WEBPACK_IMPORTED_MODULE_3__["default"], null, label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_4__["default"], _extends({
     defaultValue: currentSelection
   }, ePropsL, {
     sx: isx,
@@ -60646,7 +60665,7 @@ function _arrayWithHoles(r) {
 * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
 * SPDX-License-Identifier: Apache-2.0
 */
-// import React from 'react';
+
 
 
 
@@ -60689,7 +60708,7 @@ function SASItemsDropDown(props) {
     setSel(val);
     onChange(val);
   };
-  return /*#__PURE__*/React.createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: name,
     label: label,
     value: sel,
@@ -60715,16 +60734,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _mui_joy_Box__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/joy/Box */ "./node_modules/@mui/joy/Box/Box.js");
-/* harmony import */ var _mui_icons_material_MoreVert__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/icons-material/MoreVert */ "./node_modules/@mui/icons-material/MoreVert.js");
-/* harmony import */ var _mui_icons_material_FirstPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @mui/icons-material/FirstPage */ "./node_modules/@mui/icons-material/FirstPage.js");
-/* harmony import */ var _mui_icons_material_ChevronRight__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/icons-material/ChevronRight */ "./node_modules/@mui/icons-material/ChevronRight.js");
-/* harmony import */ var _mui_icons_material_ChevronLeft__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/icons-material/ChevronLeft */ "./node_modules/@mui/icons-material/ChevronLeft.js");
-/* harmony import */ var _mui_icons_material_LastPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/icons-material/LastPage */ "./node_modules/@mui/icons-material/LastPage.js");
-/* harmony import */ var _mui_joy_IconButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/joy/IconButton */ "./node_modules/@mui/joy/IconButton/IconButton.js");
-/* harmony import */ var _mui_joy_ButtonGroup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/joy/ButtonGroup */ "./node_modules/@mui/joy/ButtonGroup/ButtonGroup.js");
-/* harmony import */ var _DropdownMenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DropdownMenu */ "./src/DropdownMenu.js");
-/* harmony import */ var _WherePrompt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WherePrompt */ "./src/WherePrompt.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mui_joy_Box__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/joy/Box */ "./node_modules/@mui/joy/Box/Box.js");
+/* harmony import */ var _mui_icons_material_MoreVert__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/icons-material/MoreVert */ "./node_modules/@mui/icons-material/MoreVert.js");
+/* harmony import */ var _mui_icons_material_FirstPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/icons-material/FirstPage */ "./node_modules/@mui/icons-material/FirstPage.js");
+/* harmony import */ var _mui_icons_material_ChevronRight__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/icons-material/ChevronRight */ "./node_modules/@mui/icons-material/ChevronRight.js");
+/* harmony import */ var _mui_icons_material_ChevronLeft__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/icons-material/ChevronLeft */ "./node_modules/@mui/icons-material/ChevronLeft.js");
+/* harmony import */ var _mui_icons_material_LastPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/icons-material/LastPage */ "./node_modules/@mui/icons-material/LastPage.js");
+/* harmony import */ var _mui_joy_IconButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/joy/IconButton */ "./node_modules/@mui/joy/IconButton/IconButton.js");
+/* harmony import */ var _mui_joy_ButtonGroup__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/joy/ButtonGroup */ "./node_modules/@mui/joy/ButtonGroup/ButtonGroup.js");
+/* harmony import */ var _DropdownMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DropdownMenu */ "./src/DropdownMenu.js");
+/* harmony import */ var _WherePrompt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./WherePrompt */ "./src/WherePrompt.js");
 function _extends() {
   return _extends = Object.assign ? Object.assign.bind() : function (n) {
     for (var e = 1; e < arguments.length; e++) {
@@ -60739,7 +60760,6 @@ function _extends() {
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// import React from 'react';
 
 
 
@@ -60757,19 +60777,19 @@ function ScrollMenu(props) {
     where = props.where,
     groups = props.groups;
   var iconList = {
-    first: /*#__PURE__*/React.createElement(_mui_icons_material_FirstPage__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    first: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_FirstPage__WEBPACK_IMPORTED_MODULE_3__["default"], {
       size: "small"
     }),
-    last: /*#__PURE__*/React.createElement(_mui_icons_material_LastPage__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    last: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_LastPage__WEBPACK_IMPORTED_MODULE_4__["default"], {
       size: "small"
     }),
-    next: /*#__PURE__*/React.createElement(_mui_icons_material_ChevronRight__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    next: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_ChevronRight__WEBPACK_IMPORTED_MODULE_5__["default"], {
       size: "small"
     }),
-    prev: /*#__PURE__*/React.createElement(_mui_icons_material_ChevronLeft__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    prev: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_ChevronLeft__WEBPACK_IMPORTED_MODULE_6__["default"], {
       size: "small"
     }),
-    more: /*#__PURE__*/React.createElement(_mui_icons_material_MoreVert__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    more: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_MoreVert__WEBPACK_IMPORTED_MODULE_7__["default"], {
       size: "small"
     })
   };
@@ -60810,7 +60830,7 @@ function ScrollMenu(props) {
     label: ''
   };
   if (showGroups.includes('dropdown') === true) {
-    menu.push(/*#__PURE__*/React.createElement(_DropdownMenu__WEBPACK_IMPORTED_MODULE_0__["default"], _extends({
+    menu.push(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_DropdownMenu__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
       key: "more"
     }, p, {
       onChange: _dropDown
@@ -60819,7 +60839,7 @@ function ScrollMenu(props) {
   if (showGroups.includes('scroll') === true) {
     var _loop = function _loop(_m) {
       var c = menus[_m];
-      var t = /*#__PURE__*/React.createElement(_mui_joy_IconButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      var t = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_IconButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
         onClick: function onClick() {
           return _select(_m, false);
         },
@@ -60837,13 +60857,13 @@ function ScrollMenu(props) {
   }
 
   // let show = <ButtonGroup  key="buttongrid" sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}> {menu} </ButtonGroup>;
-  var show = /*#__PURE__*/React.createElement(_mui_joy_Box__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Box__WEBPACK_IMPORTED_MODULE_9__["default"], {
     display: "flex",
     alignItems: "start",
     justifyContent: "left"
-  }, /*#__PURE__*/React.createElement(_mui_joy_ButtonGroup__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_ButtonGroup__WEBPACK_IMPORTED_MODULE_10__["default"], {
     key: "buttongrid"
-  }, " ", menu, " "), showGroups.includes('where') === true ? /*#__PURE__*/React.createElement(_WherePrompt__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, " ", menu, " "), showGroups.includes('where') === true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_WherePrompt__WEBPACK_IMPORTED_MODULE_2__["default"], {
     key: "where",
     value: where,
     onChange: _where
@@ -60921,7 +60941,7 @@ function _arrayWithHoles(r) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 
 
@@ -60979,7 +60999,7 @@ function SelectColumns(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, lib, table]);
-  return /*#__PURE__*/React.createElement(_BaseSelectorMultiple__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BaseSelectorMultiple__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: name,
     value: sel,
     items: list,
@@ -61443,7 +61463,7 @@ function _arrayWithHoles(r) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 
 
@@ -61517,7 +61537,7 @@ function SelectFiles(props) {
       });
     }
   }, [appEnv, value, folder, filter]);
-  return /*#__PURE__*/React.createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_1__["default"], {
     name: name,
     value: sel,
     items: list,
@@ -61543,7 +61563,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _SASItemsDropDown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SASItemsDropDown */ "./src/SASItemsDropDown.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SASItemsDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SASItemsDropDown */ "./src/SASItemsDropDown.js");
 function _extends() {
   return _extends = Object.assign ? Object.assign.bind() : function (n) {
     for (var e = 1; e < arguments.length; e++) {
@@ -61557,10 +61579,10 @@ function _extends() {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 function SelectFolder(props) {
-  return /*#__PURE__*/React.createElement(_SASItemsDropDown__WEBPACK_IMPORTED_MODULE_0__["default"], _extends({
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SASItemsDropDown__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
     key: props.name
   }, props, {
     service: "folders"
@@ -61641,6 +61663,7 @@ function _arrayWithHoles(r) {
 
 
 
+
 function SelectLibrary(props) {
   var name = props.name,
     value = props.value,
@@ -61690,7 +61713,7 @@ function SelectLibrary(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
-  return /*#__PURE__*/React.createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_1__["default"], {
     name: name,
     value: sel,
     items: liblist,
@@ -61777,6 +61800,7 @@ function _arrayWithHoles(r) {
 
 
 
+
 function SelectLocalFile(props) {
   var value = props.value,
     type = props.type,
@@ -61802,15 +61826,15 @@ function SelectLocalFile(props) {
     });
   };
   var msg = buttonLabel != null ? buttonLabel : mode === 'write' ? 'Select Folder' : 'Select Form';
-  var show = /*#__PURE__*/React.createElement("div", {
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: style
-  }, /*#__PURE__*/React.createElement(_mui_joy_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     value: newFile,
     label: buttonLabel == null ? 'Open' : buttonLabel,
     onChange: function onChange(e) {
       return setNewName(e.target.value);
     },
-    endDecorator: /*#__PURE__*/React.createElement(_mui_joy_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    endDecorator: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
       size: "sm",
       key: "openButtonform",
       variant: "outlined",
@@ -61897,6 +61921,7 @@ function _arrayWithHoles(r) {
 
 
 
+
 function SelectLocalFolder(props) {
   var value = props.value,
     label = props.label,
@@ -61917,12 +61942,12 @@ function SelectLocalFolder(props) {
       console.log(e);
     });
   };
-  var show = /*#__PURE__*/React.createElement("div", {
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: style
-  }, /*#__PURE__*/React.createElement(_mui_joy_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
     value: newFolder,
     label: label,
-    endDecorator: /*#__PURE__*/React.createElement(_mui_joy_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    endDecorator: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
       size: "sm",
       key: "openButtonform",
       variant: "outlined",
@@ -61948,7 +61973,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _SASItemsDropDown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SASItemsDropDown */ "./src/SASItemsDropDown.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SASItemsDropDown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SASItemsDropDown */ "./src/SASItemsDropDown.js");
 function _extends() {
   return _extends = Object.assign ? Object.assign.bind() : function (n) {
     for (var e = 1; e < arguments.length; e++) {
@@ -61962,12 +61989,12 @@ function _extends() {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import Reactz from 'react';
+
 
 
 //TBD: need to skip this jump since this is just a simple wrapper
 function SelectReport(props) {
-  return /*#__PURE__*/React.createElement(_SASItemsDropDown__WEBPACK_IMPORTED_MODULE_0__["default"], _extends({}, props, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SASItemsDropDown__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({}, props, {
     service: "reports"
   }));
 }
@@ -62381,7 +62408,7 @@ function _arrayWithHoles(r) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 
 
@@ -62454,7 +62481,7 @@ function SelectTable(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, lib, value, refresh, _userProps]);
-  return /*#__PURE__*/React.createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_BaseSelector__WEBPACK_IMPORTED_MODULE_2__["default"], {
     name: name,
     value: sel,
     items: tableList,
@@ -62617,7 +62644,7 @@ function _objectWithoutPropertiesLoose(r, e) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 
 function Slider(props) {
@@ -62658,7 +62685,7 @@ function Slider(props) {
     ePropsL['aria-label'] = name;
   }
   ;
-  return /*#__PURE__*/React.createElement(_mui_joy_Slider__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Slider__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
     sx: istyle,
     value: val
   }, ePropsL, {
@@ -63143,6 +63170,7 @@ function _arrayWithHoles(r) {
 
 
 
+
 function TableViewer(props) {
   var value = props.value,
     lib = props.lib,
@@ -63320,35 +63348,35 @@ function TableViewer(props) {
   }, gridOptions);
   if (control.current.columns !== null) {
     var scrollOptions = control.current.appEnv.state.scrollOptions;
-    show = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       style: {
         height: '30px',
         borderBottom: '2px',
         minHeight: '30px',
         direction: 'row'
       }
-    }, /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
       key: "b1",
       onClick: function onClick() {
         return _scroll('first');
       },
       disabled: scrollOptions.includes('first') === false
-    }, /*#__PURE__*/React.createElement(_mui_icons_material_FirstPage__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_FirstPage__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
       key: "b2",
       onClick: function onClick() {
         return _scroll('prev');
       },
       disabled: scrollOptions.includes('prev') === false
-    }, /*#__PURE__*/React.createElement(_mui_icons_material_ChevronLeft__WEBPACK_IMPORTED_MODULE_7__["default"], null)), /*#__PURE__*/React.createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_ChevronLeft__WEBPACK_IMPORTED_MODULE_7__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_material_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
       key: "b3",
       onClick: function onClick() {
         return _scroll('next');
       },
       disabled: scrollOptions.includes('next') === false
-    }, /*#__PURE__*/React.createElement(_mui_icons_material_ChevronRight__WEBPACK_IMPORTED_MODULE_8__["default"], null))), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_icons_material_ChevronRight__WEBPACK_IMPORTED_MODULE_8__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       className: agTheme,
       style: gridStyle
-    }, /*#__PURE__*/React.createElement(ag_grid_react__WEBPACK_IMPORTED_MODULE_1__.AgGridReact, _extends({
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ag_grid_react__WEBPACK_IMPORTED_MODULE_1__.AgGridReact, _extends({
       rowData: _getRows(),
       columnDefs: control.current.columns
     }, eProps))));
@@ -63455,7 +63483,7 @@ function _objectWithoutPropertiesLoose(r, e) {
   }
   return t;
 }
-// import React from 'react';
+
 
 
 function Typography(props) {
@@ -63473,7 +63501,7 @@ function Typography(props) {
     borderWidth: 1,
     borderRadius: 8
   }, sx);
-  var show = /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/React.createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
+  var show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
     sx: isx
   }, eProps), value));
   return show;
@@ -63570,7 +63598,7 @@ function VScode(props) {
   var _setCode = function _setCode(v) {
     return onChange(v);
   };
-  var editor = /*#__PURE__*/React.createElement(_monaco_editor_react__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  var editor = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_monaco_editor_react__WEBPACK_IMPORTED_MODULE_1__["default"], {
     height: "inherit",
     width: "Inherit",
     value: value,
@@ -63588,7 +63616,7 @@ function VScode(props) {
     borderWidth: '1px',
     borderRadius: '8px'
   }, sx);
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     name: name,
     style: isx,
     ref: divref
@@ -63785,7 +63813,7 @@ function _arrayWithHoles(r) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 
 
@@ -63835,19 +63863,19 @@ function VaSDK(props) {
   debugger;
   if (_userProps == null || _userProps.viyaEnv == null) {
     debugger;
-    show = /*#__PURE__*/React.createElement("div", {
+    show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       style: divStyle
-    }, /*#__PURE__*/React.createElement("p", null, "No connection to Viya"));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "No connection to Viya"));
   } else if (reportUri === null) {
     debugger;
-    show = /*#__PURE__*/React.createElement("div", {
+    show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       style: divStyle
-    }, " ", /*#__PURE__*/React.createElement("p", null, " Report ", reportName, " was not found"));
+    }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, " Report ", reportName, " was not found"));
   } else {
     var urlt = url == null || url.trim().length === 0 ? _userProps.viyaEnv.logonPayload.host : url;
-    show = /*#__PURE__*/React.createElement("div", {
+    show = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       style: divStyle
-    }, /*#__PURE__*/React.createElement("sas-report", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("sas-report", {
       key: reportUri,
       hideNavigation: "auto",
       url: urlt,
@@ -63858,7 +63886,7 @@ function VaSDK(props) {
   }
   ;
   var shkey = reportName + 'sheet';
-  return /*#__PURE__*/React.createElement(_mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_mui_joy_Sheet__WEBPACK_IMPORTED_MODULE_2__["default"], {
     key: shkey,
     style: {
       height: 'inherit',
@@ -63936,7 +63964,7 @@ function _arrayWithHoles(r) {
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 
 function WebContent(props) {
@@ -63963,7 +63991,7 @@ function WebContent(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, value]);
-  return /*#__PURE__*/React.createElement(_HtmlText__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_HtmlText__WEBPACK_IMPORTED_MODULE_1__["default"], {
     sx: sx,
     name: name,
     refresh: refresh,
@@ -63985,12 +64013,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Input */ "./src/Input.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Input */ "./src/Input.js");
 /*
  * Copyright © 2024, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// import React from 'react';
+
 
 // import TextField from '@mui/material/TextField';
 
@@ -64017,7 +64047,7 @@ function WherePrompt(props) {
       return _onChange(v);
     }
   };
-  return /*#__PURE__*/React.createElement(_Input__WEBPACK_IMPORTED_MODULE_0__["default"], pr);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Input__WEBPACK_IMPORTED_MODULE_1__["default"], pr);
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WherePrompt);
 
