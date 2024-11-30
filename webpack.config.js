@@ -7,16 +7,16 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { EvalDevToolModulePlugin } = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = (env) =>  {
-  let usePath = path.resolve(__dirname,'dist');
-    let optimize= {
-      minimize: false
+module.exports = (env) => {
+  let usePath = path.resolve(__dirname, 'dist');
+  let optimize = {
+    minimize: false
   };
   if (env.p === 'y') {
-      optimize = { 
-              minimize: true,
-              minimizer: [new TerserPlugin()]
-      }
+    optimize = {
+      minimize: true,
+      minimizer: [new TerserPlugin()]
+    }
   };
   let plugins = [];
   if (env.p === 'a') {
@@ -25,14 +25,14 @@ module.exports = (env) =>  {
   let config = {
     entry: './index.js',
     mode: (env.p === 'y') ? "production" : "development",
-    plugins: plugins, 
+    plugins: plugins,
     optimization: optimize,
     devtool: 'source-map',
     output: {
       path: usePath,
       filename: (env.p === 'y') ? 'smart-controls-chakra.js' : 'smart-controls-chakra.dev.js',
       libraryTarget: 'umd',
-      library: "chakraControls", 
+      library: "chakraControls",
       umdNamedDefine: true,
       globalObject: 'this'
     },
@@ -54,18 +54,37 @@ module.exports = (env) =>  {
           test: /\.png$/i,
           type: "asset/inline",
         },
-        { test: /\.(js|jsx)$/, exclude: /node_modules/, use: "babel-loader" },
+        { test: /\.(js|jsx)$/, use: "babel-loader" },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+            },
+          },
+        },
         { test: /\.css$/, use: ["style-loader", "css-loader"] },
       ],
     },
-    
+
     externals: {
-      react: 'React',
-     'react-dom': 'ReactDOM'
-     }
-    
+      react: {
+        commonjs: 'react',
+        commonjs2: 'react',
+        amd: 'react',
+        root: 'React',
+      },
+      'react-dom': {
+        commonjs: 'react-dom',
+        commonjs2: 'react-dom',
+        amd: 'react-dom',
+        root: 'ReactDOM',
+      },
+    },
 
   };
   console.log(config);
-return config;
+  return config;
 }
