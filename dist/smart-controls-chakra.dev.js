@@ -36724,7 +36724,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  */
 
 
-
 console.log('frameControl', _src_index_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 var small = {
   height: 30,

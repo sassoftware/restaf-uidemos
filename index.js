@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { frame } from 'framer-motion';
 import frameControl from './src/index.js';
 console.log('frameControl', frameControl);
 let small = {height: 30, width: 200};
