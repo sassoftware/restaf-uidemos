@@ -288,8 +288,9 @@ debugger;
       "b"
     )
   };
-
+ let smartControls = {controls, basicControls, sasControls};  
  export {controls, basicControls, sasControls};
+ export default smartControls;
  
   
 

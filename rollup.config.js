@@ -10,54 +10,7 @@ import postcss from 'rollup-plugin-postcss';
 export default [
   {
     input: './index.js',
-    output: {
-      file: 'dist/index.umd.js',
-      format: 'umd',
-      name: 'smartControls',
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM'
-      }
-    },
-    external: ['react', 'react-dom' /*,'react/jsx-runtime' , '@mui/material', '@mui/joy'*/],
-    jsx: {
-      importSource: 'react/jsx-runtime'
-    },
-    plugins: [
-      replace({
-        'process.env.NODE_ENV': JSON.stringify('production'), // Replaces with "production"
-        preventAssignment: true, // Required to avoid warnings in recent Rollup versions
-      }),
-      
-      peerDepsExternal(),
-      resolve({
-        // Only include necessary modules
-        moduleDirectories: ['node_modules']
-      }),
-      commonjs({
-        // Ignore "use client" warnings specifically for MUI
-        ignoreGlobal: true,
-        include: /node_modules/,
-        exclude: [/*/node_modules\/@mui\/material/, /node_modules\/@mui\/joy/*/]
-      }),
-      postcss({
-        inject: true
-      }),
-      babel({
-        babelHelpers: 'bundled',
-        configFile: "./.babelrc.umd",
-        extensions: ['.js', '.jsx'],
-        exclude: 'node_modules/**'
-      }),
-     
-      /*terser()*/
-       // Minifies the UMD build
-    ]
-  },
-  {
-    input: './index.js',
     output: [
-      { file: 'dist/index.cjs.js', format: 'cjs' },
       { file: 'dist/index.esm.js', format: 'esm' }
     ],
     external: ['react', 'react-dom', 'react/jsx-runtime'],

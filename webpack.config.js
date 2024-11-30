@@ -6,16 +6,16 @@ const path = require("path");
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = (env) =>  {
-  let usePath = path.resolve(__dirname,'dist');
-    let optimize= {
-      minimize: false
+module.exports = (env) => {
+  let usePath = path.resolve(__dirname, 'dist');
+  let optimize = {
+    minimize: false
   };
   if (env.p === 'y') {
-      optimize = { 
-              minimize: true,
-              minimizer: [new TerserPlugin()]
-      }
+    optimize = {
+      minimize: true,
+      minimizer: [new TerserPlugin()]
+    }
   };
   let plugins = [];
   if (env.p === 'a') {
@@ -24,13 +24,13 @@ module.exports = (env) =>  {
   let config = {
     entry: './index.js',
     mode: (env.p === 'y') ? "production" : "development",
-    plugins: plugins, 
+    plugins: plugins,
     optimization: optimize,
     output: {
       path: usePath,
       filename: (env.p === 'y') ? 'index.umd.js' : 'index.dev.js',
       libraryTarget: 'umd',
-      library: "smartControls", 
+      library: "smartControls",
       umdNamedDefine: true,
       globalObject: 'this'
     },
@@ -52,18 +52,30 @@ module.exports = (env) =>  {
           test: /\.png$/i,
           type: "asset/inline",
         },
-        { test: /\.(js|jsx)$/, exclude: /node_modules/, use: "babel-loader" },
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/preset-env'],
+                ['@babel/preset-react', { runtime: 'classic' }]
+              ],
+            },
+          },
+        },
         { test: /\.css$/, use: ["style-loader", "css-loader"] },
       ],
     },
-    
+
     externals: {
       react: 'React',
       'react-dom': 'ReactDOM',
-     }
-    
+    }
+
 
   };
   console.log(config);
-return config;
+  return config;
 }
