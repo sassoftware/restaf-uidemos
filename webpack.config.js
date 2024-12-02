@@ -6,6 +6,7 @@ const path = require("path");
 const TerserPlugin = require('terser-webpack-plugin');
 //const { EvalDevToolModulePlugin } = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
   let usePath =  path.resolve(__dirname, (env.p === 'y') ? 'dist' : 'lib');
@@ -18,7 +19,10 @@ module.exports = (env) => {
       minimizer: [new TerserPlugin()]
     }
   };
-  let plugins = [];
+  let plugins = [new MiniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[id].css',
+  })];
   if (env.p === 'a') {
     plugins.push(new BundleAnalyzerPlugin());
   }
@@ -64,7 +68,13 @@ module.exports = (env) => {
             },
           },
         },
-        { test: /\.css$/, use: ["style-loader", "css-loader"] },
+        {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader'
+          ],
+        },
       ],
     },
 
