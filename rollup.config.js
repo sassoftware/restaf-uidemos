@@ -11,7 +11,7 @@ export default [
   {
     input: './index.js',
     output: [
-      { file: 'dist/index.esm.js', format: 'esm' }
+      { file: 'esm/index.js', format: 'esm' }
     ],
     external: ['react', 'react-dom', 'react/jsx-runtime'],
     plugins: [

@@ -4,11 +4,11 @@
  */
 const path = require("path");
 const TerserPlugin = require('terser-webpack-plugin');
-const { EvalDevToolModulePlugin } = require("webpack");
+//const { EvalDevToolModulePlugin } = require("webpack");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env) => {
-  let usePath = path.resolve(__dirname, 'dist');
+  let usePath =  path.resolve(__dirname, (env.p === 'y') ? 'dist' : 'lib');
   let optimize = {
     minimize: false
   };
@@ -30,7 +30,7 @@ module.exports = (env) => {
     devtool: 'source-map',
     output: {
       path: usePath,
-      filename: (env.p === 'y') ? 'index.js' : 'index.dev.js',
+      filename: 'index.js',
       libraryTarget: 'umd',
       library: "smartControls",
       umdNamedDefine: true,
@@ -54,9 +54,8 @@ module.exports = (env) => {
           test: /\.png$/i,
           type: "asset/inline",
         },
-        { test: /\.(js|jsx)$/, use: "babel-loader" },
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',

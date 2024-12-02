@@ -176,9 +176,9 @@ debugger;
       { orientation: "horizontal", label: " " },
       "h"
     ),
-    Border: _visualTemplate(
-      frameControl.Border,
-      "Border",
+    Background: _visualTemplate(
+      frameControl.Background,
+      "Background",
       "string",
       " ",
       medium,

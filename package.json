@@ -1,9 +1,9 @@
 {
   "name": "@sassoftware/smart-controls-mui",
   "version": "1.5.11",
-  "author": "K. Deva Kumaraswamy",
+  "author": "K. Deva Kumar",
   "license": "Apache-2.0",
-  "description": "Mui Frame Controls for use with @sassoftware/appBuilder",
+  "description": "Mui Frame Controls for use with @sassoftware/react-app-builder",
   "source": "./index.js",
   "packDirectory": "./dev",
   "exports": {
@@ -14,16 +14,18 @@
   "unpkg": "./dist/index.js",
   "files": [
     "./dist",
+    "./lib",
     "LICENSE"
   ],
   "scripts": {
     "src2": "babel src --out-dir src2",
-    "build:rollup": "rimraf dist && rollup -c --bundleConfigAsCjs",
+    "build:rollup": "rimraf esm && rollup -c --bundleConfigAsCjs",
     "pub": "npm publish --tag dev --access public",
-    "build:umdd": "webpack --env target=umd p=n --config webpack.config.js",
-    "build:umdp": "webpack --env target=umd p=y --config webpack.config.js",
-    "build:umd": "rimraf dist && npm run build:umdd && npm run build:umdp",
-    "build": "rimraf dist && npm run build:umd",
+    "build:umdd": "rimraf lib && webpack --env target=umd p=n --config webpack.config.js",
+    "build:umdp": "rimraf dist && webpack --env target=umd p=y --config webpack.config.js",
+    "build:umd": "npm run build:umdd && npm run build:umdp",
+    "build": "npm run build:umd",
+    "buildall" : "npm run build && npm run build:rollup",
     "stats": "webpack --env target=umd p=a --config webpack.config.js",
     "bump": "npm version prerelease"
   },

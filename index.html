@@ -10,7 +10,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script async src="https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf"></script>
-    <script type="text/javascript" src="./dist/index.dev.js"></script>
+    <script type="text/javascript" src="./dist/index.js"></script>
      
 
     <script type="text/javascript">
@@ -28,7 +28,7 @@
     let DropdownMenu = f['DropdownMenu'].component;
     //let Listbox = f['Listbox'].component;
     let RadioGroup = f['RadioGroup'].component;
-    let Border = f['Border'].component;
+    let Background = f['Background'].component;
     let WebContent = f['WebContent'].component;
     let VaSDK = f['VaSDK'].component;
     let SelectLibrary = f['SelectLibrary'].component;
@@ -63,7 +63,7 @@
                             <Inputarea label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
               <WebContent label="check me"  target={"_blank"} value="https://www.sas.com" sx={sx} onChange={onEnter}></WebContent>
               <br/>
-              <Border  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></Border>
+              <Background  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></Background>
               <VaSDK  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></VaSDK>
               <VScode  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}} language="text" value="xxxx"  ></VScode>
               <SelectLibrary  sx={{height: 200, width: 200, borderRadius: 4}}  ></SelectLibrary>

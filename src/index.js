@@ -13,7 +13,7 @@ import WebContent  from './WebContent';
 import HtmlText from './HtmlText';
 import SASItemsDropDown from './SASItemsDropDown';
 import Dropdown from './Dropdown';
-import Border from './Border';
+import Background from './Background';
 import SelectDataValues from './DistinctValues';
 import Button  from './Button';
 import Checkbox from './Checkbox';
@@ -50,7 +50,7 @@ export default {
   Input,
   InputText,
   Inputarea,
-  Border,
+  Background,
   SASItemsDropDown,
   DistinctValues,
   SelectDataValues,
