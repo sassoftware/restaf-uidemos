@@ -137,6 +137,30 @@ debugger;
       },
       "h"
     ),
+    
+    /* misc */
+    Divider: _visualTemplate(
+      frameControl.Divider,
+      "Divider",
+      "string",
+      "Divider",
+      small,
+      { orientation: "horizontal", label: " " },
+      "h"
+    ),
+    Background: _visualTemplate(
+      frameControl.Background,
+      "Background",
+      "string",
+      " ",
+      medium,
+      {
+        label: " ",
+        sx: { backgroundColor: "#f5f5f5", borderRadius: 4, boxShadow: 4 },
+      },
+      "b",
+      1
+    ),
     HtmlText: _visualTemplate(
       frameControl.HtmlText,
       "HtmlText",
@@ -166,29 +190,6 @@ debugger;
       "b"
     ),
 
-    /* misc */
-    Divider: _visualTemplate(
-      frameControl.Divider,
-      "Divider",
-      "string",
-      "Divider",
-      small,
-      { orientation: "horizontal", label: " " },
-      "h"
-    ),
-    Background: _visualTemplate(
-      frameControl.Background,
-      "Background",
-      "string",
-      " ",
-      medium,
-      {
-        label: " ",
-        sx: { backgroundColor: "#f5f5f5", borderRadius: 4, boxShadow: 4 },
-      },
-      "b",
-      1
-    ),
     /*
     Image: _visualTemplate(
       frameControl.Image,
