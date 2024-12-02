@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/smart-controls-mui",
-  "version": "1.5.11",
+  "version": "1.6.0",
   "author": "K. Deva Kumar",
   "license": "Apache-2.0",
   "description": "Mui Frame Controls for use with @sassoftware/react-app-builder",
@@ -25,7 +25,7 @@
     "build:umdp": "rimraf dist && webpack --env target=umd p=y --config webpack.config.js",
     "build:umd": "npm run build:umdd && npm run build:umdp",
     "build": "npm run build:umd",
-    "buildall" : "npm run build && npm run build:rollup",
+    "buildall": "npm run build && npm run build:rollup",
     "stats": "webpack --env target=umd p=a --config webpack.config.js",
     "bump": "npm version prerelease"
   },
