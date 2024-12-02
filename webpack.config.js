@@ -31,7 +31,6 @@ module.exports = (env) => {
     mode: (env.p === 'y') ? "production" : "development",
     plugins: plugins,
     optimization: optimize,
-    devtool: 'source-map',
     output: {
       path: usePath,
       filename: 'index.js',
@@ -94,6 +93,9 @@ module.exports = (env) => {
     },
 
   };
+  if (env.p !== 'y') {
+    config.devtool = 'source-map';
+  }
   console.log(config);
   return config;
 }
