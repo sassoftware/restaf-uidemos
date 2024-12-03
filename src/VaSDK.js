@@ -9,7 +9,7 @@ import Sheet from '@mui/joy/Sheet';
 //import Border from './Border';
 
 function VaSDK(props) {
-  let { value,  url, auth, _userProps, style  } = props;
+  let { value,  url, auth, _appContext, style  } = props;
   const [reportUri, setReportUri] = useState(null);
 
   const [errMsg, setErrMsg] = useState(null);
@@ -25,10 +25,10 @@ function VaSDK(props) {
   
   useEffect(() => {
     debugger;
-    if (_userProps != null &&  _userProps.viyaEnv != null) {
-      _userProps.viyaEnv.store.addServices('reports')
+    if (_appContext != null &&  _appContext.viyaEnv != null) {
+      _appContext.viyaEnv.store.addServices('reports')
         .then(r => {
-          getReportUri(_userProps.viyaEnv.store, reportName)
+          getReportUri(_appContext.viyaEnv.store, reportName)
             .then(r => {
               
               setReportUri(r[0].uri);
@@ -44,14 +44,14 @@ function VaSDK(props) {
   let show = null;
   let divStyle = sx;
   debugger;
-  if (_userProps == null || _userProps.viyaEnv == null) {
+  if (_appContext == null || _appContext.viyaEnv == null) {
     debugger;
     show = <div style={divStyle}><p>No connection to Viya</p></div>;
   } else if (reportUri === null) {
     debugger;
     show = <div style={divStyle}> <p> Report {reportName} was not found</p></div>
   } else {
-      let urlt = (url == null || url.trim().length === 0) ? _userProps.viyaEnv.logonPayload.host : url
+      let urlt = (url == null || url.trim().length === 0) ? _appContext.viyaEnv.logonPayload.host : url
       show = <div style={divStyle}>
        <sas-report  key={reportUri}
         hideNavigation="auto"

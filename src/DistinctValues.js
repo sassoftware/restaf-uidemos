@@ -8,7 +8,7 @@ import { distinctValues } from '@sassoftware/restafedit';
 import BaseSelector from './BaseSelector';
 
 function DistinctValues(props) {
-  let { column, value, label, lib, table, where, sx, onChange, designMode, _userProps,...eProps } = props;
+  let { column, value, label, lib, table, where, sx, onChange, designMode, _appContext,...eProps } = props;
 
   const [list, setList] = useState([]);
   const [sel, setSel] = useState(value);
@@ -19,11 +19,11 @@ function DistinctValues(props) {
   };
 
   useEffect(() => {
-    if (_userProps == null || _userProps.viyaEnv == null) {
+    if (_appContext == null || _appContext.viyaEnv == null) {
       setList([]);
     } else {
 
-      let appEnv = _userProps.viyaEnv
+      let appEnv = _appContext.viyaEnv
       if (column == null || column.trim().length === 0) {
         setList([])
       } else {
@@ -50,7 +50,7 @@ function DistinctValues(props) {
         }
       }
 
-  }, [label, column, lib,table, where, _userProps]);
+  }, [label, column, lib,table, where, _appContext]);
 
   let pr = {
     name: 'distinct',

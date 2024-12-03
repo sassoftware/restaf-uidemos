@@ -2,7 +2,7 @@ import React from "react";
 import { Checkbox as JoyCheckbox } from "@mui/joy";
 
 function Checkbox(props) {
-  let { label, value, onChange, sx,_userProps, ...eProps } = props;
+  let { label, value, onChange, sx,_appContext, ...eProps } = props;
 
   const _onChange = (e) => {
     onChange(e.target.checked)

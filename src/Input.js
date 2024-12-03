@@ -8,7 +8,7 @@ import JoyInput from '@mui/joy/Input';
 import { FormLabel } from '@mui/joy';
 
 function Input(props) {
-  const { name, label, type, sx, designMode, onChange,_userProps, ...eProps} = props;
+  const { name, label, type, sx, designMode, onChange,_appContext, ...eProps} = props;
   const [value, setValue] = useState(() => (props.value == null) ? ' ' : props.value);
 
   let disabled = (eProps.disabled == null) ? false : eProps.disabled;

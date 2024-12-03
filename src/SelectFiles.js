@@ -11,7 +11,7 @@ import getItemsList from './utils/getItemsList';
 
 //TBD: need to skip this jump since this is just a simple wrapper
 function SelectFiles(props) {
-  const {name, value, label, eProps, style, folder, filter, onChange, designMode, _userProps} = props;
+  const {name, value, label, eProps, style, folder, filter, onChange, designMode, _appContext} = props;
   const [list, setList] = useState([]);
   const [sel, setSel] = useState('');
  // let value = (refresh  === true) ? null : value;
@@ -25,7 +25,7 @@ function SelectFiles(props) {
  
   useEffect (() => {
     const setupCall = async () => {
-      let folderUri = await getFolderUri(_userProps.viyaEnv.store, folder);
+      let folderUri = await getFolderUri(_appContext.viyaEnv.store, folder);
       let tfilter = (filter == null) ? {} : {...filter};
       tfilter.documentType = 'fseditconfig';
       if (folderUri != null) {
@@ -34,7 +34,7 @@ function SelectFiles(props) {
       let r = await getItemsList(appEnv, 'files', 1000, tfilter);
       return r;
     }
-    if (_userProps != null && _userProps.viyaEnv != null) {
+    if (_appContext != null && _appContext.viyaEnv != null) {
       setupCall()
         .then (r => {
           setList(r);

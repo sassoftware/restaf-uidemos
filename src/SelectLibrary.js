@@ -8,7 +8,7 @@ import BaseSelector from './BaseSelector';
 import {getLibraryList} from '@sassoftware/restafedit';
 
 function SelectLibrary(props) {
-  const {name, value, style, label,onChange, eProps, designMode, _userProps} = props;
+  const {name, value, style, label,onChange, eProps, designMode, _appContext} = props;
   
   const [liblist, setLiblist] = useState([]);
   const [sel, setSel] = useState(value);
@@ -19,13 +19,13 @@ function SelectLibrary(props) {
     onChange(selx);
   };
   useEffect(() => {
-    if (_userProps != null &&  _userProps.viyaEnv != null) {
-      const {source, session} = _userProps.viyaEnv
+    if (_appContext != null &&  _appContext.viyaEnv != null) {
+      const {source, session} = _appContext.viyaEnv
       debugger;
       if (session === null) {
         setLiblist([])
       } else {
-        getLibraryList(_userProps.viyaEnv)
+        getLibraryList(_appContext.viyaEnv)
           .then ( r => {
             setLiblist(r);
             if (source === 'cas' && value != null && value.toUpperCase() === 'CASUSER') {

@@ -12,7 +12,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
 
 function Listbox(props) {
-  let { name, value, label, items, variant, color, onChange, sx, labelProp, valueType,_userProps, ...eProps } = props;
+  let { name, value, label, items, variant, color, onChange, sx, labelProp, valueType,_appContext, ...eProps } = props;
   
   const _handleChange = (v,i) => {
     if (v == null) {

@@ -8,7 +8,7 @@ import React from 'react';
 import BaseSelectorMultiple from './BaseSelectorMultiple';
 import BaseSelector from './BaseSelector';
 function Dropdown(props) {
-  let {_userProps, ...eProps} = props;
+  let {_appContext, ...eProps} = props;
   return (props.multiple === true) ? <BaseSelectorMultiple {...eProps} /> : <BaseSelector {...eProps} />;
 
 }

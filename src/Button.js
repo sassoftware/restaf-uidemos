@@ -6,7 +6,7 @@ import React from 'react';
 import JoyButton from '@mui/joy/Button';
 
 function Button(props) {
-  const {value, sx, label, designMode, onChange,_userProps,...eProps} = props;
+  const {value, sx, label, designMode, onChange,_appContext,...eProps} = props;
   const _handleClick = () => {
     onChange(value);
   }

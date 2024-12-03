@@ -9,13 +9,13 @@ import getItemsList from './utils/getItemsList.js';
 import BaseSelector from './BaseSelector';
 
 function SASItemsDropDown(props) {
-  let { name, service, value, limit, label, filter, onChange, style, designMode, _userProps } = props;
+  let { name, service, value, limit, label, filter, onChange, style, designMode, _appContext } = props;
   const [menuList, setMenuList] = useState([]);
   const [sel, setSel] = useState('');
   
   useEffect(() => {
-    if (_userProps != null && _userProps.viyaEnv != null) {
-      getItemsList(_userProps.viyaEnv, service.trim(), limit, filter)
+    if (_appContext != null && _appContext.viyaEnv != null) {
+      getItemsList(_appContext.viyaEnv, service.trim(), limit, filter)
 
         .then(r => { 
           
