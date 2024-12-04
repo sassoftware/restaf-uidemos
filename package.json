@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/smart-controls-mui",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "author": "K. Deva Kumar",
   "license": "Apache-2.0",
   "description": "Mui Frame Controls for use with @sassoftware/react-app-builder",
