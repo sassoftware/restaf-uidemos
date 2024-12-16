@@ -214,7 +214,7 @@ debugger;
       "string",
       " ",
       small,
-      { name: " ", source: " " },
+      { name: " ", source: null },
       "h"
     ),
     SelectTable: _visualTemplate(
@@ -223,7 +223,7 @@ debugger;
       "string",
       " ",
       small,
-      { name: " ", lib: " ",  refresh: false },
+      { name: " ", lib: " ",  source: null, refresh: false },
       "h"
     ),
     DataGrid: _visualTemplate(
@@ -232,7 +232,7 @@ debugger;
       "string",
       " ",
       medium,
-      {  value: '',lib: '',table: '',limit: 20, keep: [], gridOptions: {}, gridClass:'', refresh: false },
+      { source: null, value: '',lib: '',table: '',limit: 20, keep: [], gridOptions: {}, gridClass:'', refresh: false },
       "b"
     ),
     SelectColumns: _visualTemplate(
@@ -242,7 +242,7 @@ debugger;
       " ",
       small,
       {
-        name: " ",
+        source: null,
         lib: " ",
         table: " ",
         separator: " ",
@@ -257,7 +257,7 @@ debugger;
       " ",
       small,
       {
-        name: " ",
+        source: null,
         lib: " ",
         table: " ",
         column: " ",

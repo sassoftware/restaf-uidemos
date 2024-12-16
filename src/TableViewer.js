@@ -11,14 +11,14 @@ import FirstPage from '@mui/icons-material/FirstPage';
 import { setup, scrollTable } from '@sassoftware/restafedit';
 
 function TableViewer(props) {
-  let { value, lib,table,limit,keep, refresh, sx,gridOptions, _appContext } = props;
+  let { source, value, lib,table,limit,keep, refresh, sx,gridOptions, _appContext } = props;
   let [redraw, reDraw] = useState(false); 
   let control = useRef({appEnv: null, columns: null, msg: null}); 
   
   useEffect(() => {
 
       const setup1 = async () => {
-        let viyaEnv = _appContext.viyaEnv;
+        let viyaEnv = await  _appContext.getViyaSession(source);
         debugger;
         let tabled = {};
         if (value != null && value.trim().length > 0) {
