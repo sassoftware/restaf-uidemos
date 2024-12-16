@@ -19,18 +19,25 @@ function SelectLibrary(props) {
     onChange(selx);
   };
   const _setup = async () => {
-    if (_appContext != null) {
+    debugger;
+    if (_appContext == null) {
       setLiblist([]);
       return;
     }
+    debugger;
+    console.log(_appContext.getViyaConnection);
     let viyaSession = await _appContext.getViyaSession(source);
+    console.log(viyaSession); 
     if (viyaSession === null) {
       setLiblist([]);
-      return
+      return;
     }
     let {store} = viyaSession;
     try {
+      debugger;
+      console.log(viyaSession);
       let r = await getLibraryList(store, viyaSession);
+      debugger;
       setLiblist(r);
       if (source === 'cas' && value != null && value.toUpperCase() === 'CASUSER') {
         const index = r.findIndex(e => e.indexOf('CASUSER') >= 0);
@@ -39,7 +46,9 @@ function SelectLibrary(props) {
         }
       }
     }
-    catch (r) {
+    catch (e) {
+      debugger;
+      console.log(e)
       setLiblist([])
     }
     return;
@@ -52,7 +61,7 @@ function SelectLibrary(props) {
       setLiblist([]);
       setSel('');
     });
-    }, [value, _appContext]);
+    }, [value,source, _appContext]);
 
   return <BaseSelector
     value={sel}
