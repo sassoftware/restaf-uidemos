@@ -36,7 +36,7 @@ function SelectLibrary(props) {
     try {
       debugger;
       console.log(viyaSession);
-      let r = await getLibraryList(store, viyaSession);
+      let r = await getLibraryList(viyaSession, null);
       debugger;
       setLiblist(r);
       if (source === 'cas' && value != null && value.toUpperCase() === 'CASUSER') {

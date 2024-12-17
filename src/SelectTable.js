@@ -8,7 +8,7 @@ import { getTableList } from '@sassoftware/restafedit';
 import BaseSelector from './BaseSelector';
 
 function SelectTable(props) {
-  const { value, lib, label, refresh, designMode, style, eProps, _appContext, onChange } = props;
+  const { source, value, lib, label, refresh, designMode, style, eProps, _appContext, onChange } = props;
   const [tableList, setTableList] = useState([]);
   const [sel, setSel] = useState(value);
   let lastlib = useRef(null);
@@ -23,7 +23,7 @@ function SelectTable(props) {
       setLiblist([]);
       return;
     }
-    if (lib == null) {
+    if (lib == null || lib.trim().length === 0) {
       setTableList([]);
       setSel('');
       return;
@@ -42,7 +42,7 @@ function SelectTable(props) {
       }
     }
     catch (r) {
-      setLiblist([]);
+      setTableList([]);
       setSel('');
     }
     return;

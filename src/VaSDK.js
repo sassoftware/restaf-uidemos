@@ -33,7 +33,7 @@ function VaSDK(props) {
     }
     //await store.addServices('reports');
     try {
-      let r = await getReportUri(store, reportName);
+      let r = await getReportUri(appEnv.store, reportName);
       setReportUri(r[0].uri);
       setErrMsg(null);
       return;

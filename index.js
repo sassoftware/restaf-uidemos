@@ -214,7 +214,7 @@ debugger;
       "string",
       " ",
       small,
-      { name: " ", source: null },
+      { source: null },
       "h"
     ),
     SelectTable: _visualTemplate(
@@ -223,7 +223,7 @@ debugger;
       "string",
       " ",
       small,
-      { name: " ", lib: " ",  source: null, refresh: false },
+      { lib: " ",  source: null, refresh: false },
       "h"
     ),
     DataGrid: _visualTemplate(
@@ -285,7 +285,7 @@ debugger;
       "string",
       "Retail Insights",
       medium,
-      { name: " ", url: " ", auth: "credentials"},
+      {  url: " ", auth: "credentials"},
       "b"
     )
   };

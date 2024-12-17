@@ -34,7 +34,7 @@ function TableViewer(props) {
             return;
           }
           tabled = { name: table };
-          if (viyaEnv.source === 'cas') {
+          if (source === 'cas') {
             tabled.caslib = lib;
           } else {
             tabled.libref = lib;
@@ -42,7 +42,7 @@ function TableViewer(props) {
         }
       
         let appControl = {
-          source: viyaEnv.source,
+          source: source,
           table: tabled,
           initialFetch: {
             qs: {
