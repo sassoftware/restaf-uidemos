@@ -56,8 +56,6 @@ function TableViewer(props) {
        
         // setup and read the first set of rows(reuse sessionID)
         try {
-        
-          
           let tAppEnv = await setup(viyaEnv.logonPayload, appControl, viyaEnv.sessionID);
         
           await scrollTable('first',tAppEnv);
