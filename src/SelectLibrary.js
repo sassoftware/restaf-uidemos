@@ -20,7 +20,7 @@ function SelectLibrary(props) {
   };
   const _setup = async () => {
     debugger;
-    if (_appContext == null) {
+    if (_appContext == null || source == null) {
       setLiblist([]);
       return;
     }

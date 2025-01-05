@@ -19,7 +19,7 @@ function SelectTable(props) {
 
   
   const _setup = async () => {
-    if (_appContext != null) {
+    if (_appContext != null || source == null) {
       setLiblist([]);
       return;
     }

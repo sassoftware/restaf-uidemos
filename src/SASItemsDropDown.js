@@ -13,26 +13,34 @@ function SASItemsDropDown(props) {
   const [menuList, setMenuList] = useState([]);
   const [sel, setSel] = useState('');
   
+const _setup = async () => {
+  if (_appContext == null) {
+    setMenuList([]);
+    setSel('');
+    return;
+  }
+  debugger;
+  let viyaSession = await _appContext.getViyaSession(null);
+  console.log(viyaSession); 
+  if (viyaSession === null) {
+    setMenuList([]);
+    return;
+  }
+  let r = await getItemsList(viyaSession, service, limit, filter)
+  setMenuList(r);   
+  if (value !== undefined && value !== null && value !== '' && r.includes(value)) {
+    setSel(value);
+  } 
+}
   useEffect(() => {
-    if (_appContext != null && _appContext.viyaEnv != null) {
-      getItemsList(_appContext.viyaEnv, service.trim(), limit, filter)
-
-        .then(r => { 
-          
-          setMenuList(r);
-          if (value !== undefined && value !== null && value !== '' && r.includes(value)) {
-            setSel(value);
-          } else {
-            setSel(null);
-          }
-          
-        })
-        .catch(err => {
-          console.log(err);
-          setSel('');
-
-        })
-      }
+    
+    debugger;
+    _setup()
+      .then (r => {console.log('ready')})
+      .catch(err => {
+         console.log(err);
+         setSel
+      })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, name, service, filter]);
 
