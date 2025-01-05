@@ -20,7 +20,7 @@
   "scripts": {
     "src2": "babel src --out-dir src2",
     "build:rollup": "rimraf esm && rollup -c --bundleConfigAsCjs",
-    "pub": "npm publish --tag dev --access public",
+    "pub": "npm publish --tag latest --access public",
     "build:umdd": "rimraf lib && webpack --env target=umd p=n --config webpack.config.js",
     "build:umdp": "rimraf dist && webpack --env target=umd p=y --config webpack.config.js",
     "build:umd": "npm run build:umdd && npm run build:umdp",
