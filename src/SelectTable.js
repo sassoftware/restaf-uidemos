@@ -19,8 +19,9 @@ function SelectTable(props) {
 
   
   const _setup = async () => {
-    if (_appContext != null || source == null) {
+    if (_appContext == null || source == null) {
       setTableList([]);
+      setSel('');
       return;
     }
     if (lib == null || lib.trim().length === 0) {
@@ -36,7 +37,6 @@ function SelectTable(props) {
     }
     try {
       debugger;
-      console.log(getTableList);
       let r = await getTableList(lib, viyaSession);
       setTableList(r);
       if (lastlib.current !== lib) {
