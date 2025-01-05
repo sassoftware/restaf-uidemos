@@ -29,6 +29,7 @@ function SelectTable(props) {
       setSel('');
       return;
     }
+    console.log('getting sesion', source);
     let viyaSession = await _appContext.getViyaSession(source);
     if (viyaSession === null) {
       setTableList([]);
@@ -37,13 +38,15 @@ function SelectTable(props) {
     }
     try {
       debugger;
-      let r = await getTableList(lib, viyaSession);
+      console.log(lib, viyaSession);
+      let r = await getTableList(lib, viyaSession, null);
       setTableList(r);
       if (lastlib.current !== lib) {
         setSel('');
       }
     }
     catch (r) {
+      console.log(r);
       setTableList([]);
       setSel('');
     }
