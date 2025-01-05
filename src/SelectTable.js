@@ -20,7 +20,7 @@ function SelectTable(props) {
   
   const _setup = async () => {
     if (_appContext != null || source == null) {
-      setLiblist([]);
+      setTableList([]);
       return;
     }
     if (lib == null || lib.trim().length === 0) {
@@ -30,7 +30,7 @@ function SelectTable(props) {
     }
     let viyaSession = await _appContext.getViyaSession(source);
     if (viyaSession === null) {
-      setLiblist([]);
+      setTableList([]);
       setSel('');
       return;
     }
