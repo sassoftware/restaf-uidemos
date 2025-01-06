@@ -13,15 +13,16 @@ function Image(props) {
 
   // using value - to allow for changing the text of the button programmatically
 
-  let isx = {borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', ...sx};
+  let isx = {borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', height: 'inherit', ...sx};
   let sx2 = {height: 'inherit',width: 'inherit'};
   
-  let src = value;
+  let src = (value == null) ? "data:," : value;
+  let ilabel = (label == null) ? "Image" : label;
   if (srcType != null) {  
     src = dataUrl(value, srcType);
   }
-  
-  let show =  <div key={refresh} style={isx} ><img src={src} crossOrigin="" alt={label} key={refresh+1} style={sx2}  /> </div>;
+  let key = (refresh != null) ? refresh : 'image';
+  let show =  <div key={key} style={isx} ><img src={src} crossOrigin="" alt={ilabel} style={sx2}  /> </div>;
 
   return show;
 

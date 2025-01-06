@@ -17,6 +17,7 @@
     let f = smartControls.controls;
     debugger;
     console.log(f);
+    let Image = f['Image'].component;
     let Button = f['Button'].component
     let Input = f['Input'].component
     let InputText = f['InputText'].component
@@ -51,6 +52,7 @@
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
+              <Image  sx={sx} label="this is stuff"></Image>
               <DataGrid   source='cas' value="" lib="" table="" _userProps={null}  keep={null} sx={sx} onChange={onEnter}></DataGrid>
               <Checkbox label="check me"  value={false} sx={sx} onChange={onEnter}></Checkbox>
               <Button  disabled={true} label="click me" onChange={onEnter}></Button>
@@ -60,7 +62,7 @@
               <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
               <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
             
-                            <Inputarea label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
+              <Inputarea label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
               <WebContent label="check me"  target={"_blank"} value="https://www.sas.com" sx={sx} onChange={onEnter}></WebContent>
               <br/>
               <Background  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></Background>

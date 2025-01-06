@@ -185,7 +185,7 @@ debugger;
       "string",
       " ",
       medium,
-      {label: ' ', srcType: null},
+      {label: " ", srcType: null},
       "b"
     ),
     VScode: _visualTemplate(
