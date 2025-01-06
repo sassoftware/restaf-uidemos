@@ -184,8 +184,8 @@ debugger;
       "Image",
       "string",
       " ",
-      small,
-      {label: ' ', srcType: null, sx:{}},
+      medium,
+      {label: ' ', srcType: null},
       "b"
     ),
     VScode: _visualTemplate(
