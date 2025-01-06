@@ -13,7 +13,7 @@ function Image(props) {
 
   // using value - to allow for changing the text of the button programmatically
 
-  let isx = {height: 'inherit',borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', ...sx};
+  let isx = {borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', ...sx};
   let sx2 = {height: 'inherit',width: 'inherit'};
   
   let src = value;

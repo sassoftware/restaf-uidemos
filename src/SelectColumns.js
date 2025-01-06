@@ -9,10 +9,10 @@ import BaseSelectorMultiple from './BaseSelectorMultiple';
 //import {getTableColumns} from '@sassoftware/restafedit'; 
 
 function SelectColumns(props) {
-  const {name, value, separator, style, label, lib, table,asArray, onChange, designMode, _appContext} = props;
+  const {value, separator, label, source, lib, table,asArray, onChange, _appContext} = props;
   
   const [list, setList] = useState([]);
-  let sep = (separator == null) ? ' ' : separator;
+  let sep = (separator == null) ? ',' : separator;
   
   const [sel, setSel] = useState(() => {  
     if (value == null) {
@@ -30,31 +30,39 @@ function SelectColumns(props) {
     setSel(selx);
     onChange(asArray === true ?  selx: selx.join(sep) );
   };
+  const _setup = async () => {
+    debugger;
+    if (_appContext == null || source == null) {
+      return [];
+    }
+    debugger;
+    console.log(_appContext.getViyaConnection);
+    let viyaSession = await _appContext.getViyaSession(source);
+    console.log(viyaSession); 
+    if (viyaSession === null) {
+      return [];
+    }
+    let r = await getTableColumns(viyaSession.store, viyaSession.session, source, lib, table);
+    return r;
+  }
+
   useEffect(() => {
-    if (_appContext == null || _appContext.viyaEnv == null) {
+    _setup()
+    .then (r => {
+      setList(r);
+      setSel([]);
+    })
+    .catch(err => {
+      console.log(err);
       setList([]);
       setSel([]);
-    } else if (table == null || table.trim().length === 0 || lib == null || lib.trim().length === 0) {
-      setList([]);
-      setSel([]);
-    } else {
-      getTableColumns(_appContext.viyaEnv.store, _appContext.viyaEnv.session, _appContext.viyaEnv.source, lib, table)
-        .then ( r => {
-          setList(r);
-          setSel([]);
-          })
-        .catch(err => {
-          
-          console.log(err);
-          setSel([]);
-          setList([]);
-        });
-      }
+    });
+      
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [name, lib, table] );
+    }, [source, lib, table] );
     
   return <BaseSelectorMultiple
-    name={name}
+    name="columns"
     value={sel} 
     items={list} 
     onChange={_handleChange} 

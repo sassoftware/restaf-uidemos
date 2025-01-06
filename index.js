@@ -179,7 +179,15 @@ debugger;
       {label: " "},
       "b"
     ),
-    //Image: _visualTemplate(frameControl.Image,'Image','char',' ',small,{},'b'),
+    Image: _visualTemplate(
+      frameControl.Image,
+      "Image",
+      "string",
+      " ",
+      small,
+      {label: ' ', srcType: null, sx:{}},
+      "b"
+    ),
     VScode: _visualTemplate(
       frameControl.VScode,
       "VSCode",
@@ -190,17 +198,9 @@ debugger;
       "b"
     ),
 
-    /*
-    Image: _visualTemplate(
-      frameControl.Image,
-      "Image",
-      "string",
-      " ",
-      small,
-      {label: ' '},
-      "b"
-    ),
-    */
+    
+    
+    
     //SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
   };
   /* local files */

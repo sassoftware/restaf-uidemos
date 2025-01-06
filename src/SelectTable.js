@@ -44,6 +44,7 @@ function SelectTable(props) {
       if (lastlib.current !== lib) {
         setSel('');
       }
+      lastlib.current = lib;
     }
     catch (r) {
       console.log(r);
