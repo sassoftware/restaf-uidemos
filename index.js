@@ -83,9 +83,9 @@ debugger;
       frameControl.Dropdown,
       "Dropdown",
       "array",
-      " ",
+      [],
       small,
-      { items: ["item 1", "Item 2"], label: " ", multiple: false , valueType: 'label'},
+      { items: ["item 1", "Item 2"], label: " ", multiple: true , valueType: 'label'},
       "h"
     ),
    
@@ -239,8 +239,8 @@ debugger;
     SelectColumns: _visualTemplate(
       frameControl.SelectColumns,
       "SelectColumns",
-      "string",
-      " ",
+      "array",
+      [],
       small,
       {
         source: null,

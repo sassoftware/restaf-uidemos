@@ -6,9 +6,9 @@ import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelectorMultiple (props) {
   let {value, items, separator, onChange, label, valueType,sx} = props;
+  
   const _handleChange = (e, val) => {
     let v = (items == null || items.length === 0 || val === null) ? null : val;
-  
     if (valueType === 'index') {
       v = items.indexOf(v);
     }
