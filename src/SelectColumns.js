@@ -9,26 +9,13 @@ import BaseSelectorMultiple from './BaseSelectorMultiple';
 //import {getTableColumns} from '@sassoftware/restafedit'; 
 
 function SelectColumns(props) {
-  const {value, separator, label, source, lib, table,asArray, onChange, _appContext} = props;
+  const {value, label, source, lib, table,onChange, _appContext} = props;
   
-  const [list, setList] = useState([]);
-  let sep = (separator == null) ? ',' : separator;
-  
-  const [sel, setSel] = useState(() => {  
-    if (value == null) {
-      return [];
-    } else if (typeof value === 'string') {
-       return (value.length > 0) ? value.split(sep) : [];
-    } 
-    else if (Array.isArray(value) === true) {
-      return value;
-    }
+  const [list, setList] = useState(value||[]);
 
-  });
-  
   const _handleChange = (selx) => {
     setSel(selx);
-    onChange(asArray === true ?  selx: selx.join(sep) );
+    onChange(selx);
   };
   const _setup = async () => {
     debugger;
@@ -50,7 +37,7 @@ function SelectColumns(props) {
     _setup()
     .then (r => {
       setList(r);
-      setSel([]);
+      setSel(value||[]);
     })
     .catch(err => {
       console.log(err);
@@ -59,7 +46,7 @@ function SelectColumns(props) {
     });
       
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [source, lib, table] );
+    }, [source, lib, table, value] );
     
   return <BaseSelectorMultiple
     name="columns"

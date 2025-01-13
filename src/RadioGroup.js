@@ -11,14 +11,14 @@ function RadioGroup(props) {
   let { value, items, onChange, label, sx,  ...eProps } = props;
 
   const _handleChange = (e) => {
-    return onChange(e.target.value);
+    return onChange(parseInt(e.target.value));
   }
 
   let isx = { height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8px', ...sx };
   let options = items == null ? [] : items;
 
-  //let currentSelection = (value != null) ? options[value] : null;
-  value = value||0;
+  let current = value||0;
+
   let ePropsL = {
     value: currentSelection,
     label: label,
@@ -29,16 +29,18 @@ function RadioGroup(props) {
     ...eProps
   };
 
-
+  let currentSelection = items[value]; 
+  debugger;
   let buttons = options.map((m, i) => {
-    return <Radio key={i} value={i} label={m} />
+    return <Radio key={i} value={i.toString()} label={m} />
   });
-
+  debugger;
+  console.log('currentSelection', currentSelection);
   let show =
     <>
       <FormControl>
         <FormLabel>{label}</FormLabel>
-        <JoyRadioGroup defaultValue={value} {...ePropsL} sx={isx} onChange={_handleChange}>
+        <JoyRadioGroup defaultValue={currentSelection} {...ePropsL} sx={isx} onChange={_handleChange}>
           {buttons}
         </JoyRadioGroup>
       </FormControl>
