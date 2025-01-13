@@ -10,8 +10,8 @@ debugger;
 
   let small = { height: 30, width: 200 };
   let medium = { height: 120, width: 400 };
-  let large = { height: 120, width: 400 };
-  let props = {}; // if you want to pass in some default props - helpful to users in property sheet
+ // let large = { height: 120, width: 400 };
+ // let props = {}; // if you want to pass in some default props - helpful to users in property sheet
   
 
   let basicControls = {
@@ -73,21 +73,22 @@ debugger;
     RadioGroup: _visualTemplate(
       frameControl.RadioGroup,
       "RadioGroup",
-      "string",
-      "item1",
+      "int",
+      "0",
       small,
-      { items: ["item1", "Item2"], valueType: "label", label: " " },
+      { items: ["item1", "Item2"], label: " " },
       "h"
     ),
     Dropdown: _visualTemplate(
       frameControl.Dropdown,
       "Dropdown",
-      "string",
+      "array",
       " ",
       small,
-      { items: ["item 1", "Item 2"], label: " ", multiple: false },
+      { items: ["item 1", "Item 2"], label: " ", multiple: false , valueType: 'label'},
       "h"
     ),
+   
     DropdownMenu: _visualTemplate(
       frameControl.DropdownMenu,
       "DropdownMenu",

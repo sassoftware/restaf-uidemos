@@ -7,7 +7,7 @@ function Divider(props) {
   let ePropL = {
     //label: label,
     id: label,
-   // disabled: designMode,
+
     sx: sx,
     orientation: "horizontal",
     ...eProps

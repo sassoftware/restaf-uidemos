@@ -9,7 +9,7 @@ import {getLibraryList} from '@sassoftware/restafedit';
 
 
 function IselectLibrary(props) {
-  const {name, value, style, onChange, refresh, designMode, appEnv} = props;
+  const {name, value, style, onChange, refresh,  appEnv} = props;
   const {source, session, sessionID} = appEnv;
   const [liblist, setLiblist] = useState([]);
   const [sel, setSel] = useState(value);
@@ -51,7 +51,7 @@ function IselectLibrary(props) {
     value={sel} 
     items={liblist} 
     onChange={_handleChange} 
-    designMode={designMode} 
+
     style={style}
     label={source === 'cas' ? "caslib" : "libref"}>
     </BaseSelector>;

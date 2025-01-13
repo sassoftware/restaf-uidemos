@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Typography as JoyTypography } from '@mui/joy';
 
 function Typography(props) {
-  const { value, designMode, name, sx, _appContext, ...eProps } = props;
+  const { value, name, sx, _appContext, ...eProps } = props;
   let isx = {
     width: 'inherit',
     height: 'inherit',

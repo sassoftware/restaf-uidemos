@@ -9,7 +9,7 @@ import getItemsList from './utils/getItemsList.js';
 import BaseSelector from './BaseSelector';
 
 function SASItemsDropDown(props) {
-  let { name, service, value, limit, label, filter, onChange, style, designMode, _appContext } = props;
+  let { name, service, value, limit, label, filter, onChange, style, _appContext } = props;
   const [menuList, setMenuList] = useState([]);
   const [sel, setSel] = useState('');
   
@@ -55,7 +55,6 @@ const _setup = async () => {
     value={sel}
     onChange={_handleChange}
     items={menuList}
-    designMode={designMode}
     style={style}
     >
     </BaseSelector>

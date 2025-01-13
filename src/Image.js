@@ -9,7 +9,7 @@ import btoa from 'btoa';
 function Image(props) {
   const {value, label, sx, srcType, refresh} = props;
 
-  // let ePropsL = {variant: 'outlined', disabled: designMode, color: 'primary', size:"md", ...eProps};
+
 
   // using value - to allow for changing the text of the button programmatically
 

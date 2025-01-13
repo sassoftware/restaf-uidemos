@@ -66,7 +66,7 @@ function SelectColumns(props) {
     value={sel} 
     items={list} 
     onChange={_handleChange} 
-    designMode={designMode} 
+   
     style={style}
     label={label}>
     </BaseSelectorMultiple>;

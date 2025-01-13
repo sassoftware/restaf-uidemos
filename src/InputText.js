@@ -8,11 +8,11 @@ import JoyInput from '@mui/joy/Input';
 import { FormLabel } from '@mui/joy';
 
 function InputText(props) {
-  const { name, label, sx, designMode, onChange,_appContext, ...eProps} = props;
+  const { name, label, sx, onChange,_appContext, ...eProps} = props;
   const [value, setValue] = useState(() => (props.value == null) ? ' ' : props.value);
   
   let disabled = (eProps.disabled == null) ? false : eProps.disabled;
-  disabled = (designMode === true) ? true : disabled;
+
   let extendedProps = (eProps == null) ? {} : eProps;
 
   useEffect(() => {

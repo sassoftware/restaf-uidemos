@@ -8,12 +8,12 @@ import JoyInput from '@mui/joy/Input';
 import { FormLabel } from '@mui/joy';
 
 function Input(props) {
-  const { name, label, type, sx, designMode, onChange,_appContext, ...eProps} = props;
+  const { name, label, type, sx, onChange,_appContext, ...eProps} = props;
   const [value, setValue] = useState(() => (props.value == null) ? ' ' : props.value);
 
   let disabled = (eProps.disabled == null) ? false : eProps.disabled;
   
-  disabled = (designMode === true) ? true : disabled;
+
   let extendedProps = (eProps == null) ? {} : eProps;
 
   useEffect(() => {
@@ -24,7 +24,8 @@ function Input(props) {
     setValue(synthE.target.value);
    
     if (synthE.key === 'Enter') {
-      onChange(synthE.target.value, synthE)
+      let v = Number(synthE.target.value);
+      onChange(v, synthE)
     }
   };
 
@@ -36,7 +37,7 @@ function Input(props) {
         name: name
       }
     };
-    handleChange(synthE);
+   handleChange(synthE);
   };
 
   const _onKeyPress = (e) => {
@@ -124,7 +125,7 @@ function Input(props) {
     <FormLabel key={name}>{label}</FormLabel>
     <JoyInput
       {...ePropsL}
-      value={value}
+      value={value.toString()}
       onChange={_onChange}
     ></JoyInput>
   </Fragment>;

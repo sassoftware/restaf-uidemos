@@ -5,14 +5,15 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelectorMultiple (props) {
-  let {value, items, separator, onChange, designMode,label, sx} = props;
+  let {value, items, separator, onChange, label, valueType,sx} = props;
   const _handleChange = (e, val) => {
-    if (e == null) {
-      return;
-    } 
-    if (items != null && items.length > 0) {
-      onChange(val);
+    let v = (items == null || items.length === 0 || val === null) ? null : val;
+  
+    if (valueType === 'index') {
+      v = items.indexOf(v);
     }
+    onChange(v);
+    return;
   }
   let sep = (separator == null) ? ' ' : separator;
   let isx = {height: 'inherit', width: '100%', ...sx};
@@ -29,7 +30,7 @@ function BaseSelectorMultiple (props) {
     variant: 'outlined',
     selectOnFocus: true,
     multiple: true,
-    readOnly: designMode, 
+    readOnly: false, 
     sx: isx
     };
  

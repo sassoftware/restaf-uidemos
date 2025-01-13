@@ -10,11 +10,11 @@ import { FormLabel } from '@mui/joy';
 import { FormControl } from '@mui/joy';
 
 function Inputarea(props) {
-  const { name, label, sx, designMode, onChange, minRows, maxRows} = props;
+  const { name, label, sx, onChange, minRows, maxRows} = props;
 
   const [value, setValue] = useState(() => (props.value == null) ? ' ' : props.value);
   let disabled = (props.disabled == null) ? false : props.disabled;
-  disabled = (designMode === true) ? true : disabled;
+
 
   useEffect(() => {
     setValue(props.value == null ? ' ' : props.value);

@@ -17,7 +17,6 @@ function WherePrompt (props) {
     value: value,
     type: 'text',
     style: {width: '80ch'},
-    designMode: false,
     eProps: {variant: 'outlined',  size: 'small'},
     appEnv: {},
     onChange: (v) => onChange(v)

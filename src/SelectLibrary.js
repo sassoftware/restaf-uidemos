@@ -8,7 +8,7 @@ import BaseSelector from './BaseSelector';
 import { getLibraryList } from '@sassoftware/restafedit';
 
 function SelectLibrary(props) {
-  const { source, value, style, label, onChange, eProps, designMode, _appContext } = props;
+  const { source, value, style, label, onChange, eProps, _appContext } = props;
 
   const [liblist, setLiblist] = useState([]);
   const [sel, setSel] = useState(value);
@@ -67,7 +67,7 @@ function SelectLibrary(props) {
     value={sel}
     items={liblist}
     onChange={_handleChange}
-    designMode={designMode}
+
     style={style}
     label={label}>
   </BaseSelector>;

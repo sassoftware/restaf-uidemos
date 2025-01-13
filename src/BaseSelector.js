@@ -5,12 +5,16 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelector (props) {
-  let {value, items, onChange, designMode,label, sx} = props;
+  let {value, items, onChange, valueType,label, sx} = props;
   const _handleChange = (e, val) => {
     if (e == null) {
       onChange(null);
     } 
-    let v = (items != null && items.length > 0 && val != null && val.trim().length > 0)? val.trim(): null;
+    let v = (items == null || items.length === 0 || val === null) ? null : val;
+  
+    if (valueType === 'index') {
+      v = items.indexOf(v);
+    }
     onChange(v);
     return;
   }
@@ -35,7 +39,7 @@ function BaseSelector (props) {
     size: "sm",
     variant: 'outlined',
     selectOnFocus: true,
-    readOnly: (designMode === true) ? true : false,
+    readOnly: false,
     sx: isx
     };
     //for debugging purposes

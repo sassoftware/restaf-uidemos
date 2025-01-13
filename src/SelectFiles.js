@@ -11,7 +11,7 @@ import getItemsList from './utils/getItemsList';
 
 //TBD: need to skip this jump since this is just a simple wrapper
 function SelectFiles(props) {
-  const {name, value, label, eProps, style, folder, filter, onChange, designMode, _appContext} = props;
+  const {name, value, label, eProps, style, folder, filter, onChange, _appContext} = props;
   const [list, setList] = useState([]);
   const [sel, setSel] = useState('');
  // let value = (refresh  === true) ? null : value;
@@ -53,7 +53,6 @@ function SelectFiles(props) {
         value={sel} 
         items={list} 
         onChange={_handleChange} 
-        designMode={designMode} 
         style={style}
         eProps={eProps}
         label={label} >

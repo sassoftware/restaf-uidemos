@@ -7,7 +7,7 @@ import  { useState } from 'react';
 import JoySlider  from '@mui/joy/Slider';
 
 function Slider(props) {
-  const { name, value, designMode, onChange, sx,_appContext, ...eProps } = props;
+  const { name, value, onChange, sx,_appContext, ...eProps } = props;
   const [val, setVal] = useState(value);
 
   const _onChange = (_e, value) => {
