@@ -11,8 +11,7 @@ function BaseSelector (props) {
       onChange(null);
     } 
     let v = (items == null || items.length === 0 || val === null) ? null : val;
-    v = items.indexOf(v);
-    onChange(v);
+    onChange([v]);
     return;
   }
   
@@ -22,7 +21,7 @@ function BaseSelector (props) {
   let options = (items == null ? [] : Array.isArray(items) ? items : 
     (typeof items === 'string' ? items.split(',') : []));
  
-  value = (value != null) ? value.trim(): null;
+  value = (value != null && Array.isArray(value)) ? value[0] : null;
   if (options.length === 0 ) {
     currentSelection =  'No items to display';
   } else {
