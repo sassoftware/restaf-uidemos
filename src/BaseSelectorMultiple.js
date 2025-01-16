@@ -22,7 +22,6 @@ function BaseSelectorMultiple (props) {
   let options = items == null ? [] : items;
   let currentSelection = [];
   if (value !== null) {
- 
     if (valueType === 'index') {
       for (let i = 0; i < value.length; i++ ) {
         currentSelection.push(items[value[i]]);
@@ -34,7 +33,7 @@ function BaseSelectorMultiple (props) {
 
   let ePropsL = { 
     id:label, 
-    value: value,
+    value: currentSelection,
     label: label, 
     size: "sm",
     variant: 'outlined',
