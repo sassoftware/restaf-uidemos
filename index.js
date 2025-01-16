@@ -48,7 +48,7 @@ debugger;
       "string",
       "button",
       small,
-      {label: " "},
+      {label: " ", sx:{}},
       "b"
     ),
     Checkbox: _visualTemplate(
@@ -76,7 +76,7 @@ debugger;
       'array',
       [],
       small,
-      { items: ["item1", "Item2"], label: " ", valueType: 'label' },
+      { items: ["item1", "Item2"], label: " ", valueType: 'label', sx:{} },
       "h"
     ),
     Dropdown: _visualTemplate(
@@ -86,7 +86,7 @@ debugger;
       [],
       small,
 
-      { items: ["item 1", "Item 2"], label: " ",  valueType: 'label'},
+      { items: ["item 1", "Item 2"], label: " ",  valueType: 'label', sx:{}},
       "h"
     ),
    
@@ -96,7 +96,7 @@ debugger;
       "array",
       [],
       small,
-      { items: ["item1", "Item2"], valueType: "label" },
+      { items: ["item1", "Item2"], valueType: "label", sx:{} },
       "n"
     ),
     //Listbox: _visualTemplate(frameControl.Listbox,'Listbox','char',' ',small,
@@ -116,7 +116,8 @@ debugger;
         variant: "solid",
         track: "normal",
         size: "sm",
-        label: " "
+        label: " ",
+        sx:{}
       },
       "h"
     ),
@@ -147,7 +148,7 @@ debugger;
       "string",
       "Divider",
       small,
-      { orientation: "horizontal", label: " " },
+      { orientation: "horizontal", label: " ", sx:{} },
       "h"
     ),
     Background: _visualTemplate(
@@ -169,7 +170,7 @@ debugger;
       "string",
       "<h1>Some html</h1>",
       medium,
-      {label: " "},
+      {label: " ", sx:{}},
       "b"
     ),
     WebContent: _visualTemplate(
@@ -178,7 +179,7 @@ debugger;
       "string",
       "<h1>Some html</h1>",
       medium,
-      {label: " "},
+      {label: " ", sx:{}},
       "b"
     ),
     Image: _visualTemplate(
@@ -187,7 +188,7 @@ debugger;
       "string",
       " ",
       medium,
-      {label: " ", srcType: null},
+      {label: " ", srcType: null, sx:{}},
       "b"
     ),
     VScode: _visualTemplate(
@@ -196,7 +197,7 @@ debugger;
       "string",
       " ",
       medium,
-      { language: "text" , label: " "},
+      { language: "text" , label: " ", sx:{}},
       "b"
     ),
 
@@ -216,7 +217,7 @@ debugger;
       "string",
       " ",
       small,
-      { source: null },
+      { source: null ,sx:{}},
       "h"
     ),
     SelectTable: _visualTemplate(
@@ -225,7 +226,7 @@ debugger;
       "string",
       " ",
       small,
-      { lib: " ",  source: null, refresh: false },
+      { lib: " ",  source: null, refresh: false, sx:{} },
       "h"
     ),
     DataGrid: _visualTemplate(
@@ -234,7 +235,7 @@ debugger;
       "string",
       " ",
       medium,
-      { source: null, value: '',lib: '',table: '',limit: 20, keep: [], gridOptions: {}, gridClass:'', refresh: false },
+      { sx:{}, source: null, value: '',lib: '',table: '',limit: 20, keep: [], gridOptions: {}, gridClass:'', refresh: false },
       "b"
     ),
     SelectColumns: _visualTemplate(
@@ -244,6 +245,7 @@ debugger;
       [],
       small,
       {
+        sx:{},
         source: null,
         lib: " ",
         table: " ",
@@ -259,6 +261,7 @@ debugger;
       " ",
       small,
       {
+        sx:{},
         source: null,
         lib: " ",
         table: " ",
@@ -278,7 +281,7 @@ debugger;
       "string",
       " ",
       small,
-      { folder: " ", filter: {} },
+      { folder: " ", filter: {}, sx:{}},
       "h"
     ),
     VaSDK: _visualTemplate(
@@ -287,7 +290,7 @@ debugger;
       "string",
       "Retail Insights",
       medium,
-      {  url: " ", auth: "credentials"},
+      {  url: " ", auth: "credentials", sx:{}},
       "b"
     )
   };
