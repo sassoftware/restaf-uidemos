@@ -5,29 +5,48 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelector (props) {
-  let {value, items, onChange, label, sx} = props;
+  let {value, items, valueType, onChange, label, sx} = props;
   const _handleChange = (e, val) => {
     if (e == null) {
-      onChange(null);
+      onChange([]);
     } 
-    let v = (items == null || items.length === 0 || val === null) ? null : val;
-    onChange([v]);
+    ;
+    if (val == null) {
+      onChange([]);
+    } else {
+      console.log('val:', val);
+      console.log(items, items.indexOf(val));
+      onChange((valueType === 'index') ? [items.indexOf(val)] : [val]);
+    }
+    
     return;
   }
   
+ // check for bad items
+ ;
+  let options = items == null ? [] : items;
+  
+// incoming value has to be an array matching valueType
+  let currentSelection = null;
+;
+  if (value === null) {
+    currentSelection = null;
+  } else {
+    if (valueType === 'index') {
+      currentSelection = items[value[0]];
+    } else {
+      currentSelection = value[0];
+    }
+  }
 
   let isx = {height: 'inherit', width: 'inherit', ...sx};
-  let currentSelection = null;
-  let options = (items == null ? [] : Array.isArray(items) ? items : 
-    (typeof items === 'string' ? items.split(',') : []));
- 
-  value = (value != null && Array.isArray(value)) ? value[0] : null;
+/*
   if (options.length === 0 ) {
     currentSelection =  'No items to display';
   } else {
     currentSelection = (options.includes(value)) ? value : null;
   }
- 
+ */
   let ePropsL = { 
     autoComplete: true,
     value: currentSelection,

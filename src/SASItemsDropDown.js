@@ -19,7 +19,7 @@ const _setup = async () => {
     setSel('');
     return;
   }
-  debugger;
+  ;
   let viyaSession = await _appContext.getViyaSession(null);
   console.log(viyaSession); 
   if (viyaSession === null) {
@@ -34,7 +34,7 @@ const _setup = async () => {
 }
   useEffect(() => {
     
-    debugger;
+    ;
     _setup()
       .then (r => {console.log('ready')})
       .catch(err => {

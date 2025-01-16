@@ -45,7 +45,7 @@ function VaSDK(props) {
 
   }
   useEffect(() => {
-    debugger;
+    ;
     _setup()
       .then(r => { console.log('ready') })
       .catch(err => {
@@ -55,12 +55,12 @@ function VaSDK(props) {
 
   let show = null;
   let divStyle = sx;
-  debugger;
+  ;
   if (_appContext == null || _appContext.viyaEnv == null) {
-    debugger;
+    ;
     show = <div style={divStyle}><p>No connection to Viya</p></div>;
   } else if (reportUri === null) {
-    debugger;
+    ;
     show = <div style={divStyle}> <p> Report {reportName} was not found</p></div>
   } else {
     let urlt = (url == null || url.trim().length === 0) ? _appContext.viyaEnv.logonPayload.host : url

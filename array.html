@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script async src="https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf"></script>
+    <script type="text/javascript" src="./lib/index.js"></script>
+    <!--script type="text/javascript" src="https://unpkg.com/@sassoftware/smart-controls-mui"></script> -->
+     
+
+    <script type="text/javascript">
+    let f = smartControls.controls;
+    debugger;
+    console.log(f);
+   
+    let Dropdown = f['Dropdown'].component;
+    let DropdownMenu = f['DropdownMenu'].component;
+    let Inputarea = f['Inputarea'].component;
+   
+    </script>
+    <script type="text/babel">
+      function show(){
+
+        const createRoot = ReactDOM.createRoot;
+        const container = document.getElementById('container1');
+        const root = createRoot(container);
+        let items = ['A', 'B', 'C', 'D', 'E'];
+      
+        const App = () => {
+          let area = ' ';
+          const onEnter = (e) => {
+            console.log(e, typeof e);
+            area = JSON.stringify(e)  ;
+        }
+        let sx = {height: '15px', width: '200px', borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black'};
+          return (
+            <div>
+              <Dropdown sx={sx} value={[-1]} items={items} valueType={"index"} onChange={onEnter}></Dropdown>
+              <Dropdown sx={sx} value={[]} items={items} valueType={"index"} multiple={true} onChange={onEnter}></Dropdown>
+             
+
+              <Inputarea sx={sx} value={area} onChange={onEnter}></Inputarea>
+              </div>
+          );
+        };
+        root.render( <App />)
+    }
+  
+      </script>
+    </head>
+<body onload="show()">
+  <div id="container1"></div>
+  <p> hi</p>
+</body>
+</body>
+</html>

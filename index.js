@@ -74,9 +74,9 @@ debugger;
       frameControl.RadioGroup,
       "RadioGroup",
       "int",
-      "0",
+      0,
       small,
-      { items: ["item1", "Item2"], label: " " },
+      { items: ["item1", "Item2"], label: " ", valueType: 'label' },
       "h"
     ),
     Dropdown: _visualTemplate(
@@ -85,6 +85,7 @@ debugger;
       "array",
       [],
       small,
+
       { items: ["item 1", "Item 2"], label: " ", multiple: true , valueType: 'label'},
       "h"
     ),
@@ -92,10 +93,10 @@ debugger;
     DropdownMenu: _visualTemplate(
       frameControl.DropdownMenu,
       "DropdownMenu",
-      "string",
-      "item1",
+      "array",
+      [],
       small,
-      { items: ["item1", "Item2"], valueType: "label" },
+      { items: ["item1", "Item2"], valueType: "label" , multiple: false},
       "n"
     ),
     //Listbox: _visualTemplate(frameControl.Listbox,'Listbox','char',' ',small,

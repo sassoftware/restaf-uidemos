@@ -19,12 +19,12 @@ function SelectLibrary(props) {
     onChange(selx);
   };
   const _setup = async () => {
-    debugger;
+    ;
     if (_appContext == null || source == null) {
       setLiblist([]);
       return;
     }
-    debugger;
+    ;
     console.log(_appContext.getViyaConnection);
     let viyaSession = await _appContext.getViyaSession(source);
     console.log(viyaSession); 
@@ -34,10 +34,10 @@ function SelectLibrary(props) {
     }
     let {store} = viyaSession;
     try {
-      debugger;
+      ;
       console.log(viyaSession);
       let r = await getLibraryList(viyaSession, null);
-      debugger;
+      ;
       setLiblist(r);
       if (source === 'cas' && value != null && value.toUpperCase() === 'CASUSER') {
         const index = r.findIndex(e => e.indexOf('CASUSER') >= 0);
@@ -47,7 +47,7 @@ function SelectLibrary(props) {
       }
     }
     catch (e) {
-      debugger;
+      ;
       console.log(e)
       setLiblist([])
     }

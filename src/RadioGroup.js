@@ -17,8 +17,6 @@ function RadioGroup(props) {
   let isx = { height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8px', ...sx };
   let options = items == null ? [] : items;
 
-  let current = value||0;
-
   let ePropsL = {
     value: currentSelection,
     label: label,
@@ -30,11 +28,11 @@ function RadioGroup(props) {
   };
 
   let currentSelection = items[value]; 
-  debugger;
+  ;
   let buttons = options.map((m, i) => {
     return <Radio key={i} value={i.toString()} label={m} />
   });
-  debugger;
+  ;
   console.log('currentSelection', currentSelection);
   let show =
     <>

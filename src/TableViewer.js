@@ -19,7 +19,7 @@ function TableViewer(props) {
 
       const setup1 = async () => {
         let viyaEnv = await  _appContext.getViyaSession(source);
-        debugger;
+        ;
         let tabled = {};
         if (value != null && value.trim().length > 0) {
           let t = value.split('.');
@@ -98,7 +98,7 @@ function TableViewer(props) {
         control.current = {appEnv: null, columns: null, msg: err};
       }
     }
-    debugger;
+    ;
     setup1()
       .then(r => {
         console.log('setup status', r);

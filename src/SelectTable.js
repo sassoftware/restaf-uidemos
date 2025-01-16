@@ -37,7 +37,7 @@ function SelectTable(props) {
       return;
     }
     try {
-      debugger;
+      ;
       console.log(lib, viyaSession);
       let r = await getTableList(lib, viyaSession, null);
       setTableList(r);

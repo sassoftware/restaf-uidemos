@@ -18,11 +18,11 @@ function SelectColumns(props) {
     onChange(selx);
   };
   const _setup = async () => {
-    debugger;
+    ;
     if (_appContext == null || source == null) {
       return [];
     }
-    debugger;
+    ;
     console.log(_appContext.getViyaConnection);
     let viyaSession = await _appContext.getViyaSession(source);
     console.log(viyaSession); 
