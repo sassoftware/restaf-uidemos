@@ -9,7 +9,7 @@ import MoreVert from '@mui/icons-material/MoreVert';
 function DropDownMenu(props) {
   let { items, sx, valueType, label,_appContext, ...eProps } = props;
   const onSelect = (m, i) => {
-    props.onChange(valueType === 'index' ? i : m);
+    props.onChange(valueType === 'index' ? [i] : [m]);
   };
   
   let menuList = [];
