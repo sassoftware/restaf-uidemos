@@ -28,7 +28,7 @@ function _visualTemplate (
     value: value,
     width: initialSize.width,
     height: initialSize.height,
-    props: { name: " ", label: " ", ...props }
+    props: { label: " ", ...props }
   };
   return r;
 }
