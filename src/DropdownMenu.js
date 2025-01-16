@@ -8,7 +8,7 @@ import MoreVert from '@mui/icons-material/MoreVert';
 
 function DropDownMenu(props) {
   let { items, sx, valueType, label,_appContext, ...eProps } = props;
-  const onSelect = (m, i) => {
+  const _onSelect = (m, i) => {
     props.onChange(valueType === 'index' ? [i] : [m]);
   };
   
@@ -17,7 +17,7 @@ function DropDownMenu(props) {
   if (items != null) {
     items.forEach((m, i) => {
       menuList.push(
-        <MenuItem key={m} sx={sxb} onClick={() => onSelect(m, i)}>
+        <MenuItem key={m} sx={sxb} onClick={() => _onSelect(m, i)}>
           {m}
         </MenuItem>
       );

@@ -21,7 +21,7 @@ debugger;
       "number",
       0,
       small,
-      { align: "right", label: "" },
+      { align: "right", label: "", sx: {} },
       "h"
     ),
     InputText: _visualTemplate(
@@ -30,7 +30,7 @@ debugger;
       "string",
       " ",
       small,
-      { align: "left" },
+      { align: "left", label: "", sx:{} },
       "h"
     ),
     Inputarea: _visualTemplate(
@@ -39,7 +39,7 @@ debugger;
       "string",
       " ",
       medium,
-      { minRows: 2, maxRows: 5 },
+      { minRows: 2, maxRows: 5 , sx:{}, label: "" },
       "h"
     ),
     Button: _visualTemplate(
@@ -86,7 +86,7 @@ debugger;
       [],
       small,
 
-      { items: ["item 1", "Item 2"], label: " ", multiple: true , valueType: 'label'},
+      { items: ["item 1", "Item 2"], label: " ",  valueType: 'label'},
       "h"
     ),
    
