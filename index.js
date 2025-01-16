@@ -73,8 +73,8 @@ debugger;
     RadioGroup: _visualTemplate(
       frameControl.RadioGroup,
       "RadioGroup",
-      "int",
-      0,
+      'array',
+      [],
       small,
       { items: ["item1", "Item2"], label: " ", valueType: 'label' },
       "h"

@@ -22,6 +22,7 @@
     let Dropdown = f['Dropdown'].component;
     let DropdownMenu = f['DropdownMenu'].component;
     let Inputarea = f['Inputarea'].component;
+    let RadioGroup = f['RadioGroup'].component;
    
     </script>
     <script type="text/babel">
@@ -31,21 +32,23 @@
         const container = document.getElementById('container1');
         const root = createRoot(container);
         let items = ['A', 'B', 'C', 'D', 'E'];
-      
+        let area = 'hello';
         const App = () => {
-          let area = ' ';
+        
           const onEnter = (e) => {
+            debugger;
             console.log(e, typeof e);
             area = JSON.stringify(e)  ;
         }
         let sx = {height: '15px', width: '200px', borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
+              <Inputarea sx={sx} value={area} onChange={onEnter}></Inputarea>
               <Dropdown sx={sx} value={[-1]} items={items} valueType={"index"} onChange={onEnter}></Dropdown>
               <Dropdown sx={sx} value={[]} items={items} valueType={"index"} multiple={true} onChange={onEnter}></Dropdown>
+              <RadioGroup sx={sx} value={[0]} items={items} valueType={"label"} onChange={onEnter}></RadioGroup>
+              
              
-
-              <Inputarea sx={sx} value={area} onChange={onEnter}></Inputarea>
               </div>
           );
         };
@@ -56,7 +59,6 @@
     </head>
 <body onload="show()">
   <div id="container1"></div>
-  <p> hi</p>
 </body>
 </body>
 </html>

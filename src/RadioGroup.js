@@ -8,14 +8,18 @@ import Radio from '@mui/joy/Radio';
 import { RadioGroup as JoyRadioGroup } from '@mui/joy';
 
 function RadioGroup(props) {
-  let { value, items, onChange, label, sx,  ...eProps } = props;
+  let { value, items,valueType,  onChange, label, sx,  ...eProps } = props;
 
   const _handleChange = (e) => {
-    return onChange(parseInt(e.target.value));
+   let val = e.target.value;
+   let indx = parseInt(val);
+   onChange((valueType === 'index') ? [indx] : [items[indx]]);
   }
 
   let isx = { height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8px', ...sx };
   let options = items == null ? [] : items;
+
+  let currentSelection = (valueType === 'index' ) ? value[0] : items.indexOf(value[0]);
 
   let ePropsL = {
     value: currentSelection,
@@ -27,8 +31,8 @@ function RadioGroup(props) {
     ...eProps
   };
 
-  let currentSelection = items[value]; 
-  ;
+ 
+  currentSelection = '0';
   let buttons = options.map((m, i) => {
     return <Radio key={i} value={i.toString()} label={m} />
   });
