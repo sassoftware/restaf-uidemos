@@ -96,7 +96,7 @@ debugger;
       "array",
       [],
       small,
-      { items: ["item1", "Item2"], valueType: "label" , multiple: false},
+      { items: ["item1", "Item2"], valueType: "label" },
       "n"
     ),
     //Listbox: _visualTemplate(frameControl.Listbox,'Listbox','char',' ',small,
