@@ -12,7 +12,7 @@ function WebContent(props) {
   
     useEffect(() => {
       if (value == null || value.trim().length === 0) {
-        setHtmlContent('<h2> No link specified </h2>');
+        setHtmlContent('<h2> Please specify a link </h2>');
 
       } else {
         fetch(props.value)

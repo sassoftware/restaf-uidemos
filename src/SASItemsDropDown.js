@@ -21,7 +21,7 @@ const _setup = async () => {
   }
   ;
   let viyaSession = await _appContext.getViyaSession(null);
-  console.log(viyaSession); 
+
   if (viyaSession === null) {
     setMenuList([]);
     return;
@@ -33,8 +33,6 @@ const _setup = async () => {
   } 
 }
   useEffect(() => {
-    
-    ;
     _setup()
       .then (r => {console.log('ready')})
       .catch(err => {
@@ -45,16 +43,17 @@ const _setup = async () => {
   }, [value, name, service, filter]);
 
   const _handleChange = (val) => {
-    setSel(val);
-    onChange(val);
+    setSel(val[0]);
+    onChange(val[0]);
   }
   
   return <BaseSelector
     name={name}
     label={label}
-    value={sel}
+    value={[sel]}
     onChange={_handleChange}
     items={menuList}
+    valueType="label"
     style={style}
     >
     </BaseSelector>

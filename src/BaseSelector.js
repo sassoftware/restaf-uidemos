@@ -14,8 +14,6 @@ function BaseSelector (props) {
     if (val == null) {
       onChange([]);
     } else {
-      console.log('val:', val);
-      console.log(items, items.indexOf(val));
       onChange((valueType === 'index') ? [items.indexOf(val)] : [val]);
     }
     
@@ -24,6 +22,7 @@ function BaseSelector (props) {
   
  // check for bad items
  ;
+ 
   let options = items == null ? [] : items;
   
 // incoming value has to be an array matching valueType

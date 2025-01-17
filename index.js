@@ -76,7 +76,7 @@ debugger;
       'array',
       [],
       small,
-      { items: ["item1", "Item2"], label: " ", valueType: 'label', sx:{} },
+      { items: ["item1", "Item2"], label: " ", valueType: 'index', sx:{} },
       "h"
     ),
     Dropdown: _visualTemplate(
@@ -86,7 +86,7 @@ debugger;
       [],
       small,
 
-      { items: ["item 1", "Item 2"], label: " ",  valueType: 'label', sx:{}},
+      { items: ["item 1", "Item 2"], label: " ",  valueType: 'index', sx:{}},
       "h"
     ),
    
@@ -96,11 +96,11 @@ debugger;
       "array",
       [],
       small,
-      { items: ["item1", "Item2"], valueType: "label", sx:{} },
+      { items: ["item1", "Item2"], valueType: "index", sx:{} },
       "n"
     ),
     //Listbox: _visualTemplate(frameControl.Listbox,'Listbox','char',' ',small,
-    //   {sx: {borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'},items: ['item 1', 'Item 2'], valueType: 'label', labelProp: {sx: {backgroundColor: 'lightgrey'},level: 'h4'}},'b'),
+    //   {sx: {borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'},items: ['item 1', 'Item 2'], valueType: 'index', labelProp: {sx: {backgroundColor: 'lightgrey'},level: 'h4'}},'b'),
     Slider: _visualTemplate(
       frameControl.Slider,
       "Slider",
@@ -177,7 +177,7 @@ debugger;
       frameControl.WebContent,
       "WebContent",
       "string",
-      "<h1>Some html</h1>",
+      "",
       medium,
       {label: " ", sx:{}},
       "b"
@@ -217,7 +217,7 @@ debugger;
       "string",
       " ",
       small,
-      { source: null ,sx:{}},
+      { source: 'cas' ,sx:{}},
       "h"
     ),
     SelectTable: _visualTemplate(
@@ -226,7 +226,7 @@ debugger;
       "string",
       " ",
       small,
-      { lib: " ",  source: null, refresh: false, sx:{} },
+      { lib: " ",  source: 'cas', refresh: false, sx:{} },
       "h"
     ),
     DataGrid: _visualTemplate(
@@ -235,7 +235,7 @@ debugger;
       "string",
       " ",
       medium,
-      { sx:{}, source: null, value: '',lib: '',table: '',limit: 20, keep: [], gridOptions: {}, gridClass:'', refresh: false },
+      { sx:{}, source: 'cas', value: '',lib: '',table: '',limit: 20, keep: [], gridOptions: {}, gridClass:'', refresh: false },
       "b"
     ),
     SelectColumns: _visualTemplate(
@@ -246,10 +246,10 @@ debugger;
       small,
       {
         sx:{},
-        source: null,
+        source: 'cas',
         lib: " ",
         table: " ",
-        separator: " ",
+        multiple: true,
         refresh: false,
       },
       "h"
@@ -262,7 +262,7 @@ debugger;
       small,
       {
         sx:{},
-        source: null,
+        source: 'cas',
         lib: " ",
         table: " ",
         column: " ",

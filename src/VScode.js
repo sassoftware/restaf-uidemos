@@ -17,7 +17,6 @@ function VScode(props) {
     return onChange(v);
   }
  
-
   let editor = <Editor
     height="inherit"
     width= "Inherit"

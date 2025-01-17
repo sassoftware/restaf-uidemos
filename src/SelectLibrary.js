@@ -15,8 +15,8 @@ function SelectLibrary(props) {
 
 
   const _handleChange = (selx) => {
-    setSel(selx);
-    onChange(selx);
+    setSel(selx[0]);
+    onChange(selx[0]);
   };
   const _setup = async () => {
     ;
@@ -24,18 +24,15 @@ function SelectLibrary(props) {
       setLiblist([]);
       return;
     }
-    ;
-    console.log(_appContext.getViyaConnection);
+  
     let viyaSession = await _appContext.getViyaSession(source);
-    console.log(viyaSession); 
+    
     if (viyaSession === null) {
       setLiblist([]);
       return;
     }
     let {store} = viyaSession;
     try {
-      ;
-      console.log(viyaSession);
       let r = await getLibraryList(viyaSession, null);
       ;
       setLiblist(r);
@@ -64,10 +61,10 @@ function SelectLibrary(props) {
     }, [value,source, _appContext]);
 
   return <BaseSelector
-    value={sel}
+    value={[sel]}
     items={liblist}
     onChange={_handleChange}
-
+    valueType="label"
     style={style}
     label={label}>
   </BaseSelector>;

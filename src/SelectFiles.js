@@ -55,6 +55,7 @@ function SelectFiles(props) {
         onChange={_handleChange} 
         style={style}
         eProps={eProps}
+        valueType= "label"
         label={label} >
       </BaseSelector>;
 

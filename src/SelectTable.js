@@ -13,8 +13,8 @@ function SelectTable(props) {
   const [sel, setSel] = useState(value);
   let lastlib = useRef(null);
   const _handleChange = (selx) => {
-    setSel(selx);
-    onChange(selx);
+    setSel(selx[0]);
+    onChange(selx[0]);
   };
 
   
@@ -29,7 +29,6 @@ function SelectTable(props) {
       setSel('');
       return;
     }
-    console.log('getting sesion', source);
     let viyaSession = await _appContext.getViyaSession(source);
     if (viyaSession === null) {
       setTableList([]);
@@ -37,8 +36,7 @@ function SelectTable(props) {
       return;
     }
     try {
-      ;
-      console.log(lib, viyaSession);
+    
       let r = await getTableList(lib, viyaSession, null);
       setTableList(r);
       if (lastlib.current !== lib) {
@@ -47,7 +45,6 @@ function SelectTable(props) {
       lastlib.current = lib;
     }
     catch (r) {
-      console.log(r);
       setTableList([]);
       setSel('');
     }
@@ -67,11 +64,12 @@ function SelectTable(props) {
 
   return <BaseSelector
   
-    value={sel}
+    value={[sel]}
     items={tableList}
     onChange={_handleChange}
     style={style}
     eProps={eProps}
+    valueType="label"
     label={label}>
   </BaseSelector>;
 }

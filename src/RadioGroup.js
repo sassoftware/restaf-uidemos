@@ -37,7 +37,7 @@ function RadioGroup(props) {
     return <Radio key={i} value={i.toString()} label={m} />
   });
   ;
-  console.log('currentSelection', currentSelection);
+  
   let show =
     <>
       <FormControl>
