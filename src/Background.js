@@ -6,7 +6,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 function Background (props) {
-const {sx} = props;
+const {sx,_appEnv} = props;
 
 let isx = {height: 'inherit', width: 'inherit', zindex: 1, boxShadow: 2, ...sx};
 

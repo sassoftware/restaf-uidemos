@@ -17,7 +17,7 @@ import DropDownMenu from './DropdownMenu';
 import WherePrompt from './WherePrompt';
 
 function ScrollMenu (props) {
-  const { menus, onSelect, where, groups} = props;
+  const { menus, onSelect, where, groups, _appContext} = props;
   const iconList = {
     first: <FirstPage size="small" />,
     last: <LastPage size="small"/>,

@@ -8,7 +8,7 @@ import getLocalFolder from './utils/getLocalFolder';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 function SelectLocalFolder(props) {
-  let {value, label, style,dataProps,  onChange} = props;
+  let {value, label, style,dataProps, _appContext, onChange} = props;
   
   let [newFolder, setNewFolder] = useState(value != null && value.name != null ? value.name : '');
   const _onImport = () => {

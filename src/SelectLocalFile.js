@@ -8,7 +8,7 @@ import getLocalFile from "./utils/getLocalFile";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 function SelectLocalFile(props) {
-  let { value, type, label, sx, onChange } = props;
+  let { value, type, label, sx,_appContext, onChange } = props;
   const [newFile, setNewFile] = useState(value == null ? "" : value);
 
   const setNewName= (v) => {

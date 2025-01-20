@@ -6,7 +6,7 @@ import jsx  from 'react/jsx-runtime';
 //import React from 'react';
 import frameControl from "./src/index.js";
 import _visualTemplate from "./_visualTemplate.js";
-debugger;
+
 
   let small = { height: 30, width: 200 };
   let medium = { height: 120, width: 400 };
@@ -126,7 +126,7 @@ debugger;
       frameControl.Typography,
       "Typography",
       "string",
-      "Text",
+      "text",
       medium,
       {
         sx: {

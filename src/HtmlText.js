@@ -5,7 +5,7 @@
 import React from 'react';
 import Sheet from '@mui/joy/Sheet';
 function HtmlText(props) {
-  let {value, name, sx,refresh} = props;
+  let {value, name, sx,refresh,_appContext} = props;
  
  let htmlContent = { __html: value };
  

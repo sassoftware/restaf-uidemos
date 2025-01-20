@@ -36,7 +36,7 @@
     let SelectLibrary = f['SelectLibrary'].component;
     let VScode = f['VScode'].component;
     let DataGrid= f['DataGrid'].component;
-    console.log(DataGrid)
+  
    
     </script>
     <script type="text/babel">
@@ -53,6 +53,7 @@
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
+              <Typography sx={{height: '50px', width: '200px'}} level="h2" value={"Hi there"}></Typography>
               <Image  sx={sx} label="this is stuff"></Image>
               <RadioGroup  sx={sx} value={0} items={items} onChange={onEnter}></RadioGroup>
               <DataGrid   source='cas' value="" lib="" table="" _userProps={null}  keep={null} sx={sx} onChange={onEnter}></DataGrid>
@@ -60,12 +61,12 @@
               <Button  disabled={true} label="click me" onChange={onEnter}></Button>
               <InputText label="Enter your name" value="xxx" disabled={true} onChange={onEnter}></InputText>
               <Input label="Enter value " value={10}  onChange={onEnter}></Input>
-              <Typography variant="h1" value="hello world"></Typography>
+           
               <Slider value={50} min={0} max={100} step={1} name="xxx" orientation="horizontal" sx={sx} onChange={onEnter} ></Slider>
-              <Typography sx={{height: '50px', width: '200px'}} level="h2" value="hello world"></Typography>
+              
             
               <Inputarea label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
-              <WebContent label="check me"  target={"_blank"} value="https://www.sas.com" sx={sx} onChange={onEnter}></WebContent>
+              <WebContent label="check me"  target={"_blank"} value="" sx={sx} onChange={onEnter}></WebContent>
               <br/>
               <Background  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></Background>
               <VaSDK  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></VaSDK>

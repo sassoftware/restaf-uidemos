@@ -8,7 +8,7 @@ import Editor from "@monaco-editor/react";
 //import useSize from '@react-hook/size';
 
 function VScode(props) {
-  const {value,name, sx, onChange, language} = props;
+  const {value,name, sx, onChange, z_appContext, language} = props;
  // const [code, setCode] = useState(value);
   const divref = useRef(null);
  // const [width, height] = useSize(divref);

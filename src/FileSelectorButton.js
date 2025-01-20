@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
  */
 
 function FileSelectorButton(props) {
-  let { label, onChange } = props;
+  let { label, onChange,_appContext } = props;
   let inputRef = createRef(null);
   const _focusTextInput = () => inputRef.current.click();  //.click() passes the value of inputref.current as a click() event
 

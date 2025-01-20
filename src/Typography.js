@@ -13,11 +13,12 @@ function Typography(props) {
     borderRadius: 8,
     ...sx
   };
-
+  let ival = value||"";
+  
   let show = (
     <Fragment>
       <JoyTypography sx={isx} {...eProps}>
-        {value}
+        {ival}
       </JoyTypography>
     </Fragment>
   );

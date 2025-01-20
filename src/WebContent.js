@@ -7,7 +7,7 @@ import  { useEffect, useState } from 'react';
 import HtmlText from './HtmlText';
 
 function WebContent(props) {
-    let {sx, name, value, refresh} = props;
+    let {sx, name, value, _appContext, refresh} = props;
     const [htmlContent, setHtmlContent] = useState('')
   
     useEffect(() => {
@@ -15,7 +15,7 @@ function WebContent(props) {
         setHtmlContent('<h2> Please specify a link </h2>');
 
       } else {
-        fetch(props.value)
+        fetch(value)
         .then((response) => response.text())
         .then((data) => { 
           

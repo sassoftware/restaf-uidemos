@@ -7,7 +7,7 @@ import React from 'react';
 import btoa from 'btoa';
 
 function Image(props) {
-  const {value, label, sx, srcType, refresh} = props;
+  const {value, label, sx, srcType, _appContext,refresh} = props;
 
 
 
