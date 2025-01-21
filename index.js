@@ -126,7 +126,7 @@ import _visualTemplate from "./_visualTemplate.js";
       frameControl.Typography,
       "Typography",
       "string",
-      "",
+      "Text",
       medium,
       {
         sx: {
@@ -135,7 +135,7 @@ import _visualTemplate from "./_visualTemplate.js";
           borderWidth: 1,
           borderRadius: 8,
         },
-        altValue: "Text",
+        allText: "Some text",
         color: "neutral",
         level: "h2",
       },
