@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Typography as JoyTypography } from '@mui/joy';
 
 function Typography(props) {
-  const { value, name, sx, _appContext, ...eProps } = props;
+  const { value, name, sx,altText, _appContext, ...eProps } = props;
   let isx = {
     width: 'inherit',
     height: 'inherit',
@@ -13,7 +13,7 @@ function Typography(props) {
     borderRadius: 8,
     ...sx
   };
-  let ival = value||"";
+  let ival = (value == null || value.trim().length === 0) ? altText : value;
   
   let show = (
     <Fragment>
