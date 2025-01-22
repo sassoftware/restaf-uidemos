@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useEffect, useState, useRef} from 'react';
+import { useEffect, useState, useRef, useCallback} from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -14,6 +14,7 @@ function TableViewer(props) {
   let { source, value, lib,table,limit,keep, refresh, sx,gridOptions, _appContext } = props;
   let [redraw, reDraw] = useState(false); 
   let control = useRef({appEnv: null, columns: null, msg: null}); 
+  const gridRef = useRef();
   
   useEffect(() => {
 
@@ -116,19 +117,24 @@ function TableViewer(props) {
 
   const _scroll = (direction) => {
     let appEnv = control.current.appEnv;
+    debugger;
     scrollTable(direction, appEnv)
       .then(r => {
+        debugger;
         control.current = {appEnv: appEnv, columns: control.current.columns};
+       // refreshCache();
         reDraw(!redraw);
       })
       .catch(err => {
+        debugger;
         console.log(err);
       });
   }
 
   const _getRows = () => {
     // not really needed but useful when debugging issues.
-    let data = control.current.appEnv.state.data;
+    debugger;
+    let data =[].concat(control.current.appEnv.state.data);
     return data;
   }
  
@@ -136,7 +142,14 @@ function TableViewer(props) {
   let gridStyle = { height: sx.height -32 , width: sx.width };
   let agTheme ='ag-theme-alpine';
   let eProps = {pagination: true, paginationPageSize: 20, ...gridOptions};
-
+  debugger;
+  let gridOpts = {
+    ref: gridRef
+  }
+  const refreshCache = useCallback(() => {
+    gridRef.current.api.refreshServerSide({ route: undefined, purge: true });
+  }, []);
+  
   if (control.current.columns !== null) {
     let scrollOptions = control.current.appEnv.state.scrollOptions;
     show = 
@@ -148,6 +161,7 @@ function TableViewer(props) {
     </div>
     <div className={agTheme} style={gridStyle}>
       <AgGridReact
+        ref={gridRef  }
         rowData={_getRows()}
         columnDefs={control.current.columns}
         {...eProps} />

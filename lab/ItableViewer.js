@@ -46,7 +46,6 @@ function ItableViewer (props) {
     return columnDefs;
   }
   const _readData = async ()=>{
-    ;
     let appEnv = await setup(logonPayload, appControl, sessionID,  {}, ' ', {})  ;
     
     await scrollTable('first', appEnv);
