@@ -9,7 +9,7 @@ function HtmlText(props) {
  
  let htmlContent = { __html: value };
  
-  let isx = { height: 'inherit', width: 'inherit', overflowY: 'scroll', textAlign: 'left', borderStyle: 'solid', borderWidth: '1px'}; 
+  let isx = { height: 'inherit', width: 'inherit', overflow: 'auto', textAlign: 'left', borderStyle: 'solid', borderWidth: '1px'}; 
   if (sx !== null) {
     isx = { ...isx, ...sx };
   };
@@ -20,9 +20,9 @@ function HtmlText(props) {
   }
 
   return (
-    <Sheet key={shkey} style={isx}>
-    <div key={name} style={isx} dangerouslySetInnerHTML={htmlContent}></div>
-    </Sheet>
+  
+    <div key="htmltext" style={isx} dangerouslySetInnerHTML={htmlContent}></div>
+
   );
 }
 export default HtmlText;

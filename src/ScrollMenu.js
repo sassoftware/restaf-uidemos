@@ -13,7 +13,7 @@ import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import LastPage from '@mui/icons-material/LastPage';
 import IconButton from '@mui/joy/IconButton';
 import ButtonGroup from '@mui/joy/ButtonGroup';
-import DropDownMenu from './DropdownMenu';
+import DropDownMenu from './MenuIcon';
 import WherePrompt from './WherePrompt';
 
 function ScrollMenu (props) {

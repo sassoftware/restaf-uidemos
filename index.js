@@ -42,6 +42,25 @@ import _visualTemplate from "./_visualTemplate.js";
       { minRows: 2, maxRows: 5 , sx:{}, label: "" },
       "h"
     ),
+    Typography: _visualTemplate(
+      frameControl.Typography,
+      "Typography",
+      "string",
+      "Text",
+      medium,
+      {
+        sx: {
+          border: "1px",
+          borderStyle: "solid",
+          borderWidth: 1,
+          borderRadius: 8,
+        },
+        allText: "Some text",
+        color: "neutral",
+        level: "h2",
+      },
+      "h"
+    ),
     Button: _visualTemplate(
       frameControl.Button,
       "Button",
@@ -90,8 +109,8 @@ import _visualTemplate from "./_visualTemplate.js";
       "h"
     ),
    
-    DropdownMenu: _visualTemplate(
-      frameControl.DropdownMenu,
+    MenuIcon: _visualTemplate(
+      frameControl.MenuIcon,
       "DropdownMenu",
       "array",
       [],
@@ -99,8 +118,15 @@ import _visualTemplate from "./_visualTemplate.js";
       { items: ["item1", "Item2"], valueType: "index", sx:{} },
       "n"
     ),
-    //Listbox: _visualTemplate(frameControl.Listbox,'Listbox','char',' ',small,
-    //   {sx: {borderStyle: 'solid', borderWidth: '1px', borderColor: 'black'},items: ['item 1', 'Item 2'], valueType: 'index', labelProp: {sx: {backgroundColor: 'lightgrey'},level: 'h4'}},'b'),
+    Notes: _visualTemplate(
+      frameControl.Notes,
+      "Notes",
+      "string",
+      "",
+      small,
+      {  notes: true, sx:{} },
+      "n"
+    ),
     Slider: _visualTemplate(
       frameControl.Slider,
       "Slider",
@@ -122,25 +148,7 @@ import _visualTemplate from "./_visualTemplate.js";
       "h"
     ),
 
-    Typography: _visualTemplate(
-      frameControl.Typography,
-      "Typography",
-      "string",
-      "Text",
-      medium,
-      {
-        sx: {
-          border: "1px",
-          borderStyle: "solid",
-          borderWidth: 1,
-          borderRadius: 8,
-        },
-        allText: "Some text",
-        color: "neutral",
-        level: "h2",
-      },
-      "h"
-    ),
+   
     
     /* misc */
     Divider: _visualTemplate(

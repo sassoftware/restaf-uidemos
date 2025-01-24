@@ -44,6 +44,7 @@
     "@sassoftware/restafedit": "^3.0.2",
     "@sassoftware/restaflib": "^5.3.1",
     "@types/react": "^18.3.12",
+    "@uiw/react-markdown-preview": "^5.1.3",
     "ag-grid-community": "^32.3.3",
     "ag-grid-react": "^32.3.3",
     "btoa": "^1.2.1",

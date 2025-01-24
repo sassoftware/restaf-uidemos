@@ -13,7 +13,7 @@ function Button(props) {
   let ePropsL = {variant: 'outlined', color: 'primary', size:"md", ...eProps};
 
   // using value - to allow for changing the text of the button programmatically
-  let isx = {textTransform: 'capitalize',backgroundColor: 'lightblue', height: 'inherit', width: 'inherit', ...sx};
+  let isx = {textTransform: 'capitalize',backgroundColor: 'lightblue',borderRadius: 8, height: 'inherit', width: 'inherit', ...sx};
   return <JoyButton sx={isx} 
             {...ePropsL}
             onClick={_handleClick}>{label}</JoyButton>;

@@ -27,7 +27,7 @@
     let Slider = f['Slider'].component;
     let Checkbox = f['Checkbox'].component;
     let Dropdown = f['Dropdown'].component;
-    let DropdownMenu = f['DropdownMenu'].component;
+    let MenuIcon = f['MenuIcon'].component;
     //let Listbox = f['Listbox'].component;
     let RadioGroup = f['RadioGroup'].component;
     let Background = f['Background'].component;
@@ -36,6 +36,8 @@
     let SelectLibrary = f['SelectLibrary'].component;
     let VScode = f['VScode'].component;
     let DataGrid= f['DataGrid'].component;
+    let HtmlText = f['HtmlText'].component;
+    let Notes = f['Notes'].component;
   
    
     </script>
@@ -50,9 +52,11 @@
           const onEnter = (e) => {
             console.log(e, typeof e);
         }
-        let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderRadius: 2, borderWidth: '1px', borderColor: 'black'};
+        let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderRadius: 8, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
+              <Notes sx={sx} value="# this is a note" _appContext={{notes: "# Notes"}} notes={true} ></Notes>
+              <HtmlText sx={sx} value="<h1>hello</h1>" ></HtmlText>
               <Typography sx={{height: '50px', width: '200px'}} level="h2" altText={null} value={""}></Typography>
               <Image  sx={sx} label="this is stuff"></Image>
               <RadioGroup  sx={sx} value={0} items={items} onChange={onEnter}></RadioGroup>

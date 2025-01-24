@@ -28,7 +28,7 @@ import SelectFolder from './SelectFolder';
 import Inputarea from './Inputarea';
 import Divider from './Divider';
 import Image from './Image';
-import DropdownMenu from './DropdownMenu';
+import MenuIcon from './MenuIcon';
 import ScrollMenu from './ScrollMenu';
 //import FormViewer from './FormViewer.js';
 import RadioGroup from './RadioGroup';
@@ -37,6 +37,7 @@ import SelectLocalFolder from './SelectLocalFolder';
 import VScode from './VScode';
 import Listbox from './Listbox';
 import DataGrid from './DataGrid';
+import Notes from './Notes';
 //import Markdown from './Markdown';
 
 // import TableViewer from './TableViewer';
@@ -47,6 +48,7 @@ export default {
   Dropdown,
   WebContent,
   HtmlText,
+  Notes,
   Input,
   InputText,
   Inputarea,
@@ -66,7 +68,7 @@ export default {
   VaSDK,
   Divider,
   Image,
-  DropdownMenu,
+  MenuIcon,
   Listbox,
   ScrollMenu,
   //FormViewer,
