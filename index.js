@@ -111,7 +111,7 @@ import _visualTemplate from "./_visualTemplate.js";
    
     MenuIcon: _visualTemplate(
       frameControl.MenuIcon,
-      "DropdownMenu",
+      "MenuIcon",
       "array",
       [],
       small,

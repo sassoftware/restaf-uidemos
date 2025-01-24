@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script async src="https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@sassoftware/restaf"></script>
+    <script type="text/javascript" src="./lib/index.js"></script>
+   
+     
+
+    <script type="text/javascript">
+    let f = smartControls.controls;
+    debugger;
+    console.log(f);
+    let Image = f['Image'].component;
+    let Button = f['Button'].component
+    let Input = f['Input'].component
+    let InputText = f['InputText'].component
+    let Inputarea = f['Inputarea'].component
+    let Typography = f['Typography'].component
+    let Slider = f['Slider'].component;
+    let Checkbox = f['Checkbox'].component;
+    let Dropdown = f['Dropdown'].component;
+    let MenuIcon = f['MenuIcon'].component;
+    //let Listbox = f['Listbox'].component;
+    let RadioGroup = f['RadioGroup'].component;
+    let Background = f['Background'].component;
+    let WebContent = f['WebContent'].component;
+    let VaSDK = f['VaSDK'].component;
+    let SelectLibrary = f['SelectLibrary'].component;
+    let VScode = f['VScode'].component;
+    let DataGrid= f['DataGrid'].component;
+    let HtmlText = f['HtmlText'].component;
+    let Notes = f['Notes'].component;
+  
+   
+    </script>
+    <script type="text/babel">
+      function show(){
+
+        const createRoot = ReactDOM.createRoot;
+        const container = document.getElementById('container1');
+        const root = createRoot(container);
+        let items = ['A', 'B', 'C', 'D', 'E'];
+        const App = () => {
+          const onEnter = (e) => {
+            console.log(e, typeof e);
+        }
+        let sx = {height: '600px', width: '600px', borderStyle: 'solid', borderRadius: 8, borderWidth: '1px', borderColor: 'black'};
+          return (
+            <div>
+              <Notes sx={sx} value="# this is a note" _appContext={{notes: "# Notes ia long "}} notes={true} ></Notes>
+            
+              </div>
+          );
+        };
+        root.render( <App />)
+    }
+  
+      </script>
+    </head>
+<body onload="show()">
+  <div id="container1"></div>
+  <p> hi</p>
+</body>
+</body>
+</html>
