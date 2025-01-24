@@ -31,8 +31,8 @@ function Notes(props) {
  const id = open ? 'simple-popover' : undefined;
 debugger;
  return (
-   <div>
-     <Button onClick={handleClick}>
+   <>
+     <Button sx = {{height: 'inherit', width: 'inherit'}} onClick={handleClick}>
      <Help/>
      </Button>
      <Popover 
@@ -53,7 +53,7 @@ debugger;
         </div>
      </Popover>
      
-   </div>
+   </>
  );
  
 }
