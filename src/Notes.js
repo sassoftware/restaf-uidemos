@@ -1,7 +1,7 @@
 import React from "react";
 
 import MarkdownPreview from "@uiw/react-markdown-preview";
-import { Popover, Typography, Button } from "@mui/material";
+import { Popover,  Button } from "@mui/material";
 import Help from '@mui/icons-material/Help';
 
 function Notes(props) {
@@ -23,7 +23,7 @@ function Notes(props) {
     text = value;
   }
 
-  let isx = {height: '200', width: '600', ...sx};
+  let isx = {height: '600', width: '600', borderRadius: 8, overflow: 'auto', ...sx};
  // let ePropsL = {placement: 'bottom-start', ...eProps};
 
 
@@ -48,8 +48,9 @@ debugger;
         vertical: 'top',
         horizontal: 'left',
       }}
-     >
-          <MarkdownPreview sx={isx} source={text} />
+     >  <div style={isx}>
+          <MarkdownPreview sx={{height: 'inherit', width: 'inherit'}} source={text} />
+        </div>
      </Popover>
      
    </div>

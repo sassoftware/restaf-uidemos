@@ -52,10 +52,10 @@
           const onEnter = (e) => {
             console.log(e, typeof e);
         }
-        let sx = {height: '600px', width: '600px', borderStyle: 'solid', borderRadius: 8, borderWidth: '1px', borderColor: 'black'};
+        let sx = {height: '600px', width: '600px', borderStyle: 'solid',size: '12px', borderRadius: 8, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <Notes sx={sx} value="# this is a note" _appContext={{notes: "# Notes ia long "}} notes={true} ></Notes>
+              <Notes sx={sx} value="# this is a note" _appContext={{notes: "### Notes is long "}} notes={true} ></Notes>
             
               </div>
           );
