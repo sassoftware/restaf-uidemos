@@ -23,7 +23,7 @@ function Notes(props) {
     text = value;
   }
 
-  let isx = {height: '600', width: '600', borderRadius: 8, overflow: 'auto', ...sx};
+  let isx = {height: '400', width: '600',maxHeigt: '600', borderRadius: 8, overflow: 'auto', ...sx};
  // let ePropsL = {placement: 'bottom-start', ...eProps};
 
 
