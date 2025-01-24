@@ -7,7 +7,7 @@ import jsx  from 'react/jsx-runtime';
 import frameControl from "./src/index.js";
 import _visualTemplate from "./_visualTemplate.js";
 
-
+  let defsize = {width: 'fit-content', height: 'fit-content'};
   let small = { height: 30, width: 200 };
   let medium = { height: 120, width: 400 };
  // let large = { height: 120, width: 400 };
@@ -114,7 +114,7 @@ import _visualTemplate from "./_visualTemplate.js";
       "MenuIcon",
       "array",
       [],
-      small,
+      defsize,
       { items: ["item1", "Item2"], valueType: "index", sx:{} },
       "n"
     ),
@@ -123,7 +123,7 @@ import _visualTemplate from "./_visualTemplate.js";
       "Notes",
       "string",
       "",
-      small,
+      defsize,
       {  notes: true, sx:{} },
       "n"
     ),

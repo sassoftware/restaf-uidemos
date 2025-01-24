@@ -1,7 +1,8 @@
 import React from "react";
 
 import MarkdownPreview from "@uiw/react-markdown-preview";
-import { Popover,  Button } from "@mui/material";
+import Popover from "@mui/material/Popover";
+import IconButton from "@mui/joy/IconButton";
 import Help from '@mui/icons-material/Help';
 
 function Notes(props) {
@@ -32,16 +33,17 @@ function Notes(props) {
 debugger;
  return (
    <>
-     <Button sx = {{height: 'inherit', width: 'inherit'}} onClick={handleClick}>
-     <Help/>
-     </Button>
+     <IconButton  onClick={handleClick}>
+       <Help></Help>
+     </IconButton>
      <Popover 
      id={id}
       open={open}
-      anchorEl={anchorEl}
+     
       onClose={handleClose}
+      anchorPosition={{ top: 50, left: 50 }}
       anchorOrigin={{
-        vertical: 'bottom',
+        vertical: 'top',
         horizontal: 'left',
       }}
       transformOrigin={{

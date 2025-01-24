@@ -29,7 +29,7 @@ function MenuIcon(props) {
   return (
     
     <Dropdown>
-      <MenuButton sx={isx} {...ePropsL}>
+      <MenuButton  {...ePropsL}>
         <MoreVert/>
         {label}
       </MenuButton>
