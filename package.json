@@ -41,7 +41,7 @@
     "@mui/x-data-grid": "^7.22.2",
     "@react-hook/size": "^2.1.2",
     "@sassoftware/restaf": "^5.3.1",
-    "@sassoftware/restafedit": "^3.0.2",
+    "@sassoftware/restafedit": "^3.5.6",
     "@sassoftware/restaflib": "^5.3.1",
     "@types/react": "^18.3.12",
     "@uiw/react-markdown-preview": "^5.1.3",
