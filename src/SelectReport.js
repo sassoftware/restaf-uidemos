@@ -7,6 +7,8 @@ import SASItemsDropDown from './SASItemsDropDown';
 
 //TBD: need to skip this jump since this is just a simple wrapper
 function SelectReport(props) {
- return <SASItemsDropDown  {...props} service="reports" />;
+  let {service, ...eprops} = props; 
+  let iservice = service || "reports";
+ return <SASItemsDropDown  {...eprops} service={iservice} />;
 }
 export default SelectReport;

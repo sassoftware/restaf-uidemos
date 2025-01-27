@@ -27,7 +27,7 @@ function VScode(props) {
     onChange={_setCode}
     codeLens={false}
   />;
-  let isx ={height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8px', ...sx};
+  let isx ={height: 'inherit', width: 'inherit', margin: '2px', borderStyle: 'solid', borderWidth: '1px', borderRadius: '8', ...sx};
 
   return (
     <div name={name} style={isx} ref={divref}>

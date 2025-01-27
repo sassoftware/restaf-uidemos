@@ -3,25 +3,24 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React from 'react';
-import Sheet from '@mui/joy/Sheet';
 function HtmlText(props) {
-  let {value, name, sx,refresh,_appContext} = props;
+  let {value, sx,refresh} = props;
  
  let htmlContent = { __html: value };
  
-  let isx = { height: 'inherit', width: 'inherit', overflow: 'auto', textAlign: 'left', borderStyle: 'solid', borderWidth: '1px'}; 
+  let isx = { height: 'inherit', width: 'inherit', overflow: 'auto', textAlign: 'left', borderRadius: 8, borderStyle: 'solid', borderWidth: '1px'}; 
   if (sx !== null) {
     isx = { ...isx, ...sx };
   };
   
-  let shkey = name + '_sheet';
+  let shkey = 'htmltext';
   if (refresh != null) {
       shkey = shkey + Date();
-  }
+  } 
 
   return (
   
-    <div key="htmltext" style={isx} dangerouslySetInnerHTML={htmlContent}></div>
+    <div key={shkey} style={isx} dangerouslySetInnerHTML={htmlContent}></div>
 
   );
 }

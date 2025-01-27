@@ -13,12 +13,10 @@ import _visualTemplate from "./_visualTemplate.js";
  // let large = { height: 120, width: 400 };
  // let props = {}; // if you want to pass in some default props - helpful to users in property sheet
   
-  console.log("frameControl", frameControl);
-  debugger;
+
   let basicControls = {
-    
+ 
     Input: _visualTemplate(
-      'Inputs', 
       frameControl.Input,
       "Input",
       "number",
@@ -28,7 +26,6 @@ import _visualTemplate from "./_visualTemplate.js";
       "h"
     ),
     InputText: _visualTemplate(
-      'Inputs', 
       frameControl.InputText,
       "InputText",
       "string",
@@ -39,7 +36,6 @@ import _visualTemplate from "./_visualTemplate.js";
     ),
     
     Inputarea: _visualTemplate(
-      'Inputs', 
       frameControl.Inputarea,
       "InputArea",
       "string",
@@ -48,18 +44,7 @@ import _visualTemplate from "./_visualTemplate.js";
       { minRows: 2, maxRows: 5 , sx:{}, label: "" },
       "h"
     ),
-    Button: _visualTemplate(
-      'Inputs',
-      frameControl.Button,
-      "Button",
-      "string",
-      "button",
-      small,
-      {label: " ", sx:{}},
-      "b"
-    ), 
     Slider: _visualTemplate(
-      "Inputs",
       frameControl.Slider,
       "Slider",
       "number",
@@ -80,7 +65,6 @@ import _visualTemplate from "./_visualTemplate.js";
       "h"
     ),
     Checkbox: _visualTemplate(
-      'Inputs',
       frameControl.Checkbox,
       "Checkbox",
       "boolean",
@@ -100,7 +84,6 @@ import _visualTemplate from "./_visualTemplate.js";
       "h"
     ),
     RadioGroup: _visualTemplate(
-      "Inputs",
       frameControl.RadioGroup,
       "RadioGroup",
       'array',
@@ -108,52 +91,9 @@ import _visualTemplate from "./_visualTemplate.js";
       small,
       { items: ["item1", "Item2"], label: " ", valueType: 'index', sx:{} },
       "h"
-    )
+    ),
 
-    
-  };
-  let selectors = {
-   
-   
-    Dropdown: _visualTemplate(
-      'Selectors',
-      frameControl.Dropdown,
-      "Dropdown",
-      "array",
-      [],
-      small,
-
-      { items: ["item 1", "Item 2"], label: " ", multiple: false, valueType: 'index', sx:{}},
-      "h"
-    ),
-   
-    MenuIcon: _visualTemplate(
-      'Selectors',
-      frameControl.MenuIcon,
-      "MenuIcon",
-      "array",
-      [],
-      defsize,
-      { items: ["item1", "Item2"], valueType: "index", sx:{} },
-      "n"
-    ),
-   
-  };
-  debugger;
-  let xdocuments= {
-    Image: _visualTemplate(
-      'Documents',
-      frameControl.Image,
-      "Image",
-      "string",
-      " ",
-      medium,
-      {label: " ", srcType: null, sx:{}},
-      "b"
-    ),
-       
     Typography: _visualTemplate(
-      'Documents',
       frameControl.Typography,
       "Typography",
       "string",
@@ -172,8 +112,48 @@ import _visualTemplate from "./_visualTemplate.js";
       },
       "h"
     ),
+    Button: _visualTemplate(
+      frameControl.Button,
+      "Button",
+      "string",
+      "button",
+      small,
+      {label: " ", sx:{}},
+      "b"
+    ),  
+    Image: _visualTemplate(
+      frameControl.Image,
+      "Image",
+      "string",
+      " ",
+      medium,
+      {label: " ", clickable: true, srcType: null, sx:{}},
+      "b"
+    ),
+       
+    Dropdown: _visualTemplate(
+      frameControl.Dropdown,
+      "Dropdown",
+      "array",
+      [],
+      small,
+
+      { items: ["item 1", "Item 2"], label: " ", multiple: false, valueType: 'index', sx:{}},
+      "h"
+    ),
+   
+    MenuIcon: _visualTemplate(
+      frameControl.MenuIcon,
+      "MenuIcon",
+      "array",
+      [],
+      defsize,
+      { items: ["item1", "Item2"], valueType: "index", sx:{} },
+      "n"
+    ),
+   
+
     Notes: _visualTemplate(
-      'Documents',
       frameControl.Notes,
       "Notes",
       "string",
@@ -196,7 +176,6 @@ import _visualTemplate from "./_visualTemplate.js";
     ),
     
     HTMLText: _visualTemplate(
-      'Documents',
       frameControl.HtmlText,
       "HtmlText",
       "string",
@@ -206,7 +185,6 @@ import _visualTemplate from "./_visualTemplate.js";
       "b"
     ),
     WebContent: _visualTemplate(
-      'Documents',
       frameControl.WebContent,
       "WebContent",
       "string",
@@ -215,22 +193,11 @@ import _visualTemplate from "./_visualTemplate.js";
       {label: " ", sx:{}},
       "b"
     ),
-    VScode: _visualTemplate(
-      'Documents',
-      frameControl.VScode,
-      "VSCode",
-      "string",
-      " ",
-      medium,
-      { language: "text" , label: " ", sx:{}},
-      "b"
-    ) 
-  };
-  let misc = {
+    
+   
     
     /* misc */
     Divider: _visualTemplate(
-      'Misc',
       frameControl.Divider,
       "Divider",
       "string",
@@ -240,7 +207,6 @@ import _visualTemplate from "./_visualTemplate.js";
       "h"
     ),
     Background: _visualTemplate(
-      'Misc',
       frameControl.Background,
       "Background",
       "string",
@@ -254,15 +220,27 @@ import _visualTemplate from "./_visualTemplate.js";
       1
     ),
    
-   
+    VScode: _visualTemplate(
+      frameControl.VScode,
+      "VSCode",
+      "string",
+      " ",
+      medium,
+      { language: "text" , label: " ", sx:{}},
+      "b"
+    ),
 
+    
+    
+    
+    //SelectLocalFiles: _visualTemplate(frameControl.SelectLocalFile,'SelectLocalFile','char',' ',small,{valueType: 'content'},'h'),
   };
-  
+  /* local files */
   
 
   let sasControls = {
+    ...basicControls,
     SelectLibrary: _visualTemplate(
-      'Viya',
       frameControl.SelectLibrary,
       "SelectLibrary",
       "string",
@@ -272,7 +250,6 @@ import _visualTemplate from "./_visualTemplate.js";
       "h"
     ),
     SelectTable: _visualTemplate(
-      'Viya',
       frameControl.SelectTable,
       "SelectTable",
       "string",
@@ -281,8 +258,16 @@ import _visualTemplate from "./_visualTemplate.js";
       { lib: " ",  source: 'cas', refresh: false, sx:{} },
       "h"
     ),
+    DataGrid: _visualTemplate(
+      frameControl.DataGrid,
+      "DataGrid",
+      "string",
+      " ",
+      medium,
+      { sx:{}, source: 'cas', value: '',lib: '',table: '',limit: 20, keep: [], gridOptions: {}, gridClass:'', refresh: false },
+      "b"
+    ),
     SelectColumns: _visualTemplate(
-      'Viya',
       frameControl.SelectColumns,
       "SelectColumns",
       "array",
@@ -299,7 +284,6 @@ import _visualTemplate from "./_visualTemplate.js";
       "h"
     ),
     DistinctValues: _visualTemplate(
-      'Viya',
       frameControl.DistinctValues,
       "DistinctValues",
       "string",
@@ -315,19 +299,7 @@ import _visualTemplate from "./_visualTemplate.js";
       },
       "h"
     ),
-    DataGrid: _visualTemplate(
-      'Viya',
-      frameControl.DataGrid,
-      "DataGrid",
-      "string",
-      " ",
-      medium,
-      { sx:{}, source: 'cas', value: '',lib: '',table: '',limit: 20, keep: [], gridOptions: {}, gridClass:'', refresh: false },
-      "b"
-    ),
-
     SelectReport: _visualTemplate(
-      'Viya',
       frameControl.SelectReport,
       "SelectReport",
       "string",
@@ -337,7 +309,6 @@ import _visualTemplate from "./_visualTemplate.js";
       "h"
     ),
     VaSDK: _visualTemplate(
-      'Viya',
       frameControl.VaSDK,
       "View VA Report",
       "string",
@@ -347,17 +318,12 @@ import _visualTemplate from "./_visualTemplate.js";
       "b"
     )
   };
-  console.log(xdocuments);
+
   let controls = {
-    ...basicControls,
-    ...selectors,
-    ...xdocuments,
+    /* only for Viya and not workbench */
     ...sasControls,
-    ...misc,
    
   };
-  console.log("Frame Controls", controls);  
-
  
  export {controls};
 

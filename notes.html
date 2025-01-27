@@ -18,26 +18,10 @@
     let f = smartControls.controls;
     debugger;
     console.log(f);
-    let Image = f['Image'].component;
-    let Button = f['Button'].component
-    let Input = f['Input'].component
-    let InputText = f['InputText'].component
-    let Inputarea = f['Inputarea'].component
-    let Typography = f['Typography'].component
-    let Slider = f['Slider'].component;
-    let Checkbox = f['Checkbox'].component;
-    let Dropdown = f['Dropdown'].component;
+  
     let MenuIcon = f['MenuIcon'].component;
-    //let Listbox = f['Listbox'].component;
-    let RadioGroup = f['RadioGroup'].component;
-    let Background = f['Background'].component;
-    let WebContent = f['WebContent'].component;
-    let VaSDK = f['VaSDK'].component;
-    let SelectLibrary = f['SelectLibrary'].component;
-    let VScode = f['VScode'].component;
-    let DataGrid= f['DataGrid'].component;
-    let HtmlText = f['HtmlText'].component;
     let Notes = f['Notes'].component;
+    let HTMLText = f['HTMLText'].component;
   
    
     </script>
@@ -55,6 +39,7 @@
         let sx = {height: '400px', width: '400px', borderStyle: 'solid',size: '12px', borderRadius: 8, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
+              <HTMLText value="<h2>This is a html text</h1>"></HTMLText>
               <Notes sx={sx} value="# this is a note" _appContext={{notes: "### Notes is long "}} notes={true} ></Notes>
               <MenuIcon items={['a','b' ]} ></MenuIcon>
               </div>

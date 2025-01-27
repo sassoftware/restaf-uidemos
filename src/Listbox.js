@@ -40,7 +40,7 @@ function Listbox(props) {
         </ListItemButton>
     })
 
-  let isx = {  height: 'inherit', width: 'inherit', border: '1px',overflow: 'auto', borderRadius: '8px'};
+  let isx = {  height: 'inherit', width: 'inherit', border: '1px',borderRadius: 8, overflow: 'auto', borderRadius: '8px'};
   if (sx != null) {
     isx = {...isx, ...sx};
   }

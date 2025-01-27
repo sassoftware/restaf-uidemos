@@ -25,7 +25,7 @@ function DataGrid(props) {
   const style = { height, width };
 
   let show;
-  console.log(value, lib, table);
+
   if (isMissing(source)){
     show = <div>Please specify a source as cas or compute</div>;
   } else  if (isMissing(value) && (isMissing(lib) || isMissing(table))) {

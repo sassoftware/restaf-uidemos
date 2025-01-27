@@ -1,5 +1,5 @@
 function _visualTemplate (
-
+  group,
   component,
   label,
   type,
@@ -20,6 +20,7 @@ function _visualTemplate (
    * zIndex: z-index for the component ( the default is 2. used primarily for the border component)
    */
   let r ={
+    group: group,
     component: component,
     label: label,
     type: type,

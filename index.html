@@ -36,10 +36,14 @@
     let SelectLibrary = f['SelectLibrary'].component;
     let VScode = f['VScode'].component;
     let DataGrid= f['DataGrid'].component;
-    let HtmlText = f['HtmlText'].component;
-    let Notes = f['Notes'].component;
+    debugger;
+    let HTMLText = f['HTMLText'].component;
+    debugger;
+   // let Notes = f['Notes'].component;
   
-   
+   for (let key in f) {
+      console.log(key, f[key].group);
+   }
     </script>
     <script type="text/babel">
       function show(){
@@ -55,12 +59,10 @@
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderRadius: 8, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <Notes sx={sx} value="# this is a note" _appContext={{notes: "# Notes"}} notes={true} ></Notes>
-              <HtmlText sx={sx} value="<h1>hello</h1>" ></HtmlText>
               <Typography sx={{height: '50px', width: '200px'}} level="h2" altText={null} value={""}></Typography>
-              <Image  sx={sx} label="this is stuff"></Image>
+              <Image  clickable={true} value="_blank" sx={sx} onChange={onEnter} label="this is stuff"></Image>
               <RadioGroup  sx={sx} value={0} items={items} onChange={onEnter}></RadioGroup>
-              <DataGrid   source='cas' value="" lib="" table="" _userProps={null}  keep={null} sx={sx} onChange={onEnter}></DataGrid>
+              <DataGrid   source='cas' sx={sx} value="" lib="" table="" _userProps={null}  keep={null} sx={sx} onChange={onEnter}></DataGrid>
               <Checkbox label="check me"  value={false} sx={sx} onChange={onEnter}></Checkbox>
               <Button  disabled={true} label="click me" onChange={onEnter}></Button>
               <InputText label="Enter your name" value="xxx" disabled={true} onChange={onEnter}></InputText>
@@ -70,7 +72,7 @@
               
             
               <Inputarea label="yyyyy" sx={sx} value="this is text" onChange={onEnter}></Inputarea>
-              <WebContent label="check me"  target={"_blank"} value="" sx={sx} onChange={onEnter}></WebContent>
+              <WebContent label="check me"  target={"_blank"}  value="https://x.com" sx={sx} onChange={onEnter}></WebContent>
               <br/>
               <Background  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></Background>
               <VaSDK  sx={{height: 200, width: 200, boxShadow: 4,borderRadius: 4}}  ></VaSDK>

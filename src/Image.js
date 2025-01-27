@@ -9,8 +9,6 @@ import btoa from 'btoa';
 function Image(props) {
   const {value, label, sx, srcType, _appContext,refresh} = props;
 
-
-
   // using value - to allow for changing the text of the button programmatically
 
   let isx = {borderStyle: 'solid',borderWidth: '1px', borderRadius: 8, width: 'inherit', height: 'inherit', ...sx};

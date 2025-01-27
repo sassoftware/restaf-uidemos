@@ -117,23 +117,23 @@ function TableViewer(props) {
 
   const _scroll = (direction) => {
     let appEnv = control.current.appEnv;
-    debugger;
+    
     scrollTable(direction, appEnv)
       .then(r => {
-        debugger;
+        
         control.current = {appEnv: appEnv, columns: control.current.columns};
        // refreshCache();
         reDraw(!redraw);
       })
       .catch(err => {
-        debugger;
+        
         console.log(err);
       });
   }
 
   const _getRows = () => {
     // not really needed but useful when debugging issues.
-    debugger;
+    
     let data =[].concat(control.current.appEnv.state.data);
     return data;
   }
@@ -142,7 +142,7 @@ function TableViewer(props) {
   let gridStyle = { height: sx.height -32 , width: sx.width };
   let agTheme ='ag-theme-alpine';
   let eProps = {pagination: true, paginationPageSize: 20, ...gridOptions};
-  debugger;
+  
   let gridOpts = {
     ref: gridRef
   }
