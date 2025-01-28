@@ -6,7 +6,7 @@ import IconButton from "@mui/joy/IconButton";
 import HelpOutlineTwoToneIcon from '@mui/icons-material/HelpOutlineTwoTone';
 
 function Notes(props) {
-  let { value, iconsx, position, sx,  notes,_appContext } = props;
+  let { value, iconProps, position, sx,  notes,_appContext } = props;
   const [anchorEl, setAnchorEl] = React.useState(null); 
 
   const handleClick = (event) => {
@@ -24,10 +24,9 @@ function Notes(props) {
     text = value;
   }
 
-  let isx = {height: '400', width: '600',maxHeigt: '600', borderRadius: 8, overflow: 'auto', ...sx};
- // let ePropsL = {placement: 'bottom-start', ...eProps};
+let isx = {height: 400, width: 600 ,padding: "1px",  borderRadius: 8, overflow: 'auto', ...sx};
 
- let isxicon = {fontSize: "small", ...iconsx};
+let isxicon = (iconProps == null) ? {fontSize: "small"} : iconProps;
 let ePropsL = {
   anchorPosition:{ top: 50, left: 50 },
   anchorOrigin: {
@@ -46,7 +45,7 @@ let ePropsL = {
  return (
    <>
      <IconButton  onClick={handleClick}>
-       <HelpOutlineTwoToneIcon sx={isxicon}> </HelpOutlineTwoToneIcon>
+       <HelpOutlineTwoToneIcon {...isxicon}> </HelpOutlineTwoToneIcon>
      </IconButton>
      <Popover 
      id={id}

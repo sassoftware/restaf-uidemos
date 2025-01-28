@@ -36,12 +36,13 @@
           const onEnter = (e) => {
             console.log(e, typeof e);
         }
-        let sx = {height: '400px', width: '400px', borderStyle: 'solid',size: '12px', borderRadius: 8, borderWidth: '1px', borderColor: 'black'};
+        let sx = {height: '400px', width: '600px', borderStyle: 'solid',size: '12px', borderRadius: 8, boxShadow: 2, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
               <HTMLText value="<h2>This is a html text</h1>"></HTMLText>
-              <Notes sx={sx} value="# this is a note" _appContext={{notes: "### Notes is long "}} notes={true} ></Notes>
-              <MenuIcon items={['a','b' ]} ></MenuIcon>
+              <Notes iconProps={{fontSize: 'medium'}} sx={sx} 
+              value="# this is a notelll lllllllll lllllllllllllll llllllll llllllllllllllllll lllllllllll" _appContext={{notes: "### Notes is long "}} notes={false} ></Notes>
+              <MenuIcon items={['a','b' ]} ></MenuIcon> 
               </div>
           );
         };

@@ -179,7 +179,8 @@ import _visualTemplate from "./_visualTemplate.js";
       "string",
       "",
       defsize,
-      {  iconsx:{fontSize: 'small'},
+      {  iconProps:{fontSize: 'small'}, 
+      position: {
          anchorPosition:{ top: 50, left: 50 },
          anchorOrigin: {
             vertical: 'bottom',
@@ -188,9 +189,10 @@ import _visualTemplate from "./_visualTemplate.js";
          transformOrigin:{
             vertical: 'top',
             horizontal: 'right',
-          },
+          }
+        },
         notes: true, 
-        sx:{}
+        sx: {height: 200, width: 300}
        },
         "n"
     ),
