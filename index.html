@@ -59,10 +59,10 @@
         let sx = {height: '200px', width: '200px', borderStyle: 'solid', borderRadius: 8, borderWidth: '1px', borderColor: 'black'};
           return (
             <div>
-              <Typography sx={{height: '50px', width: '200px'}} level="h2" altText={null} value={""}></Typography>
+              <Typography sx={{height: '50px', width: '200px'}} level="h2" value="ZZZZ" altText={"Alt text"}></Typography>
               <Image  clickable={true} value="_blank" sx={sx} onChange={onEnter} label="this is stuff"></Image>
               <RadioGroup  sx={sx} value={0} items={items} onChange={onEnter}></RadioGroup>
-              <DataGrid   source='cas' sx={sx} value="" lib="" table="" _userProps={null}  keep={null} sx={sx} onChange={onEnter}></DataGrid>
+              <DataGrid   source='cas' sx={sx} value="" lib="" table="" _userProps={null}  keep={null}  onChange={onEnter}></DataGrid>
               <Checkbox label="check me"  value={false} sx={sx} onChange={onEnter}></Checkbox>
               <Button  disabled={true} label="click me" onChange={onEnter}></Button>
               <InputText label="Enter your name" value="xxx" disabled={true} onChange={onEnter}></InputText>

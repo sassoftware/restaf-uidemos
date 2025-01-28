@@ -166,7 +166,7 @@ import _visualTemplate from "./_visualTemplate.js";
           borderWidth: 1,
           borderRadius: 8,
         },
-        allText: "Some text",
+        altText: "Your text",
         color: "neutral",
         level: "h2",
       },
