@@ -157,7 +157,7 @@ import _visualTemplate from "./_visualTemplate.js";
       frameControl.Typography,
       "Typography",
       "string",
-      "Text",
+      "",
       medium,
       {
         sx: {
