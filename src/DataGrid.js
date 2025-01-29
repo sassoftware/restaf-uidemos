@@ -8,7 +8,7 @@ import TableViewer from './TableViewer';
 import useSize from '@react-hook/size';
 import isMissing from './utils/isMissing';
 function DataGrid(props) {
-  let {value, lib, table, limit, keep, refresh,source, gridOptions,gridClass,_appContext, ...eProps} = props;
+  let {value, lib, table, limit, keep,debugFlag, refresh,source, gridOptions,gridClass,_appContext, ...eProps} = props;
   const parentRef = useRef(null);
   const [width, height] = useSize(parentRef); // aggrid seems to work better with pixels for w and h
 
@@ -42,6 +42,7 @@ function DataGrid(props) {
         refresh={refresh}
         gridClass={gridClass}
         gridOptions={gridOptions}
+        debugFlag={debugFlag}
         sx={style}
         _appContext={_appContext}
       />

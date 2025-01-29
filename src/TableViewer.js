@@ -11,7 +11,7 @@ import FirstPage from '@mui/icons-material/FirstPage';
 import { setup, scrollTable } from '@sassoftware/restafedit';
 
 function TableViewer(props) {
-  let { source, value, lib,table,limit,keep, refresh, sx,gridOptions, _appContext } = props;
+  let { source, value, lib,table,limit,keep, debugFlag, refresh, sx,gridOptions, _appContext } = props;
   let [redraw, reDraw] = useState(false); 
   let control = useRef({appEnv: null, columns: null, msg: null}); 
   const gridRef = useRef();
@@ -20,7 +20,9 @@ function TableViewer(props) {
 
       const setup1 = async () => {
         let viyaEnv = await  _appContext.getViyaSession(source);
-        ;
+        if (debugFlag === true) {
+          console.log('viyaEnv', viyaEnv);
+        }
         let tabled = {};
         if (value != null && value.trim().length > 0) {
           let t = value.split('.');
@@ -60,7 +62,9 @@ function TableViewer(props) {
           let tAppEnv = await setup(viyaEnv.logonPayload, appControl, viyaEnv.sessionID);
         
           await scrollTable('first',tAppEnv);
-          
+          if (debugFlag === true) {
+            console.log('appEnv', tAppEnv.state.data[0]);
+          }
           let columns = [];
           let showColumns = tAppEnv.state.columns;
           if (keep != null && keep.length > 0) {
@@ -135,6 +139,9 @@ function TableViewer(props) {
     // not really needed but useful when debugging issues.
     
     let data =[].concat(control.current.appEnv.state.data);
+    if (debugFlag === true) {
+      console.log('data', data);
+    }
     return data;
   }
  
