@@ -1,6 +1,6 @@
 {
   "name": "@sassoftware/smart-controls-mui",
-  "version": "1.16.5",
+  "version": "1.16.6",
   "author": "K. Deva Kumar",
   "license": "Apache-2.0",
   "description": "Mui Frame Controls for use with @sassoftware/react-app-builder",
@@ -40,7 +40,6 @@
     "@mui/material": "^5.15.16",
     "@mui/x-data-grid": "^7.22.2",
     "@react-hook/size": "^2.1.2",
-    
     "@types/react": "^18.3.12",
     "@uiw/react-markdown-preview": "^5.1.3",
     "ag-grid-community": "^32.3.3",
@@ -59,7 +58,6 @@
     "@rollup/plugin-replace": "^6.0.1",
     "@rollup/plugin-strip": "^3.0.4",
     "@rollup/plugin-terser": "^0.4.4",
-   
     "@svgr/webpack": "^6.5.1",
     "babel-loader": "^9.1.3",
     "cross-env": "^7.0.3",
@@ -88,7 +86,6 @@
     "@sassoftware/restaf": ">=5.3.1",
     "@sassoftware/restafedit": ">=3.5.7",
     "@sassoftware/restaflib": ">=5.3.1"
-   
   },
   "resolutions": {
     "**/@svgr/webpack": "8.0.1",
