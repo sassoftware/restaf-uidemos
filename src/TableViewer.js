@@ -10,10 +10,11 @@ import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import FirstPage from '@mui/icons-material/FirstPage';
 import { setup, scrollTable } from '@sassoftware/restafedit';
 
+
 function TableViewer(props) {
-  let { source, value, lib,table,limit,keep, debugFlag, refresh, sx,gridOptions, _appContext } = props;
+  let { source, value, lib,table,qs,keep, debugFlag, refresh, sx,gridOptions, _appContext } = props;
   let [redraw, reDraw] = useState(false); 
-  let control = useRef({appEnv: null, columns: null, msg: null}); 
+  let control = useRef({appEnv: null, columns: null, msg: 'loading...'}); 
   const gridRef = useRef();
   
   useEffect(() => {
@@ -50,9 +51,10 @@ function TableViewer(props) {
           initialFetch: {
             qs: {
               start: 0,
-              limit: (limit) ? limit : 20,
+              limit:10,
               format: true,
-              where: ' '
+              where: ' ',
+              ...qs
             }
           },
         }
@@ -93,7 +95,7 @@ function TableViewer(props) {
               });
             }
           };
-          control.current = {appEnv: tAppEnv, columns: columns};
+          control.current = {appEnv: tAppEnv, columns: columns, msg: null};
           reDraw(!redraw);
           return true;
 
@@ -114,7 +116,7 @@ function TableViewer(props) {
       });
 
 
-  }, [value, lib, table, limit, keep, gridOptions, refresh]);
+  }, [value, lib, table, qs, keep, gridOptions, refresh]);
 
 
  
@@ -125,12 +127,12 @@ function TableViewer(props) {
     scrollTable(direction, appEnv)
       .then(r => {
         
-        control.current = {appEnv: appEnv, columns: control.current.columns};
+        control.current = {appEnv: appEnv, columns: control.current.columns, msg: null};
        // refreshCache();
         reDraw(!redraw);
       })
       .catch(err => {
-        
+        control.current = {appEnv: appEnv, columns: control.current.columns, msg: err};
         console.log(err);
       });
   }
@@ -173,6 +175,8 @@ function TableViewer(props) {
         columnDefs={control.current.columns}
         {...eProps} />
     </div></>;
+  } else {
+    show = <div>{control.current.msg}</div>
   }
     
   return show;

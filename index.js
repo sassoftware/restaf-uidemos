@@ -324,7 +324,7 @@ import _visualTemplate from "./_visualTemplate.js";
       "string",
       " ",
       medium,
-      { sx:{}, source: 'cas', value: '',lib: '',table: '',limit: 20, keep: [], gridOptions: {}, gridClass:'', refresh: false },
+      { sx:{}, source: 'cas', value: '',lib: '',table: '',qs: {limit:10,format: false}, keep: [], gridOptions: {}, gridClass:'', refresh: false },
       "b"
     ),
 
