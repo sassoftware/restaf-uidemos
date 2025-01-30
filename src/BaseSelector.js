@@ -54,17 +54,19 @@ function BaseSelector (props) {
     variant: 'outlined',
     selectOnFocus: true,
     readOnly: false,
+    loading: true,
     sx: isx
     };
     //for debugging purposes
     
     const check = (option, value) => {
-      if (option === value) {
+      if (option === value  ) {
         return true;
       } else
         return false;
      }
-  
+     
+    
     
     let show = 
     <FormControl>

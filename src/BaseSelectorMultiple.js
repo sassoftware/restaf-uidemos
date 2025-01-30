@@ -40,6 +40,7 @@ function BaseSelectorMultiple (props) {
     selectOnFocus: true,
     multiple: true,
     readOnly: false, 
+    loading: true,
     sx: isx
     };
  

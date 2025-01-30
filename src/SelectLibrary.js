@@ -60,7 +60,7 @@ function SelectLibrary(props) {
     });
     }, [value,source, _appContext]);
 
-  return <BaseSelector
+  return  <BaseSelector
     value={[sel]}
     items={liblist}
     onChange={_handleChange}
