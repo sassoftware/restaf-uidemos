@@ -16,7 +16,7 @@ function SelectLibrary(props) {
 
   const _handleChange = (selx) => {
     setSel(selx[0]);
-    onChange(selx[0]);
+    onChange(selx[0]);;
   };
   const _setup = async () => {
     ;

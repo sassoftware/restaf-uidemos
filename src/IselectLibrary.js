@@ -16,6 +16,9 @@ function IselectLibrary(props) {
 
   const _handleChange = (selx) => {
     setSel(selx);
+    if (selx === null) {
+      selx = '';
+    }
     onChange(selx);
   };
   useEffect(() => {

@@ -343,9 +343,9 @@ import _visualTemplate from "./_visualTemplate.js";
       frameControl.VaSDK,
       "View VA Report",
       "string",
-      "Retail Insights",
+      "",
       medium,
-      {  url: " ", auth: "credentials", sx:{}},
+      {  report: "", auth: "credentials", sx:{}},
       "b"
     )
   };

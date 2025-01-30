@@ -9,32 +9,28 @@ import Sheet from '@mui/joy/Sheet';
 //import Border from './Border';
 
 function VaSDK(props) {
-  let { value, url, auth, _appContext, style } = props;
+  let { value, report, auth, _appContext, sx } = props;
   const [reportUri, setReportUri] = useState(null);
+  const [urlt, setUrlt] = useState(null);
 
   const [errMsg, setErrMsg] = useState(null);
-  let reportName = value;
+  let reportName = value||report;
 
-
-  if (reportName == null || reportName.trim().length === 0) {
-    reportName = 'Retail Insights';
-  }
-
-  let sx = { height: 'inherit', width: 'inherit', borderStyle: 'solid', borderRadius: 8, borderWidth: '1px' };
-  sx = { ...sx, ...style };
+  let isx = { height: 'inherit', width: 'inherit', borderStyle: 'solid', borderRadius: 8, borderWidth: '1px' , ...sx};
 
   const _setup = async () => {
-    if (_appContext == null) {
-      return;
-    }
     let appEnv = await _appContext.getViyaSession('cas');
     if (appEnv === null) {
       return;
     }
     //await store.addServices('reports');
+    if (reportName == null || reportName.trim().length === 0) {
+      return;
+    }
     try {
       let r = await getReportUri(appEnv.store, reportName);
       setReportUri(r[0].uri);
+      setUrlt(appEnv.host);
       setErrMsg(null);
       return;
     }
@@ -45,34 +41,28 @@ function VaSDK(props) {
 
   }
   useEffect(() => {
-    ;
+ 
     _setup()
       .then(r => { console.log('ready') })
       .catch(err => {
         console.log(err);
       });
-  }, [reportName, value]);
+  }, [report, reportName, value]);
 
   let show = null;
-  let divStyle = sx;
-  ;
-  if (_appContext == null || _appContext.viyaEnv == null) {
-    ;
-    show = <div style={divStyle}><p>No connection to Viya</p></div>;
-  } else if (reportUri === null) {
-    ;
-    show = <div style={divStyle}> <p> Report {reportName} was not found</p></div>
+  let divStyle = isx;
+  if (reportUri === null) {
+    show = <div style={divStyle}> <p>No report to display </p></div>;
   } else {
-    let urlt = (url == null || url.trim().length === 0) ? _appContext.viyaEnv.logonPayload.host : url
     show = <div style={divStyle}>
       <sas-report key={reportUri}
         hideNavigation="auto"
         url={urlt}
         reportUri={reportUri}
         authenticationType={auth == null ? 'credential' : auth}
-        style={sx}
+        style={isx}
       />
-    </div>
+    </div>;
 
   };
   let shkey = reportName + 'sheet';
