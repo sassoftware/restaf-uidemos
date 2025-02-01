@@ -13,6 +13,7 @@ function SelectTable(props) {
   const [sel, setSel] = useState(value);
   let lastlib = useRef(null);
   const _handleChange = (selx) => {
+    setSel(selx[0]);
     onChange(selx[0]);
   };
 
@@ -69,6 +70,7 @@ function SelectTable(props) {
     style={style}
     eProps={eProps}
     valueType="label"
+    loadingText="No options"
     label={label}>
   </BaseSelector>;
 }

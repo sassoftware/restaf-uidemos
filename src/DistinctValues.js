@@ -58,7 +58,8 @@ function DistinctValues(props) {
     items: list,
     label: label,
     onChange: _handleChange,
- 
+    loading: true,
+    loadingText: 'Loading...',
     style: sx,
     eProps: eProps
 

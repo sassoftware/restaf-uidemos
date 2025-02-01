@@ -54,6 +54,7 @@ const _setup = async () => {
     onChange={_handleChange}
     items={menuList}
     valueType="label"
+    loadingText="Loading..."
     style={style}
     >
     </BaseSelector>

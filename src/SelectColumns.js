@@ -57,6 +57,7 @@ function SelectColumns(props) {
     onChange={_handleChange} 
     valueType= "label"
     sx={sx}
+    loadingText="Loading..."
     label={label}>
     </BaseSelectorMultiple>
     :
@@ -66,6 +67,7 @@ function SelectColumns(props) {
       onChange={_handleChange} 
       valueType= "label"
       sx={sx}
+      loadingText="Loading..."
       label={label}>
     </BaseSelector>;
 

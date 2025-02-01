@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelector (props) {
-  let {value, items, valueType, onChange, label, sx} = props;
+  let {value, items, valueType, onChange,loadingText, label, sx} = props;
   const _handleChange = (e, val) => {
     if (e == null) {
       onChange([]);
@@ -55,6 +55,7 @@ function BaseSelector (props) {
     selectOnFocus: true,
     readOnly: false,
     loading: true,
+    loadingText: loadingText||'No options',
     sx: isx
     };
     //for debugging purposes

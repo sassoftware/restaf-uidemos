@@ -5,7 +5,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 function BaseSelectorMultiple (props) {
-  let {value, items, onChange, label, valueType,sx} = props;
+  let {value, items, onChange, label,loadingText, valueType,sx} = props;
   
   const _handleChange = (e, val) => {
     ;
@@ -41,6 +41,7 @@ function BaseSelectorMultiple (props) {
     multiple: true,
     readOnly: false, 
     loading: true,
+    loadingText: loadingText||'No options',
     sx: isx
     };
  

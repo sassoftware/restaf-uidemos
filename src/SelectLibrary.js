@@ -12,6 +12,7 @@ function SelectLibrary(props) {
 
   const [liblist, setLiblist] = useState([]);
   const [sel, setSel] = useState(value);
+  const [loading, setLoading] = useState(null);
 
 
   const _handleChange = (selx) => {
@@ -19,8 +20,8 @@ function SelectLibrary(props) {
     onChange(selx[0]);;
   };
   const _setup = async () => {
-    ;
     if (_appContext == null || source == null) {
+      setLoading('No Viya');
       setLiblist([]);
       return;
     }
@@ -29,9 +30,10 @@ function SelectLibrary(props) {
     
     if (viyaSession === null) {
       setLiblist([]);
+      setLoading('No session');
       return;
     }
-    let {store} = viyaSession;
+   
     try {
       let r = await getLibraryList(viyaSession, null);
       ;
@@ -47,6 +49,7 @@ function SelectLibrary(props) {
       ;
       console.log(e)
       setLiblist([])
+      setLoading('Failed');
     }
     return;
   }
@@ -66,6 +69,7 @@ function SelectLibrary(props) {
     onChange={_handleChange}
     valueType="label"
     style={style}
+    loadingText={loading}
     label={label}>
   </BaseSelector>;
 
