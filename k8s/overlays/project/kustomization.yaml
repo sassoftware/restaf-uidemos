@@ -1,0 +1,37 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./namespace.yaml
+  - ../../base
+
+namespace: simpleapp
+
+configMapGenerator:
+  - name: simpleapp-configmap
+    literals:
+    - VIYA_SERVER=https://viya.kumar-ht1-azure-nginx-cec876bd.unx.sas.com
+    - CLIENTID=simpleapp
+    - CLIENTSECRET=secret
+    - APPNAME=simpleapp
+    - APPPORT=8080
+    - APPENTRY=indexva.html
+    - LOGLEVEL=info
+    # AUTHTYPE=code
+    # USETOKEN=YES
+    - APPENV_WORKBENCH=NO
+    - APPENV_SAVETO=local
+    - HAPIDEBUG=YES
+    - APPENV_HOMEPAGE=https://viya.kumar-ht1-azure-nginx-cec876bd.unx.sas.com/simpleapp/help.html
+    - DEBUG=*
+    
+    
+#
+# Update your docker image here
+#
+# images: 
+#  - name: placeholder-image
+#  - newTag: 0.1.0
+#  - newName: simpleappcr.azurecr.io/simpleapp:dev
+
+

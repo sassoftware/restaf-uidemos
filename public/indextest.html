@@ -1,0 +1,316 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/@sassoftware/restaf@4.9.3/dist/restaf.js">
+      window.addEventListener('error', function(e) {
+     console.log(e.target);
+     }, true);
+    </script>
+    <script src="https://unpkg.com/@sassoftware/restaflib@4.9.3/dist/restaflib.js">
+      window.addEventListener('error', function(e) {
+        console.log(e.target);
+       }, true);
+
+    </script>
+
+    <script>
+      let store = restaf.initStore({ casProxy: true });
+      console.log("store config: ", JSON.stringify(store.config, null, 4));
+      let LOGONPAYLOAD = {
+        host: window.location.ancestorOrigins[0],
+        authType: 'server',
+      };
+      function checkLinks(name, r, rel) {
+        debugger;
+        let linkl = r.links().size;
+        console.log(`Service name: ${name} LinkCount: ${linkl}`);
+        if (linkl === 0) {
+          debugger;
+          console.log(r.status);
+          console.log(JSON.stringify(r.items(), null, 4));
+          document.getElementById(
+            "output0"
+          ).innerHTML = `Service name: ${name} LinkCount: ${linkl}\n
+                          ${JSON.stringify(r.items(), null,4)}`;
+          ;
+          throw `Service name: ${name} LinkCount: ${linkl}. Processing stopped`;
+        }
+        if (r.links(rel) == null) {
+          debugger;
+          document.getElementById(
+            "output0"
+          ).innerHTML = `Service name: ${name} rel: ${rel} is null.\n
+                          Processing stopped`;
+          throw `Service name: ${name} rel: ${rel} is null. Processing stopped`;
+        } 
+        return linkl;
+      }
+
+      async function initSession() {
+        console.log(LOGONPAYLOAD);
+        debugger;
+        let msg = await store.logon(LOGONPAYLOAD);
+        console.log("logon status", msg);
+        /*
+        let { identities } = await store.addServices("identities");
+        let name = "user";
+        if (identities.links("currentUser") != null) {
+          let c = await store.apiCall(identities.links("currentUser"));
+          name = c.items("id");
+        } else {
+          console.log("NOTE: Call to identities service returned no links");
+        }
+        console.log(name);
+        */
+      }
+      function setup() {
+        document.getElementById("output").innerHTML = "...initializing";
+        initSession()
+          .then((r) => {
+            document.getElementById("output").innerHTML = "ready";
+          })
+          .catch((e) => {
+            console.log(e);
+            console.log(JSON.stringify(e.detail, null, 4));
+          });
+      }
+    </script>
+    <script>
+        function runit(type) {
+          document.getElementById("output").innerHTML = "...running";
+          document.getElementById("output0").innerHTML = " ";
+          let testcase;
+          switch (type) {
+            case "native": {
+              testcase = SASfileService2;
+              break;
+            }
+            case "files": {
+              testcase = SASfileService;
+              break;
+            }
+            case "compute": {
+              testcase = dsCompute;
+              break;
+            }
+            case "cas": {
+              debugger;
+              testcase = runCas;
+              break;
+            }
+            case "casnative": {
+              debugger;
+              testcase = runCas2;
+              break;
+            }
+            default: {
+              testcase = SASfileService2;
+              break;
+            }
+          }
+
+          testcase(store)
+            .then((r) => {
+              document.getElementById("output").innerHTML = JSON.stringify(
+                r,
+                null,
+                4
+              );
+            })
+            .catch((err) => {
+              document.getElementById("output").innerHTML = JSON.stringify(
+                err,
+                null,
+                4
+              );
+            });
+        }
+
+        async function runCas(store) {
+          debugger;
+          try {
+            let { casManagement } = await store.addServices("casManagement");
+            debugger;
+            checkLinks("casManagement", casManagement, "servers");
+            debugger;
+            let servers = await store.apiCall(casManagement.links("servers"));
+            let serverName = servers.itemsList(0);
+            console.log(`server name: `, serverName);
+            let rafLink = servers.itemsCmd(serverName, "createSession");
+            if (rafLink == null) {
+              console.log("no createSession link");
+              console.log(JSON.stringify(rafLink.items(), null, 4));
+              throw "no createSession link";
+            }
+            console.log(JSON.stringify(rafLink));
+
+            let session = await store.apiCall(
+              servers.itemsCmd(serverName, "createSession")
+            );
+            checkLinks("session", session, "execute");
+            let payload = {
+              action: "builtins.echo",
+              data: { code: { x: 1 } },
+            };
+            console.log(JSON.stringify(session.links("execute"), null, 4));
+            let r = await store.runAction(session, payload);
+            console.log("echo completed");
+            await store.apiCall(session.links("delete"));
+            return r.items();
+          }
+          catch(err) {
+            debugger;
+            console.log(JSON.stringify(err, null,4));
+            document.getElementById("output0").innerHTML = `${JSON.stringify(err, null,4)}`;
+          }
+        }
+        async function runCas2(store) {
+          debugger;
+          let result;
+          try {
+            debugger;
+            let config = {
+              method: 'GET',
+              url: LOGONPAYLOAD.host+ '/casManagement/',
+              withCredentials: true,
+              headers: {
+                'Content-Type': 'application/vnd.sas.api+json',  
+                'Accept'      : 'application/json, application/vnd.sas.api+json',
+      
+              }
+            }
+            debugger;
+            let r = await store.request(config);
+            console.log(r.data);
+            result = r.data;
+            debugger;
+          }
+           catch (err) {
+            debugger;
+            console.log(err);
+            result = err;
+            debugger;
+          }
+          return result;
+          return ;
+      }
+        async function SASfileService2(store) {
+          debugger;
+          let result;
+          try {
+            debugger;
+            let config = {
+              method: 'GET',
+              url: LOGONPAYLOAD.host+ '/files/',
+              withCredentials: true,
+              headers: {
+                'Content-Type': 'application/vnd.sas.api+json',  
+                'Accept'      : 'application/json, application/vnd.sas.api+json',
+      
+              }
+            }
+            debugger;
+            let r = await store.request(config);
+            console.log(r.data);
+            result = r.data;
+            debugger;
+          }
+           catch (err) {
+            console.log(err);
+            result = err;
+            debugger;
+          }
+          return result;
+          return ;
+      }
+        async function SASfileService(store) {
+          debugger;
+          let result;
+          try {
+            debugger;
+            let { files } = await store.addServices("files");
+            debugger;
+            result = files.links();
+          }
+           catch (err) {
+            console.log(err);
+            result = err;
+          //  throw 'ERROR: Call to file service failed';
+            debugger;
+          }
+          return result;
+      }
+        async function dsCompute(store) {
+          let log = null;
+          let { compute } = await store.addServices("compute");
+
+          let contexts = await store.apiCall(compute.links("contexts"));
+
+          // lookup the name of the first context and then use it to get the associated createSession restafLink
+          let createSession = contexts.itemsCmd(
+            contexts.itemsList(0),
+            "createSession"
+          );
+          let session = await store.apiCall(createSession);
+
+          // Now run a simple data step in that session
+          let payload = {
+            data: {
+              code: [`data _null_; do i = 1 to 100; x=1; end; run; `],
+            },
+          };
+
+          // Now execute the data step and wait for completion
+          let job = await store.apiCall(session.links("execute"), payload);
+          let status = await store.jobState(job, null, 5, 2);
+
+          if (status.data === "running") {
+            throw `ERROR: Job did not complete in allotted time`;
+          } else {
+            switch (status.data) {
+              case "warning":
+                console.log(`Warning: check your log for warnings`);
+                break;
+              case "error":
+                throw `Please correct errors and rerun program`;
+              default:
+                log = await store.apiCall(status.job.links("log"));
+                break;
+            }
+          }
+          return log === null ? status : log.items();
+        }
+    </script>
+  </head>
+  <body onload="setup()">
+    <h1 id="head">Hi</h1>
+    <div>
+      <button onclick="runit('files')">
+        Press to make a call to file service
+      </button>
+      <br />
+      <br />
+      <button onclick="runit('native')">
+        Press to make a call to file service native
+      </button>
+      <br />
+      <br />
+      <button onclick="runit('compute')">
+        Press to make a call compute service
+      </button>
+      <br />
+      <br />
+      <button onclick="runit('cas')">Press to make a call to cas echo</button>
+      <br />
+      <br />
+      <button onclick="runit('casnative')">Press to call casmanagement native</button>
+      <br />
+    </div>
+    <div>
+      <pre id="output"></pre>
+    </div>
+    <div>
+      <pre id="output0"></pre>
+    </div>
+  </body>
+</html>

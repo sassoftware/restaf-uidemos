@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleapp
+  labels:
+    app: simpleapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simpleapp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: simpleapp
+    spec:
+      containers:
+        - name: simpleapp
+          image: viyafseditcr.azurecr.io/simpleapp:latest
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: tls-secret
+            - configMapRef:
+                name: simpleapp-configmap
+          resources: {}

@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simpleapp
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/affinity-mode: persistent
+    nginx.ingress.kubernetes.io/session-cookie-name: "simpleapp"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+  namespace: simpleapp
+spec:
+  tls:
+  - hosts:
+    - viya.kumar-ht1-azure-nginx-cec876bd.unx.sas.com
+    secretName: tls-secret
+  rules:
+  - host: viya.kumar-ht1-azure-nginx-cec876bd.unx.sas.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/simpleapp"
+        backend:
+          service:
+            name: simpleapp
+            port:
+              number: 8080

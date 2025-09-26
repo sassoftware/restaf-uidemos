@@ -1,32 +1,28 @@
 {
-	"name": "viyaapp",
-	"version": "1.1.1",
-	"main": "server.js",
-	"description": "Simple Viya app",
-	"author": "Deva Kumaraswamy <deva.kumar@sas.com>",
-	"license": "Apache-2.0",
-	"repository": "https://github.com/sassoftware/restaf-uidemos/tree/viyaapp",
-	"bugs": {
-		"url": "https://github.com/sassoftware/restaf-uidemos/issues"
-	},
-	"homepage": "https://github.com/sassoftware/restaf-uidemos/blob/viyaapp/README.md",
-	"keywords": [
-		"restaf",
-		"Viya",
-		"SAS",
-		"server",
-		"RESTAPI"
-	],
-	"engines": {
-		"node": ">=12.14.0"
-	},
-	"dependencies": {
-		"@sassoftware/viya-appserverjs": "^2.0.2",
-		"cross-env": "^7.0.3"
-	},
-	"scripts": {
-		"start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 npx @sassoftware/viya-appserverjs --env=./.env --docker=./Dockerfile",
-		"app": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 node server --env=./.env --docker=./Dockerfile",
-		"indocker": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0  npx @sassoftware/viya-appserverjs"
-	}
+  "name": "viyaapp",
+  "version": "3.0.0",
+  "description": "Examples of Browser Applications for SAS Viya",
+  "main": "app.js",
+  "scripts": {
+    "start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 npx @sassoftware/viya-serverjs --env=./.env --docker=./Dockerfile",
+    "submit": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 APPENTRY=submit.html npx @sassoftware/viya-serverjs --env=./.env --docker=./Dockerfile",
+    "runsh": "bash startup.sh",
+    "push2acr": "bash ./push2acr.sh",
+    "deploy": "bash ./deploy.sh",
+    "indocker": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 node index.js"
+  },
+  "keywords": [
+    "SAS",
+    "SAS Viya",
+    "JavaScript",
+    "Node.js",
+    "@sassoftware/viya-serverjs",
+    "@sassoftware/restaf"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sassoftware/viya-serverjs": "^0.3.0",
+    "cross-env": "^10.0.0"
+  }
 }

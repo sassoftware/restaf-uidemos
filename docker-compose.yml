@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  viyaapp:
+      build: .
+      restart: always
+      ports:
+        - 8080:8080
+      environment:
+        - VIYA_SERVER=$V1
+        - APPNAME=viyaapp
+        - DEBUG=
+
