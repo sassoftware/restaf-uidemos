@@ -1,4 +1,4 @@
-FROM node:12.16.1-alpine
+FROM node:22.16-alpine
 LABEL maintainer="deva.kumar@sas.com"
 WORKDIR /usr/src/app
 COPY . .
@@ -19,13 +19,23 @@ ENV HTTPS=true
 # set this the same as EXPOSE here and override in env or as -p option in dockerrun
 # ENV APPPORT=8080
 
+ENV APPLOC=./public
 ENV APPNAME=viyaapp
-# ENV AUTHFLOW=
+ENV AUTHFLOW=code
 ENV CLIENTID=viyaapp
 ENV CLIENTSECRET=jellico
+# ENV APPENTRY=
+# ENV REDIRECT=  // need to fix viya-serjs to handle zero length redirect
+
+
+
 # ENV HAPIDEBUG=NO
 # ENV LOGLEVEL=info
-# ENV USETOKEN=YES
+ENV USETOKEN=YES
+ENV SHOWENV=YES
+ENV APPENV_USEPROXY=YES
+ENV APPENV_PROXYSERVER=https://localhost:8080/viyaapp/proxy
+
 
 #sample setup for creating a temporary cert and key
 ENV TLS_CREATE="C:US,ST:NC,L:Cary,O:SAS Institute,OU:STO,CN:localhost"

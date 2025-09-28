@@ -4,12 +4,10 @@
   "description": "Examples of Browser Applications for SAS Viya",
   "main": "app.js",
   "scripts": {
-    "startz": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 npx @sassoftware/viya-serverjs --env=./.env --docker=./Dockerfile",
-    "submit": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 APPENTRY=submit.html npx @sassoftware/viya-serverjs --env=./.env --docker=./Dockerfile",
-    "start": "bash runstart.sh",
-    "push2acr": "bash ./push2acr.sh",
-    "deploy": "bash ./deploy.sh",
-    "indocker": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 node index.js"
+    "start": "bash ./bin/runstart.sh",
+    "push2acr": "bash ./bin/push2acr.sh",
+    "testImage": "bash ./bin/testImage.sh",
+    "deploy": "bash ./bin/deploy.sh"
   },
   "keywords": [
     "SAS",

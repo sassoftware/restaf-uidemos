@@ -48,7 +48,7 @@ You will need the following information
 
 - your Viya server url:  ex: myviya.unx.com
 
-- your project name (ex: ORAPP, simpleapp, etc...). This value will be assigned to the following:
+- your project name (ex: ORAPP, viyaapp, etc...). This value will be assigned to the following:
   - namespace  -- every application runs in its own name space
   - /path  -- this allows users to access your app as <<https://myviya.unx.com/{project name}>
 
@@ -81,7 +81,7 @@ namespace: viya
 #
 
 configMapGenerator:
-  - name: simpleapp-configmap
+  - name: viyaapp-configmap
     literals:
     - VIYA_SERVER=https://myviya.unx.com
     - CLIENTID=viyaapi

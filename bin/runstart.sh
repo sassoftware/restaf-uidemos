@@ -20,7 +20,13 @@ then
     export CLIENT_ID=$APPSETTING_CLIENT_ID
     echo CLIENT_ID= $CLIENT_ID
 fi
+
+// main entry html - default is index.html
+if [[ ! -z "$1" ]];
+then 
+    echo "APPENTRY set to" $1
+    export APPENTRY=$1
+fi
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 echo "Starting server"  
-npx @sassoftware/viya-appserverjs --env .env
-
+npx @sassoftware/viya-serverjs --env=./.env --docker=./Dockerfile   

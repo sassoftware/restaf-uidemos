@@ -5,25 +5,13 @@ resources:
   - ./namespace.yaml
   - ../../base
 
-namespace: simpleapp
+namespace: viyaapp
 
 configMapGenerator:
-  - name: simpleapp-configmap
+  - name: viyaapp-configmap
     literals:
-    - VIYA_SERVER=https://viya.kumar-ht1-azure-nginx-cec876bd.unx.sas.com
-    - CLIENTID=simpleapp
-    - CLIENTSECRET=secret
-    - APPNAME=simpleapp
-    - APPPORT=8080
-    - APPENTRY=indexva.html
-    - LOGLEVEL=info
-    # AUTHTYPE=code
-    # USETOKEN=YES
-    - APPENV_WORKBENCH=NO
-    - APPENV_SAVETO=local
-    - HAPIDEBUG=YES
-    - APPENV_HOMEPAGE=https://viya.kumar-ht1-azure-nginx-cec876bd.unx.sas.com/simpleapp/help.html
-    - DEBUG=*
+      - VIYA_SERVER=https://viyaserver.com
+      - DEBUG=*
     
     
 #
@@ -32,6 +20,6 @@ configMapGenerator:
 # images: 
 #  - name: placeholder-image
 #  - newTag: 0.1.0
-#  - newName: simpleappcr.azurecr.io/simpleapp:dev
+#  - newName: viyaappcr.azurecr.io/viyaapp:dev
 
 

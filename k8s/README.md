@@ -48,7 +48,7 @@ You will need the following information
 
 - your Viya server url:  ex: myviya.unx.com
 
-- your project name (ex: ORAPP, simpleapp, etc...). This value will be assigned to the following:
+- your project name (ex: ORAPP, viyaapp, etc...). This value will be assigned to the following:
   - namespace  -- every application runs in its own name space
   - /path  -- this allows users to access your app as <<https://myviya.unx.com/{project name}>
 
@@ -81,13 +81,13 @@ namespace: viyaapi
 #
 
 configMapGenerator:
-  - name: simpleapp-configmap
+  - name: viyaapp-configmap
     literals:
-    - VIYA_SERVER=https://myviya.unx.com
-    - CLIENTID=viyaapi
-    - APPNAME=viyaapi
+    - VIYA_SERVER=https://viyaserver.com
+    - CLIENTID=viyaapp
+    - CLIENTSECRET=jellico
+    - APPNAME=viyaap
     - APPPORT=8080
-    - APPENV=appenv.js
     - LOGLEVEL=error
 
 #
@@ -108,9 +108,9 @@ Set your crt and tls in the base/secrets directory. Keep the names of the files 
 how to get these from your Viya server
 
 ```sh
-kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/ca.crt ./ca.crt
-kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/tls.crt ./tls.crt
-kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/tls.key ./tls.key
+kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/ca.crt ./ca.pem
+kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/tls.crt ./tls.pem
+kubectl cp $(kubectl get pod | grep "sas-consul-server-0" | awk -F" " '{print $1}'):security/tls.key ./key.pem
 ```
 
 ### A note on clientid
@@ -125,7 +125,7 @@ From the appropriate shell with thhe KUBECONFIG set to the correct value, enter 
 kubectl apply -k overlays/project
 ```
 
-If all the stars line up, this should create a namespace(viyaapi in the example above) and be ready to access via the application thru this url <https://myviya.unx.com/viyaapi>. You should be prompted to logon to Viya.
+If all the stars line up, this should create a namespace(viyaapi in the example above) and be ready to access via the application thru this url <https://myviya.unx.com/viyaapp>. You should be prompted to logon to Viya.
 
 ## Final word
 

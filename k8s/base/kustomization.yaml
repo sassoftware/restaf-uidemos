@@ -6,8 +6,9 @@ secretGenerator:
   - name: tls-secret
     type: kubernetes.io/tls
     files:
-    - ./secrets/tls.crt
-    - ./secrets/tls.key
+    - ./secrets/key.pem
+    - ./secrets/crt.pem
+    - ./secrets/ca.pem
 # - name: clientid-secret
 #     type: Opaque
 #     files:

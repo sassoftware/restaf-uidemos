@@ -1,0 +1,11 @@
+name: viyaapp
+services:
+  viyaapp:
+      image: viyafseditcr.azurecr.io/viyaapp:latest
+      restart: always
+      ports:
+        - 8080:8080
+      environment:
+        - VIYA_SERVER=https://viya-8pqovam7pn.engage.sas.com
+        - DEBUG=
+

@@ -20,14 +20,7 @@ then
     export CLIENT_ID=$APPSETTING_CLIENT_ID
     echo CLIENT_ID= $CLIENT_ID
 fi
-
-APPOPT=$1
-echo "App option is " $APPOPT
-if [[ ! -z "$APPOPT" ]];
-then 
-    echo "Using app option " $APPOPT
-    export APPENTRY=$APPOPT
-fi
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 echo "Starting server"  
-npx @sassoftware/viya-serverjs --env=./.env --docker=./Dockerfile   
+npx @sassoftware/viya-appserverjs --env .env
+

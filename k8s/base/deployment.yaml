@@ -1,24 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simpleapp
+  name: viyaapp
   labels:
-    app: simpleapp
+    app: viyaapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: simpleapp
+      app: viyaapp
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: simpleapp
+        app: viyaapp
     spec:
       containers:
-        - name: simpleapp
-          image: viyafseditcr.azurecr.io/simpleapp:latest
+        - name: viyaapp
+# Update your docker image here
+          image: viyaappcr.azurecr.io/viyaapp:latest
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8080
@@ -26,5 +27,5 @@ spec:
             - secretRef:
                 name: tls-secret
             - configMapRef:
-                name: simpleapp-configmap
+                name: viyaapp-configmap
           resources: {}
